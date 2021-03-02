@@ -1,9 +1,11 @@
 import React from 'react';
+import CartItem from './components/CartItem/CartItem';
 
-function App() {
+function App()
+{
   return (
     <div className="app">
-      Hello world
+      <CartItem />
     </div>
   );
 }
