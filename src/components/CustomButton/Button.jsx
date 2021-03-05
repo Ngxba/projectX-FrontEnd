@@ -54,6 +54,10 @@ const CustomButton = (props) =>
     case 'large':
       button = <LargeButton variant="contained" color="primary">{text}</LargeButton>;
       break;
+
+    case 'cancel':
+      button = <Button variant="contained" color="secondary">{text}</Button>;
+      break;
   }
 
   return (
