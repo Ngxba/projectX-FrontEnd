@@ -1,12 +1,10 @@
 import React from 'react';
-import CartItem from './components/CartItem/CartItem';
+import 'normalize.css';
 
 function App()
 {
   return (
-    <div className="app">
-      <CartItem />
-    </div>
+    <div className="app" />
   );
 }
 
