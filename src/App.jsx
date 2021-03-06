@@ -1,16 +1,34 @@
 import React from 'react';
-import Button from './components/Buttons/Button';
-import ResetCSS from './components/reset-css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core';
+import Intro from './container/home/intro/intro';
+import CustomButton from './components/Buttons/Button';
+import CustomTheme from './Theme/CustomTheme';
 
 function App()
 {
   return (
-    <>
-      <ResetCSS />
-      <Button variant="default">
-        Primary
-      </Button>
-    </>
+    <React.Fragment key="main">
+
+      <ThemeProvider theme={CustomTheme}>
+
+        <CssBaseline />
+
+        <Intro />
+
+        <CustomButton variant="large">
+          Browse Thousands of Sneakers on our Live Marketplace
+        </CustomButton>
+
+        <br />
+
+        <CustomButton variant="default">
+          Default without variant
+        </CustomButton>
+
+      </ThemeProvider>
+
+    </React.Fragment>
   );
 }
 
