@@ -23,7 +23,11 @@ function App()
         <br />
 
         <CustomButton variant="default">
-          Default without variant
+          Default
+        </CustomButton>
+
+        <CustomButton variant="cancel">
+          Cancel
         </CustomButton>
 
       </ThemeProvider>

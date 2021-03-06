@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { MuiThemeProvider } from '@material-ui/core';
-import CustomTheme from '../../Theme/CustomTheme';
 import LargeButton from './LargeButton';
 
 const CustomButton = (props) =>
@@ -30,9 +28,9 @@ const CustomButton = (props) =>
   }
 
   return (
-    <MuiThemeProvider theme={CustomTheme}>
+    <>
       {button}
-    </MuiThemeProvider>
+    </>
   );
 };
 
