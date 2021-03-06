@@ -45,13 +45,13 @@ const ResetCSS = createGlobalStyle`
   h3,
   h4,
   h5,
-  h6{
+  h6 {
     margin-top: 0;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   body {
-    font-family: 'Fira Sans',sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     margin: 0;
     padding: 0;
     font-size: 15px;
@@ -59,14 +59,16 @@ const ResetCSS = createGlobalStyle`
     -webkit-tap-highlight-color: transparent;
   }
 
-  p{
+  p {
     line-height: 2;
     margin: 0 0 1.7em 0;
   }
-  
-  input, textarea, select, button{font-family: 'Fira Sans',sans-serif;}
 
-  ul,ol {
+  input, textarea, select, button {
+    font-family: 'Fira Sans', sans-serif;
+  }
+
+  ul, ol {
     margin: 0;
     padding: 0;
   }
@@ -80,8 +82,8 @@ const ResetCSS = createGlobalStyle`
     text-decoration: none;
   }
 
-  blockquote{
-    font-family: 'Poppins',sans-serif;
+  blockquote {
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
   }
 
@@ -114,7 +116,7 @@ const ResetCSS = createGlobalStyle`
     background-color: #f6f8fa;
   }
 
-  table th{
+  table th {
     font-weight: 500;
   }
 
@@ -124,10 +126,11 @@ const ResetCSS = createGlobalStyle`
     padding: .4em 1em;
   }
 
-  .nav-sticky{
+  .nav-sticky {
     .header {
-      box-shadow: 0 0 15px rgba(0,0,0,.08);
-      .navbar{
+      box-shadow: 0 0 15px rgba(0, 0, 0, .08);
+
+      .navbar {
         @media (min-width: 1400px) {
           padding-top: 25px;
           padding-bottom: 25px;
@@ -138,7 +141,7 @@ const ResetCSS = createGlobalStyle`
         }
       }
     }
-    
+
   }
 `;
 export default ResetCSS;
