@@ -10,8 +10,6 @@ const palette = {
       main: '#2b2d42',
       contrastText: '#edf2f4',
     },
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
   },
 };
 export default palette;

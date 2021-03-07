@@ -1,9 +1,8 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
-import Intro from './container/home/intro/intro';
-import CustomButton from './components/Buttons/Button';
-import CustomTheme from './Theme/CustomTheme';
+import CustomButton from './components/Buttons/button';
+import CustomTheme from './Theme/custom_theme';
 
 function App()
 {
@@ -14,20 +13,18 @@ function App()
 
         <CssBaseline />
 
-        <Intro />
-
-        <CustomButton variant="large">
+        <CustomButton variant="contained" backgroundColor="primary" buttonSize="btn--large">
           Browse Thousands of Sneakers on our Live Marketplace
         </CustomButton>
 
         <br />
 
-        <CustomButton variant="default">
-          Default
+        <CustomButton variant="contained" backgroundColor="primary" buttonSize="btn--medium">
+          Signup
         </CustomButton>
 
-        <CustomButton variant="cancel">
-          Cancel
+        <CustomButton variant="outlined" backgroundColor="primary" buttonSize="btn--small">
+          BID
         </CustomButton>
 
       </ThemeProvider>
