@@ -1,25 +1,76 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const typoStyles = makeStyles((theme) => ({
-  heading: {
-    fontWeight: '400',
-    // fontFamily: 'Averia Libre',s
-    letterSpacing: '-1px',
+const typoStyles = makeStyles(() => ({
+  root: {
+    fontWeight: '500',
+    fontSize: '16px',
+    lineHeight: '1.3',
   },
 
-  styleHeadingTop: {
+  'text--default': {
+    fontSize: '16px',
+  },
+
+  'text--medium': {
+    fontWeight: 'normal',
+  },
+
+  'text--bold': {
+    fontWeight: 'bolder',
+  },
+
+  'text--light': {
+    fontWeight: 'lighter',
+  },
+
+  'text--heading': {
     display: 'block',
-    fontSize: '3.5rem',
+    fontSize: '2.5rem',
     marginBottom: '0.75rem',
-    color: theme.colors.black,
+    padding: '0.5rem',
   },
 
-  styleHeadingBottom: {
-    display: 'inline-block',
-    backgroundColor: theme.colors.black,
-    fontSize: '2.5rem',
-    padding: '0.5rem',
-    color: theme.colors.white,
+  'text--category': {
+    height: '38px',
+    fontSize: '18px',
+    marginLeft: 'initial',
+    marginRight: 'initial',
+    boxShadow: 'inset 0 -5px 0 0 transparent',
+    marginTop: '0.75rem',
+    textTransform: 'capitalize',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+  },
+
+  'text--title': {
+    fontSize: '18px',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    marginTop: '24px',
+    marginBottom: '16px',
+    WebkitBoxPack: 'justify',
+  },
+
+  'text--link': {
+    fontSize: '16px',
+    letterSpacing: '0px',
+    color: '#08A05C',
+    textDecoration: 'none! important',
+    cursor: 'pointer',
+  },
+
+  'text--primary': {
+    fontSize: '22px',
+    lineHeight: '1.3',
+  },
+
+  'text--secondary': {
+    fontSize: '14px',
+    lineHeight: '1.3',
+    color: 'rgba(0, 0, 0, 0.5)',
+    textTransform: 'capitalize',
   },
 }));
 

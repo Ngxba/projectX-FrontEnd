@@ -19,7 +19,6 @@
     ],
     "rules": {
         // "react/prefer-stateless-function": [0, { "ignorePureComponents": true }]
-        "react/prop-types": "off",
         "quotes": "off"
     }
 }

@@ -1,16 +1,15 @@
-const colors = {
-  transparent: 'transparent', // 0
-  black: '#292929', // 1
-  white: '#ffffff', // 2
-  textColor: '#292929', // 3
-  lightTextColor: '#757575', // 4
-  inactiveField: '#F7F7F7', // 5
-  inactiveColor: '#767676', // 6
-  inactiveBG: '#e6e6e6', // 7
-  borderColor: '#DBDBDB', // 8
-  lightBorderColor: '#ededed', // 9
-  primary: '#D79922', // 10
-  primaryHover: '#EFE2BA', // 11
+const palette = {
+  palette: {
+    primary: {
+      main: '#08A05C',
+    },
+    secondary: {
+      main: '#cc4a39',
+    },
+    text: {
+      main: '#2b2d42',
+      contrastText: '#edf2f4',
+    },
+  },
 };
-
-export default colors;
+export default palette;
