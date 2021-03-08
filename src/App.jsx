@@ -2,10 +2,10 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
 import CustomButton from './components/Buttons/button';
-import CustomTheme from './Theme';
+import CustomTheme from './theme';
 
-function App()
-{
+// eslint-disable-next-line
+function App() {
   return (
     <React.Fragment key="main">
 

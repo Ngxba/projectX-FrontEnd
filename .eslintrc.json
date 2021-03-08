@@ -21,19 +21,6 @@
       1,
       "allman"
     ],
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 12,
-      "sourceType": "module"
-    },
-    "plugins": [
-      "react"
-    ],
-    "rules": {
-      // "react/prefer-stateless-function": [0, { "ignorePureComponents": true }]
-      "quotes": "off"
-    }
+    "linebreak-style": "off"
   }
 }
