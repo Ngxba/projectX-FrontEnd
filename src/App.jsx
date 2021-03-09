@@ -2,7 +2,7 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
 import CustomButton from './components/Buttons/button';
-import CustomTheme from './Theme/custom_theme';
+import CustomTheme from './Theme';
 
 function App()
 {
