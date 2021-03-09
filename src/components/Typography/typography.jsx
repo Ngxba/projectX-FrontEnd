@@ -1,8 +1,8 @@
 // import { Typography } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
-import React from "react";
+import { Typography } from '@material-ui/core';
+import React from 'react';
 import PropTypes from 'prop-types';
-import typoStyles from "./typography.style";
+import typoStyles from './typography.style';
 
 const COLORS = [
   'textPrimary',
@@ -36,16 +36,21 @@ const COMPONENTS = [
   'h6',
 ];
 
-const CustomTypography = (props) => {
+const CustomTypography = (props) =>
+{
   const {
-    children, txtColor, txtStyle, txtType, txtComponent,
+    children,
+    txtColor,
+    txtStyle,
+    txtType,
+    txtComponent,
   } = props;
 
   const checkTxtColor = COLORS.includes(txtColor) ? txtColor : COLORS[0];
 
   const checkTxtStyle = STYLES.includes(txtStyle) ? txtStyle : STYLES[0];
 
-  const checkTxtTypes = TYPES.includes(txtType) ? txtType : "";
+  const checkTxtTypes = TYPES.includes(txtType) ? txtType : '';
 
   const checkTxtComponents = COMPONENTS.includes(txtComponent) ? txtComponent : COMPONENTS[0];
 
