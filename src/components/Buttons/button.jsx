@@ -51,10 +51,10 @@ const CustomButton = (props) =>
 };
 
 CustomButton.propTypes = {
-  children: PropTypes.string.isRequired,
-  variant: PropTypes.string.isRequired,
-  backgroundColor: PropTypes.string.isRequired,
-  buttonSize: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(VARIANTS).isRequired,
+  backgroundColor: PropTypes.oneOf(BG_COLORS).isRequired,
+  buttonSize: PropTypes.oneOf([SIZES]).isRequired,
 };
 
 export default CustomButton;
