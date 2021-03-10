@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import footerNewsStyle from './footer_news.style';
+import data from './data';
 
 const FooterNews = (props) =>
 {
@@ -63,7 +64,11 @@ FooterNews.propTypes = {
       name: PropTypes.String,
       link: PropTypes.string,
     })),
-  })).isRequired,
+  })),
+};
+
+FooterNews.defaultProps = {
+  newsData: data,
 };
 
 export default FooterNews;

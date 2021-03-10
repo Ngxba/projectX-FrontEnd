@@ -11,9 +11,14 @@ const Footer = () =>
 
   return (
     <div id="site-footer" data-testid="footer" className={classes.root}>
+
+      {/* Props 'newsData' is optional */}
       <FooterNews newsData={data} />
+
       <div className={classes['custom--hr']} />
+
       <SocialMedias />
+
       <SiteInfo />
     </div>
   );
