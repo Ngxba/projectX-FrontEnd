@@ -29,20 +29,16 @@ const CustomButton = (props) =>
     buttonSize,
   } = props;
 
-  const checkVariant = VARIANTS.includes(variant) ? variant : VARIANTS[0];
-  const checkBackgroundColor = BG_COLORS.includes(backgroundColor) ? backgroundColor : BG_COLORS[0];
-  const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
-
   const classes = buttonStyle();
 
-  const className = `${classes.root} ${classes[checkButtonSize]}`;
+  const className = `${classes.root} ${classes[buttonSize]}`;
 
   return (
     <React.Fragment key="button">
       <Button
-        color={checkBackgroundColor}
+        color={backgroundColor}
         className={className}
-        variant={checkVariant}
+        variant={variant}
       >
         {children}
       </Button>
@@ -50,11 +46,17 @@ const CustomButton = (props) =>
   );
 };
 
+CustomButton.defaultProps = {
+  variant: VARIANTS[0],
+  backgroundColor: BG_COLORS[0],
+  buttonSize: SIZES[0],
+};
+
 CustomButton.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(VARIANTS).isRequired,
-  backgroundColor: PropTypes.oneOf(BG_COLORS).isRequired,
-  buttonSize: PropTypes.oneOf([SIZES]).isRequired,
+  variant: PropTypes.oneOf(VARIANTS),
+  backgroundColor: PropTypes.oneOf(BG_COLORS),
+  buttonSize: PropTypes.oneOf([SIZES]),
 };
 
 export default CustomButton;
