@@ -1,180 +1,186 @@
 const newsData = [
   {
     title: 'Air Jordan',
+    categoryLink: 'https://stockx.com/retro-jordans',
     items: [
       {
         name: 'Jordan 13',
-        href: 'https://stockx.com/retro-jordans/air-jordan-13',
+        link: 'https://stockx.com/retro-jordans/air-jordan-13',
       },
       {
         name: 'Air Jordan 1',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
       {
         name: 'Womens Jordans',
-        href: 'https://stockx.com/retro-jordans/women',
+        link: 'https://stockx.com/retro-jordans/women',
       },
       {
         name: 'Air Jordan 5',
-        href: 'https://stockx.com/retro-jordans/air-jordan-5',
+        link: 'https://stockx.com/retro-jordans/air-jordan-5',
       },
       {
         name: 'Jordan 1 Mid',
-        href: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
+        link: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
       },
       {
         name: 'Air Jordan 4',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
 
     ],
   },
   {
     title: 'Air Jordan',
+    categoryLink: 'https://stockx.com/retro-jordans',
     items: [
       {
         name: 'Jordan 13',
-        href: 'https://stockx.com/retro-jordans/air-jordan-13',
+        link: 'https://stockx.com/retro-jordans/air-jordan-13',
       },
       {
         name: 'Air Jordan 1',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
       {
         name: 'Womens Jordans',
-        href: 'https://stockx.com/retro-jordans/women',
+        link: 'https://stockx.com/retro-jordans/women',
       },
       {
         name: 'Air Jordan 5',
-        href: 'https://stockx.com/retro-jordans/air-jordan-5',
+        link: 'https://stockx.com/retro-jordans/air-jordan-5',
       },
       {
         name: 'Jordan 1 Mid',
-        href: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
+        link: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
       },
       {
         name: 'Air Jordan 4',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
 
     ],
   },
   {
     title: 'Air Jordan',
+    categoryLink: 'https://stockx.com/retro-jordans',
     items: [
       {
         name: 'Jordan 13',
-        href: 'https://stockx.com/retro-jordans/air-jordan-13',
+        link: 'https://stockx.com/retro-jordans/air-jordan-13',
       },
       {
         name: 'Air Jordan 1',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
       {
         name: 'Womens Jordans',
-        href: 'https://stockx.com/retro-jordans/women',
+        link: 'https://stockx.com/retro-jordans/women',
       },
       {
         name: 'Air Jordan 5',
-        href: 'https://stockx.com/retro-jordans/air-jordan-5',
+        link: 'https://stockx.com/retro-jordans/air-jordan-5',
       },
       {
         name: 'Jordan 1 Mid',
-        href: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
+        link: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
       },
       {
         name: 'Air Jordan 4',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
 
     ],
   },
   {
     title: 'Air Jordan',
+    categoryLink: 'https://stockx.com/retro-jordans',
     items: [
       {
         name: 'Jordan 13',
-        href: 'https://stockx.com/retro-jordans/air-jordan-13',
+        link: 'https://stockx.com/retro-jordans/air-jordan-13',
       },
       {
         name: 'Air Jordan 1',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
       {
         name: 'Womens Jordans',
-        href: 'https://stockx.com/retro-jordans/women',
+        link: 'https://stockx.com/retro-jordans/women',
       },
       {
         name: 'Air Jordan 5',
-        href: 'https://stockx.com/retro-jordans/air-jordan-5',
+        link: 'https://stockx.com/retro-jordans/air-jordan-5',
       },
       {
         name: 'Jordan 1 Mid',
-        href: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
+        link: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
       },
       {
         name: 'Air Jordan 4',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
 
     ],
   },
   {
     title: 'Air Jordan',
+    categoryLink: 'https://stockx.com/retro-jordans',
     items: [
       {
         name: 'Jordan 13',
-        href: 'https://stockx.com/retro-jordans/air-jordan-13',
+        link: 'https://stockx.com/retro-jordans/air-jordan-13',
       },
       {
         name: 'Air Jordan 1',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
       {
         name: 'Womens Jordans',
-        href: 'https://stockx.com/retro-jordans/women',
+        link: 'https://stockx.com/retro-jordans/women',
       },
       {
         name: 'Air Jordan 5',
-        href: 'https://stockx.com/retro-jordans/air-jordan-5',
+        link: 'https://stockx.com/retro-jordans/air-jordan-5',
       },
       {
         name: 'Jordan 1 Mid',
-        href: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
+        link: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
       },
       {
         name: 'Air Jordan 4',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
 
     ],
   },
   {
     title: 'Air Jordan',
+    categoryLink: 'https://stockx.com/retro-jordans',
     items: [
       {
         name: 'Jordan 13',
-        href: 'https://stockx.com/retro-jordans/air-jordan-13',
+        link: 'https://stockx.com/retro-jordans/air-jordan-13',
       },
       {
         name: 'Air Jordan 1',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
       {
         name: 'Womens Jordans',
-        href: 'https://stockx.com/retro-jordans/women',
+        link: 'https://stockx.com/retro-jordans/women',
       },
       {
         name: 'Air Jordan 5',
-        href: 'https://stockx.com/retro-jordans/air-jordan-5',
+        link: 'https://stockx.com/retro-jordans/air-jordan-5',
       },
       {
         name: 'Jordan 1 Mid',
-        href: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
+        link: 'https://stockx.com/retro-jordans/air-jordan-1/mid',
       },
       {
         name: 'Air Jordan 4',
-        href: 'https://stockx.com/retro-jordans/air-jordan-4',
+        link: 'https://stockx.com/retro-jordans/air-jordan-4',
       },
 
     ],

@@ -22,9 +22,8 @@ const FooterNews = (props) =>
                     className={classes['li--heading']}
                   >
                     <a
-                      groupheader="true"
                       className={classes['li--a']}
-                      href="/retro-jordans"
+                      href={column.categoryLink}
                     >
                       {column.title}
                     </a>
@@ -35,7 +34,7 @@ const FooterNews = (props) =>
                     column.items.map((item) => (
                       <li className={classes.li}>
                         <a
-                          href={item.href}
+                          href={item.link}
                           target="_blank"
                           rel="noreferrer"
                           data-testid="footer-link"
@@ -59,9 +58,10 @@ const FooterNews = (props) =>
 FooterNews.propTypes = {
   newsData: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
+    categoryLink: PropTypes.String,
     items: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.String,
-      href: PropTypes.string,
+      link: PropTypes.string,
     })),
   })).isRequired,
 };
