@@ -1,9 +1,13 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import infoStyle from './site_information.style';
 
-const SiteInfo = () =>
+const SiteInfo = (props) =>
 {
+  const { data } = props;
+
   const classes = infoStyle();
+
   return (
     <div className={classes.root}>
       <div className={classes.row}>
@@ -25,6 +29,7 @@ const SiteInfo = () =>
                 Works
               </a>
             </div>
+
             <div className={classes.element}>
               <a className={classes['element--a']} href="/reviews">Reviews</a>
             </div>
@@ -34,7 +39,9 @@ const SiteInfo = () =>
             <div className={classes.element}>
               <a className={classes['element--a']} href="/terms">Terms</a>
             </div>
-            <div className={classes.element}><a className={classes['element--a']} href="/jobs">Jobs</a></div>
+            <div className={classes.element}>
+              <a className={classes['element--a']} href="/jobs">Jobs</a>
+            </div>
             <div className={classes.element}>
               <a
                 className={classes['element--a']}
@@ -68,12 +75,16 @@ const SiteInfo = () =>
       </div>
       <div className={classes.row}>
         <div className={classes['copyright--container']}>
-          <address className={classes.copyright}>©2021 StockX. All Rights Reserved.</address>
+          <address className={classes.copyright}>©2021 ProjectX. All Rights Reserved.</address>
         </div>
       </div>
     </div>
 
   );
+};
+
+SiteInfo.propTypes = {
+  data: PropTypes.arrayOf(),
 };
 
 export default SiteInfo;
