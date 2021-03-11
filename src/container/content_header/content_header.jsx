@@ -1,33 +1,31 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import contentHeaderStyle from './content_header.style';
 
 const ContentHeader = (props) =>
 {
-  // const { bgImage } = props;
-
   const classes = contentHeaderStyle(props);
 
   return (
     <div className={classes.root}>
-      <div className="home-jumbo">
-        <h1 className="big">
+      <div className={classes['home--jumbo']}>
+        <h1 className={classes.big}>
           <span
-            className="css-huuuo9-StyledHeadingTop"
+            className={classes['heading--top']}
           >
             Buy &amp; Sell
           </span>
           <span
-            className="css-4gltew-StyledHeadingBottom"
+            className={classes['heading--bot']}
           >
             Authentic collectibles
           </span>
         </h1>
-        <div className="container search">
-          <div id="HomePageSearchBoxWrapper" className="homepage-search">
+        <div className={classes['container--search']}>
+          <div id="HomePageSearchBoxWrapper" className={classes['homepage--search']}>
             <div className="product-search-control" data-testid="search-box-home">
-              <div className="search-row">
-                <div className="search-input">
+              <div className={classes['image--row']}>
+                <div className={classes['search--input']}>
                   <form action=".">
                     <input
                       type="search"
@@ -35,7 +33,7 @@ const ContentHeader = (props) =>
                       name="q"
                       placeholder="Search..."
                       defaultValue
-                      className="searchbox input-text form-control"
+                      className={classes.searchbox}
                       autoComplete="off"
                       spellCheck="false"
                       autoCorrect="off"
@@ -47,7 +45,7 @@ const ContentHeader = (props) =>
                       focusable="false"
                       data-prefix="fas"
                       data-icon="search"
-                      className="svg-inline--fa fa-search fa-w-16 "
+                      className={classes['svg--inline--fa']}
                       role="img"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
@@ -71,11 +69,16 @@ const ContentHeader = (props) =>
 };
 
 ContentHeader.propTypes = {
+  // Disable this Eslint rule because bgImage does not need to be called inside this component but
+  // still required to pass in content_header.style
+
+  // eslint-disable-next-line no-undef,react/no-unused-prop-types
   bgImage: PropTypes.string,
 };
 
 ContentHeader.defaultProps = {
-  bgImage: '//stockx-assets.imgix.net/Core/homepage/hero_image_FW_2021.png?auto=compress,format',
+  bgImage:
+    'url("//stockx-assets.imgix.net/Core/homepage/hero_image_FW_2021.png?auto=compress,format")',
 };
 
 export default ContentHeader;
