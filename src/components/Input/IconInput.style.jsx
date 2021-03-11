@@ -50,6 +50,7 @@ const fakeStyle = makeStyles((theme) => ({
       background: "black",
       color: "white",
     },
+    cursor: "pointer",
   },
   buttonFormOpen: {
     right: "220px",

@@ -16,7 +16,9 @@ const IconInput = (props) => {
   const handleChange = () => {
     if (inputState === "") {
       setInputState(classes.inputOpen);
-      setbtnCloseState(classes.dpInlineBlock);
+      setTimeout(() => {
+        setbtnCloseState(classes.dpInlineBlock);
+      }, 50);
       setbtnSearchState(classes.buttonFormOpen);
     } else {
       setInputState("");
