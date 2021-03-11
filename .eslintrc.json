@@ -17,10 +17,8 @@
     "react"
   ],
   "rules": {
-    "brace-style": [
-      1,
-      "allman"
-    ],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "quotes": "off",
+    "jsx-quotes": "off"
   }
 }

@@ -7,7 +7,10 @@ const inputStyles = makeStyles(() => ({
     top: '10px',
     fontSize: '18px',
     left: '10px',
-    color: '#010101',
+    color: '#000',
+    "&:disabled": {
+      color: "#000",
+    },
   },
 
   allInput: {
@@ -21,6 +24,11 @@ const inputStyles = makeStyles(() => ({
     height: '40px',
     fontWeight: '400',
     border: 'none',
+    margin: 8,
+    width: "100%",
+  },
+  gray: {
+    background: "#f6f6f6",
   },
 }));
 

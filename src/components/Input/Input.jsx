@@ -1,86 +1,65 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import InputBase from '@material-ui/core/InputBase';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import SearchIcon from '@material-ui/icons/Search';
+import React from "react";
+import TextField from "@material-ui/core/TextField";
+import InputBase from "@material-ui/core/InputBase";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
+import SearchIcon from "@material-ui/icons/Search";
+import IconInput from "./IconInput";
 // import Collapse from '@material-ui/core/Collapse';
-import inputStyles from './Input.style';
+import inputStyles from "./Input.style";
 
-const VARIANTS = ['outlined', 'standard'];
+const VARIANTS = ["outlined", "standard", "icon"];
+const COLOR = ["default", "gray"];
 function CustomInput(props) {
   const classes = inputStyles();
-  const { placeholder, withIcon, variant } = props;
-  // const handleChange = () => {};
-  const checkVariant = VARIANTS.includes(variant) ? variant : VARIANTS[0];
-  // const [expanded, setExpanded] = React.useState(false);
-
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
+  const {
+    placeholder, withIcon, variant, color,
+  } = props;
 
   return (
     <div>
-      {checkVariant === 'standard' && (
-        <AppBar position="static" className={classes.allInput}>
-          <Toolbar>
-            {withIcon && (
-              <Button
-                className={classes.buttonStyle}
-                edge="start"
-                aria-label="Search"
-              >
-                <SearchIcon />
-              </Button>
-            )}
-            <InputBase
-              className={classes.inputText}
-              style={{ margin: 8 }}
-              placeholder={placeholder}
-              // inputProps={{ "aria-label": "Search..." }}
-            />
-          </Toolbar>
-        </AppBar>
+      {variant === "standard" && (
+        <Toolbar className={classes[color]}>
+          {withIcon && (
+            <Button
+              className={classes.buttonStyle}
+              edge='start'
+              aria-label='Search'
+              disabled
+            >
+              <SearchIcon />
+            </Button>
+          )}
+          <InputBase className={classes.inputText} placeholder={placeholder} />
+        </Toolbar>
       )}
-      {checkVariant === 'outlined' && (
+      {variant === "outlined" && (
         <TextField
-          className={classes.OutlineText}
-          id="outlined-uncontrolled"
+          className={`${classes.OutlineText} ${classes[color]}`}
+          id='outlined-uncontrolled'
           placeholder={placeholder}
           fullWidth
-          variant="outlined"
+          variant='outlined'
         />
       )}
-      {/* {withIcon && <br />}
-      <div style={{ display: 'flex' }}>
-        <Button
-          className={classes.buttonStyle}
-          edge="start"
-          aria-label="Search"
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-        >
-          <SearchIcon />
-        </Button>
-        <Collapse in={expanded} timeout="auto" unmountOnExit style={{ display: 'inline-block' }}>
-          <InputBase
-            className={classes.inputText}
-            style={{ margin: 8 }}
-            placeholder={placeholder}
-            variant={checkVariant}
-          // inputProps={{ "aria-label": "Search..." }}
-          />
-        </Collapse> */}
+      {variant === "icon" && <IconInput placeholder={placeholder} />}
     </div>
   );
 }
 
 CustomInput.propTypes = {
-  placeholder: PropTypes.string.isRequired,
-  variant: PropTypes.string.isRequired,
-  withIcon: PropTypes.bool.isRequired,
+  placeholder: PropTypes.string,
+  variant: PropTypes.oneOf(VARIANTS),
+  withIcon: PropTypes.bool,
+  color: PropTypes.oneOf(COLOR),
+};
+
+CustomInput.defaultProps = {
+  placeholder: "",
+  variant: VARIANTS[0],
+  withIcon: true,
+  color: COLOR[0],
 };
 
 export default CustomInput;
