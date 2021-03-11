@@ -1,34 +1,46 @@
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core';
-import CustomButton from './components/Buttons/button';
-import CustomTheme from './theme';
+import React from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core";
+import CustomButton from "./components/Buttons/button";
+import CustomTheme from "./Theme";
+import Input from "./components/Input/Input";
 
-// eslint-disable-next-line
 function App() {
   return (
-    <React.Fragment key="main">
-
+    <React.Fragment key='main'>
       <ThemeProvider theme={CustomTheme}>
-
         <CssBaseline />
-
-        <CustomButton variant="contained" backgroundColor="primary" buttonSize="btn--large">
+        <Input placeholder='Search...' withIcon />
+        <br />
+        <Input placeholder='Search...' color="gray" withIcon variant='standard' />
+        <br />
+        <Input variant='icon' placeholder='Search for articles, ...' />
+        <CustomButton
+          variant='contained'
+          backgroundColor='primary'
+          buttonSize='btn--large'
+        >
           Browse Thousands of Sneakers on our Live Marketplace
         </CustomButton>
 
         <br />
 
-        <CustomButton variant="contained" backgroundColor="primary" buttonSize="btn--medium">
+        <CustomButton
+          variant='contained'
+          backgroundColor='primary'
+          buttonSize='btn--medium'
+        >
           Signup
         </CustomButton>
 
-        <CustomButton variant="outlined" backgroundColor="primary" buttonSize="btn--small">
+        <CustomButton
+          variant='outlined'
+          backgroundColor='primary'
+          buttonSize='btn--small'
+        >
           BID
         </CustomButton>
-
       </ThemeProvider>
-
     </React.Fragment>
   );
 }
