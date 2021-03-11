@@ -46,16 +46,16 @@ const CustomButton = (props) =>
   );
 };
 
-CustomButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(VARIANTS),
-  backgroundColor: PropTypes.oneOf(BG_COLORS),
-  buttonSize: PropTypes.oneOf([SIZES]),
-};
-
 CustomButton.defaultProps = {
   variant: VARIANTS[0],
   backgroundColor: BG_COLORS[0],
   buttonSize: SIZES[0],
+};
+
+CustomButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(VARIANTS),
+  backgroundColor: PropTypes.oneOf(BG_COLORS),
+  buttonSize: PropTypes.oneOf(SIZES),
 };
 export default CustomButton;
