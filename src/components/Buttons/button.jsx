@@ -58,5 +58,4 @@ CustomButton.propTypes = {
   backgroundColor: PropTypes.oneOf(BG_COLORS),
   buttonSize: PropTypes.oneOf(SIZES),
 };
-
 export default CustomButton;
