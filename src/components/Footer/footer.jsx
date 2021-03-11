@@ -1,26 +1,32 @@
 import React from 'react';
-import FooterNews from './footer_news/footer_news';
-import SocialMedias from './social_medias/social_medias';
-import SiteInfo from './site_information/site_information';
+import { PropTypes } from 'prop-types';
 import footerStyle from './footer.style';
-import data from './footer_news/data';
 
-const Footer = () =>
+const Footer = (props) =>
 {
+  const { FooterNews, SiteInfo, SocialMedias } = props;
   const classes = footerStyle();
 
   return (
     <div id="site-footer" data-testid="footer" className={classes.root}>
 
       {/* Props 'newsData' is optional */}
-      <FooterNews newsData={data} />
+      {FooterNews}
 
       <div className={classes['custom--hr']} />
 
-      <SocialMedias />
+      {SocialMedias}
 
-      <SiteInfo />
+      {/* Props 'elements' is optional */}
+      {SiteInfo}
     </div>
   );
 };
+
+Footer.propTypes = {
+  FooterNews: PropTypes.element.isRequired,
+  SiteInfo: PropTypes.element.isRequired,
+  SocialMedias: PropTypes.element.isRequired,
+};
+
 export default Footer;

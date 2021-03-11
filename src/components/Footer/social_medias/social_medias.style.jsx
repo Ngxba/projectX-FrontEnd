@@ -6,6 +6,7 @@ const socialMediaStyle = makeStyles({
     margin: '0 auto',
     width: '970px',
   },
+
   container: {
     margin: '10px auto',
     display: 'flex',
@@ -16,21 +17,19 @@ const socialMediaStyle = makeStyles({
     minHeight: '65px',
     flexDirection: 'row',
   },
+
   'icons-container': {
     margin: '10px 0',
     display: 'flex',
     flexFlow: 'row nowrap',
     paddingTop: '0',
   },
-  'icon--a': {
-    backgroundColor: 'transparent',
-    color: 'inherit',
-    textDecoration: 'inherit',
-  },
+
   icon: {
     width: 'auto',
     padding: '0.5rem',
   },
+
   'icon--image': {
     borderStyle: 'none',
     display: 'block',
@@ -38,6 +37,7 @@ const socialMediaStyle = makeStyles({
     maxWidth: '100%',
     height: '1.25rem',
   },
+
   'icon--youtube': {
     color: 'inherit',
     filter: 'brightness(0) invert(1)',

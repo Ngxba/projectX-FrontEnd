@@ -16,6 +16,7 @@ const FooterNews = (props) =>
             newsData.map((column) => (
               <div className={classes.column}>
                 <ul className={classes.ul}>
+
                   {/* Column title */}
                   <li
                     key={column.title}
@@ -30,7 +31,7 @@ const FooterNews = (props) =>
                     </a>
                   </li>
 
-                  {/* Render column items */}
+                  {/* Column items */}
                   {
                     column.items.map((item) => (
                       <li className={classes.li}>
@@ -39,7 +40,7 @@ const FooterNews = (props) =>
                           target="_blank"
                           rel="noreferrer"
                           data-testid="footer-link"
-                          className={classes['li--a']}
+                          className={`${classes['li--a']} ${classes.hover}`}
                         >
                           {item.name}
                         </a>

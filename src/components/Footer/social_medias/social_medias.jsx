@@ -1,71 +1,79 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import socialMediaStyle from './social_medias.style';
+import data from './data';
 
-const SocialMedias = () =>
+const SocialMedias = (props) =>
 {
+  const { socialData } = props;
   const classes = socialMediaStyle();
 
   return (
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes['icons-container']}>
-          <div className={classes.icon}>
-            <a
-              href="https://twitter.com/stockx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={classes['icon--a']}
-            >
-              <img
-                alt="Twitter"
-                src="//stockx-assets.imgix.net/svg/icons/twitter-footer.svg?auto=compress,format"
-                className={classes['icon--image']}
-              />
-            </a>
-          </div>
-          <div className={classes.icon}>
-            <a
-              href="https://www.facebook.com/stockxdotcom"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                alt="Facebook"
-                src="//stockx-assets.imgix.net/svg/icons/facebook-footer.svg?auto=compress,format"
-                className={classes['icon--image']}
-              />
-            </a>
-          </div>
-          <div className={classes.icon}>
-            <a
-              href="https://instagram.com/stockx/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                alt="Instagram"
-                src="//stockx-assets.imgix.net/svg/icons/instagram-footer.svg?auto=compress,format"
-                className={classes['icon--image']}
-              />
-            </a>
-          </div>
-          <div className={classes.icon}>
-            <a
-              href="https://youtube.com/stockx/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                alt="YouTube"
-                src="//stockx-assets.imgix.net/emails/the-outsole/youtube-black.png?auto=compress,format"
-                className={`${classes['icon--image']} ${classes['icon--youtube']}`}
-              />
-            </a>
-          </div>
+          {
+            socialData.map((element) => (
+
+              // Add classes['icon--youtube'] to fix Youtube icon
+              element.alt === 'YouTube'
+                ? (
+                  <div
+                    key={element.alt}
+                    className={classes.icon}
+                  >
+                    <a
+                      href={element.link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        alt={element.alt}
+                        src={element.imageURL}
+                        className={`${classes['icon--image']} ${classes['icon--youtube']}`}
+                      />
+                    </a>
+                  </div>
+                )
+
+              // Render other icons
+                : (
+                  <div
+                    key={element.alt}
+                    className={classes.icon}
+                  >
+                    <a
+                      href={element.link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        alt={element.alt}
+                        src={element.imageURL}
+                        className={classes['icon--image']}
+                      />
+                    </a>
+                  </div>
+                )
+            ))
+          }
+
         </div>
       </div>
     </div>
   );
+};
+
+SocialMedias.propTypes = {
+  socialData: PropTypes.arrayOf(PropTypes.shape({
+    link: PropTypes.string,
+    alt: PropTypes.string,
+    imageURL: PropTypes.string,
+  })),
+};
+
+SocialMedias.defaultProps = {
+  socialData: data,
 };
 
 export default SocialMedias;

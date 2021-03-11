@@ -21,6 +21,7 @@ const footerStyle = makeStyles({
     zIndex: '2',
     background: '#001210',
     paddingTop: '1.25rem',
+
   },
   'custom--hr': {
     height: '1px',

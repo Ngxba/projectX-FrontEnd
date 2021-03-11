@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const infoStyle = makeStyles({
+const infoStyle = makeStyles((theme) => ({
   root: {
     cursor: 'default',
   },
@@ -35,6 +35,10 @@ const infoStyle = makeStyles({
     display: 'inline',
     padding: '0 8px',
     fontSize: '.75rem',
+
+    '&:hover': {
+      color: theme.palette.primary.main,
+    },
   },
   'first--element': {
     border: '0',
@@ -57,6 +61,6 @@ const infoStyle = makeStyles({
     fontSize: '.75rem',
     paddingBottom: '0',
   },
-});
+}));
 
 export default infoStyle;
