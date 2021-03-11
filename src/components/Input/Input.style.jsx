@@ -6,7 +6,7 @@ const inputStyles = makeStyles(() => ({
     position: 'absolute',
     top: '10px',
     fontSize: '18px',
-    left: '20px',
+    left: '10px',
     color: '#010101',
   },
 
@@ -18,9 +18,10 @@ const inputStyles = makeStyles(() => ({
     color: '#010101',
     paddingLeft: '50px',
     fontSize: '14px',
-    height: '48px',
+    height: '40px',
     fontWeight: '400',
     border: 'none',
   },
 }));
+
 export default inputStyles;

@@ -2,7 +2,9 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
 import CustomButton from './components/Buttons/button';
-import CustomTheme from './Theme';
+import CustomTheme from './theme';
+// import Input from './components/Input/Input';
+import FakeInput from './components/Input/fake';
 
 function App()
 {
@@ -12,7 +14,9 @@ function App()
       <ThemeProvider theme={CustomTheme}>
 
         <CssBaseline />
-      <Input />
+        {/* <Input placeholder="Search..." withIcon />
+        <Input placeholder="Search..." withIcon variant="standard" /> */}
+        <FakeInput />
 
         <CustomButton variant="contained" backgroundColor="primary" buttonSize="btn--large">
           Browse Thousands of Sneakers on our Live Marketplace
