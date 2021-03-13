@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const contentHeaderStyle = makeStyles({
   root: {
+    fontFamily: '\'Bebas Neue\', cursive',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundColor: '#000',
@@ -22,7 +23,6 @@ const contentHeaderStyle = makeStyles({
     color: 'inherit',
     fontSize: 'inherit',
     fontWeight: 'inherit',
-    fontFamily: '\'Bebas Neue\', cursive',
     paddingLeft: '10px',
     paddingRight: '10px',
     letterSpacing: '2px',
@@ -32,169 +32,37 @@ const contentHeaderStyle = makeStyles({
   'heading--top': {
     display: 'block',
     marginBottom: '0.75rem',
-    fontFamily: '\'Open Sans\', sans-serif',
-    letterSpacing: '-1px',
+    letterSpacing: '7px',
     fontWeight: '400',
     color: '#000000',
-    fontSize: '3.5rem',
+    fontSize: '4.5rem',
   },
 
   'heading--bot': {
-    textAlign: 'center',
     display: 'inline-block',
     backgroundColor: '#000000',
     fontWeight: '400',
-    fontFamily: '\'Open Sans\', sans-serif',
-    fontSize: '2.5rem',
-    letterSpacing: '-1px',
+    letterSpacing: '7px',
     padding: '0.5rem',
-    textTransform: 'capitalize',
+    fontSize: '4.5rem',
   },
 
   'container--search': {
-    width: '750px',
+    width: '1170px',
     margin: 'auto',
     maxWidth: '980px',
     paddingLeft: '15px',
     paddingRight: '15px',
 
     '&::before': {
-      add_to_box_after: {
-        display: 'table',
-        content: '" "',
-      },
-      add_to_box_before: {
-        display: 'table',
-        content: '" "',
-      },
-      buttons_set_after: {
-        display: 'table',
-        content: '" "',
-      },
-      buttons_set_before: {
-        display: 'table',
-        content: '" "',
-      },
-      clearer_after: {
-        display: 'table',
-        content: '" "',
-      },
-      clearer_before: {
-        display: 'table',
-        content: '" "',
-      },
-      clearfix_after: {
-        display: 'table',
-        content: '" "',
-      },
-      clearfix_before: {
-        display: 'table',
-        content: '" "',
-      },
-      col2_set_after: {
-        display: 'table',
-        content: '" "',
-      },
-      col2_set_before: {
-        display: 'table',
-        content: '" "',
-      },
-      col4_set_after: {
-        display: 'table',
-        content: '" "',
-      },
-      col4_set_before: {
-        display: 'table',
-        content: '" "',
-      },
-      container_fluid_after: {
-        display: 'table',
-        content: '" "',
-      },
-      container_fluid_before: {
-        display: 'table',
-        content: '" "',
-      },
-      container_after: {
-        display: 'table',
-        content: '" "',
-      },
-      container_before: {
-        display: 'table',
-        content: '" "',
-      },
-      dl_horizontal_dd_after: {
-        display: 'table',
-        content: '" "',
-      },
-      dl_horizontal_dd_before: {
-        display: 'table',
-        content: '" "',
-      },
-      form_horizontal__form_group_after: {
-        display: 'table',
-        content: '" "',
-      },
-      form_horizontal__form_group_before: {
-        display: 'table',
-        content: '" "',
-      },
-      layout_after: {
-        display: 'table',
-        content: '" "',
-      },
-      layout_before: {
-        display: 'table',
-        content: '" "',
-      },
-      nav_after: {
-        display: 'table',
-        content: '" "',
-      },
-      nav_before: {
-        display: 'table',
-        content: '" "',
-      },
-      pager_after: {
-        display: 'table',
-        content: '" "',
-      },
-      pager_before: {
-        display: 'table',
-        content: '" "',
-      },
-      products_grid_after: {
-        display: 'table',
-        content: '" "',
-      },
-      products_grid_before: {
-        display: 'table',
-        content: '" "',
-      },
-      products_list_li_item_after: {
-        display: 'table',
-        content: '" "',
-      },
-      products_list_li_item_before: {
-        display: 'table',
-        content: '" "',
-      },
-      row_after: {
-        display: 'table',
-        content: '" "',
-      },
-      row_before: {
-        display: 'table',
-        content: '" "',
-      },
-      sorter_after: {
-        display: 'table',
-        content: '" "',
-      },
-      sorter_before: {
-        display: 'table',
-        content: '" "',
-      },
+      display: 'table',
+      content: '" "',
+    },
+
+    '&::after': {
+      clear: 'both',
+      display: 'table',
+      content: '" "',
     },
   },
 
@@ -202,24 +70,21 @@ const contentHeaderStyle = makeStyles({
     lineHeight: '20px',
     height: '60px',
     margin: 'auto auto 15px',
-
   },
 
-  'image--row': {
+  'search--row': {
     display: 'flex',
     justifyContent: 'space-between',
     width: '640px',
+    margin: 'auto',
   },
 
   'search--input': {
-    fontFamily: 'RingsideRegular-Book, sans-serif',
-    color: '#fff',
-    lineHeight: '20px',
     flexGrow: '1',
     position: 'relative',
   },
 
-  searchbox: {
+  'search--box': {
     margin: '0px',
     overflow: 'visible',
     display: 'block',
@@ -240,6 +105,9 @@ const contentHeaderStyle = makeStyles({
     height: '48px',
     fontWeight: '400',
     border: 'none',
+    '&:focus': {
+      outline: 'none',
+    },
   },
 
   'svg--inline--fa': {

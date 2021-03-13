@@ -24,16 +24,20 @@ const ContentHeader = (props) =>
         <div className={classes['container--search']}>
           <div id="HomePageSearchBoxWrapper" className={classes['homepage--search']}>
             <div className="product-search-control" data-testid="search-box-home">
-              <div className={classes['image--row']}>
+              <div className={classes['search--row']}>
                 <div className={classes['search--input']}>
+                  {/* <CustomInput */}
+                  {/*  variant="standard" */}
+                  {/*  placeholder="search..." */}
+                  {/*  color="gray" */}
+                  {/* /> */}
                   <form action=".">
                     <input
                       type="search"
                       id="home-search"
                       name="q"
                       placeholder="Search..."
-                      defaultValue
-                      className={classes.searchbox}
+                      className={classes['search--box']}
                       autoComplete="off"
                       spellCheck="false"
                       autoCorrect="off"

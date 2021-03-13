@@ -8,8 +8,8 @@ const inputStyles = makeStyles(() => ({
     fontSize: '18px',
     left: '10px',
     color: '#000',
-    "&:disabled": {
-      color: "#000",
+    '&:disabled': {
+      color: '#000',
     },
   },
 
@@ -25,10 +25,10 @@ const inputStyles = makeStyles(() => ({
     fontWeight: '400',
     border: 'none',
     margin: 8,
-    width: "100%",
+    width: '100%',
   },
   gray: {
-    background: "#f6f6f6",
+    background: '#f6f6f6',
   },
 }));
 
