@@ -18,7 +18,7 @@ const ContentHeader = (props) =>
           <span
             className={classes['heading--bot']}
           >
-            Authentic collectibles
+            Authentic Collectibles
           </span>
         </h1>
         <div className={classes['container--search']}>

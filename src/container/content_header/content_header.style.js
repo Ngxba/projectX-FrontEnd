@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const contentHeaderStyle = makeStyles({
   root: {
-    fontFamily: '\'Bebas Neue\', cursive',
+    fontFamily: 'RingsideWideSSm-Medium_Web',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundColor: '#000',
@@ -32,19 +32,19 @@ const contentHeaderStyle = makeStyles({
   'heading--top': {
     display: 'block',
     marginBottom: '0.75rem',
-    letterSpacing: '7px',
+    letterSpacing: '-1px',
     fontWeight: '400',
     color: '#000000',
-    fontSize: '4.5rem',
+    fontSize: '3.5rem',
   },
 
   'heading--bot': {
     display: 'inline-block',
     backgroundColor: '#000000',
     fontWeight: '400',
-    letterSpacing: '7px',
+    letterSpacing: '-1px',
     padding: '0.5rem',
-    fontSize: '4.5rem',
+    fontSize: '3.5rem',
   },
 
   'container--search': {
