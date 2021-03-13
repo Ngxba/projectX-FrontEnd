@@ -26,11 +26,6 @@ const ContentHeader = (props) =>
             <div className="product-search-control" data-testid="search-box-home">
               <div className={classes['search--row']}>
                 <div className={classes['search--input']}>
-                  {/* <CustomInput */}
-                  {/*  variant="standard" */}
-                  {/*  placeholder="search..." */}
-                  {/*  color="gray" */}
-                  {/* /> */}
                   <form action=".">
                     <input
                       type="search"
