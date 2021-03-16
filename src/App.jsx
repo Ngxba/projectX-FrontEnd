@@ -1,8 +1,8 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
-import CustomButton from './components/Buttons/button';
 import CustomTheme from './theme';
+import Navbar from './components/Navbar/navbar';
 
 // eslint-disable-next-line
 function App() {
@@ -13,20 +13,14 @@ function App() {
 
         <CssBaseline />
 
-        <CustomButton variant="contained" backgroundColor="primary" buttonSize="btn--large">
-          Browse Thousands of Sneakers on our Live Marketplace
-        </CustomButton>
+        <Navbar />
 
-        <br />
-
-        <CustomButton variant="contained" backgroundColor="primary" buttonSize="btn--medium">
-          Signup
-        </CustomButton>
-
-        <CustomButton variant="outlined" backgroundColor="primary" buttonSize="btn--small">
-          BID
-        </CustomButton>
-
+        <Router>
+          <Route path="/" component={Main}>
+            <IndexRoute component={PhotoGrid}></IndexRoute>
+            <Route path="/view/:postId" component={Single}></Route>
+          </Route>
+        </Router>
       </ThemeProvider>
 
     </React.Fragment>

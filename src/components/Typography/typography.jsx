@@ -1,8 +1,9 @@
 // import { Typography } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
-import React from "react";
+import { Typography } from '@material-ui/core';
+import React from 'react';
 import PropTypes from 'prop-types';
-import typoStyles from "./typography.style";
+import { Link } from 'react-router-dom';
+import typoStyles from './typography.style';
 
 const COLORS = [
   'textPrimary',
@@ -38,40 +39,48 @@ const COMPONENTS = [
 
 const CustomTypography = (props) => {
   const {
-    children, txtColor, txtStyle, txtType, txtComponent,
+    children,
+    txtColor,
+    txtStyle,
+    txtType,
+    txtComponent,
+    href,
   } = props;
-
-  const checkTxtColor = COLORS.includes(txtColor) ? txtColor : COLORS[0];
-
-  const checkTxtStyle = STYLES.includes(txtStyle) ? txtStyle : STYLES[0];
-
-  const checkTxtTypes = TYPES.includes(txtType) ? txtType : "";
-
-  const checkTxtComponents = COMPONENTS.includes(txtComponent) ? txtComponent : COMPONENTS[0];
 
   const classes = typoStyles();
 
-  const className = `${classes.root} ${classes[checkTxtStyle]} ${classes[checkTxtTypes]}`;
+  const className = `${classes.root} ${classes[txtStyle]} ${classes[txtType]}`;
 
   return (
-    <React.Fragment key="typography" className={className}>
+    <React.Fragment key="typography">
       <Typography
-        color={checkTxtColor}
-        component={checkTxtComponents}
+        color={txtColor}
+        component={txtComponent}
         className={className}
       >
-        {children}
+        {
+          href !== '' ? <Link to={href}>{children}</Link> : { children }
+        }
       </Typography>
     </React.Fragment>
   );
 };
 
+CustomTypography.defaultProps = {
+  txtColor: COLORS[0],
+  txtStyle: STYLES[0],
+  txtType: '',
+  txtComponent: COMPONENTS[0],
+  href: '',
+};
+
 CustomTypography.propTypes = {
-  children: PropTypes.string.isRequired,
-  txtColor: PropTypes.string.isRequired,
-  txtStyle: PropTypes.string.isRequired,
-  txtType: PropTypes.string.isRequired,
-  txtComponent: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  txtColor: PropTypes.oneOf(COLORS),
+  txtStyle: PropTypes.oneOf(STYLES),
+  txtType: PropTypes.oneOf(TYPES),
+  txtComponent: PropTypes.oneOf(COMPONENTS),
+  href: PropTypes.string,
 };
 
 export default CustomTypography;
