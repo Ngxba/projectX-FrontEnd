@@ -43,7 +43,6 @@ const CustomTheme = createMuiTheme({
           fontSize: '100%',
           height: '100%',
           minHeight: '100%',
-          backgroundColor: 'rgb(255, 255, 255)',
           '-chakraUiColorMode': 'light',
         },
 
