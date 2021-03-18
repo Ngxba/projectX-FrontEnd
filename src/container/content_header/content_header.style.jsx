@@ -33,18 +33,18 @@ const contentHeaderStyle = makeStyles({
     display: 'block',
     marginBottom: '0.75rem',
     letterSpacing: '-1px',
-    fontWeight: '400',
+    // fontWeight: '400',
     color: '#000000',
-    fontSize: '3.5rem',
+    // fontSize: '3.5rem',
   },
 
   'heading--bot': {
     display: 'inline-block',
     backgroundColor: '#000000',
-    fontWeight: '400',
+    // fontWeight: '400',
     letterSpacing: '-1px',
     padding: '0.5rem',
-    fontSize: '3.5rem',
+    // fontSize: '3.5rem',
   },
 
   'container--search': {

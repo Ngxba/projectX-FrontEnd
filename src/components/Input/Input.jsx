@@ -9,19 +9,19 @@ import IconInput from './IconInput';
 // import Collapse from '@material-ui/core/Collapse';
 import inputStyles from './Input.style';
 
-const VARIANTS = ['outlined', 'standard', 'icon'];
-const COLOR = ['default', 'gray'];
+const VARIANTS = ['standard', 'outlined', 'icon'];
+const BG_COLOR = ['white', 'gray'];
 function CustomInput(props)
 {
-  const classes = inputStyles();
   const {
-    placeholder, withIcon, variant, color,
+    placeholder, withIcon, variant, bgColor, width,
   } = props;
+  const classes = inputStyles({ width });
 
   return (
-    <div>
+    <div className={classes.general}>
       {variant === 'standard' && (
-        <Toolbar className={classes[color]}>
+        <Toolbar className={classes[bgColor]} style={{ minHeight: '48px' }}>
           {withIcon && (
             <Button
               className={classes.buttonStyle}
@@ -37,7 +37,7 @@ function CustomInput(props)
       )}
       {variant === 'outlined' && (
         <TextField
-          className={`${classes.OutlineText} ${classes[color]}`}
+          className={`${classes.OutlineText} ${classes[bgColor]}`}
           id="outlined-uncontrolled"
           placeholder={placeholder}
           fullWidth
@@ -53,14 +53,16 @@ CustomInput.propTypes = {
   placeholder: PropTypes.string,
   variant: PropTypes.oneOf(VARIANTS),
   withIcon: PropTypes.bool,
-  color: PropTypes.oneOf(COLOR),
+  bgColor: PropTypes.oneOf(BG_COLOR),
+  width: PropTypes.string,
 };
 
 CustomInput.defaultProps = {
   placeholder: '',
   variant: VARIANTS[0],
   withIcon: true,
-  color: COLOR[0],
+  bgColor: BG_COLOR[0],
+  width: "",
 };
 
 export default CustomInput;
