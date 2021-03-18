@@ -11,13 +11,12 @@ const CustomTheme = createMuiTheme({
     button: {
       textTransform: 'none',
     },
-    fontFamily: [
-      'RingsideWideSSm-Medium_Web',
-      'RingsideRegularSSm-Bold_Web',
-      'RingsideRegularSSm-Book_Web',
-      'sans-serif',
-
-    ].join(','),
+    fontFamily: 'RingsideWideSSm-Medium_Web, sans-serif',
+    fontFamilies: {
+      main: 'RingsideWideSSm-Medium_Web, sans-serif',
+      bold: 'RingsideRegularSSm-Bold_Web, sans-serif',
+      light: 'RingsideRegularSSm-Book_Web, sans-serif',
+    },
   },
   overrides: {
     MuiCssBaseline: {
@@ -25,38 +24,8 @@ const CustomTheme = createMuiTheme({
         '@font-face': [
           RingsideWideSSmMediumWeb,
           RingsideRegularSSmBoldWebb,
-          RingsideRegularSSmBookWebb],
-        html: {
-          borderWidth: '0px',
-          borderStyle: 'solid',
-          boxSizing: 'border-box',
-          borderColor: 'rgb(226, 232, 240)',
-          overflowWrap: 'break-word',
-          WebkitTapHighlightColor: 'transparent',
-          boxShadow: 'none!important',
-          lineHeight: '1.5',
-          textSizeAdjust: '100%',
-          fontFamily: 'system-ui, sans-serif',
-          WebkitFontSmoothing: 'antialiased',
-          textRendering: 'optimizelegibility',
-          touchAction: 'manipulation',
-          fontSize: '100%',
-          height: '100%',
-          minHeight: '100%',
-          backgroundColor: 'rgb(255, 255, 255)',
-          '-chakraUiColorMode': 'light',
-        },
-
-        body: {
-          position: 'relative',
-          fontFeatureSettings: '"kern"',
-          fontFamily: '\'Open Sans\', sans-serif',
-          color: 'rgb(26, 32, 44)',
-          background: 'rgb(255, 255, 255)',
-          transition: 'background-color 0.2s ease 0s',
-          padding: '0',
-          margin: '0',
-        },
+          RingsideRegularSSmBookWebb,
+        ],
       },
     },
   },
