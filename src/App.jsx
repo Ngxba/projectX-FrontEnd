@@ -13,9 +13,7 @@ function App()
 
         <CssBaseline />
 
-        <ContentHeader
-          bgImage="//stockx-assets.imgix.net/Core/homepage/hero_image_FW_2021.png?auto=compress,format"
-        />
+        <ContentHeader />
 
       </ThemeProvider>
 

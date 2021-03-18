@@ -4,7 +4,9 @@ import contentHeaderStyle from './content_header.style';
 
 const ContentHeader = (props) =>
 {
-  const classes = contentHeaderStyle(props);
+  const { bgImage } = props;
+
+  const classes = contentHeaderStyle({ bgImage });
 
   return (
     <div className={classes.root}>
@@ -68,16 +70,12 @@ const ContentHeader = (props) =>
 };
 
 ContentHeader.propTypes = {
-  // Disable this Eslint rule because bgImage does not need to be called inside this component but
-  // still required to pass in content_header.style
-
-  // eslint-disable-next-line no-undef,react/no-unused-prop-types
   bgImage: PropTypes.string,
 };
 
 ContentHeader.defaultProps = {
   bgImage:
-    'url("//stockx-assets.imgix.net/Core/homepage/hero_image_FW_2021.png?auto=compress,format")',
+    '//stockx-assets.imgix.net/Core/homepage/hero_image_FW_2021.png?auto=compress,format',
 };
 
 export default ContentHeader;

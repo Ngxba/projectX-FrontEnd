@@ -7,7 +7,7 @@ const contentHeaderStyle = makeStyles({
     backgroundSize: 'cover',
     backgroundColor: '#000',
     textAlign: 'center',
-    backgroundImage: (props) => `url("${props.bgImage}")`,
+    backgroundImage: ({ bgImage }) => (`url("${bgImage}")`),
     backgroundPosition: 'bottom',
     height: '520px',
     marginTop: '0px',
