@@ -1,17 +1,18 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
-import InputBase from "@material-ui/core/InputBase";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import PropTypes from "prop-types";
-import SearchIcon from "@material-ui/icons/Search";
-import IconInput from "./IconInput";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import InputBase from '@material-ui/core/InputBase';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
+import SearchIcon from '@material-ui/icons/Search';
+import IconInput from './IconInput';
 // import Collapse from '@material-ui/core/Collapse';
-import inputStyles from "./Input.style";
+import inputStyles from './Input.style';
 
-const VARIANTS = ["outlined", "standard", "icon"];
-const COLOR = ["default", "gray"];
-function CustomInput(props) {
+const VARIANTS = ['outlined', 'standard', 'icon'];
+const COLOR = ['default', 'gray'];
+function CustomInput(props)
+{
   const classes = inputStyles();
   const {
     placeholder, withIcon, variant, color,
@@ -19,13 +20,13 @@ function CustomInput(props) {
 
   return (
     <div>
-      {variant === "standard" && (
+      {variant === 'standard' && (
         <Toolbar className={classes[color]}>
           {withIcon && (
             <Button
               className={classes.buttonStyle}
-              edge='start'
-              aria-label='Search'
+              edge="start"
+              aria-label="Search"
               disabled
             >
               <SearchIcon />
@@ -34,16 +35,16 @@ function CustomInput(props) {
           <InputBase className={classes.inputText} placeholder={placeholder} />
         </Toolbar>
       )}
-      {variant === "outlined" && (
+      {variant === 'outlined' && (
         <TextField
           className={`${classes.OutlineText} ${classes[color]}`}
-          id='outlined-uncontrolled'
+          id="outlined-uncontrolled"
           placeholder={placeholder}
           fullWidth
-          variant='outlined'
+          variant="outlined"
         />
       )}
-      {variant === "icon" && <IconInput placeholder={placeholder} />}
+      {variant === 'icon' && <IconInput placeholder={placeholder} />}
     </div>
   );
 }
@@ -56,7 +57,7 @@ CustomInput.propTypes = {
 };
 
 CustomInput.defaultProps = {
-  placeholder: "",
+  placeholder: '',
   variant: VARIANTS[0],
   withIcon: true,
   color: COLOR[0],

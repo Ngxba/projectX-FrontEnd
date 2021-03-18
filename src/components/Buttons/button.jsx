@@ -1,15 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import buttonStyle from "./button.style";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import buttonStyle from './button.style';
 
-const BG_COLORS = ["primary", "secondary"];
+const BG_COLORS = ['primary', 'secondary'];
 
-const SIZES = ["btn--medium", "btn--large", "btn--small"];
+const SIZES = ['btn--medium', 'btn--large', 'btn--small'];
 
-const VARIANTS = ["contained", "outlined", "text"];
+const VARIANTS = ['contained', 'outlined', 'text'];
 
-const CustomButton = (props) => {
+const CustomButton = (props) =>
+{
   const {
     children, variant, backgroundColor, buttonSize,
   } = props;
@@ -19,7 +20,7 @@ const CustomButton = (props) => {
   const className = `${classes.root} ${classes[buttonSize]}`;
 
   return (
-    <React.Fragment key='button'>
+    <React.Fragment key="button">
       <Button
         color={backgroundColor}
         className={className}
