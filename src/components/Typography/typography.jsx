@@ -44,25 +44,18 @@ const CustomTypography = (props) =>
     txtStyle,
     txtType,
     txtComponent,
+    ...rest
   } = props;
 
-  const checkTxtColor = COLORS.includes(txtColor) ? txtColor : COLORS[0];
+  const classes = typoStyles(rest);
 
-  const checkTxtStyle = STYLES.includes(txtStyle) ? txtStyle : STYLES[0];
-
-  const checkTxtTypes = TYPES.includes(txtType) ? txtType : '';
-
-  const checkTxtComponents = COMPONENTS.includes(txtComponent) ? txtComponent : COMPONENTS[0];
-
-  const classes = typoStyles();
-
-  const className = `${classes.root} ${classes[checkTxtStyle]} ${classes[checkTxtTypes]}`;
+  const className = `${classes.root} ${classes[txtStyle]} ${classes[txtType]}`;
 
   return (
-    <React.Fragment key="typography" className={className}>
+    <React.Fragment key="typography">
       <Typography
-        color={checkTxtColor}
-        component={checkTxtComponents}
+        color={txtColor}
+        component={txtComponent}
         className={className}
       >
         {children}
@@ -72,11 +65,18 @@ const CustomTypography = (props) =>
 };
 
 CustomTypography.propTypes = {
-  children: PropTypes.string.isRequired,
-  txtColor: PropTypes.string.isRequired,
-  txtStyle: PropTypes.string.isRequired,
-  txtType: PropTypes.string.isRequired,
-  txtComponent: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  txtColor: PropTypes.oneOf(COLORS),
+  txtStyle: PropTypes.oneOf(STYLES),
+  txtType: PropTypes.oneOf(TYPES),
+  txtComponent: PropTypes.oneOf(COMPONENTS),
+};
+
+CustomTypography.defaultProps = {
+  txtColor: COLORS[0],
+  txtStyle: STYLES[0],
+  txtType: TYPES[0],
+  txtComponent: COMPONENTS[0],
 };
 
 export default CustomTypography;
