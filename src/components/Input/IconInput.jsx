@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
-// import Button from "@material-ui/core/Button";
 import PropTypes from 'prop-types';
 import InputBase from '@material-ui/core/InputBase';
 import fakeStyle from './IconInput.style';
@@ -33,7 +32,7 @@ const IconInput = (props) =>
     }
   };
   return (
-    <React.Fragment key="fakeInput">
+    <React.Fragment key="iconInput">
       <div style={{ textAlign: 'right' }}>
         <div className={classes.formElement}>
           <span className={classes.formElementField}>
