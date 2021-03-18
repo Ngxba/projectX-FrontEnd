@@ -7,11 +7,8 @@ function App()
 {
   return (
     <React.Fragment key="main">
-
       <ThemeProvider theme={CustomTheme}>
-
         <CssBaseline />
-
       </ThemeProvider>
 
     </React.Fragment>

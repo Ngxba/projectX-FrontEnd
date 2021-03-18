@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const typoStyles = makeStyles(() => ({
+const typoStyles = makeStyles((theme) => ({
   root: {
     fontWeight: '500',
     fontSize: '16px',
@@ -12,15 +12,18 @@ const typoStyles = makeStyles(() => ({
   },
 
   'text--medium': {
-    fontWeight: 'normal',
+    // fontWeight: 'normal',
+    fontFamily: theme.typography.fontFamilies.main,
   },
 
   'text--bold': {
-    fontWeight: 'bolder',
+    // fontWeight: 'bolder',
+    fontFamily: theme.typography.fontFamilies.bold,
   },
 
   'text--light': {
-    fontWeight: 'lighter',
+    // fontWeight: 'lighter',
+    fontFamily: theme.typography.fontFamilies.light,
   },
 
   'text--heading': {

@@ -11,12 +11,12 @@ const CustomTheme = createMuiTheme({
     button: {
       textTransform: 'none',
     },
-    fontFamily: [
-      'RingsideWideSSm-Medium_Web',
-      'RingsideRegularSSm-Bold_Web',
-      'RingsideRegularSSm-Book_Web',
-      'sans-serif',
-    ].join(','),
+    fontFamily: 'RingsideWideSSm-Medium_Web, sans-serif',
+    fontFamilies: {
+      main: 'RingsideWideSSm-Medium_Web, sans-serif',
+      bold: 'RingsideRegularSSm-Bold_Web, sans-serif',
+      light: 'RingsideRegularSSm-Book_Web, sans-serif',
+    },
   },
   overrides: {
     MuiCssBaseline: {
@@ -24,7 +24,8 @@ const CustomTheme = createMuiTheme({
         '@font-face': [
           RingsideWideSSmMediumWeb,
           RingsideRegularSSmBoldWebb,
-          RingsideRegularSSmBookWebb],
+          RingsideRegularSSmBookWebb,
+        ],
       },
     },
   },
