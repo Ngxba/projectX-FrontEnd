@@ -21,6 +21,8 @@
       1,
       "allman"
     ],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "quotes": "off",
+    "jsx-quotes": "off"
   }
 }
