@@ -76,7 +76,7 @@ ContentHeader.propTypes = {
 };
 
 ContentHeader.defaultProps = {
-  bgImage: "//stockx-assets.imgix.net/Core/homepage/hero_image_FW_2021.png?auto=compress,format",
+  bgImage: '//stockx-assets.imgix.net/Core/homepage/hero_image_FW_2021.png?auto=compress,format',
 };
 
 export default ContentHeader;
