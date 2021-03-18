@@ -15,7 +15,7 @@ const inputStyles = makeStyles(() => ({
 
   general: {
     width: ({ width }) => (width),
-    margin: "0 auto",
+    margin: '0 auto',
   },
 
   allInput: {
