@@ -57,15 +57,32 @@ const FooterNews = (props) =>
   );
 };
 
-FooterNews.propTypes = {
-  newsData: PropTypes.arrayOf(PropTypes.shape({
+const validData = (propValue, propName, componentName) =>
+{
+  const { length } = propValue.newsData;
+
+  PropTypes.arrayOf(PropTypes.exact({
     title: PropTypes.string,
     categoryLink: PropTypes.String,
-    items: PropTypes.arrayOf(PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.exact({
       name: PropTypes.String,
       link: PropTypes.string,
     })),
-  })),
+  }));
+
+  if (length > 6)
+  {
+    return new Error(
+      `Invalid prop \`${propName}\` supplied to`
+      + ` \`${componentName}\`. Max length of data array is 6 (current: ${length})`,
+    );
+  }
+
+  return null;
+};
+
+FooterNews.propTypes = {
+  newsData: validData,
 };
 
 FooterNews.defaultProps = {
