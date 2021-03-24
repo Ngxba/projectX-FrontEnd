@@ -59,8 +59,8 @@ const infoStyle = makeStyles((theme) => ({
     '@media screen and (min-width: 48em)': {
       WebkitBoxPack: 'start',
       MsFlexPack: 'start',
-      WebkitJustifyContent: 'start',
-      justifyContent: 'start',
+      WebkitJustifyContent: 'center',
+      justifyContent: 'center',
     },
   },
 
