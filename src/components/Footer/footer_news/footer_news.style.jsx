@@ -69,7 +69,7 @@ const footerNewsStyle = makeStyles((theme) => ({
     marginBottom: '1.5rem',
     marginLeft: '1rem',
     marginRight: '0',
-    fontWeight: '600',
+    // fontWeight: '600',
 
     '@media screen and (min-width: 30em)': {
       width: '45%',
