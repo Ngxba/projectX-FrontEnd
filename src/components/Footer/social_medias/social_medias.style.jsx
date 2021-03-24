@@ -19,7 +19,6 @@ const socialMediaStyle = makeStyles({
   },
 
   container: {
-    margin: '10px auto',
     display: 'flex',
     WebkitFlexDirection: 'column',
     MsFlexDirection: 'column',
@@ -39,9 +38,6 @@ const socialMediaStyle = makeStyles({
       flexDirection: 'row',
     },
 
-    '& *': {
-      margin: '10px 0',
-    },
   },
 
   'icons-container': {

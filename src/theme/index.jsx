@@ -1,21 +1,21 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import palette from "./color";
+import { createMuiTheme } from '@material-ui/core/styles';
+import palette from './color';
 import {
   RingsideRegularSSmBoldWebb,
   RingsideRegularSSmBookWebb,
   RingsideWideSSmMediumWeb,
-} from "../fonts";
+} from '../fonts';
 
 const CustomTheme = createMuiTheme({
   typography: {
     button: {
-      textTransform: "none",
+      textTransform: 'none',
     },
-    fontFamily: "RingsideWideSSm-Medium_Web, sans-serif",
+    fontFamily: 'RingsideWideSSm-Medium_Web, sans-serif',
     fontFamilies: {
-      main: "RingsideWideSSm-Medium_Web, sans-serif",
-      bold: "RingsideRegularSSm-Bold_Web, sans-serif",
-      light: "RingsideRegularSSm-Book_Web, sans-serif",
+      main: 'RingsideWideSSm-Medium_Web, sans-serif',
+      bold: 'RingsideRegularSSm-Bold_Web, sans-serif',
+      light: 'RingsideRegularSSm-Book_Web, sans-serif',
     },
   },
   breakpoints: {
@@ -29,8 +29,8 @@ const CustomTheme = createMuiTheme({
   },
   overrides: {
     MuiCssBaseline: {
-      "@global": {
-        "@font-face": [
+      '@global': {
+        '@font-face': [
           RingsideWideSSmMediumWeb,
           RingsideRegularSSmBoldWebb,
           RingsideRegularSSmBookWebb,
@@ -58,7 +58,7 @@ const CustomTheme = createMuiTheme({
         body: {
           position: 'relative',
           fontFeatureSettings: '"kern"',
-          fontFamily: '\'Open Sans\', sans-serif',
+          fontFamily: 'RingsideRegularSSm-Book_Web, sans-serif',
           color: 'rgb(26, 32, 44)',
           backgroundColor: 'rgb(255, 255, 255)',
           transition: 'background-color 0.2s ease 0s',
