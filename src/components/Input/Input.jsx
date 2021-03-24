@@ -62,7 +62,7 @@ CustomInput.defaultProps = {
   variant: VARIANTS[0],
   withIcon: true,
   bgColor: BG_COLOR[0],
-  width: "",
+  width: '',
 };
 
 export default CustomInput;

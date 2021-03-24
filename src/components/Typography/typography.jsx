@@ -79,7 +79,7 @@ CustomTypography.defaultProps = {
   txtStyle: STYLES[0],
   txtType: TYPES[0],
   txtComponent: COMPONENTS[0],
-  className: "",
+  className: '',
 };
 
 export default CustomTypography;

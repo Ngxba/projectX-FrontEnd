@@ -1,8 +1,8 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
 const grid_productStyle = makeStyles({
   dpf: {
-      displa
+    displa,
   },
 });
 
