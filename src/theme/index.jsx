@@ -18,6 +18,15 @@ const CustomTheme = createMuiTheme({
       light: "RingsideRegularSSm-Book_Web, sans-serif",
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 1180,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   overrides: {
     MuiCssBaseline: {
       "@global": {
@@ -26,7 +35,7 @@ const CustomTheme = createMuiTheme({
           RingsideRegularSSmBoldWebb,
           RingsideRegularSSmBookWebb,
         ],
-        body: { boxSizing: "border-box" },
+        body: { boxSizing: "border-box", backgroundColor: "white" },
       },
     },
   },

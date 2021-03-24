@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-indent */
+/* eslint-disable indent */
 import React from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -35,8 +37,11 @@ const fakeData = [
       "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
   },
 ];
+
+const TYPES = ["product", "brand"];
+
 const GridProduct = (props) => {
-  const { data } = props;
+  const { data, type, title } = props;
   return (
     <React.Fragment key='product grid'>
       <div
@@ -54,13 +59,13 @@ const GridProduct = (props) => {
             txtComponent='h3'
             fontSize='18px'
           >
-            Most Popular
+            {title}
           </CustomTypography>
-          <HelpIcon style={{ marginLeft: "10px" }} />
+          {type === TYPES[0] && <HelpIcon style={{ marginLeft: "10px" }} />}
         </span>
         <CustomTypography
           txtStyle='text--link'
-        //   txtType='text--medium'
+          //   txtType='text--medium'
           txtComponent='a'
           fontSize='14px'
           txtColor='textPrimary'
@@ -69,11 +74,23 @@ const GridProduct = (props) => {
         </CustomTypography>
       </div>
       <Grid container spacing={3} justify='center'>
-        {data.map((doc) => (
-          <Grid item xs={6} sm={3}>
-            <CustomCard data={doc} />
-          </Grid>
-        ))}
+        {type === TYPES[0]
+          ? data.map((doc) => (
+              <Grid item xs={6} sm={3}>
+                <CustomCard data={doc} type={type} />
+              </Grid>
+            ))
+          : data.map((doc, i) => {
+              const returnE = (
+                <Grid item xs={4}>
+                  <CustomCard data={doc} type={type} />
+                </Grid>
+              );
+              if (i === 2) {
+                return null;
+              }
+              return returnE;
+            })}
       </Grid>
     </React.Fragment>
   );
@@ -88,10 +105,13 @@ GridProduct.propTypes = {
       imgSrc: PropTypes.string,
     }),
   ),
+  type: PropTypes.oneOf(TYPES),
+  title: PropTypes.string.isRequired,
 };
 
 GridProduct.defaultProps = {
   data: fakeData,
+  type: TYPES[0],
 };
 
 export default GridProduct;

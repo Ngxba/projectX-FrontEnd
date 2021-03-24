@@ -8,11 +8,11 @@ function Home() {
   return (
     <React.Fragment key='main'>
       <ContentHeader />
-      <Container>
-        <GridProduct />
-        <GridProduct />
-        <GridProduct />
-        <GridProduct />
+      <Container maxWidth="md">
+        <GridProduct type="brand" title="Popular Brands" />
+        <GridProduct title="Most Popular" />
+        <GridProduct title="New Lowest Ask" />
+        <GridProduct title="What's trending" />
         <div style={{ textAlign: "center", margin: "16px 0" }}>
           <CustomButton backgroundColor='primary' buttonSize='btn--large'>
             Browse Thousands of Sneakers on our Live Marketplace
