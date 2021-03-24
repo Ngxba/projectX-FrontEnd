@@ -12,7 +12,9 @@ const SocialMedias = (props) =>
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes['icons-container']}>
-          {
+          <div className={classes.inner}>
+
+            {
             socialData.map((element) => (
 
               // Add classes['icon--youtube'] to fix Youtube icon
@@ -57,7 +59,7 @@ const SocialMedias = (props) =>
                 )
             ))
           }
-
+          </div>
         </div>
       </div>
     </div>

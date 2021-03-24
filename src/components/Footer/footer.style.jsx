@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const footerStyle = makeStyles({
   root: {
-
     position: 'relative',
     zIndex: '2',
     paddingTop: '0',
