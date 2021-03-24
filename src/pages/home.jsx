@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import ContentHeader from "../container/content_header/content_header";
-import GridProduct from "../container/grid_product/grid_product";
+import CardContainer from "../container/card_container/card_container";
 import CustomButton from "../components/Buttons/button";
 
 function Home() {
@@ -9,10 +9,10 @@ function Home() {
     <React.Fragment key='main'>
       <ContentHeader />
       <Container maxWidth="md">
-        <GridProduct type="brand" title="Popular Brands" />
-        <GridProduct title="Most Popular" />
-        <GridProduct title="New Lowest Ask" />
-        <GridProduct title="What's trending" />
+        <CardContainer type="brand" title="Popular Brands" />
+        <CardContainer title="Most Popular" />
+        <CardContainer title="New Lowest Ask" />
+        <CardContainer title="What's trending" />
         <div style={{ textAlign: "center", margin: "16px 0" }}>
           <CustomButton backgroundColor='primary' buttonSize='btn--large'>
             Browse Thousands of Sneakers on our Live Marketplace
