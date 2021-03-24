@@ -9,7 +9,7 @@ const LoginScreen = () =>
   const classes = loginStyle();
 
   return (
-    <div id="site-body" className={classes.root}>
+    <div id="site-body" className={classes['page-container']}>
       <div id="back-link" hidden>
         <i className="fas fa-chevron-left" />
         <span className="back-text">Back to Log in / Sign Up</span>
