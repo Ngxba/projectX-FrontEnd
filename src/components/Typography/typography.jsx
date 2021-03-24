@@ -44,19 +44,20 @@ const CustomTypography = (props) =>
     txtStyle,
     txtType,
     txtComponent,
+    className,
     ...rest
   } = props;
 
   const classes = typoStyles(rest);
 
-  const className = `${classes.root} ${classes[txtStyle]} ${classes[txtType]}`;
+  const classNameAll = `${classes.root} ${classes[txtStyle]} ${classes[txtType]} ${className}`;
 
   return (
     <React.Fragment key="typography">
       <Typography
         color={txtColor}
         component={txtComponent}
-        className={className}
+        className={classNameAll}
       >
         {children}
       </Typography>
@@ -70,6 +71,7 @@ CustomTypography.propTypes = {
   txtStyle: PropTypes.oneOf(STYLES),
   txtType: PropTypes.oneOf(TYPES),
   txtComponent: PropTypes.oneOf(COMPONENTS),
+  className: PropTypes.string,
 };
 
 CustomTypography.defaultProps = {
@@ -77,6 +79,7 @@ CustomTypography.defaultProps = {
   txtStyle: STYLES[0],
   txtType: TYPES[0],
   txtComponent: COMPONENTS[0],
+  className: "",
 };
 
 export default CustomTypography;
