@@ -24,7 +24,7 @@ const ContentHeader = (props) => {
             </CustomTypography>
           </span>
         </h1>
-        <CustomInput placeholder='Search...' bgColor='white' width='640px' />
+        <CustomInput placeholder='Search...' bgColor='white' width='658px' />
       </div>
     </div>
   );
