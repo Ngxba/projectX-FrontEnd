@@ -1,5 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { Grid } from '@material-ui/core';
 import footerNewsStyle from './footer_news.style';
 import data from './data';
 
@@ -12,45 +13,49 @@ const FooterNews = (props) =>
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes['news--container']}>
-          {
-            newsData.map((column) => (
-              <div className={classes.column}>
-                <ul className={classes.ul}>
+          <Grid container>
+            {
+              newsData.map((column) => (
+                <Grid item lg={2} md={2} xl={2} sm={4} xs={6}>
+                  <div className={classes.column}>
+                    <ul className={classes.ul}>
 
-                  {/* Column title */}
-                  <li
-                    key={column.title}
-                    data-testid="footer-link-header"
-                    className={classes['li--heading']}
-                  >
-                    <a
-                      className={classes['li--a']}
-                      href={column.categoryLink}
-                    >
-                      {column.title}
-                    </a>
-                  </li>
-
-                  {/* Column items */}
-                  {
-                    column.items.map((item) => (
-                      <li className={classes.li}>
+                      {/* Column title */}
+                      <li
+                        key={column.title}
+                        data-testid="footer-link-header"
+                        className={classes['li--heading']}
+                      >
                         <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          data-testid="footer-link"
-                          className={`${classes['li--a']} ${classes.hover}`}
+                          className={classes['li--a']}
+                          href={column.categoryLink}
                         >
-                          {item.name}
+                          {column.title}
                         </a>
                       </li>
-                    ))
-                  }
-                </ul>
-              </div>
-            ))
-          }
+
+                      {/* Column items */}
+                      {
+                        column.items.map((item) => (
+                          <li className={classes.li}>
+                            <a
+                              href={item.link}
+                              target="_blank"
+                              rel="noreferrer"
+                              data-testid="footer-link"
+                              className={`${classes['li--a']} ${classes.hover}`}
+                            >
+                              {item.name}
+                            </a>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                </Grid>
+              ))
+            }
+          </Grid>
         </div>
       </div>
     </div>

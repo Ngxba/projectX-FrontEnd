@@ -11,13 +11,13 @@ const footerNewsStyle = makeStyles((theme) => ({
   },
 
   'news--container': {
-    display: 'flex',
+    // display: 'flex',
     paddingRight: '0',
-    WebkitBoxPack: 'justify',
-    justifyContent: 'space-between',
+    // WebkitBoxPack: 'justify',
+    // justifyContent: 'space-between',
     paddingTop: '1rem',
     paddingBottom: '1.25rem',
-    flexFlow: 'row nowrap',
+    // flexFlow: 'row nowrap',
   },
 
   column: {
