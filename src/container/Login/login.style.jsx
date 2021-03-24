@@ -2,6 +2,17 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const loginStyle = makeStyles({
   root: {
+    fontFamily: 'proxima-nova,sans-serif',
+    fontSize: '14px',
+    lineHeight: '1.42857143',
+    color: '#333',
+    boxSizing: 'border-box',
+    paddingTop: '91px',
+    minHeight: '100vh',
+    position: 'relative',
+    overflowY: 'hidden',
+    width: '100%',
+    background: '#fafafa',
   },
   html: {
     scrollBehavior: 'smooth',
