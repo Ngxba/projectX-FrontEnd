@@ -27,7 +27,7 @@ const carouselStyle = makeStyles({
 
   'slick-slide': {
     outline: 'none',
-    width: '1645px',
+    width: '100vw',
   },
 
   'banner-container': {

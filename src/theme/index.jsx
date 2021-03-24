@@ -60,7 +60,7 @@ const CustomTheme = createMuiTheme({
           fontFeatureSettings: '"kern"',
           fontFamily: '\'Open Sans\', sans-serif',
           color: 'rgb(26, 32, 44)',
-          background: 'rgb(255, 255, 255)',
+          backgroundColor: 'rgb(255, 255, 255)',
           transition: 'background-color 0.2s ease 0s',
           padding: '0',
           margin: '0',
