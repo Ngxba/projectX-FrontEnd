@@ -20,7 +20,7 @@ const ContentHeader = (props) => {
           </span>
           <span className={classes["heading--bot"]}>
             <CustomTypography fontSize='3.5rem' color='white'>
-              Authentic Snearker
+              Authentic Sneaker
             </CustomTypography>
           </span>
         </h1>
