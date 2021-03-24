@@ -54,6 +54,7 @@ const CustomTypography = (props) =>
 
   return (
     <React.Fragment key="typography">
+<<<<<<< Updated upstream
       <Typography
         color={txtColor}
         component={txtComponent}
@@ -61,6 +62,14 @@ const CustomTypography = (props) =>
       >
         {children}
       </Typography>
+=======
+      {
+      href !== '' ? <Link color={txtColor} className={className} to={href}>{children}</Link>
+        : <Typography color={txtColor} component={txtComponent} className={className}>
+          { children }
+        </Typography>
+      }
+>>>>>>> Stashed changes
     </React.Fragment>
   );
 };
