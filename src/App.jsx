@@ -1,45 +1,24 @@
-import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider } from "@material-ui/core";
-import CustomButton from "./components/Buttons/button";
-import CustomTheme from "./Theme";
-import Input from "./components/Input/Input";
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core';
+import { Switch, BrowserRouter } from 'react-router-dom';
+import LayoutDefault from './container/layout';
+import CustomTheme from './theme';
+import AppRoute from './utils/AppRoute';
+import Home from './pages/home';
 
-function App() {
+function App()
+{
+  // let location = useLocation();
   return (
-    <React.Fragment key='main'>
+    <React.Fragment key="main">
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
-        <Input placeholder='Search...' withIcon />
-        <br />
-        <Input placeholder='Search...' color="gray" withIcon variant='standard' />
-        <br />
-        <Input variant='icon' placeholder='Search for articles, ...' />
-        <CustomButton
-          variant='contained'
-          backgroundColor='primary'
-          buttonSize='btn--large'
-        >
-          Browse Thousands of Sneakers on our Live Marketplace
-        </CustomButton>
-
-        <br />
-
-        <CustomButton
-          variant='contained'
-          backgroundColor='primary'
-          buttonSize='btn--medium'
-        >
-          Signup
-        </CustomButton>
-
-        <CustomButton
-          variant='outlined'
-          backgroundColor='primary'
-          buttonSize='btn--small'
-        >
-          BID
-        </CustomButton>
+        <BrowserRouter>
+          <Switch>
+            <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+          </Switch>
+        </BrowserRouter>
       </ThemeProvider>
     </React.Fragment>
   );

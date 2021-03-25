@@ -1,10 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const typoStyles = makeStyles(() => ({
+const typoStyles = makeStyles((theme) => ({
   root: {
     fontWeight: '500',
-    fontSize: '16px',
+    fontSize: (props) => (props.fontSize ? props.fontSize : '16px'),
+    backgroundColor: (props) => (props.backgroundColor ? props.backgroundColor : 'none'),
+    color: (props) => (props.color ? props.color : ''),
     lineHeight: '1.3',
+    // padding: "0 0.5rem",
   },
 
   'text--default': {
@@ -12,34 +15,35 @@ const typoStyles = makeStyles(() => ({
   },
 
   'text--medium': {
-    fontWeight: 'normal',
+    // fontWeight: 'normal',
+    fontFamily: theme.typography.fontFamilies.main,
   },
 
   'text--bold': {
-    fontWeight: 'bolder',
+    // fontWeight: 'bolder',
+    fontFamily: theme.typography.fontFamilies.bold,
   },
 
   'text--light': {
-    fontWeight: 'lighter',
+    // fontWeight: 'lighter',
+    fontFamily: theme.typography.fontFamilies.light,
   },
 
   'text--heading': {
     display: 'block',
     fontSize: '2.5rem',
-    marginBottom: '0.75rem',
-    padding: '0.5rem',
+    // paddingTop: "10px",
+    // margin: "10px 0",
   },
 
   'text--category': {
-    height: '38px',
+    // height: "38px",
     fontSize: '18px',
     marginLeft: 'initial',
     marginRight: 'initial',
     boxShadow: 'inset 0 -5px 0 0 transparent',
-    marginTop: '0.75rem',
     textTransform: 'capitalize',
     cursor: 'pointer',
-    whiteSpace: 'nowrap',
   },
 
   'text--title': {
@@ -48,8 +52,7 @@ const typoStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
-    marginTop: '24px',
-    marginBottom: '16px',
+    margin: '16px 0',
     WebkitBoxPack: 'justify',
   },
 

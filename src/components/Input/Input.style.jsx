@@ -4,13 +4,19 @@ const inputStyles = makeStyles(() => ({
   buttonStyle: {
     zIndex: '200',
     position: 'absolute',
-    top: '10px',
+    // top: '10px',
     fontSize: '18px',
     left: '10px',
     color: '#000',
-    "&:disabled": {
-      color: "#000",
+    '&:disabled': {
+      color: '#000',
     },
+  },
+
+  general: {
+    maxWidth: ({ width }) => (width),
+    margin: '0 auto',
+    padding: '0 12px',
   },
 
   allInput: {
@@ -25,10 +31,13 @@ const inputStyles = makeStyles(() => ({
     fontWeight: '400',
     border: 'none',
     margin: 8,
-    width: "100%",
+    width: '100%',
   },
   gray: {
-    background: "#f6f6f6",
+    background: '#f6f6f6',
+  },
+  white: {
+    background: 'white',
   },
 }));
 

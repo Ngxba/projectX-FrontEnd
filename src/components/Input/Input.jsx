@@ -1,31 +1,32 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
-import InputBase from "@material-ui/core/InputBase";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import PropTypes from "prop-types";
-import SearchIcon from "@material-ui/icons/Search";
-import IconInput from "./IconInput";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import InputBase from '@material-ui/core/InputBase';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
+import SearchIcon from '@material-ui/icons/Search';
+import IconInput from './IconInput';
 // import Collapse from '@material-ui/core/Collapse';
-import inputStyles from "./Input.style";
+import inputStyles from './Input.style';
 
-const VARIANTS = ["outlined", "standard", "icon"];
-const COLOR = ["default", "gray"];
-function CustomInput(props) {
-  const classes = inputStyles();
+const VARIANTS = ['standard', 'outlined', 'icon'];
+const BG_COLOR = ['white', 'gray'];
+function CustomInput(props)
+{
   const {
-    placeholder, withIcon, variant, color,
+    placeholder, withIcon, variant, bgColor, width,
   } = props;
+  const classes = inputStyles({ width });
 
   return (
-    <div>
-      {variant === "standard" && (
-        <Toolbar className={classes[color]}>
+    <div className={classes.general}>
+      {variant === 'standard' && (
+        <Toolbar className={classes[bgColor]} style={{ minHeight: '48px' }}>
           {withIcon && (
             <Button
               className={classes.buttonStyle}
-              edge='start'
-              aria-label='Search'
+              edge="start"
+              aria-label="Search"
               disabled
             >
               <SearchIcon />
@@ -34,16 +35,16 @@ function CustomInput(props) {
           <InputBase className={classes.inputText} placeholder={placeholder} />
         </Toolbar>
       )}
-      {variant === "outlined" && (
+      {variant === 'outlined' && (
         <TextField
-          className={`${classes.OutlineText} ${classes[color]}`}
-          id='outlined-uncontrolled'
+          className={`${classes.OutlineText} ${classes[bgColor]}`}
+          id="outlined-uncontrolled"
           placeholder={placeholder}
           fullWidth
-          variant='outlined'
+          variant="outlined"
         />
       )}
-      {variant === "icon" && <IconInput placeholder={placeholder} />}
+      {variant === 'icon' && <IconInput placeholder={placeholder} />}
     </div>
   );
 }
@@ -52,14 +53,16 @@ CustomInput.propTypes = {
   placeholder: PropTypes.string,
   variant: PropTypes.oneOf(VARIANTS),
   withIcon: PropTypes.bool,
-  color: PropTypes.oneOf(COLOR),
+  bgColor: PropTypes.oneOf(BG_COLOR),
+  width: PropTypes.string,
 };
 
 CustomInput.defaultProps = {
-  placeholder: "",
+  placeholder: '',
   variant: VARIANTS[0],
   withIcon: true,
-  color: COLOR[0],
+  bgColor: BG_COLOR[0],
+  width: '',
 };
 
 export default CustomInput;
