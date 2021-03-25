@@ -58,7 +58,7 @@ const CustomTheme = createMuiTheme({
         body: {
           position: 'relative',
           fontFeatureSettings: '"kern"',
-          fontFamily: '\'Open Sans\', sans-serif',
+          fontFamily: 'RingsideRegularSSm-Book_Web, sans-serif',
           color: 'rgb(26, 32, 44)',
           backgroundColor: 'rgb(255, 255, 255)',
           transition: 'background-color 0.2s ease 0s',

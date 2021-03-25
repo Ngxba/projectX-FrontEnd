@@ -1,4 +1,4 @@
-/* eslint-disable react/forbid-prop-types */
+/* eslint-disable react/forbid-prop-types,react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
@@ -13,7 +13,10 @@ import CustomCarousel from '../carousel/carousel';
 function TabPanel(props)
 {
   const {
-    children, value, index, ...other
+    children,
+    value,
+    index,
+    ...other
   } = props;
 
   return (

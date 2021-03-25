@@ -2,10 +2,17 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const footerStyle = makeStyles({
   root: {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    position: 'relative',
     zIndex: '2',
+    paddingTop: '0',
     background: '#001210',
-    paddingTop: '1.25rem',
+
+    '@media screen and (min-width: 48em)': {
+      paddingTop: '0',
+    },
+    '@media screen and (min-width: 62em)': {
+      paddingTop: '1.25rem',
+    },
   },
   'custom--hr': {
     height: '1px',
