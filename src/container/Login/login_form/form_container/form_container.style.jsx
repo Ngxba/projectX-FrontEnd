@@ -1,12 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const loginFormStyle = makeStyles({
+const formContainerStyle = makeStyles({
   login_wrapper: {
     background: '#ffffff',
 
     '@media (min-width: 768px)': {
       background: 'none',
     },
+  },
+
+  '.access-wrap.login-wrap, .access-wrap.signup-wrap': {
+    paddingTop: '40px',
   },
 
   access_wrap: {
@@ -154,4 +158,4 @@ const loginFormStyle = makeStyles({
 
 });
 
-export default loginFormStyle;
+export default formContainerStyle;
