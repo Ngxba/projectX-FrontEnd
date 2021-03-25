@@ -55,10 +55,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomTab = (props) =>
+const CustomTab = ({ labels, children }) =>
 {
-  const { labels, children } = props;
-
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
