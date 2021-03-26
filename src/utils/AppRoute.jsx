@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
-import LayoutDefault from "../template/layout";
+// import LayoutDefault from "../template/layout";
 
 const AppRoute = ({
   component: Component, layout: Layout, isMainPage, ...rest
@@ -26,7 +26,7 @@ AppRoute.propTypes = {
 };
 
 AppRoute.defaultProps = {
-  layout: <LayoutDefault />,
+  layout: React.Fragment,
   isMainPage: false,
 };
 
