@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -18,8 +19,8 @@ const AppRoute = ({
 );
 
 AppRoute.propTypes = {
-  component: PropTypes.node.isRequired,
-  layout: PropTypes.node,
+  component: PropTypes.func.isRequired,
+  layout: PropTypes.any,
 };
 
 AppRoute.defaultProps = {

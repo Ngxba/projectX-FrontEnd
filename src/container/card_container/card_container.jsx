@@ -38,59 +38,81 @@ const fakeData = [
   },
 ];
 
+const fakeDataBrand = [
+  {
+    name: "Product Title",
+    price: 100,
+    numberSold: 0,
+    imgSrc:
+      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
+  },
+  {
+    name: "Product Title",
+    price: 100,
+    numberSold: 0,
+    imgSrc:
+      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
+  },
+  {
+    name: "Product Title",
+    price: 100,
+    numberSold: 0,
+    imgSrc:
+      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
+  },
+];
+
 const TYPES = ["product", "brand"];
 
 const GridProduct = (props) => {
-  const { data, type, title } = props;
+  const {
+    data, showCategory, type, title,
+  } = props;
   return (
     <React.Fragment key='product grid'>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          margin: "16px 0",
-        }}
-      >
-        <span style={{ display: "flex" }}>
-          <CustomTypography
-            txtStyle='text--category'
-            txtType='text--medium'
-            txtComponent='h3'
-            fontSize='18px'
-          >
-            {title}
-          </CustomTypography>
-          {type === TYPES[0] && <HelpIcon style={{ marginLeft: "10px" }} />}
-        </span>
-        <CustomTypography
-          txtStyle='text--link'
-          //   txtType='text--medium'
-          txtComponent='a'
-          fontSize='14px'
-          txtColor='textPrimary'
+      {showCategory && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            margin: "16px 0",
+          }}
         >
-          See all
-        </CustomTypography>
-      </div>
-      <Grid container spacing={3} justify='center'>
+          <span style={{ display: "flex" }}>
+            <CustomTypography
+              txtStyle='text--category'
+              txtType='text--medium'
+              txtComponent='h3'
+              fontSize='18px'
+            >
+              {title}
+            </CustomTypography>
+            {type === TYPES[0] && <HelpIcon style={{ marginLeft: "10px" }} />}
+          </span>
+          <CustomTypography
+            txtStyle='text--link'
+            //   txtType='text--medium'
+            txtComponent='a'
+            fontSize='14px'
+            txtColor='textPrimary'
+          >
+            See all
+          </CustomTypography>
+        </div>
+      )}
+      <Grid container spacing={3}>
         {type === TYPES[0]
           ? data.map((doc) => (
               <Grid item xs={6} sm={3}>
                 <CustomCard data={doc} type={type} />
               </Grid>
             ))
-          : data.map((doc, i) => {
-              const returnE = (
-                <Grid item xs={4}>
-                  <CustomCard data={doc} type={type} />
-                </Grid>
-              );
-              if (i === 2) {
-                return null;
-              }
-              return returnE;
-            })}
+          : fakeDataBrand.map((doc) => (
+              <Grid item xs={4}>
+                <CustomCard data={doc} type={type} />
+              </Grid>
+            ))}
       </Grid>
     </React.Fragment>
   );
@@ -105,12 +127,14 @@ GridProduct.propTypes = {
       imgSrc: PropTypes.string,
     }),
   ),
+  showCategory: PropTypes.bool,
   type: PropTypes.oneOf(TYPES),
   title: PropTypes.string.isRequired,
 };
 
 GridProduct.defaultProps = {
   data: fakeData,
+  showCategory: true,
   type: TYPES[0],
 };
 
