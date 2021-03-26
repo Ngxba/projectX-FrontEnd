@@ -6,6 +6,7 @@ import LayoutDefault from './container/layout';
 import CustomTheme from './theme';
 import AppRoute from './utils/AppRoute';
 import Home from './pages/home';
+import Login from './container/authen/authen';
 
 function App()
 {
@@ -17,6 +18,7 @@ function App()
         <BrowserRouter>
           <Switch>
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+            <AppRoute exact path="/login" component={Login} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>

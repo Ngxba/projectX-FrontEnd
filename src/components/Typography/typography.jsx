@@ -55,6 +55,7 @@ const CustomTypography = (props) =>
   return (
     <React.Fragment key="typography">
       <Typography
+        {...rest}
         color={txtColor}
         component={txtComponent}
         className={classNameAll}
