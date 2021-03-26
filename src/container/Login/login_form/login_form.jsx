@@ -4,13 +4,10 @@ import Form from './form/form';
 import ResetPassword from './reset_password/reset_password';
 
 const LoginForm = () => (
-  <FormContainer>
-
-    <Form />
-
-    <ResetPassword />
-
-  </FormContainer>
+  <FormContainer
+    form={<Form />}
+    resetPassword={<ResetPassword />}
+  />
 );
 
 export default LoginForm;

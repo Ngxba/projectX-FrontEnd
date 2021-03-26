@@ -1,7 +1,7 @@
 import React from 'react';
 import loginStyle from './login.style';
 import LoginNavbar from './login_navbar/login_navbar';
-import Form from './login_form/login_form';
+import LoginForm from './login_form/login_form';
 
 const LoginScreen = () =>
 {
@@ -13,7 +13,7 @@ const LoginScreen = () =>
       <LoginNavbar />
 
       {/*  Login/Register form */}
-      <Form />
+      <LoginForm />
     </div>
 
   );

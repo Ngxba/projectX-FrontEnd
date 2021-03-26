@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomTab = ({ labels, children }) =>
+const CustomTab = ({ data }) =>
 {
   const classes = useStyles();
   const theme = useTheme();
@@ -93,8 +93,8 @@ const CustomTab = ({ labels, children }) =>
           centered
         >
           {
-            labels.map((label, index) => (
-              <Tab label={label} {...a11yProps(index)} />
+            data.map((element, index) => (
+              <Tab label={element.title} {...a11yProps(index)} />
             ))
           }
         </Tabs>
@@ -105,9 +105,9 @@ const CustomTab = ({ labels, children }) =>
         onChangeIndex={handleChangeIndex}
       >
         {
-          children.map((child, index) => (
+          data.map((element, index) => (
             <TabPanel value={value} index={index} dir={theme.direction}>
-              {child}
+              {element.component}
             </TabPanel>
           ))
         }
@@ -117,8 +117,12 @@ const CustomTab = ({ labels, children }) =>
 };
 
 CustomTab.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  data: PropTypes.arrayOf(PropTypes.exact(
+    {
+      title: PropTypes.string.isRequired,
+      component: PropTypes.node.isRequired,
+    },
+  )).isRequired,
 };
 
 export default CustomTab;
