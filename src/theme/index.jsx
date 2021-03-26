@@ -11,7 +11,7 @@ const CustomTheme = createMuiTheme({
     button: {
       textTransform: 'none',
     },
-    fontFamily: 'RingsideWideSSm-Medium_Web, sans-serif',
+    fontFamily: 'RingsideRegularSSm-Book_Web, sans-serif',
     fontFamilies: {
       main: 'RingsideWideSSm-Medium_Web, sans-serif',
       bold: 'RingsideRegularSSm-Bold_Web, sans-serif',
