@@ -1,29 +1,30 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import PropTypes from "prop-types";
-import LayoutDefault from "../container/layout";
+/* eslint-disable react/forbid-prop-types */
+import React from 'react';
+import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const AppRoute = ({ component: Component, layout: Layout, ...rest }) => {
-  console.log("somthin");
-  return (
-    <Route
-      {...rest}
-      render={(props) => (
-        <Layout>
-          <Component {...props} />
-        </Layout>
-      )}
-    />
-  );
-};
+const AppRoute = ({
+  component: Component,
+  layout: Layout,
+  ...rest
+}) => (
+  <Route
+    {...rest}
+    render={(props) => (
+      <Layout>
+        <Component {...props} />
+      </Layout>
+    )}
+  />
+);
 
 AppRoute.propTypes = {
-  component: PropTypes.element.isRequired,
-  layout: PropTypes.element,
+  component: PropTypes.func.isRequired,
+  layout: PropTypes.any,
 };
 
 AppRoute.defaultProps = {
-  layout: <LayoutDefault />,
+  layout: React.Fragment,
 };
 
 export default AppRoute;

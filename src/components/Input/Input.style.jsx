@@ -15,8 +15,8 @@ const inputStyles = makeStyles(() => ({
 
   general: {
     maxWidth: ({ width }) => (width),
-    margin: "0 auto",
-    padding: "0 12px",
+    margin: '0 auto',
+    padding: '0 12px',
   },
 
   allInput: {
