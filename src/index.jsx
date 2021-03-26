@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+// const history = createBrowserHistory();
+
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment key='index'>
     <App />
-  </React.StrictMode>,
+  </React.Fragment>,
   // eslint-disable-next-line no-undef
   document.getElementById('root'),
 );

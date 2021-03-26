@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const typoStyles = makeStyles((theme) => ({
   root: {
     fontWeight: '500',
-    fontSize: (props) => (props.fontSize ? props.fontSize : '16px'),
-    backgroundColor: (props) => (props.backgroundColor ? props.backgroundColor : 'none'),
-    color: (props) => (props.color ? props.color : ''),
+    fontSize: (props) => (props.fontSize && props.fontSize),
+    backgroundColor: (props) => (props.backgroundColor && props.backgroundColor),
+    color: (props) => (props.color && props.color),
     lineHeight: '1.3',
     // padding: "0 0.5rem",
   },

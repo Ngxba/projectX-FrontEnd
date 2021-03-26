@@ -12,7 +12,7 @@ const VARIANTS = ['contained', 'outlined', 'text'];
 const CustomButton = (props) =>
 {
   const {
-    children, variant, backgroundColor, buttonSize,
+    children, variant, backgroundColor, buttonSize, ...rest
   } = props;
 
   const classes = buttonStyle();
@@ -22,6 +22,7 @@ const CustomButton = (props) =>
   return (
     <React.Fragment key="button">
       <Button
+        {...rest}
         color={backgroundColor}
         className={className}
         variant={variant}
