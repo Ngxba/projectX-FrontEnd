@@ -1,51 +1,60 @@
-import React from 'react';
-import {
-  AppBar, Toolbar, List, IconButton, Container,
-} from '@material-ui/core';
-import Home from '@material-ui/icons/Home';
+import React, { useEffect, useState } from 'react';
+import { AppBar, List } from '@material-ui/core';
 import navbarStyles from './navbar.style';
 import CustomTypography from '../Typography/typography';
 
+const navLinkHome = { title: 'Home', path: '/' };
+
 const navLinks = [
-  { title: 'Browse', path: '/sneakers' },
   { title: 'News', path: '/news' },
   { title: 'About', path: '/about/how-it-works' },
   { title: 'Help', path: '/faq' },
   { title: 'Login', path: '/login' },
   { title: 'Sign up', path: '/signup' },
-  { title: 'Sell', path: '/sell' },
 ];
 
 const Navbar = () => {
   const classes = navbarStyles();
 
+  const [scrolling, setScrolling] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  });
+
   return (
-    <AppBar position="static" className={classes.navBg}>
-      <Toolbar>
-        <Container maxWidth="xl" className={classes.navbarDisplayFlex}>
-          <IconButton edge="start" color="inherit" aria-label="home">
-            <Home fontSize="large" />
-          </IconButton>
-          <List component="nav" aria-labelledby="main navigation" className={classes.navDisplayFlex}>
-            {navLinks.map(({ title, path }) => (
-              <CustomTypography
-                href={path}
-                key={title}
-                className={classes.tab}
-                txtStyle="text--heading"
-                txtComponent="a"
-              >
-                {title}
-              </CustomTypography>
-              // <a href={path} key={title} className={classes.tab}>
-              //   <ListItem button>
-              //     <ListItemText primary={title} />
-              //   </ListItem>
-              // </a>
-            ))}
-          </List>
-        </Container>
-      </Toolbar>
+    <AppBar position="fixed" className={`${scrolling && classes.visible} ${classes.navBg}`}>
+      <CustomTypography
+        href={navLinkHome.path}
+        key={navLinkHome.title}
+        className={classes.navbarBrand}
+        fontSize="20px"
+        txtComponent="a"
+        txtType="text--bold"
+      >
+        <span className={classes.logoName}>ProjectX</span>
+      </CustomTypography>
+      <List component="nav" aria-labelledby="main navigation" className={classes.navDisplayFlex}>
+        {navLinks.map(({ title, path }, i) => (
+          <CustomTypography
+            href={path}
+            key={title}
+            className={`${classes.tab} ${i === navLinks.length - 1 && classes.lastComponent}`}
+            txtComponent="a"
+            txtType="text--medium"
+          >
+            {title}
+          </CustomTypography>
+        ))}
+      </List>
     </AppBar>
   );
 };

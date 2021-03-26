@@ -1,8 +1,11 @@
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core';
-import CustomTheme from './theme';
-import Navbar from './components/Navbar/navbar';
+import React from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core";
+import { Switch, BrowserRouter } from "react-router-dom";
+import LayoutDefault from "./container/layout";
+import CustomTheme from "./theme";
+import AppRoute from "./utils/AppRoute";
+import Home from "./pages/home";
 
 // eslint-disable-next-line
 function App() {
@@ -12,15 +15,11 @@ function App() {
       <ThemeProvider theme={CustomTheme}>
 
         <CssBaseline />
-
-        <Navbar />
-
-        <Router>
-          <Route path="/" component={Main}>
-            <IndexRoute component={PhotoGrid}></IndexRoute>
-            <Route path="/view/:postId" component={Single}></Route>
-          </Route>
-        </Router>
+        <BrowserRouter>
+          <Switch>
+            <AppRoute exact path='/' component={Home} layout={LayoutDefault} />
+          </Switch>
+        </BrowserRouter>
       </ThemeProvider>
 
     </React.Fragment>
