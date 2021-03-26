@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, List } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import navbarStyles from './navbar.style';
 import CustomTypography from '../Typography/typography';
+import CustomInput from '../Input/Input';
 
 const navLinkHome = { title: 'Home', path: '/' };
 
@@ -13,8 +15,9 @@ const navLinks = [
   { title: 'Sign up', path: '/signup' },
 ];
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = navbarStyles();
+  const { isMainPage } = props;
 
   const [scrolling, setScrolling] = useState(false);
 
@@ -31,7 +34,7 @@ const Navbar = () => {
   });
 
   return (
-    <AppBar position="fixed" className={`${scrolling && classes.visible} ${classes.navBg}`}>
+    <AppBar position="fixed" className={`${(scrolling || !isMainPage) && classes.visible} ${classes.navBg}`}>
       <CustomTypography
         href={navLinkHome.path}
         key={navLinkHome.title}
@@ -40,16 +43,17 @@ const Navbar = () => {
         txtComponent="a"
         txtType="text--bold"
       >
-        <span className={classes.logoName}>ProjectX</span>
+        <span className={`${classes.logoName} ${!isMainPage && classes.marginNone}`}>ProjectX</span>
       </CustomTypography>
       <List component="nav" aria-labelledby="main navigation" className={classes.navDisplayFlex}>
+        {!isMainPage && <CustomInput placeholder="Search..." variant="icon" />}
         {navLinks.map(({ title, path }, i) => (
           <CustomTypography
             href={path}
             key={title}
             className={`${classes.tab} ${i === navLinks.length - 1 && classes.lastComponent}`}
             txtComponent="a"
-            txtType="text--medium"
+            txtType="text--light"
           >
             {title}
           </CustomTypography>
@@ -57,6 +61,14 @@ const Navbar = () => {
       </List>
     </AppBar>
   );
+};
+
+Navbar.propTypes = {
+  isMainPage: PropTypes.bool,
+};
+
+Navbar.defaultProps = {
+  isMainPage: false,
 };
 
 export default Navbar;

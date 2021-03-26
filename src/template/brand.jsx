@@ -2,9 +2,6 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 // import { PropTypes } from 'prop-types';
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import CustomTypography from "../components/Typography/typography";
 import CardContainer from "../container/card_container/card_container";
 import Breadcrumb from "../components/Breadcrumbs/breadcrumbs";
@@ -112,13 +109,9 @@ const fakeData = [
 
 const Brand = () => {
   const classes = styles();
-  const [age, setAge] = React.useState("");
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
   return (
-    <Container maxWidth='md'>
+    <Container maxWidth='md' style={{ marginTop: "90px" }}>
       <div className={classes.root}>
         <CustomTypography component='h2' txtStyle='text--heading'>
           Supreme
@@ -133,30 +126,6 @@ const Brand = () => {
         </CustomTypography>
       </div>
       <Breadcrumb data={["home", "streetwear", "supreme"]} />
-      <FormControl className={classes.formControl}>
-        <Select
-          value={age}
-          onChange={handleChange}
-          displayEmpty
-          className={classes.selectEmpty}
-          inputProps={{ "aria-label": "sort" }}
-          label={<p>Sorted By: Most Popular</p>}
-        >
-          <MenuItem value={0}>
-            <strong>Sorted By: </strong>
-            Most Popular
-          </MenuItem>
-          <MenuItem value={10}>
-            Ten
-            <p>
-              The &apos;Featured&apos; picks are chosen specifically for you by the StockX
-              team.
-            </p>
-          </MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
       <CardContainer data={fakeData} showCategory={false} />
     </Container>
   );

@@ -18,7 +18,7 @@ function App()
         <CssBaseline />
         <BrowserRouter>
           <Switch>
-            <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+            <AppRoute exact path="/" isMainPage component={Home} layout={LayoutDefault} />
             <AppRoute exact path="/login" component={Login} />
             <AppRoute exact path="/brand" component={Brand} layout={LayoutDefault} />
           </Switch>
