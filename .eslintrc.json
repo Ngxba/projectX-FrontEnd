@@ -18,6 +18,9 @@
   ],
   "rules": {
     "linebreak-style": "off",
-    "arrow-body-style": "off"
+    "quotes": "off",
+    "jsx-quotes": "off",
+    "brace-style": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

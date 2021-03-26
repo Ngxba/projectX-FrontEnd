@@ -2,7 +2,6 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import typoStyles from './typography.style';
 
 const COLORS = [
@@ -37,19 +36,21 @@ const COMPONENTS = [
   'h6',
 ];
 
-const CustomTypography = (props) => {
+const CustomTypography = (props) =>
+{
   const {
     children,
     txtColor,
     txtStyle,
     txtType,
     txtComponent,
-    href,
+    className,
+    ...rest
   } = props;
 
-  const classes = typoStyles();
+  const classes = typoStyles(rest);
 
-  const className = `${classes.root} ${classes[txtStyle]} ${classes[txtType]}`;
+  const classNameAll = `${classes.root} ${classes[txtStyle]} ${classes[txtType]} ${className}`;
 
   return (
     <React.Fragment key="typography">
@@ -57,22 +58,12 @@ const CustomTypography = (props) => {
         {...rest}
         color={txtColor}
         component={txtComponent}
-        className={className}
+        className={classNameAll}
       >
-        {
-          href !== '' ? <Link to={href}>{children}</Link> : { children }
-        }
+        {children}
       </Typography>
     </React.Fragment>
   );
-};
-
-CustomTypography.defaultProps = {
-  txtColor: COLORS[0],
-  txtStyle: STYLES[0],
-  txtType: '',
-  txtComponent: COMPONENTS[0],
-  href: '',
 };
 
 CustomTypography.propTypes = {
@@ -81,7 +72,15 @@ CustomTypography.propTypes = {
   txtStyle: PropTypes.oneOf(STYLES),
   txtType: PropTypes.oneOf(TYPES),
   txtComponent: PropTypes.oneOf(COMPONENTS),
-  href: PropTypes.string,
+  className: PropTypes.string,
+};
+
+CustomTypography.defaultProps = {
+  txtColor: COLORS[0],
+  txtStyle: STYLES[0],
+  txtType: TYPES[0],
+  txtComponent: COMPONENTS[0],
+  className: '',
 };
 
 export default CustomTypography;

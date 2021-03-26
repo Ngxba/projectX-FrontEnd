@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import LayoutDefault from "../container/layout";
 
 const AppRoute = ({ component: Component, layout: Layout, ...rest }) => {
-  // eslint-disable-next-line
   console.log("somthin");
   return (
     <Route
