@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '@material-ui/core';
 import CustomTab from '../../components/CustomTab/custom_tab';
 import CustomCarousel from '../carousel/carousel';
 
@@ -28,6 +29,12 @@ const CarouselWithTab = () => (
       boxShadow: 'none',
       margin: '0 auto',
     }}
+    rootStyle={
+      {
+        backgroundColor: useTheme().palette.background.paper,
+      }
+    }
+    enableSwipeEffect
   />
 );
 
