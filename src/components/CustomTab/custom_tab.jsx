@@ -50,7 +50,11 @@ function a11yProps(index)
 }
 
 const CustomTab = ({
-  data, wrapper: Wrapper, appBarStyle, rootStyle,
+  data,
+  wrapper: Wrapper,
+  appBarStyle,
+  rootStyle,
+  enableSwipeEffect,
 }) =>
 {
   const theme = useTheme();
@@ -65,6 +69,14 @@ const CustomTab = ({
   {
     setValue(index);
   };
+
+  const renderTabComponents = () => (
+    data.map((element, index) => (
+      <TabPanel value={value} index={index} dir={theme.direction}>
+        {element.component}
+      </TabPanel>
+    ))
+  );
 
   return (
     <div
@@ -88,28 +100,34 @@ const CustomTab = ({
             centered
           >
             {
-            data.map((element, index) => (
-              <Tab disableRipple label={element.title} {...a11yProps(index)} />
-            ))
-          }
+              // Render tab title
+              data.map((element, index) => (
+                <Tab disableRipple label={element.title} {...a11yProps(index)} />
+              ))
+            }
           </Tabs>
         </AppBar>
 
         {/* Tab Component */}
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
-          onChangeIndex={handleChangeIndex}
-        >
-          {
-            // Render components
-          data.map((element, index) => (
-            <TabPanel value={value} index={index} dir={theme.direction}>
-              {element.component}
-            </TabPanel>
-          ))
+        {
+          enableSwipeEffect
+
+            ? (
+              // Render components with swipe effect
+              <SwipeableViews
+                axis={theme.direction === 'rtl' ? 'x' : 'x-reverse'}
+                index={value}
+                onChangeIndex={handleChangeIndex}
+              >
+                {/* Render components */}
+                {renderTabComponents()}
+              </SwipeableViews>
+            )
+
+            // Render components only
+            : renderTabComponents()
+
         }
-        </SwipeableViews>
       </Wrapper>
     </div>
   );
@@ -119,6 +137,7 @@ CustomTab.defaultProps = {
   wrapper: React.Fragment,
   appBarStyle: null,
   rootStyle: null,
+  enableSwipeEffect: false,
 };
 
 CustomTab.propTypes = {
@@ -131,6 +150,7 @@ CustomTab.propTypes = {
   wrapper: PropTypes.node,
   appBarStyle: PropTypes.object,
   rootStyle: PropTypes.object,
+  enableSwipeEffect: PropTypes.bool,
 };
 
 export default CustomTab;
