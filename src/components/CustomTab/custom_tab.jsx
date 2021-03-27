@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -49,15 +49,10 @@ function a11yProps(index)
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
-
-const CustomTab = ({ data, container: CustomContainer, appBarStyle }) =>
+const CustomTab = ({
+  data, wrapper: Wrapper, appBarStyle, rootStyle,
+}) =>
 {
-  const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -72,8 +67,12 @@ const CustomTab = ({ data, container: CustomContainer, appBarStyle }) =>
   };
 
   return (
-    <div className={classes.root}>
-      <CustomContainer>
+    <div
+      style={rootStyle}
+    >
+      <Wrapper>
+
+        {/* Tab nav bar */}
         <AppBar
           position="static"
           color="default"
@@ -90,17 +89,20 @@ const CustomTab = ({ data, container: CustomContainer, appBarStyle }) =>
           >
             {
             data.map((element, index) => (
-              <Tab label={element.title} {...a11yProps(index)} />
+              <Tab disableRipple label={element.title} {...a11yProps(index)} />
             ))
           }
           </Tabs>
         </AppBar>
+
+        {/* Tab Component */}
         <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={value}
           onChangeIndex={handleChangeIndex}
         >
           {
+            // Render components
           data.map((element, index) => (
             <TabPanel value={value} index={index} dir={theme.direction}>
               {element.component}
@@ -108,14 +110,15 @@ const CustomTab = ({ data, container: CustomContainer, appBarStyle }) =>
           ))
         }
         </SwipeableViews>
-      </CustomContainer>
+      </Wrapper>
     </div>
   );
 };
 
 CustomTab.defaultProps = {
-  container: React.Fragment,
+  wrapper: React.Fragment,
   appBarStyle: null,
+  rootStyle: null,
 };
 
 CustomTab.propTypes = {
@@ -125,8 +128,9 @@ CustomTab.propTypes = {
       component: PropTypes.node.isRequired,
     },
   )).isRequired,
-  container: PropTypes.node,
+  wrapper: PropTypes.node,
   appBarStyle: PropTypes.object,
+  rootStyle: PropTypes.object,
 };
 
 export default CustomTab;
