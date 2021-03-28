@@ -1,12 +1,13 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // import LayoutDefault from "../template/layout";
 
 const AppRoute = ({
   component: Component, layout: Layout, isMainPage, ...rest
-}) => {
-  console.log("somthin");
+}) =>
+{
+  console.log('somthin');
   return (
     <Route
       {...rest}

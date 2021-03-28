@@ -15,21 +15,27 @@ const navLinks = [
   { title: 'Sign up', path: '/signup' },
 ];
 
-const Navbar = (props) => {
+const Navbar = (props) =>
+{
   const classes = navbarStyles();
   const { isMainPage } = props;
 
   const [scrolling, setScrolling] = useState(false);
 
-  const handleScroll = () => {
-    if (window.scrollY > 100) {
+  const handleScroll = () =>
+  {
+    if (window.scrollY > 100)
+    {
       setScrolling(true);
-    } else {
+    }
+    else
+    {
       setScrolling(false);
     }
   };
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     window.addEventListener('scroll', handleScroll);
   });
 
