@@ -21,7 +21,6 @@ const carousels = [
 
 const CarouselWithTab = () => (
   <CustomTab
-    labels={['Item one', 'Item two', 'Item three']}
     data={carousels}
     appBarStyle={{
       width: '500px',
