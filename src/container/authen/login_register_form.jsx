@@ -48,6 +48,7 @@ const LoginRegisterForm = () => (
         paddingTop: '15vh',
       }
     }
+    textColor="secondary"
   />
 );
 
