@@ -5,7 +5,7 @@ import App from './App';
 // const history = createBrowserHistory();
 
 ReactDOM.render(
-  <React.Fragment key='index'>
+  <React.Fragment key="index">
     <App />
   </React.Fragment>,
   // eslint-disable-next-line no-undef
