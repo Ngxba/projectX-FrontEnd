@@ -1,11 +1,13 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
+import { Switch, BrowserRouter } from 'react-router-dom';
+import LayoutDefault from './template/layout';
 import CustomTheme from './theme';
-import LoginRegisterForm from './container/authen/login_register_form';
-import CarouselWithTab from './container/tab_carousel/tab_carousel';
-
-// import LoginScreen from './container/Login/login';
+import AppRoute from './utils/AppRoute';
+import Home from './pages/home';
+import Login from './container/authen/login_register_form';
+import Brand from "./template/brand";
 
 function App()
 {
@@ -15,11 +17,13 @@ function App()
       <ThemeProvider theme={CustomTheme}>
 
         <CssBaseline />
-
-        <LoginRegisterForm />
-
-        <CarouselWithTab />
-
+        <BrowserRouter>
+          <Switch>
+            <AppRoute exact path="/" isMainPage component={Home} layout={LayoutDefault} />
+            <AppRoute exact path="/login" component={Login} />
+            <AppRoute exact path="/brand" component={Brand} layout={LayoutDefault} />
+          </Switch>
+        </BrowserRouter>
       </ThemeProvider>
 
     </React.Fragment>

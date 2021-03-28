@@ -34,6 +34,7 @@ const CarouselWithTab = () => (
       }
     }
     enableSwipeEffect
+    textColor="secondary"
   />
 );
 
