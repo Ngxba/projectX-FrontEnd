@@ -37,24 +37,33 @@ const styles = makeStyles({
 function Login()
 {
   const classes = styles();
+
   const [values, setValues] = React.useState({
     password: '',
     showPassword: false,
   });
+
   const handleClickShowPassword = () =>
   {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
   const handleChange = (prop) => (event) =>
   {
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values,
+      [prop]: event.target.value,
+    });
   };
 
   const handleMouseDownPassword = (event) =>
   {
     event.preventDefault();
   };
+
   return (
     <form>
       <br />
@@ -102,7 +111,13 @@ function Login()
           Forgot password?
         </CustomTypography>
       </FormControl>
-      <CustomButton style={{ width: '100%', margin: 0 }} type="submit">
+      <CustomButton
+        style={{
+          width: '100%',
+          margin: 0,
+        }}
+        type="submit"
+      >
         Login
       </CustomButton>
       <CustomTypography
