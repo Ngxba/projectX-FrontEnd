@@ -63,7 +63,7 @@ function Register()
     event.preventDefault();
   };
   return (
-    <form onSubmit={() => console.log('aaaa')}>
+    <form>
       <br />
       <TextField
         className={classes.root}
