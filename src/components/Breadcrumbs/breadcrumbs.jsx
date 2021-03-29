@@ -24,7 +24,7 @@ function SimpleBreadcrumbs(props)
           );
         }
         return (
-          <CustomTypography fontSize="12px" txtType="text--light">
+          <CustomTypography fontSize="11px" txtType="text--light">
             {dataItem}
           </CustomTypography>
         );
