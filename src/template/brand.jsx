@@ -1,12 +1,13 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
+import { FormControl, Select, MenuItem } from "@material-ui/core";
 // import { PropTypes } from 'prop-types';
 import CustomTypography from "../components/Typography/typography";
 import CardContainer from "../container/card_container/card_container";
 import Breadcrumb from "../components/Breadcrumbs/breadcrumbs";
 
-const styles = makeStyles((theme) => ({
+const styles = makeStyles(() => ({
   root: {
     WebkitTapHighlightColor: "transparent",
     textSizeAdjust: "100%",
@@ -37,7 +38,20 @@ const styles = makeStyles((theme) => ({
     paddingLeft: "3rem",
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
+    all: 'none',
+    "&::before, &::after": {
+      borderBottom: 'unset !important',
+      backgroundColor: 'none !important',
+    },
+    width: '100px',
+    height: '48px',
+  },
+  formControl: {
+    display: 'inline-block',
+    border: '1px solid rgb(231, 232, 232)',
+    padding: '10px',
+    width: '250px',
+    textAlign: 'center',
   },
 }));
 
@@ -109,6 +123,7 @@ const fakeData = [
 
 const Brand = () => {
   const classes = styles();
+  const [age, setAge] = React.useState(10);
 
   return (
     <Container maxWidth='md' style={{ marginTop: "90px" }}>
@@ -126,6 +141,18 @@ const Brand = () => {
         </CustomTypography>
       </div>
       <Breadcrumb data={["home", "streetwear", "supreme"]} />
+      <FormControl className={classes.formControl}>
+        <span><strong>Sort by:&#160;</strong></span>
+        <Select
+          value={age}
+          onChange={handleChange}
+          className={classes.selectEmpty}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
       <CardContainer data={fakeData} showCategory={false} />
     </Container>
   );

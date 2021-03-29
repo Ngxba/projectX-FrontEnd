@@ -6,7 +6,7 @@ import LayoutDefault from './template/layout';
 import CustomTheme from './theme';
 import AppRoute from './utils/AppRoute';
 import Home from './pages/home';
-import Login from './container/authen/authen';
+import Login from './container/authen/login_register_form';
 import Brand from "./template/brand";
 
 function App()
