@@ -29,7 +29,9 @@ const useStyles = makeStyles(() => ({
 function SimpleBreadcrumbs(props)
 {
   const classes = useStyles();
+
   const { data } = props;
+
   return (
     <div>
       <Breadcrumbs
@@ -38,9 +40,11 @@ function SimpleBreadcrumbs(props)
           {
             root: classes.root,
             ol: {
+              // Pass fontSize from root
               fontSize: 'inherit',
             },
             li: {
+              // Pass fontSize from ol
               fontSize: 'inherit',
             },
             separator: {
@@ -59,6 +63,7 @@ function SimpleBreadcrumbs(props)
             return (
               <CustomTypography
                 color="#666"
+                // Pass fontSize from li
                 fontSize="inherit"
                 txtType="text--light"
               >
@@ -67,6 +72,7 @@ function SimpleBreadcrumbs(props)
             );
           }
           return (
+            // Pass fontSize from li
             <CustomTypography fontSize="inherit" txtType="text--light">
               {dataItem}
             </CustomTypography>
