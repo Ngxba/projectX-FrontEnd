@@ -9,6 +9,7 @@ const navbarStyles = makeStyles({
     alignItems: "center",
     minWidth: "250px",
     height: "90px",
+    textDecoration: "none",
   },
 
   logoName: {
@@ -19,6 +20,14 @@ const navbarStyles = makeStyles({
 
   marginNone: {
     marginLeft: "35px!important",
+  },
+
+  colorX: {
+    color: "rgb(8, 160, 92)",
+  },
+
+  sizeX: {
+    fontSize: "30px",
   },
 
   navbarDisplayFlex: {
