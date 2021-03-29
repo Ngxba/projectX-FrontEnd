@@ -55,6 +55,7 @@ const CustomTab = ({
   appBarStyle,
   rootStyle,
   enableSwipeEffect,
+  textColor,
 }) =>
 {
   const theme = useTheme();
@@ -94,7 +95,7 @@ const CustomTab = ({
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
-            textColor="primary"
+            textColor={textColor}
             variant="fullWidth"
             aria-label="full width tabs example"
             centered
@@ -138,6 +139,7 @@ CustomTab.defaultProps = {
   appBarStyle: null,
   rootStyle: null,
   enableSwipeEffect: false,
+  textColor: "primary",
 };
 
 CustomTab.propTypes = {
@@ -151,6 +153,7 @@ CustomTab.propTypes = {
   appBarStyle: PropTypes.object,
   rootStyle: PropTypes.object,
   enableSwipeEffect: PropTypes.bool,
+  textColor: PropTypes.string,
 };
 
 export default CustomTab;
