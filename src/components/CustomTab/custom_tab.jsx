@@ -139,7 +139,7 @@ CustomTab.defaultProps = {
   appBarStyle: null,
   rootStyle: null,
   enableSwipeEffect: false,
-  textColor: "primary",
+  textColor: 'primary',
 };
 
 CustomTab.propTypes = {
