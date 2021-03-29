@@ -128,7 +128,7 @@ GridProduct.propTypes = {
     }),
   ),
   type: PropTypes.oneOf(TYPES),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   showCategory: PropTypes.bool,
 };
 
@@ -136,6 +136,7 @@ GridProduct.defaultProps = {
   data: fakeData,
   type: TYPES[0],
   showCategory: true,
+  title: "",
 };
 
 export default GridProduct;
