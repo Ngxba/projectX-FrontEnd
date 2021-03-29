@@ -16,7 +16,7 @@ function SimpleBreadcrumbs(props)
           return (
             <CustomTypography
               color="#666"
-              fontSize="12px"
+              fontSize="11px"
               txtType="text--light"
             >
               {dataItem}
