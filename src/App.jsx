@@ -6,7 +6,7 @@ import LayoutDefault from './template/layout';
 import CustomTheme from './theme';
 import AppRoute from './utils/AppRoute';
 import Home from './pages/home';
-import Login from './container/authen/authen';
+import Login from './container/authen/login_register_form';
 import Brand from "./template/brand";
 
 function App()
@@ -18,7 +18,7 @@ function App()
         <CssBaseline />
         <BrowserRouter>
           <Switch>
-            <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+            <AppRoute exact path="/" isMainPage component={Home} layout={LayoutDefault} />
             <AppRoute exact path="/login" component={Login} />
             <AppRoute exact path="/brand" component={Brand} layout={LayoutDefault} />
           </Switch>

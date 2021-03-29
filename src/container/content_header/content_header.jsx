@@ -19,9 +19,9 @@ const ContentHeader = (props) =>
               Buy &amp; Sell
             </CustomTypography>
           </span>
-          <span className={classes['heading--bot']}>
-            <CustomTypography fontSize="3.5rem" color="white">
-              Authentic Snearker
+          <span className={classes["heading--bot"]}>
+            <CustomTypography fontSize='3.5rem' color='white'>
+              Authentic Sneaker
             </CustomTypography>
           </span>
         </h1>

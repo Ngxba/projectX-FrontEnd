@@ -1,10 +1,8 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
+import { FormControl, Select, MenuItem } from "@material-ui/core";
 // import { PropTypes } from 'prop-types';
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import CustomTypography from "../components/Typography/typography";
 import CardContainer from "../container/card_container/card_container";
 import Breadcrumb from "../components/Breadcrumbs/breadcrumbs";
@@ -127,11 +125,8 @@ const Brand = () => {
   const classes = styles();
   const [age, setAge] = React.useState(10);
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
   return (
-    <Container maxWidth='md'>
+    <Container maxWidth='md' style={{ marginTop: "90px" }}>
       <div className={classes.root}>
         <CustomTypography component='h2' txtStyle='text--heading'>
           Supreme
