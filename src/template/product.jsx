@@ -1,42 +1,8 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
 // import { PropTypes } from 'prop-types';
 import CardContainer from '../container/card_container/card_container';
 import SimpleBreadcrumbs from '../components/Breadcrumbs/breadcrumbs';
-
-const styles = makeStyles((theme) => ({
-  root: {
-    WebkitTapHighlightColor: 'transparent',
-    textSizeAdjust: '100%',
-    WebkitFontSmoothing: 'antialiased',
-    textRendering: 'optimizelegibility',
-    '-chakraUiColorMode': 'light',
-    fontFeatureSettings: '"kern"',
-    fontFamily: 'RingsideRegular-Book, sans-serif',
-    color: 'rgb(26, 32, 44)',
-    lineHeight: '1.5',
-    fontSize: '100%',
-    borderWidth: '0px',
-    borderStyle: 'solid',
-    boxSizing: 'border-box',
-    borderColor: 'rgb(226, 232, 240)',
-    overflowWrap: 'break-word',
-    background: '#E7E8E8',
-    minHeight: 'initial',
-    display: 'flex',
-    alignItems: 'flex-start',
-    WebkitBoxPack: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    height: '270px',
-    width: '100%',
-    paddingLeft: '3rem',
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
 
 const fakeData = [
   {
@@ -104,17 +70,11 @@ const fakeData = [
   },
 ];
 
-const Product = () =>
-{
-  const classes = styles();
-
-  return (
-    <Container maxWidth="md" style={{ marginTop: '90px' }}>
-      <div className={classes.root} />
-      <SimpleBreadcrumbs data={['home', 'streetwear', 'supreme']} />
-      <CardContainer data={fakeData} showCategory={false} />
-    </Container>
-  );
-};
+const Product = () => (
+  <Container maxWidth="md" style={{ marginTop: '90px' }}>
+    <SimpleBreadcrumbs data={['home', 'streetwear', 'supreme']} />
+    <CardContainer data={fakeData} showCategory={false} />
+  </Container>
+);
 
 export default Product;
