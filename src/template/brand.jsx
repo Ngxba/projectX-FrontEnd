@@ -9,7 +9,7 @@ import CustomTypography from "../components/Typography/typography";
 import CardContainer from "../container/card_container/card_container";
 import Breadcrumb from "../components/Breadcrumbs/breadcrumbs";
 
-const styles = makeStyles((theme) => ({
+const styles = makeStyles(() => ({
   root: {
     WebkitTapHighlightColor: "transparent",
     textSizeAdjust: "100%",
@@ -40,7 +40,20 @@ const styles = makeStyles((theme) => ({
     paddingLeft: "3rem",
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
+    all: 'none',
+    "&::before, &::after": {
+      borderBottom: 'unset !important',
+      backgroundColor: 'none !important',
+    },
+    width: '100px',
+    height: '48px',
+  },
+  formControl: {
+    display: 'inline-block',
+    border: '1px solid rgb(231, 232, 232)',
+    padding: '10px',
+    width: '250px',
+    textAlign: 'center',
   },
 }));
 
@@ -112,7 +125,7 @@ const fakeData = [
 
 const Brand = () => {
   const classes = styles();
-  const [age, setAge] = React.useState("");
+  const [age, setAge] = React.useState(10);
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -134,25 +147,13 @@ const Brand = () => {
       </div>
       <Breadcrumb data={["home", "streetwear", "supreme"]} />
       <FormControl className={classes.formControl}>
+        <span><strong>Sort by:&#160;</strong></span>
         <Select
           value={age}
           onChange={handleChange}
-          displayEmpty
           className={classes.selectEmpty}
-          inputProps={{ "aria-label": "sort" }}
-          label={<p>Sorted By: Most Popular</p>}
         >
-          <MenuItem value={0}>
-            <strong>Sorted By: </strong>
-            Most Popular
-          </MenuItem>
-          <MenuItem value={10}>
-            Ten
-            <p>
-              The &apos;Featured&apos; picks are chosen specifically for you by the StockX
-              team.
-            </p>
-          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
