@@ -8,7 +8,7 @@ import AppRoute from './utils/AppRoute';
 import Home from './pages/home';
 import LoginRegisterForm from './container/authen/login_register_form';
 import Brand from './template/brand';
-import ProductPage from './pages/product_page';
+import product from './template/product';
 
 function App()
 {
@@ -22,7 +22,13 @@ function App()
             <AppRoute exact path="/" isMainPage component={Home} layout={LayoutDefault} />
             <AppRoute exact path="/login" component={LoginRegisterForm} />
             <AppRoute exact path="/brand" component={Brand} layout={LayoutDefault} />
-            <AppRoute exact path="/product" component={ProductPage} layout={LayoutDefault} />
+            <AppRoute
+              exact
+              path="/product"
+              component={product}
+              layout={LayoutDefault}
+              isMainPage={false}
+            />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
