@@ -1,15 +1,19 @@
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import * as PropTypes from 'prop-types';
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import CustomTypography from '../../../components/Typography/typography';
 import RouteBreadcrumbs from '../../../components/Breadcrumbs/breadcrumbs';
 import productHeaderStyle from './product_header.style';
+import SimplePopover from '../../../components/SimplePopover';
 
 const ProductHeader = ({
   routes, ticker, productName,
 }) =>
 {
   const classes = productHeaderStyle();
+
   return (
     <>
       <div className={classes.routes_breadcrumbs_container}>
@@ -69,6 +73,14 @@ const ProductHeader = ({
             Size:
           </CustomTypography>
 
+          <SimplePopover
+            activateComponent={(
+              <Button variant="contained" color="primary">
+                Open Popover
+              </Button>
+            )}
+          />
+          <Typography className={classes.typography}>The content of the Popover.</Typography>
         </div>
       </div>
 
