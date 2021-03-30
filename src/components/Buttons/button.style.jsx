@@ -2,15 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const buttonStyle = makeStyles({
   root: {
-    // textTransform: 'none',
-    WebkitTapHighlightColor: 'transparent',
-    textSizeAdjust: '100%',
-    WebkitFontSmoothing: 'antialiased',
-    '-chakraUiColorMode': 'light',
-    fontFeatureSettings: '"kern"',
-    boxSizing: 'border-box',
-    overflowWrap: 'break-word',
-    display: 'inline-block',
     textAlign: 'center',
   },
   'btn--large': {
