@@ -1,8 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import RouteBreadcrumbs from '../../components/Breadcrumbs/breadcrumbs';
-import CustomTypography from '../../components/Typography/typography';
 import productStyle from './product.style';
+import ProductHeader from './product_header/product_header';
 
 const data = {
   _id: '60615f4c18d5191cf8e960df',
@@ -12,6 +11,7 @@ const data = {
   colorWay: 'Baroque Brown/Black-Laser Orange-Racer Pink',
   imageurl: 'https://images.stockx.com/images/Air-Jordan-1-Retro-High-Bio-Hack-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606318464',
   price: 170,
+  ticker: 'AJ1H-BH',
   sizeQuantity: [{
     size: '30',
     quantity: '96',
@@ -54,58 +54,44 @@ const Product = () =>
   //   sizeQuantity,
   // } = data;
 
-  const { tags, productName } = data;
+  const {
+    tags,
+    productName,
+    ticker,
+  } = data;
 
   // Generate data for breadcrumbs
-  const breadcrumbs = ['home', ...tags.slice(0, tags.length - 5), productName];
+  const routes = ['home', ...tags.slice(0, tags.length - 5), productName];
 
   return (
-    <>
-      <div className={classes.page_container}>
+    <div className={classes.page_container}>
 
-        {/* Shadow below navbar */}
-        <div className={classes.shadow} />
+      {/* Shadow below navbar */}
+      <div className={classes.shadow} />
 
-        <Container classes={
-          {
-            root: classes.container,
-          }
+      <Container classes={
+        {
+          root: classes.container,
         }
-        >
-          <div className={classes.breadcrumbs_container}>
-            <RouteBreadcrumbs data={breadcrumbs} />
+      }
+      >
 
-            {/* TODO Social buttons */}
+        <ProductHeader
+          routes={routes}
+          productName={productName}
+          ticker={ticker}
+        />
 
-          </div>
+        {/* TODO Product image */}
 
-          {/*  Product name */}
-          <CustomTypography
-            txtStyle="text--heading"
-            txtType="text--bold"
-            txtComponent="h1"
-            fontSize="46px"
-          >
-            {productName}
-          </CustomTypography>
+        {/* TODO Product detail */}
 
-          {/* TODO Product general info */}
+        {/* TODO Product story */}
 
-          {/* TODO Size picker */}
+        {/* TODO Related products */}
 
-          {/* TODO Buy button */}
-
-          {/* TODO Product image */}
-
-          {/* TODO Product detail */}
-
-          {/* TODO Product story */}
-
-          {/* TODO Related products */}
-
-        </Container>
-      </div>
-    </>
+      </Container>
+    </div>
   );
 };
 
