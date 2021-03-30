@@ -124,6 +124,9 @@ const fakeData = [
 const Brand = () => {
   const classes = styles();
   const [age, setAge] = React.useState(10);
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   return (
     <Container maxWidth='md' style={{ marginTop: "90px" }}>

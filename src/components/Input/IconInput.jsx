@@ -12,7 +12,7 @@ const IconInput = (props) =>
   const { placeholder } = props;
   const [inputState, setInputState] = useState('');
   const [btnCloseState, setbtnCloseState] = useState('');
-  const [btnSearchState, setbtnSearchState] = useState('');
+  const [btnSearchState, setbtnSearchState] = useState(false);
   const handleChange = () =>
   {
     if (inputState === '')
@@ -22,13 +22,13 @@ const IconInput = (props) =>
       {
         setbtnCloseState(classes.dpInlineBlock);
       }, 50);
-      setbtnSearchState(classes.buttonFormOpen);
+      setbtnSearchState(true);
     }
     else
     {
       setInputState('');
       setbtnCloseState('');
-      setbtnSearchState('');
+      setbtnSearchState(false);
     }
   };
   return (
@@ -40,7 +40,7 @@ const IconInput = (props) =>
               aria-label="search"
               color="inherit"
               onClick={handleChange}
-              className={`${classes.btn} ${btnSearchState}`}
+              className={`${classes.btn} ${btnSearchState && classes.buttonFormOpen}`}
               disabled={btnSearchState}
             >
               <SearchIcon />
