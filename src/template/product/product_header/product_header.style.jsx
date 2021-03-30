@@ -60,6 +60,20 @@ const productHeaderStyle = makeStyles((theme) => ({
     position: 'relative',
     letterSpacing: '-.5px',
   },
+
+  activate_button: {
+    color: theme.palette.secondary.main,
+    fontFamily: theme.typography.fontFamilies.light,
+    padding: '0',
+    fontSize: '27px',
+    letterSpacing: '-0.5px',
+    pointerEvents: 'none',
+  },
+
+  end_icon: {
+    marginLeft: '13px',
+    marginRight: '-2px',
+  },
 }));
 
 export default productHeaderStyle;

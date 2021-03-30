@@ -2,10 +2,12 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CustomTypography from '../../../components/Typography/typography';
 import RouteBreadcrumbs from '../../../components/Breadcrumbs/breadcrumbs';
 import productHeaderStyle from './product_header.style';
 import SimplePopover from '../../../components/SimplePopover';
+import CustomButton from '../../../components/Buttons/button';
 
 const ProductHeader = ({
   routes,
@@ -16,33 +18,23 @@ const ProductHeader = ({
   const classes = productHeaderStyle();
 
   const activateButton = () => (
-    <div className="select-control shoe-size">
-      <button
-        type="button"
-        className="chakra-button chakra-menu__menu-button btn btn-default size-sm  css-1vh5ev7"
-        data-toggle="dropdown"
-        data-id="region"
-        aria-label="Size Select Menu Button"
-        title="All"
-        data-testid="product-size-select"
-        id="menu-button-47"
-        aria-expanded="false"
-        aria-haspopup="menu"
-        aria-controls="menu-list-47"
-      >
-        <span className="css-a9hmjk">
-          <div className="variant css-70qvj9">
-            <p className="chakra-text css-w4u2v2">All</p>
-            <svg viewBox="0 0 448 512" focusable="false" className="chakra-icon css-onkibi">
-              <path
-                fill="currentColor"
-                d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
-              />
-            </svg>
-          </div>
-        </span>
-      </button>
-    </div>
+    <CustomButton
+      classes={
+        {
+          root: classes.activate_button,
+          endIcon: classes.end_icon,
+        }
+      }
+      variant="text"
+      endIcon={(
+        <ExpandMoreIcon
+          style={{ fontSize: 27, paddingTop: '1px' }}
+          htmlColor="#999999"
+        />
+)}
+    >
+      All
+    </CustomButton>
   );
 
   return (
