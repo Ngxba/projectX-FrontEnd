@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import HelpIcon from '@material-ui/icons/Help';
 import CustomCard from '../card/card';
 import CustomTypography from '../../components/Typography/typography';
+import { makeKey } from "../../utils/supportFunction";
 
 const fakeData = [
   {
@@ -104,12 +105,12 @@ const GridProduct = (props) => {
       <Grid container spacing={3}>
         {type === TYPES[0]
           ? data.map((doc) => (
-              <Grid item xs={6} sm={3}>
+              <Grid key={makeKey(5)} item xs={6} sm={3}>
                 <CustomCard data={doc} type={type} />
               </Grid>
             ))
           : fakeDataBrand.map((doc) => (
-              <Grid item xs={4}>
+              <Grid key={makeKey(5)} item xs={4}>
                 <CustomCard data={doc} type={type} />
               </Grid>
             ))}

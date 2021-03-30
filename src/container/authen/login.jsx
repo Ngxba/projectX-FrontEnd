@@ -1,128 +1,151 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React from 'react';
-import { TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import CustomTypography from '../../components/Typography/typography';
-import CustomButton from '../../components/Buttons/button';
+import React from "react";
+import { TextField, CircularProgress } from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert';
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import IconButton from "@material-ui/core/IconButton";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import CustomTypography from "../../components/Typography/typography";
+import CustomButton from "../../components/Buttons/button";
+import { isLengthEqualZero } from "../../utils/supportFunction";
 
 const styles = makeStyles({
   root: {
-    width: '100%',
-    marginBottom: '16px',
-    '& label': {
-      fontSize: '14px',
+    width: "100%",
+    marginBottom: "16px",
+    "& label": {
+      fontSize: "14px",
     },
-    '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
-      transform: 'translate(14px, 3px) scale(0.75)',
-      color: 'rgba(0, 0, 0, 0.54)',
+    "& .MuiInputLabel-outlined.MuiInputLabel-shrink": {
+      transform: "translate(14px, 3px) scale(0.75)",
+      color: "rgba(0, 0, 0, 0.54)",
     },
-    '& legend': {
-      display: 'none',
+    "& legend": {
+      display: "none",
     },
   },
   main: {
-    backgroundColor: '#fafafa',
-    width: '100vw',
-    height: '100vh',
+    backgroundColor: "#fafafa",
+    width: "100vw",
+    height: "100vh",
   },
 });
 
-function Login()
-{
+function Login({ submit, status }) {
   const classes = styles();
   const [values, setValues] = React.useState({
-    password: '',
+    email: "",
+    password: "",
     showPassword: false,
+    loading: false,
   });
-  const handleClickShowPassword = () =>
-  {
+  const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const handleChange = (prop) => (event) =>
-  {
+  const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleMouseDownPassword = (event) =>
-  {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setValues({ ...values, loading: true });
+    await submit(values);
+    setValues({ ...values, loading: false });
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
+      {status === 2 && (
+        <Alert variant='outlined' severity='error' style={{ backgroundColor: "#fff3f3", marginTop: "20px" }}>
+          Wrong email or password!
+        </Alert>
+      )}
       <br />
       <TextField
         className={classes.root}
-        id="outlined-basic"
-        color="secondary"
-        label="Email Address"
-        variant="outlined"
+        id='outlined-basic'
+        color='secondary'
+        label='Email Address'
+        variant='outlined'
+        onChange={handleChange("email")}
       />
       <FormControl
         className={classes.root}
-        variant="outlined"
-        color="secondary"
+        variant='outlined'
+        color='secondary'
       >
-        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+        <InputLabel htmlFor='outlined-adornment-password'>Password</InputLabel>
         <OutlinedInput
-          id="outlined-adornment-password"
-          type={values.showPassword ? 'text' : 'password'}
+          id='outlined-adornment-password'
+          type={values.showPassword ? "text" : "password"}
           value={values.password}
-          onChange={handleChange('password')}
+          onChange={handleChange("password")}
           endAdornment={
-            <InputAdornment position="end">
+            <InputAdornment position='end'>
               <IconButton
-                aria-label="toggle password visibility"
+                aria-label='toggle password visibility'
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                edge="end"
+                edge='end'
               >
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
           }
           labelWidth={70}
-          style={{ marginBottom: '6px' }}
+          style={{ marginBottom: "6px" }}
         />
         <CustomTypography
-          fontSize="12px"
-          txtType="text--light"
-          txtStyle="text--link"
-          txtComponent="a"
-          color="black"
-          style={{ textAlgin: 'right' }}
+          fontSize='12px'
+          txtType='text--light'
+          txtStyle='text--link'
+          txtComponent='a'
+          color='black'
+          style={{ textAlgin: "right" }}
         >
           Forgot password?
         </CustomTypography>
       </FormControl>
-      <CustomButton style={{ width: '100%', margin: 0 }} type="submit">
-        Login
+      <CustomButton disabled={values.loading || isLengthEqualZero(values)} style={{ width: "100%", margin: 0 }} type='submit'>
+        {!values.loading ? "Login" : <CircularProgress color="secondary" size="20px" />}
       </CustomButton>
       <CustomTypography
-        fontSize="12px"
-        color="rgba(0, 0, 0, 0.54)"
-        txtType="text--light"
-        txtComponent="p"
-        style={{ marginTop: '6px' }}
+        fontSize='12px'
+        color='rgba(0, 0, 0, 0.54)'
+        txtType='text--light'
+        txtComponent='p'
+        style={{ marginTop: "6px" }}
       >
-        {'By logging in, you agree to the '}
-        <a style={{ color: 'rgba(0, 0, 0)' }} href="https://google.com">
+        {"By logging in, you agree to the "}
+        <a style={{ color: "rgba(0, 0, 0)" }} href='https://google.com'>
           Terms of Service
         </a>
-        {' and '}
-        <a style={{ color: 'rgba(0, 0, 0)' }} href="https://google.com">
+        {" and "}
+        <a style={{ color: "rgba(0, 0, 0)" }} href='https://google.com'>
           Privacy Policy
         </a>
       </CustomTypography>
     </form>
   );
 }
+
+Login.propTypes = {
+  submit: PropTypes.func.isRequired,
+  status: PropTypes.number.isRequired,
+};
+
+// Login.defaultProps = {
+//   type: TYPES[0],
+// };
 
 export default Login;
