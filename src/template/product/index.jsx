@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import productStyle from './product.style';
+import productStyle from './index.style';
 import ProductHeader from './product_header/product_header';
 
 const data = {
