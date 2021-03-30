@@ -12,7 +12,6 @@ const buttonStyle = makeStyles({
     overflowWrap: 'break-word',
     display: 'inline-block',
     textAlign: 'center',
-    margin: '10px 10px 10px 10px',
   },
   'btn--large': {
     textRendering: 'optimizelegibility',
