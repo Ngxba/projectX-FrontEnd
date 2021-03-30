@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // import { PropTypes } from 'prop-types';
 import CustomTypography from '../components/Typography/typography';
 import CardContainer from '../container/card_container/card_container';
-import SimpleBreadcrumbs from '../components/Breadcrumbs/breadcrumbs';
+import RouteBreadcrumbs from '../components/Breadcrumbs/breadcrumbs';
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -126,7 +126,7 @@ const Brand = () =>
           juggernaught Supreme on StockX here!
         </CustomTypography>
       </div>
-      <SimpleBreadcrumbs data={['home', 'streetwear', 'supreme']} />
+      <RouteBreadcrumbs data={['home', 'streetwear', 'supreme']} />
       <CardContainer data={fakeData} showCategory={false} />
     </Container>
   );
