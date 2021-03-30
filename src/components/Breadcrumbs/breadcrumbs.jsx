@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function SimpleBreadcrumbs(props)
+function RouteBreadcrumbs(props)
 {
   const classes = useStyles();
 
@@ -83,8 +83,8 @@ function SimpleBreadcrumbs(props)
   );
 }
 
-SimpleBreadcrumbs.propTypes = {
+RouteBreadcrumbs.propTypes = {
   data: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default SimpleBreadcrumbs;
+export default RouteBreadcrumbs;
