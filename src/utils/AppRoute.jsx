@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 const AppRoute = ({
   component: Component, layout: Layout, isMainPage, ...rest
 }) => {
+  // eslint-disable-next-line
   console.log("somthin");
   return (
     <Route

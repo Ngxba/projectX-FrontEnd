@@ -1,59 +1,11 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import { makeStyles } from "@material-ui/core/styles";
-import { FormControl, Select, MenuItem } from "@material-ui/core";
+import { FormControl, Select, MenuItem, Grid } from "@material-ui/core";
 // import { PropTypes } from 'prop-types';
-import CustomTypography from "../components/Typography/typography";
-import CardContainer from "../container/card_container/card_container";
-import Breadcrumb from "../components/Breadcrumbs/breadcrumbs";
-
-const styles = makeStyles(() => ({
-  root: {
-    WebkitTapHighlightColor: "transparent",
-    textSizeAdjust: "100%",
-    WebkitFontSmoothing: "antialiased",
-    textRendering: "optimizelegibility",
-    "-chakraUiColorMode": "light",
-    fontFeatureSettings: '"kern"',
-    fontFamily: "RingsideRegular-Book, sans-serif",
-    color: "rgb(26, 32, 44)",
-    lineHeight: "1.5",
-    fontSize: "100%",
-    borderWidth: "0px",
-    borderStyle: "solid",
-    boxSizing: "border-box",
-    borderColor: "rgb(226, 232, 240)",
-    overflowWrap: "break-word",
-    background: "#E7E8E8",
-    minHeight: "initial",
-    display: "flex",
-    alignItems: "flex-start",
-    WebkitBoxPack: "center",
-    justifyContent: "center",
-    flexDirection: "column",
-    backgroundImage:
-      "url(//stockx-assets.imgix.net/Core/browse-header-streetwear.jpg?auto=compress,format)",
-    height: "270px",
-    width: "100%",
-    paddingLeft: "3rem",
-  },
-  selectEmpty: {
-    all: 'none',
-    "&::before, &::after": {
-      borderBottom: 'unset !important',
-      backgroundColor: 'none !important',
-    },
-    width: '100px',
-    height: '48px',
-  },
-  formControl: {
-    display: 'inline-block',
-    border: '1px solid rgb(231, 232, 232)',
-    padding: '10px',
-    width: '250px',
-    textAlign: 'center',
-  },
-}));
+import CustomTypography from "../../components/Typography/typography";
+import CardContainer from "../../container/card_container/card_container";
+import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
+import brandStyle from "./brand.style";
 
 const fakeData = [
   {
@@ -122,38 +74,62 @@ const fakeData = [
 ];
 
 const Brand = () => {
-  const classes = styles();
+  const classes = brandStyle();
   const [age, setAge] = React.useState(10);
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   return (
-    <Container maxWidth='md' style={{ marginTop: "90px" }}>
-      <div className={classes.root}>
-        <CustomTypography component='h2' txtStyle='text--heading'>
+    <Container maxWidth="md" style={{ marginTop: "90px" }}>
+      <Grid className={classes.root} container xs={12}>
+        <CustomTypography component="h2" txtStyle="text--heading">
           Supreme
         </CustomTypography>
         <CustomTypography
-          component='p'
-          txtType='text--light'
+          component="p"
+          txtType="text--light"
           style={{ maxWidth: "450px" }}
         >
           Buy and sell tees, hoodies, accessories and more from streetwear
           juggernaught Supreme on StockX here!
         </CustomTypography>
-      </div>
-      <Breadcrumb data={["home", "streetwear", "supreme"]} />
-      <FormControl className={classes.formControl}>
-        <span><strong>Sort by:&#160;</strong></span>
-        <Select
-          value={age}
-          onChange={handleChange}
-          className={classes.selectEmpty}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <CardContainer data={fakeData} showCategory={false} />
+      </Grid>
+      <Grid className={classes.gridContainer} container spacing={2}>
+        <Grid className={classes.leftSide} item xs={2}>
+          <div>Other Brands</div>
+        </Grid>
+        <Grid className={classes.rightSide} item xs={10}>
+          <Grid item xs={12} className={classes.sort}>
+            <Grid item xs={6}>
+              <Breadcrumb data={["home", "streetwear", "jordan"]} />
+            </Grid>
+            <Grid item xs={6} className={classes.formControl}>
+              <FormControl>
+                <div className={classes.package}>
+                  <div className={classes.textRow}>
+                    <span className={classes.textTitle}>
+                      <strong>Sort by:&#160;</strong>
+                    </span>
+                    <Select
+                      value={age}
+                      onChange={handleChange}
+                      className={classes.selectEmpty}
+                    >
+                      <MenuItem value={10}>Ten</MenuItem>
+                      <MenuItem value={20}>Twenty</MenuItem>
+                      <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
+                  </div>
+                </div>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <CardContainer data={fakeData} showCategory={false} />
+          </Grid>
+        </Grid>
+      </Grid>
     </Container>
   );
 };
