@@ -4,25 +4,24 @@ import PropTypes from "prop-types";
 // import LayoutDefault from "../template/layout";
 
 const AppRoute = ({
-  component: Component, layout: Layout, isMainPage, ...rest
-}) => {
-  // eslint-disable-next-line
-  console.log("somthin");
-  return (
-    <Route
-      {...rest}
-      render={(props) => (
-        <Layout isMainPage={isMainPage}>
-          <Component {...props} />
-        </Layout>
-      )}
-    />
-  );
-};
+  component: Component,
+  layout: Layout,
+  isMainPage,
+  ...rest
+}) => (
+  <Route
+    {...rest}
+    render={(props) => (
+      <Layout isMainPage={isMainPage}>
+        <Component {...props} />
+      </Layout>
+    )}
+  />
+);
 
 AppRoute.propTypes = {
-  component: PropTypes.element.isRequired,
-  layout: PropTypes.element,
+  component: PropTypes.func.isRequired,
+  layout: PropTypes.symbol,
   isMainPage: PropTypes.bool,
 };
 
