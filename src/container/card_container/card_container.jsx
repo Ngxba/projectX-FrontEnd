@@ -98,7 +98,7 @@ const GridProduct = (props) => {
             fontSize='14px'
             txtColor='textPrimary'
           >
-            {title}
+            See all
           </CustomTypography>
         </div>
       )}

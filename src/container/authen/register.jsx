@@ -18,7 +18,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Checkbox from "@material-ui/core/Checkbox";
 import CustomTypography from "../../components/Typography/typography";
 import CustomButton from "../../components/Buttons/button";
-import { isLengthEqualZero } from "../../utils/supportFunction";
+import { isLengthEqualZero, validateEmail } from "../../utils/supportFunction";
 
 const styles = makeStyles({
   root: {
@@ -170,7 +170,7 @@ function Register({ submit, status }) {
           </CustomTypography>
         }
       />
-      <CustomButton style={{ width: "100%", margin: 0 }} disabled={values.loading || !values.approveTerm || isLengthEqualZero(values)} type='submit'>
+      <CustomButton style={{ width: "100%", margin: 0 }} disabled={values.loading || !values.approveTerm || isLengthEqualZero(values) || !validateEmail(values.email)} type='submit'>
         {!values.loading ? (
           "Sign Up"
         ) : (

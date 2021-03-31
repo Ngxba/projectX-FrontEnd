@@ -1,6 +1,8 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import { FormControl, Select, MenuItem, Grid } from "@material-ui/core";
+import {
+  FormControl, Select, MenuItem, Grid,
+} from "@material-ui/core";
 // import { PropTypes } from 'prop-types';
 import CustomTypography from "../../components/Typography/typography";
 import CardContainer from "../../container/card_container/card_container";
@@ -81,14 +83,14 @@ const Brand = () => {
   };
 
   return (
-    <Container maxWidth="md" style={{ marginTop: "90px" }}>
+    <Container maxWidth='md' style={{ marginTop: "90px" }}>
       <Grid className={classes.root} container xs={12}>
-        <CustomTypography component="h2" txtStyle="text--heading">
+        <CustomTypography component='h2' txtStyle='text--heading'>
           Supreme
         </CustomTypography>
         <CustomTypography
-          component="p"
-          txtType="text--light"
+          component='p'
+          txtType='text--light'
           style={{ maxWidth: "450px" }}
         >
           Buy and sell tees, hoodies, accessories and more from streetwear

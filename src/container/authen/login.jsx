@@ -13,7 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import CustomTypography from "../../components/Typography/typography";
 import CustomButton from "../../components/Buttons/button";
-import { isLengthEqualZero } from "../../utils/supportFunction";
+import { isLengthEqualZero, validateEmail } from "../../utils/supportFunction";
 
 const styles = makeStyles({
   root: {
@@ -116,7 +116,7 @@ function Login({ submit, status }) {
           Forgot password?
         </CustomTypography>
       </FormControl>
-      <CustomButton disabled={values.loading || isLengthEqualZero(values)} style={{ width: "100%", margin: 0 }} type='submit'>
+      <CustomButton disabled={values.loading || isLengthEqualZero(values) || !validateEmail(values.email)} style={{ width: "100%", margin: 0 }} type='submit'>
         {!values.loading ? "Login" : <CircularProgress color="secondary" size="20px" />}
       </CustomButton>
       <CustomTypography
