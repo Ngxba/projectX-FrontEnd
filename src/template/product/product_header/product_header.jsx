@@ -120,6 +120,7 @@ const ProductHeader = ({
                     sizeQuantity={sizeQuantity}
                     sizeChartButtonOnClick={() => setIsShowingSizePicker(false)}
                     changeCurrentSize={(newSize) => setCurrentSize(newSize)}
+                    currentSize={currentSize}
                   />
                 )
                   // Render size chart

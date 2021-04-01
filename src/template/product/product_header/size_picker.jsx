@@ -9,8 +9,11 @@ const SizePicker = ({
   sizeQuantity,
   sizeChartButtonOnClick,
   changeCurrentSize,
+  currentSize,
 }) =>
 {
+  // const [clickedSizeIndex, setClickedSizeIndex] = useState(null);
+
   const classes = productHeaderStyle();
   const theme = useTheme();
 
@@ -65,11 +68,13 @@ const SizePicker = ({
           sizeQuantity.map((element) =>
           {
             const { size, quantity } = element;
+            const clicked = size === currentSize;
 
             return (
               // Only render size that has quantity > 0
               (quantity > 0) && (
                 <Grid
+                  key={size}
                   item
                   xs={3}
                   classes={{ item: classes.item }}
@@ -78,7 +83,11 @@ const SizePicker = ({
                     classes={{ root: classes.size_paper }}
                     variant="outlined"
                     square
-                    onClick={() => changeCurrentSize(size)}
+                    style={{ background: clicked ? '#eef7eb' : '#fff' }}
+                    onClick={() =>
+                    {
+                      changeCurrentSize(size);
+                    }}
                   >
                     <CustomTypography
                       txtType="text--bold"
@@ -110,6 +119,7 @@ SizePicker.propTypes = {
   })).isRequired,
   sizeChartButtonOnClick: PropTypes.func.isRequired,
   changeCurrentSize: PropTypes.func.isRequired,
+  currentSize: PropTypes.number.isRequired,
 };
 
 export default SizePicker;
