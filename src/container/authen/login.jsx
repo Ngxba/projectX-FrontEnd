@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React from 'react';
-import { TextField, CircularProgress } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
+import { CircularProgress, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,6 +10,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Alert from '@material-ui/lab/Alert';
 import CustomTypography from '../../components/Typography/typography';
 import CustomButton from '../../components/Buttons/button';
 import { isLengthEqualZero, validateEmail } from '../../utils/supportFunction';
@@ -37,7 +37,10 @@ const styles = makeStyles({
   },
 });
 
-function Login({ submit, status })
+function Login({
+  submit,
+  status,
+})
 {
   const classes = styles();
   const [values, setValues] = React.useState({
@@ -48,12 +51,18 @@ function Login({ submit, status })
   });
   const handleClickShowPassword = () =>
   {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
   const handleChange = (prop) => (event) =>
   {
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values,
+      [prop]: event.target.value,
+    });
   };
 
   const handleMouseDownPassword = (event) =>
@@ -64,14 +73,27 @@ function Login({ submit, status })
   const handleSubmit = async (event) =>
   {
     event.preventDefault();
-    setValues({ ...values, loading: true });
+    setValues({
+      ...values,
+      loading: true,
+    });
     await submit(values);
-    setValues({ ...values, loading: false });
+    setValues({
+      ...values,
+      loading: false,
+    });
   };
   return (
     <form onSubmit={handleSubmit}>
       {status === 2 && (
-        <Alert variant="outlined" severity="error" style={{ backgroundColor: '#fff3f3', marginTop: '20px' }}>
+        <Alert
+          variant="outlined"
+          severity="error"
+          style={{
+            backgroundColor: '#fff3f3',
+            marginTop: '20px',
+          }}
+        >
           Wrong email or password!
         </Alert>
       )}
@@ -121,7 +143,14 @@ function Login({ submit, status })
           Forgot password?
         </CustomTypography>
       </FormControl>
-      <CustomButton disabled={values.loading || isLengthEqualZero(values) || !validateEmail(values.email)} style={{ width: '100%', margin: 0 }} type="submit">
+      <CustomButton
+        disabled={values.loading || isLengthEqualZero(values) || !validateEmail(values.email)}
+        style={{
+          width: '100%',
+          margin: 0,
+        }}
+        type="submit"
+      >
         {!values.loading ? 'Login' : <CircularProgress color="secondary" size="20px" />}
       </CustomButton>
       <CustomTypography

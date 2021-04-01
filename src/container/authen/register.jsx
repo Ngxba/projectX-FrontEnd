@@ -1,10 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React from 'react';
-import {
-  TextField,
-  FormControlLabel,
-  CircularProgress,
-} from '@material-ui/core';
+import { CircularProgress, FormControlLabel, TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
@@ -42,7 +38,10 @@ const styles = makeStyles({
   },
 });
 
-function Register({ submit, status })
+function Register({
+  submit,
+  status,
+})
 {
   const classes = styles();
   const [values, setValues] = React.useState({
@@ -54,19 +53,29 @@ function Register({ submit, status })
     approveTerm: false,
     loading: false,
   });
+
   const handleClickShowPassword = () =>
   {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
   const handleClickTerm = () =>
   {
-    setValues({ ...values, approveTerm: !values.approveTerm });
+    setValues({
+      ...values,
+      approveTerm: !values.approveTerm,
+    });
   };
 
   const handleChange = (prop) => (event) =>
   {
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values,
+      [prop]: event.target.value,
+    });
   };
 
   const handleMouseDownPassword = (event) =>
@@ -77,14 +86,27 @@ function Register({ submit, status })
   const handleSubmit = async (event) =>
   {
     event.preventDefault();
-    setValues({ ...values, loading: true });
+    setValues({
+      ...values,
+      loading: true,
+    });
     await submit(values);
-    setValues({ ...values, loading: false });
+    setValues({
+      ...values,
+      loading: false,
+    });
   };
   return (
     <form onSubmit={handleSubmit}>
       {status === 2 && (
-        <Alert variant="outlined" severity="error" style={{ backgroundColor: '#fff3f3', marginTop: '20px' }}>
+        <Alert
+          variant="outlined"
+          severity="error"
+          style={{
+            backgroundColor: '#fff3f3',
+            marginTop: '20px',
+          }}
+        >
           Account email already assigned! Please try again!
         </Alert>
       )}
@@ -176,7 +198,17 @@ function Register({ submit, status })
           </CustomTypography>
         }
       />
-      <CustomButton style={{ width: '100%', margin: 0 }} disabled={values.loading || !values.approveTerm || isLengthEqualZero(values) || !validateEmail(values.email)} type="submit">
+      <CustomButton
+        style={{
+          width: '100%',
+          margin: 0,
+        }}
+        disabled={values.loading
+        || !values.approveTerm
+        || isLengthEqualZero(values)
+        || !validateEmail(values.email)}
+        type="submit"
+      >
         {!values.loading ? (
           'Sign Up'
         ) : (
