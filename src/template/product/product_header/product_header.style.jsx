@@ -30,14 +30,9 @@ const productHeaderStyle = makeStyles((theme) => ({
     display: 'inline',
   },
 
-  condition: {
-    color: theme.palette.primary.main,
-  },
-
   info_breadcrumbs: {
     color: '#444',
     display: 'block',
-    letterSpacing: '-.5px',
     marginTop: '5px',
   },
 
@@ -73,6 +68,69 @@ const productHeaderStyle = makeStyles((theme) => ({
   end_icon: {
     marginLeft: '13px',
     marginRight: '-2px',
+  },
+
+  all_size_container: {
+    display: 'table',
+    height: '0',
+    padding: '2.5px',
+    top: '135%',
+    width: '343px',
+    transition: 'visibility .2s ease-out,opacity .2s linear',
+  },
+
+  dropdown_header: {
+    display: 'flex',
+    WebkitFlexDirection: 'row',
+    MsFlexDirection: 'row',
+    flexDirection: 'row',
+    WebkitBoxPack: 'justify',
+    WebkitJustifyContent: 'space-between',
+    justifyContent: 'space-between',
+    fontWeight: '600',
+    textTransform: 'capitalize',
+    paddingTop: '14px',
+    margin: '0 -1px',
+  },
+
+  grid_container: {
+    // height: '372px',
+    overflow: 'auto',
+  },
+
+  item: {
+    background: '#fff',
+    cursor: 'pointer',
+    padding: '6px',
+    textAlign: 'center',
+    height: '70px',
+    WebkitUserSelect: 'none',
+    MozUserSelect: 'none',
+    MsUserSelect: 'none',
+    userSelect: 'none',
+  },
+
+  size_paper: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  size_chart_header: {
+    display: 'flex',
+    WebkitFlexDirection: 'row',
+    MsFlexDirection: 'row',
+    flexDirection: 'row',
+    WebkitBoxPack: 'justify',
+    WebkitJustifyContent: 'space-between',
+    justifyContent: 'space-between',
+    fontWeight: '600',
+    textTransform: 'capitalize',
+    paddingTop: '14px',
+    margin: '0 -1px',
   },
 }));
 
