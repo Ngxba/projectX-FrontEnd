@@ -1,21 +1,30 @@
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import * as PropTypes from 'prop-types';
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Paper } from '@material-ui/core';
+import { useTheme } from '@material-ui/styles';
 import CustomTypography from '../../../components/Typography/typography';
 import RouteBreadcrumbs from '../../../components/Breadcrumbs/breadcrumbs';
 import productHeaderStyle from './product_header.style';
 import SimplePopover from '../../../components/SimplePopover';
 import CustomButton from '../../../components/Buttons/button';
+import SizePicker from './size_picker';
+import SizeChart from './size_chart';
 
 const ProductHeader = ({
   routes,
   ticker,
   productName,
+  sizeQuantity,
 }) =>
 {
   const classes = productHeaderStyle();
+
+  const [isShowingSizePicker, setIsShowingSizePicker] = useState(true);
+  const [currentSize, setCurrentSize] = useState('All');
+
+  const theme = useTheme();
 
   const activateButton = () => (
     <CustomButton
@@ -28,12 +37,15 @@ const ProductHeader = ({
       variant="text"
       endIcon={(
         <ExpandMoreIcon
-          style={{ fontSize: 27, paddingTop: '1px' }}
+          style={{
+            fontSize: 30,
+            paddingTop: '1px',
+          }}
           htmlColor="#999999"
         />
-)}
+      )}
     >
-      All
+      {currentSize}
     </CustomButton>
   );
 
@@ -52,7 +64,8 @@ const ProductHeader = ({
         txtStyle="text--heading"
         txtType="text--bold"
         txtComponent="h1"
-        fontSize="48px  "
+        fontSize="48px"
+        style={{ letterSpacing: '-.5px' }}
       >
         {productName}
       </CustomTypography>
@@ -69,37 +82,54 @@ const ProductHeader = ({
           }
           aria-label="breadcrumb"
         >
-          <CustomTypography color="#999">
+          <CustomTypography txtType="text--bold" color="#999">
             <span style={{ marginRight: '3px' }}>Condition:</span>
-            <span className={classes.condition}>
+            <span style={{ color: theme.palette.primary.main }}>
               New
             </span>
           </CustomTypography>
-          <CustomTypography color="#999">
+          <CustomTypography txtType="text--bold" color="#999">
             <span style={{ marginRight: '3px' }}>Ticker:</span>
             <span>
               {ticker}
             </span>
           </CustomTypography>
-          <CustomTypography color="#999">
-            <span className={classes.condition}>
-              100% Authentic
-            </span>
+          <CustomTypography txtType="text--bold" style={{ color: theme.palette.primary.main }}>
+            100% Authentic
           </CustomTypography>
         </Breadcrumbs>
       </div>
 
-      {/* TODO Size picker */}
+      {/* Size picker */}
       <div className={classes.market_summary}>
         <div className={classes.options}>
-          <CustomTypography fontSize="16px" color="#999">
+          <CustomTypography txtType="text--bold" fontSize="16px" color="#999">
             Size:
           </CustomTypography>
 
           <SimplePopover
             activateComponent={activateButton}
           >
-            <Typography className={classes.typography}>The content of the Popover.</Typography>
+            {/* Size picker and size chart */}
+            <Paper square classes={{ root: classes.all_size_container }}>
+              {
+
+                // Render size picker
+                isShowingSizePicker ? (
+                  <SizePicker
+                    sizeQuantity={sizeQuantity}
+                    sizeChartButtonOnClick={() => setIsShowingSizePicker(false)}
+                    changeCurrentSize={(newSize) => setCurrentSize(newSize)}
+                  />
+                )
+                  // Render size chart
+                  : (
+                    <SizeChart backButtonOnClick={() => setIsShowingSizePicker(true)} />
+                  )
+              }
+
+            </Paper>
+
           </SimplePopover>
 
         </div>
@@ -114,6 +144,10 @@ ProductHeader.propTypes = {
   routes: PropTypes.arrayOf(PropTypes.any).isRequired,
   productName: PropTypes.string.isRequired,
   ticker: PropTypes.string.isRequired,
+  sizeQuantity: PropTypes.arrayOf(PropTypes.exact({
+    size: PropTypes.string,
+    quantity: PropTypes.number,
+  })).isRequired,
 };
 
 export default ProductHeader;
