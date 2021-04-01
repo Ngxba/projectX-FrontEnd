@@ -84,10 +84,7 @@ const SizePicker = ({
                     variant="outlined"
                     square
                     style={{ background: clicked ? '#eef7eb' : '#fff' }}
-                    onClick={() =>
-                    {
-                      changeCurrentSize(size);
-                    }}
+                    onClick={() => changeCurrentSize(size)}
                   >
                     <CustomTypography
                       txtType="text--bold"
