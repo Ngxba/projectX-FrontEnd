@@ -62,36 +62,40 @@ const SizePicker = ({
         }
       >
         {
-          sizeQuantity.map((size) => (
-            // Only render size that has quantity > 0
-            (size.quantity > 0) && (
-              <Grid
-                item
-                xs={3}
-                classes={{ item: classes.item }}
-                onClick={() => changeCurrentSize(size)}
-              >
-                <Paper
-                  classes={{ root: classes.size_paper }}
-                  variant="outlined"
-                  square
+          sizeQuantity.map((element) =>
+          {
+            const { size, quantity } = element;
+
+            return (
+              // Only render size that has quantity > 0
+              (quantity > 0) && (
+                <Grid
+                  item
+                  xs={3}
+                  classes={{ item: classes.item }}
                 >
-                  <CustomTypography
-                    txtType="text--bold"
-                    style={
-                      {
-                        fontSize: '14px',
-                        textTransform: 'uppercase',
-                        fontWeight: '700',
-                      }
-                    }
+                  <Paper
+                    classes={{ root: classes.size_paper }}
+                    variant="outlined"
+                    square
+                    onClick={() => changeCurrentSize(size)}
                   >
-                    {size.size}
-                  </CustomTypography>
-                </Paper>
-              </Grid>
-            )
-          ))
+                    <CustomTypography
+                      txtType="text--bold"
+                      style={
+                        {
+                          fontSize: '14px',
+                          textTransform: 'uppercase',
+                        }
+                      }
+                    >
+                      {size}
+                    </CustomTypography>
+                  </Paper>
+                </Grid>
+              )
+            );
+          })
         }
 
       </Grid>
