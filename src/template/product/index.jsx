@@ -14,7 +14,7 @@ const data = {
   ticker: 'AJ1H-BH',
   sizeQuantity: [{
     size: '30',
-    quantity: '96',
+    quantity: 96,
   }, {
     size: '31',
     quantity: 56,
@@ -58,6 +58,7 @@ const Product = () =>
     tags,
     productName,
     ticker,
+    sizeQuantity,
   } = data;
 
   // Generate data for breadcrumbs
@@ -80,6 +81,7 @@ const Product = () =>
           routes={routes}
           productName={productName}
           ticker={ticker}
+          sizeQuantity={sizeQuantity}
         />
 
         {/* TODO Product image */}
