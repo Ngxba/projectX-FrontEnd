@@ -153,7 +153,6 @@ const ProductHeader = ({
                   color: 'inherit',
                   textDecoration: 'inherit',
                 }}
-                data-testid="bidaskbtn-anchor"
                 href="/buy/air-jordan-1-retro-high-bio-hack"
               >
                 <CustomTypography

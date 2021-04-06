@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import productStyle from './index.style';
 import ProductHeader from './product_header/product_header';
+import ProductMedia from './product_media/product_media';
 
 const data = {
   _id: '60615f4c18d5191cf8e960df',
@@ -9,7 +10,7 @@ const data = {
   productName: 'Jordan 1 Retro High Tokyo Bio Hack',
   category: 'Air Jordan One',
   colorWay: 'Baroque Brown/Black-Laser Orange-Racer Pink',
-  imageurl: 'https://images.stockx.com/images/Air-Jordan-1-Retro-High-Bio-Hack-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606318464',
+  imageURL: 'https://images.stockx.com/images/Air-Jordan-1-Retro-High-Bio-Hack-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1606318464',
   price: 170,
   ticker: 'AJ1H-BH',
   sizeQuantity: [{
@@ -60,6 +61,7 @@ const Product = () =>
     ticker,
     sizeQuantity,
     price,
+    imageURL,
   } = data;
 
   // Generate data for breadcrumbs
@@ -86,7 +88,8 @@ const Product = () =>
           price={price}
         />
 
-        {/* TODO Product image */}
+        {/* Product media */}
+        <ProductMedia imageURL={imageURL} productName={productName} />
 
         {/* TODO Product detail */}
 
