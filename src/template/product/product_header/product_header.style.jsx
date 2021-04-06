@@ -154,7 +154,7 @@ const productHeaderStyle = makeStyles((theme) => ({
       '& .divider': {
         borderLeft: '1px solid #fff',
         alignSelf: 'stretch',
-        margin: '0 18px',
+        margin: '0 13px',
         borderLeftColor: '#206c16',
       },
     },
