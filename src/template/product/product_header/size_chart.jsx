@@ -76,6 +76,7 @@ const SizeChart = ({
   currentSize,
 }) =>
 {
+  // Divide to subarray
   const rows = chunkArray(sizeChart, 5);
 
   const classes = productHeaderStyle();
@@ -132,7 +133,7 @@ const SizeChart = ({
               <StyledTableCell align="center">UK</StyledTableCell>
               <StyledTableCell align="center">EU</StyledTableCell>
               <StyledTableCell align="center">CM</StyledTableCell>
-              <StyledTableCell align="center">W</StyledTableCell>
+              <StyledTableCell align="center">Women</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -144,7 +145,7 @@ const SizeChart = ({
               return (
                 <StyledTableRow
                   key={makeKey(10)}
-                  style={{ background: highlighted ? '#eef7eb' : '#fff' }}
+                  style={{ background: highlighted ? '#eef7eb' : null }}
                 >
                   <StyledTableCell align="center">{us}</StyledTableCell>
                   <StyledTableCell align="center">{uk}</StyledTableCell>
