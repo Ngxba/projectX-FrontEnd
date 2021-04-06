@@ -12,8 +12,6 @@ const SizePicker = ({
   currentSize,
 }) =>
 {
-  // const [clickedSizeIndex, setClickedSizeIndex] = useState(null);
-
   const classes = productHeaderStyle();
   const theme = useTheme();
 
@@ -31,7 +29,7 @@ const SizePicker = ({
             }
           }
         >
-          Select A U.S. Men&apos;s Size
+          Select A EU. Men&apos;s Size
         </CustomTypography>
 
         <CustomTypography
@@ -116,7 +114,7 @@ SizePicker.propTypes = {
   })).isRequired,
   sizeChartButtonOnClick: PropTypes.func.isRequired,
   changeCurrentSize: PropTypes.func.isRequired,
-  currentSize: PropTypes.number.isRequired,
+  currentSize: PropTypes.string.isRequired,
 };
 
 export default SizePicker;
