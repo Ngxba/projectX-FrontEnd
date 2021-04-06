@@ -125,7 +125,10 @@ const ProductHeader = ({
                 )
                   // Render size chart
                   : (
-                    <SizeChart backButtonOnClick={() => setIsShowingSizePicker(true)} />
+                    <SizeChart
+                      currentSize={currentSize}
+                      backButtonOnClick={() => setIsShowingSizePicker(true)}
+                    />
                   )
               }
 
@@ -137,6 +140,7 @@ const ProductHeader = ({
       </div>
 
       {/* TODO Buy button */}
+      <CustomButton buttonSize="btn--large">Buy</CustomButton>
     </>
   );
 };
