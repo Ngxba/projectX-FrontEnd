@@ -59,6 +59,7 @@ const Product = () =>
     productName,
     ticker,
     sizeQuantity,
+    price,
   } = data;
 
   // Generate data for breadcrumbs
@@ -82,6 +83,7 @@ const Product = () =>
           productName={productName}
           ticker={ticker}
           sizeQuantity={sizeQuantity}
+          price={price}
         />
 
         {/* TODO Product image */}

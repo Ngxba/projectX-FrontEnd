@@ -132,6 +132,33 @@ const productHeaderStyle = makeStyles((theme) => ({
     paddingTop: '14px',
     margin: '0 -1px',
   },
+
+  buy_button_container: {
+    padding: '0 20px',
+  },
+
+  inner: {
+    display: 'flex',
+    justifyContent: 'space-around',
+
+    '& a': {
+      display: 'flex',
+      flexWrap: 'nowrap',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      margin: 'auto',
+      borderRadius: '5px',
+      width: '100%',
+      cursor: 'pointer',
+
+      '& .divider': {
+        borderLeft: '1px solid #fff',
+        alignSelf: 'stretch',
+        margin: '0 18px',
+        borderLeftColor: '#206c16',
+      },
+    },
+  },
 }));
 
 export default productHeaderStyle;

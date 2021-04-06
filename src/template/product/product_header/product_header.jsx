@@ -17,6 +17,7 @@ const ProductHeader = ({
   ticker,
   productName,
   sizeQuantity,
+  price,
 }) =>
 {
   const classes = productHeaderStyle();
@@ -131,22 +132,73 @@ const ProductHeader = ({
                     />
                   )
               }
-
             </Paper>
-
           </SimplePopover>
+        </div>
 
+        {/* Buy button */}
+        <div className={classes.buy_button_container}>
+          <CustomButton
+            style={
+              {
+                padding: '13px 17px',
+                minHeight: '70px',
+              }
+            }
+            buttonSize="btn--large"
+          >
+            <div className={classes.inner}>
+              <a
+                style={{
+                  color: 'inherit',
+                  textDecoration: 'inherit',
+                }}
+                data-testid="bidaskbtn-anchor"
+                href="/buy/air-jordan-1-retro-high-bio-hack"
+              >
+                <CustomTypography
+                  txtType="text--light"
+                  style={
+                  {
+                    color: 'inherit',
+                    lineHeight: '1',
+                    fontWeight: '500',
+                    fontSize: '30px',
+                  }
+                }
+                >
+                  $
+                  {price}
+                </CustomTypography>
+
+                <div className="divider" />
+
+                <CustomTypography
+                  txtType="text--bold"
+                  style={
+                  {
+                    margin: '0',
+                    fontSize: '25px',
+                    lineHeight: '1',
+                    textTransform: 'capitalize',
+                    color: 'inherit',
+                  }
+                }
+                >
+                  Buy
+                </CustomTypography>
+              </a>
+            </div>
+          </CustomButton>
         </div>
       </div>
-
-      {/* TODO Buy button */}
-      <CustomButton buttonSize="btn--large">Buy</CustomButton>
     </>
   );
 };
 
 ProductHeader.propTypes = {
   routes: PropTypes.arrayOf(PropTypes.any).isRequired,
+  price: PropTypes.number.isRequired,
   productName: PropTypes.string.isRequired,
   ticker: PropTypes.string.isRequired,
   sizeQuantity: PropTypes.arrayOf(PropTypes.exact({
