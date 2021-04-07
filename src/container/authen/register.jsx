@@ -183,7 +183,11 @@ function Register({ submit, status }) {
 
 Register.propTypes = {
   submit: PropTypes.func.isRequired,
-  status: PropTypes.number.isRequired,
+  status: PropTypes.number,
+};
+
+Register.defaultProps = {
+  status: 0,
 };
 
 export default Register;

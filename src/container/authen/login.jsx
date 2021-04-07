@@ -141,11 +141,11 @@ function Login({ submit, status }) {
 
 Login.propTypes = {
   submit: PropTypes.func.isRequired,
-  status: PropTypes.number.isRequired,
+  status: PropTypes.number,
 };
 
-// Login.defaultProps = {
-//   type: TYPES[0],
-// };
+Login.defaultProps = {
+  status: 0,
+};
 
 export default Login;
