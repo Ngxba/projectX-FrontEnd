@@ -1,16 +1,18 @@
-const USER_REQUEST = "USER_REQUEST";
-const USER_REQUEST_SUCCESS = "USER_REQUEST_SUCCESS";
-const USER_REQUEST_FAILURE = "USER_REQUEST_FAILURE";
+const USER_REQUEST = 'USER_REQUEST';
+const USER_REQUEST_SUCCESS = 'USER_REQUEST_SUCCESS';
+const USER_REQUEST_FAILURE = 'USER_REQUEST_FAILURE';
 
 const initialState = {
   loading: false,
   userData: {},
-  error: "",
+  error: '',
   isLogin: true,
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
+const reducer = (state = initialState, action) =>
+{
+  switch (action.type)
+  {
     case USER_REQUEST:
       return {
         ...state,
@@ -22,7 +24,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         userData: action.payload,
         loading: false,
-        error: "",
+        error: '',
       };
     case USER_REQUEST_FAILURE:
       return {

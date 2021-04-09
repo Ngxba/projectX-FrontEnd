@@ -1,34 +1,35 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React from "react";
+import React from 'react';
 import {
   TextField,
   FormControlLabel,
   CircularProgress,
-} from "@material-ui/core";
+} from '@material-ui/core';
 // import PropTypes from "prop-types";
-import Alert from "@material-ui/lab/Alert";
-import IconButton from "@material-ui/core/IconButton";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Checkbox from "@material-ui/core/Checkbox";
-import { useSelector, useDispatch } from "react-redux";
-import CustomTypography from "../../components/Typography/typography";
-import CustomButton from "../../components/Buttons/button";
-import { isLengthEqualZero, validateEmail } from "../../utils/supportFunction";
-import { Register } from "../../redux/actions/userActions";
-import authenStyle from "./authen.style";
+import Alert from '@material-ui/lab/Alert';
+import IconButton from '@material-ui/core/IconButton';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Checkbox from '@material-ui/core/Checkbox';
+import { useSelector, useDispatch } from 'react-redux';
+import CustomTypography from '../../components/Typography/typography';
+import CustomButton from '../../components/Buttons/button';
+import { isLengthEqualZero, validateEmail } from '../../utils/supportFunction';
+import { Register } from '../../redux/actions/userActions';
+import authenStyle from './authen.style';
 
-function RegisterComponent() {
+function RegisterComponent()
+{
   const classes = authenStyle();
   const [values, setValues] = React.useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
     showPassword: false,
     approveTerm: false,
     loading: false,
@@ -37,23 +38,28 @@ function RegisterComponent() {
   const userState = useSelector((state) => state.userState);
   const dispatch = useDispatch();
 
-  const handleClickShowPassword = () => {
+  const handleClickShowPassword = () =>
+  {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const handleClickTerm = () => {
+  const handleClickTerm = () =>
+  {
     setValues({ ...values, approveTerm: !values.approveTerm });
   };
 
-  const handleChange = (prop) => (event) => {
+  const handleChange = (prop) => (event) =>
+  {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = (event) =>
+  {
     event.preventDefault();
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event) =>
+  {
     event.preventDefault();
     const passingData = {
       name: {
@@ -64,15 +70,15 @@ function RegisterComponent() {
       password: values.password,
     };
     dispatch(Register(passingData));
-    setValues({ ...values, password: "" });
+    setValues({ ...values, password: '' });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {userState.error !== "" && !userState.isLogin && (
+      {userState.error !== '' && !userState.isLogin && (
         <Alert
-          variant='outlined'
-          severity='error'
+          variant="outlined"
+          severity="error"
           className={classes.alertStyle}
         >
           Account email already assigned! Please try again!
@@ -81,63 +87,63 @@ function RegisterComponent() {
       <br />
       <TextField
         className={classes.root}
-        color='secondary'
-        label='First Name'
-        variant='outlined'
-        name='firstName'
-        onChange={handleChange("firstName")}
+        color="secondary"
+        label="First Name"
+        variant="outlined"
+        name="firstName"
+        onChange={handleChange('firstName')}
         value={values.firstName}
       />
       <TextField
         className={classes.root}
-        color='secondary'
-        label='Last Name'
-        name='lastName'
-        variant='outlined'
-        onChange={handleChange("lastName")}
+        color="secondary"
+        label="Last Name"
+        name="lastName"
+        variant="outlined"
+        onChange={handleChange('lastName')}
         value={values.lastName}
       />
       <TextField
         className={classes.root}
-        color='secondary'
-        label='Email Address'
-        variant='outlined'
-        name='email'
-        onChange={handleChange("email")}
+        color="secondary"
+        label="Email Address"
+        variant="outlined"
+        name="email"
+        onChange={handleChange('email')}
         value={values.email}
       />
       <FormControl
         className={classes.root}
-        variant='outlined'
-        color='secondary'
+        variant="outlined"
+        color="secondary"
       >
-        <InputLabel htmlFor='outlined-adornment-password'>Password</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
-          id='outlined-adornment-password'
-          type={values.showPassword ? "text" : "password"}
+          id="outlined-adornment-password"
+          type={values.showPassword ? 'text' : 'password'}
           value={values.password}
-          name='password'
-          onChange={handleChange("password")}
+          name="password"
+          onChange={handleChange('password')}
           endAdornment={
-            <InputAdornment position='end'>
+            <InputAdornment position="end">
               <IconButton
-                aria-label='toggle password visibility'
+                aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                edge='end'
+                edge="end"
               >
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
           }
           labelWidth={70}
-          style={{ marginBottom: "6px" }}
+          style={{ marginBottom: '6px' }}
         />
         <CustomTypography
-          fontSize='12px'
-          txtType='text--light'
-          txtComponent='p'
-          color='black'
+          fontSize="12px"
+          txtType="text--light"
+          txtComponent="p"
+          color="black"
         >
           At least 8 characters, 1 uppercase letter, 1 number & 1 symbol
         </CustomTypography>
@@ -147,42 +153,42 @@ function RegisterComponent() {
           <Checkbox
             checked={values.approveTerm}
             onChange={handleClickTerm}
-            name='jason'
+            name="jason"
           />
         }
-        style={{ cursor: "default" }}
+        style={{ cursor: 'default' }}
         label={
           <CustomTypography
-            fontSize='12px'
-            color='rgba(0, 0, 0, 0.54)'
-            txtType='text--light'
-            txtComponent='p'
+            fontSize="12px"
+            color="rgba(0, 0, 0, 0.54)"
+            txtType="text--light"
+            txtComponent="p"
           >
-            {"By signing up, you agree to the "}
-            <a style={{ color: "rgba(0, 0, 0)" }} href='https://google.com'>
+            {'By signing up, you agree to the '}
+            <a style={{ color: 'rgba(0, 0, 0)' }} href="https://google.com">
               Terms of Service
             </a>
-            {" and "}
-            <a style={{ color: "rgba(0, 0, 0)" }} href='https://google.com'>
+            {' and '}
+            <a style={{ color: 'rgba(0, 0, 0)' }} href="https://google.com">
               Privacy Policy
             </a>
           </CustomTypography>
         }
       />
       <CustomButton
-        style={{ width: "100%", margin: 0 }}
+        style={{ width: '100%', margin: 0 }}
         disabled={
           userState.loading
           || !values.approveTerm
           || isLengthEqualZero(values)
           || !validateEmail(values.email)
         }
-        type='submit'
+        type="submit"
       >
         {!userState.loading ? (
-          "Sign Up"
+          'Sign Up'
         ) : (
-          <CircularProgress color='secondary' size='20px' />
+          <CircularProgress color="secondary" size="20px" />
         )}
       </CustomButton>
     </form>
