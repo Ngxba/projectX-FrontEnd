@@ -2,6 +2,7 @@ import React from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import PropTypes from "prop-types";
 import CustomTypography from "../Typography/typography";
+import { makeKey } from "../../utils/supportFunction";
 
 function SimpleBreadcrumbs(props) {
   const { data } = props;
@@ -15,13 +16,14 @@ function SimpleBreadcrumbs(props) {
               color='#666'
               fontSize='12px'
               txtType='text--light'
+              key={makeKey()}
             >
               {dataItem}
             </CustomTypography>
           );
         }
         return (
-          <CustomTypography fontSize='12px' txtType='text--light'>
+          <CustomTypography key={makeKey()} fontSize='12px' txtType='text--light'>
             {dataItem}
           </CustomTypography>
         );
