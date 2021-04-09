@@ -65,7 +65,7 @@ const fakeDataBrand = [
 
 const TYPES = ["product", "brand"];
 
-const GridProduct = (props) => {
+const CardContainer = (props) => {
   const {
     data, showCategory, type, title,
   } = props;
@@ -119,7 +119,7 @@ const GridProduct = (props) => {
   );
 };
 
-GridProduct.propTypes = {
+CardContainer.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -133,11 +133,11 @@ GridProduct.propTypes = {
   showCategory: PropTypes.bool,
 };
 
-GridProduct.defaultProps = {
+CardContainer.defaultProps = {
   data: fakeData,
   type: TYPES[0],
   showCategory: true,
   title: "",
 };
 
-export default GridProduct;
+export default CardContainer;
