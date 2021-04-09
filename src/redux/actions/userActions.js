@@ -1,10 +1,12 @@
 /* eslint-disable arrow-body-style */
+/* eslint-disable func-names */
 import axios from "axios";
 import { backEndLink } from "../../config";
-
-const USER_REQUEST = "USER_REQUEST";
-const USER_REQUEST_SUCCESS = "USER_REQUEST_SUCCESS";
-const USER_REQUEST_FAILURE = "USER_REQUEST_FAILURE";
+import {
+  USER_REQUEST,
+  USER_REQUEST_SUCCESS,
+  USER_REQUEST_FAILURE,
+} from "../types/userType";
 
 const UserRequest = (isLogin) => ({
   type: USER_REQUEST,
@@ -22,7 +24,7 @@ const UserRequestFailure = (error) => ({
 });
 
 export const SignIn = (loginData) => {
-  return async function login(dispatch) {
+  return async function (dispatch) {
     const { email, password } = loginData;
     dispatch(UserRequest(true));
     try {
@@ -43,7 +45,7 @@ export const SignIn = (loginData) => {
 };
 
 export const Register = (registerData) => {
-  return async function register(dispatch) {
+  return async function (dispatch) {
     const { name, email, password } = registerData;
     dispatch(UserRequest(false));
     try {

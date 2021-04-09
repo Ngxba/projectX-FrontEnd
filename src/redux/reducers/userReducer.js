@@ -1,6 +1,8 @@
-const USER_REQUEST = "USER_REQUEST";
-const USER_REQUEST_SUCCESS = "USER_REQUEST_SUCCESS";
-const USER_REQUEST_FAILURE = "USER_REQUEST_FAILURE";
+import {
+  USER_REQUEST,
+  USER_REQUEST_SUCCESS,
+  USER_REQUEST_FAILURE,
+} from "../types/userType";
 
 const initialState = {
   loading: false,
