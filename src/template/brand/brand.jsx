@@ -1,90 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import {
-  FormControl, Select, MenuItem, Grid,
-} from "@material-ui/core";
+import { FormControl, Select, MenuItem, Grid } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
 // import { PropTypes } from 'prop-types';
 import CustomTypography from "../../components/Typography/typography";
 import CardContainer from "../../container/card_container/card_container";
 import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
 import brandStyle from "./brand.style";
-
-const fakeData = [
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-  {
-    name: "Product Title",
-    price: 100,
-    numberSold: 0,
-    imgSrc:
-      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
-  },
-];
+import { FetchProducts } from "../../redux/actions/productActions";
 
 const Brand = () => {
   const classes = brandStyle();
   const [age, setAge] = React.useState(10);
+
+  const productsState = useSelector((state) => state.productsState);
+
+  const dispatch = useDispatch();
+
   const handleChange = (event) => {
     setAge(event.target.value);
   };
 
+  useEffect(() => {
+    dispatch(FetchProducts());
+    console.log(productsState.productsData); // DATA ĐÂY NHÉ
+  }, []);
+
   return (
     <Container maxWidth='md' style={{ marginTop: "90px" }}>
-      <Grid className={classes.root} container xs={12}>
+      <Grid className={classes.root} container>
         <CustomTypography component='h2' txtStyle='text--heading'>
           Supreme
         </CustomTypography>
@@ -128,7 +72,10 @@ const Brand = () => {
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            <CardContainer data={fakeData} showCategory={false} />
+            <CardContainer
+              data={productsState.productsData}
+              showCategory={false}
+            />
           </Grid>
         </Grid>
       </Grid>
