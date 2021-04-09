@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React from "react";
 import { TextField, CircularProgress } from "@material-ui/core";
-import Alert from '@material-ui/lab/Alert';
-import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+import Alert from "@material-ui/lab/Alert";
+// import PropTypes from "prop-types";
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -11,40 +10,24 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { useSelector, useDispatch } from "react-redux";
 import CustomTypography from "../../components/Typography/typography";
 import CustomButton from "../../components/Buttons/button";
 import { isLengthEqualZero, validateEmail } from "../../utils/supportFunction";
+import { SignIn } from "../../redux/actions/userActions";
+import authenStyle from "./authen.style";
 
-const styles = makeStyles({
-  root: {
-    width: "100%",
-    marginBottom: "16px",
-    "& label": {
-      fontSize: "14px",
-    },
-    "& .MuiInputLabel-outlined.MuiInputLabel-shrink": {
-      transform: "translate(14px, 3px) scale(0.75)",
-      color: "rgba(0, 0, 0, 0.54)",
-    },
-    "& legend": {
-      display: "none",
-    },
-  },
-  main: {
-    backgroundColor: "#fafafa",
-    width: "100vw",
-    height: "100vh",
-  },
-});
-
-function Login({ submit, status }) {
-  const classes = styles();
+function Login() {
+  const classes = authenStyle();
   const [values, setValues] = React.useState({
     email: "",
     password: "",
     showPassword: false,
-    loading: false,
   });
+
+  const userState = useSelector((state) => state.userState);
+  const dispatch = useDispatch();
+
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -57,16 +40,20 @@ function Login({ submit, status }) {
     event.preventDefault();
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setValues({ ...values, loading: true });
-    await submit(values);
-    setValues({ ...values, loading: false });
+    dispatch(SignIn(values));
+    setValues({ ...values, password: "" });
   };
+
   return (
     <form onSubmit={handleSubmit}>
-      {status === 2 && (
-        <Alert variant='outlined' severity='error' style={{ backgroundColor: "#fff3f3", marginTop: "20px" }}>
+      {userState.error !== "" && userState.isLogin && (
+        <Alert
+          variant='outlined'
+          severity='error'
+          className={classes.alertStyle}
+        >
           Wrong email or password!
         </Alert>
       )}
@@ -78,6 +65,7 @@ function Login({ submit, status }) {
         label='Email Address'
         variant='outlined'
         onChange={handleChange("email")}
+        value={values.email}
       />
       <FormControl
         className={classes.root}
@@ -116,8 +104,16 @@ function Login({ submit, status }) {
           Forgot password?
         </CustomTypography>
       </FormControl>
-      <CustomButton disabled={values.loading || isLengthEqualZero(values) || !validateEmail(values.email)} style={{ width: "100%", margin: 0 }} type='submit'>
-        {!values.loading ? "Login" : <CircularProgress color="secondary" size="20px" />}
+      <CustomButton
+        disabled={userState.loading || isLengthEqualZero(values) || !validateEmail(values.email)}
+        style={{ width: "100%", margin: 0 }}
+        type='submit'
+      >
+        {!userState.loading ? (
+          "Login"
+        ) : (
+          <CircularProgress color='secondary' size='20px' />
+        )}
       </CustomButton>
       <CustomTypography
         fontSize='12px'
@@ -139,13 +135,13 @@ function Login({ submit, status }) {
   );
 }
 
-Login.propTypes = {
-  submit: PropTypes.func.isRequired,
-  status: PropTypes.number,
-};
+// Login.propTypes = {
+//   submit: PropTypes.func.isRequired,
+//   status: PropTypes.number,
+// };
 
-Login.defaultProps = {
-  status: 0,
-};
+// Login.defaultProps = {
+//   status: 0,
+// };
 
 export default Login;

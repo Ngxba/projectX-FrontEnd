@@ -12,6 +12,7 @@ import Brand from "./template/brand/brand";
 function App()
 {
   // let location = useLocation();
+
   return (
     <React.Fragment key="main">
       <ThemeProvider theme={CustomTheme}>

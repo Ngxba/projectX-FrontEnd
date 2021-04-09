@@ -5,9 +5,8 @@ import {
   FormControlLabel,
   CircularProgress,
 } from "@material-ui/core";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Alert from '@material-ui/lab/Alert';
+// import PropTypes from "prop-types";
+import Alert from "@material-ui/lab/Alert";
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -16,34 +15,15 @@ import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Checkbox from "@material-ui/core/Checkbox";
+import { useSelector, useDispatch } from "react-redux";
 import CustomTypography from "../../components/Typography/typography";
 import CustomButton from "../../components/Buttons/button";
 import { isLengthEqualZero, validateEmail } from "../../utils/supportFunction";
+import { Register } from "../../redux/actions/userActions";
+import authenStyle from "./authen.style";
 
-const styles = makeStyles({
-  root: {
-    width: "100%",
-    marginBottom: "16px",
-    "& label": {
-      fontSize: "14px",
-    },
-    "& .MuiInputLabel-outlined.MuiInputLabel-shrink": {
-      transform: "translate(14px, 3px) scale(0.75)",
-      color: "rgba(0, 0, 0, 0.54)",
-    },
-    "& legend": {
-      display: "none",
-    },
-  },
-  main: {
-    backgroundColor: "#fafafa",
-    width: "100vw",
-    height: "100vh",
-  },
-});
-
-function Register({ submit, status }) {
-  const classes = styles();
+function RegisterComponent() {
+  const classes = authenStyle();
   const [values, setValues] = React.useState({
     firstName: "",
     lastName: "",
@@ -53,6 +33,10 @@ function Register({ submit, status }) {
     approveTerm: false,
     loading: false,
   });
+
+  const userState = useSelector((state) => state.userState);
+  const dispatch = useDispatch();
+
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -71,14 +55,26 @@ function Register({ submit, status }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setValues({ ...values, loading: true });
-    await submit(values);
-    setValues({ ...values, loading: false });
+    const passingData = {
+      name: {
+        firstName: values.firstName,
+        lastName: values.lastName,
+      },
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(Register(passingData));
+    setValues({ ...values, password: "" });
   };
+
   return (
     <form onSubmit={handleSubmit}>
-      {status === 2 && (
-        <Alert variant='outlined' severity='error' style={{ backgroundColor: "#fff3f3", marginTop: "20px" }}>
+      {userState.error !== "" && !userState.isLogin && (
+        <Alert
+          variant='outlined'
+          severity='error'
+          className={classes.alertStyle}
+        >
           Account email already assigned! Please try again!
         </Alert>
       )}
@@ -88,24 +84,27 @@ function Register({ submit, status }) {
         color='secondary'
         label='First Name'
         variant='outlined'
-        name="firstName"
+        name='firstName'
         onChange={handleChange("firstName")}
+        value={values.firstName}
       />
       <TextField
         className={classes.root}
         color='secondary'
         label='Last Name'
-        name="lastName"
+        name='lastName'
         variant='outlined'
         onChange={handleChange("lastName")}
+        value={values.lastName}
       />
       <TextField
         className={classes.root}
         color='secondary'
         label='Email Address'
         variant='outlined'
-        name="email"
+        name='email'
         onChange={handleChange("email")}
+        value={values.email}
       />
       <FormControl
         className={classes.root}
@@ -117,7 +116,7 @@ function Register({ submit, status }) {
           id='outlined-adornment-password'
           type={values.showPassword ? "text" : "password"}
           value={values.password}
-          name="password"
+          name='password'
           onChange={handleChange("password")}
           endAdornment={
             <InputAdornment position='end'>
@@ -170,8 +169,17 @@ function Register({ submit, status }) {
           </CustomTypography>
         }
       />
-      <CustomButton style={{ width: "100%", margin: 0 }} disabled={values.loading || !values.approveTerm || isLengthEqualZero(values) || !validateEmail(values.email)} type='submit'>
-        {!values.loading ? (
+      <CustomButton
+        style={{ width: "100%", margin: 0 }}
+        disabled={
+          userState.loading
+          || !values.approveTerm
+          || isLengthEqualZero(values)
+          || !validateEmail(values.email)
+        }
+        type='submit'
+      >
+        {!userState.loading ? (
           "Sign Up"
         ) : (
           <CircularProgress color='secondary' size='20px' />
@@ -181,13 +189,13 @@ function Register({ submit, status }) {
   );
 }
 
-Register.propTypes = {
-  submit: PropTypes.func.isRequired,
-  status: PropTypes.number,
-};
+// Register.propTypes = {
+//   submit: PropTypes.func.isRequired,
+//   status: PropTypes.number,
+// };
 
-Register.defaultProps = {
-  status: 0,
-};
+// Register.defaultProps = {
+//   status: 0,
+// };
 
-export default Register;
+export default RegisterComponent;
