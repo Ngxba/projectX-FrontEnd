@@ -1,10 +1,12 @@
 /* eslint-disable arrow-body-style */
+/* eslint-disable func-names */
 import axios from "axios";
 import { backEndLink } from "../../config";
-
-const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
-const FETCH_PRODUCTS_REQUEST_SUCCESS = "FETCH_PRODUCTS_REQUEST_SUCCESS";
-const FETCH_PRODUCTS_REQUEST_FAILURE = "FETCH_PRODUCTS_REQUEST_FAILURE";
+import {
+  FETCH_PRODUCTS_REQUEST,
+  FETCH_PRODUCTS_REQUEST_SUCCESS,
+  FETCH_PRODUCTS_REQUEST_FAILURE,
+} from "../types/productType";
 
 const FetchProductsRequest = () => ({
   type: FETCH_PRODUCTS_REQUEST,
@@ -21,7 +23,7 @@ const FetchProductsRequestFailure = (error) => ({
 });
 
 export const FetchProducts = () => {
-  return async function fetchData(dispatch) {
+  return async function (dispatch) {
     dispatch(FetchProductsRequest());
     try {
       const res = await axios.get(`${backEndLink}/api/product`);
