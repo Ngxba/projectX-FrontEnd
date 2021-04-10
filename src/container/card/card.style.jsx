@@ -4,7 +4,6 @@ const cardStyle = makeStyles({
   card: {
     border: '#fafafa 2px solid',
     borderRadius: '3px',
-    // width: "215px",
     width: '100%',
   },
   media: {
