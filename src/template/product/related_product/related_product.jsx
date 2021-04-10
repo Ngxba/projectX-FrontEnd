@@ -83,30 +83,13 @@ const RelatedProduct = ({ relatedProductList }) =>
         aria-label="scrollable auto tabs example"
       >
         {
-          relatedProductList.map((product, index) =>
-          {
-            // eslint-disable-next-line no-unused-vars
-            const ProductCard = () => (
-              <CustomCard
-                style={
-                  {
-                    minHeight: '256px',
-                    minWidth: '215px',
-                    marginRight: '20px',
-                  }
-                }
-                data={product}
-              />
-            );
-
-            return (
-              <Tab
-                component={ProductCard}
-                label={index}
-                {...a11yProps(index)}
-              />
-            );
-          })
+          relatedProductList.map((product, index) => (
+            <Tab
+              component={() => <CustomCard data={product} />}
+              label={index}
+              {...a11yProps(index)}
+            />
+          ))
         }
       </Tabs>
 
