@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const relatedProductStyle = makeStyles((theme) => ({
+const relatedProductStyle = makeStyles(() => ({
   root: {
     marginTop: 10,
     marginBottom: '20px',
@@ -17,7 +17,6 @@ const relatedProductStyle = makeStyles((theme) => ({
       minHeight: '1px',
       paddingRight: '15px',
       paddingLeft: '15px',
-      float: 'left',
       width: '100%',
       textAlign: 'center',
     },
@@ -50,24 +49,17 @@ const relatedProductStyle = makeStyles((theme) => ({
     },
   },
 
-  slider_container: {
-    position: 'relative',
+  indicator: {
+    height: 0,
   },
 
-  slick_list: {
-    // overflow: 'hidden',
+  tab: {
+    outline: 'none',
+    width: '228px',
+    '-darkreaderInlineOutline': 'initial',
 
-    '& .slick_tract': {
-      transform: 'translate3d(0px, 0px, 0px)',
-      width: '3420px',
-    },
   },
 
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
 }));
 
 export default relatedProductStyle;

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
-// import { Grid, Paper } from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import relatedProductStyle from './related_product.style';
 import CustomTypography from '../../../components/Typography/typography';
-// import GridProduct from '../../../container/card_container/card_container';
 import CustomCard from '../../../container/card/card';
 
 function a11yProps(index)
@@ -74,73 +72,43 @@ const RelatedProduct = ({ relatedProductList }) =>
       </div>
 
       {/* Product slider */}
-      <div className={classes.slider_container}>
+      <Tabs
+        classes={{ indicator: classes.indicator }}
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        variant="scrollable"
+        scrollButtons="auto"
+        aria-label="scrollable auto tabs example"
+      >
+        {
+          relatedProductList.map((product, index) =>
+          {
+            // eslint-disable-next-line no-unused-vars
+            const ProductCard = () => (
+              <CustomCard
+                style={
+                  {
+                    minHeight: '256px',
+                    minWidth: '215px',
+                    marginRight: '20px',
+                  }
+                }
+                data={product}
+              />
+            );
 
-        {/* Slick list */}
-        <div className={classes.slick_list}>
-          <div className="slick_track">
-
-            {/* /!*  Back button *!/ */}
-            {/* <button type="button" onClick={handleNextOnClick}>Next</button> */}
-
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              variant="scrollable"
-              scrollButtons="auto"
-              aria-label="scrollable auto tabs example"
-            >
-              {
-                relatedProductList.map((product, index) =>
-                {
-                  const ProductCard = () => <CustomCard data={product} />;
-
-                  return (
-                    <Tab
-                      {...a11yProps(index)}
-                      component={ProductCard}
-                    />
-                  );
-                })
-              }
-            </Tabs>
-
-            {/* <Grid container spacing={3}> */}
-            {/*  <Grid item xs={3}> */}
-            {/*    <Paper className={classes.paper}>xs=3</Paper> */}
-            {/*  </Grid> */}
-            {/*  <Grid item xs={3}> */}
-            {/*    <Paper className={classes.paper}>xs=3</Paper> */}
-            {/*  </Grid> */}
-            {/*  <Grid item xs={3}> */}
-            {/*    <Paper className={classes.paper}>xs=3</Paper> */}
-            {/*  </Grid> */}
-            {/*  <Grid item xs={3}> */}
-            {/*    <Paper className={classes.paper}>xs=3</Paper> */}
-            {/*  </Grid> */}
-            {/* </Grid> */}
-
-            {/* <GridProduct */}
-            {/*  data={ */}
-            {/*    relatedProductList.filter( */}
-            {/*      (product, index) => index < maxPage && index >= maxPage - 4, */}
-            {/*    ) */}
-            {/*  } */}
-            {/*  showCategory={false} */}
-            {/* /> */}
-
-            {/*  Next button */}
-            {/* <button */}
-            {/*  type="button" */}
-            {/*  onClick={handlePreviousOnClick} */}
-            {/* > */}
-            {/*  Previous */}
-            {/* </button> */}
-          </div>
-        </div>
-      </div>
+            return (
+              <Tab
+                component={ProductCard}
+                label={index}
+                {...a11yProps(index)}
+              />
+            );
+          })
+        }
+      </Tabs>
 
       <br />
 
