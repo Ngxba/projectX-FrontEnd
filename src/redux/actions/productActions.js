@@ -1,12 +1,12 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import axios from "axios";
-import { backEndLink } from "../../config";
+import axios from 'axios';
+import { backEndLink } from '../../config';
 import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_REQUEST_SUCCESS,
   FETCH_PRODUCTS_REQUEST_FAILURE,
-} from "../types/productType";
+} from '../types/productType';
 
 const FetchProductsRequest = () => ({
   type: FETCH_PRODUCTS_REQUEST,
@@ -22,24 +22,32 @@ const FetchProductsRequestFailure = (error) => ({
   payload: error,
 });
 
-export const FetchProducts = () => {
-  return async function (dispatch) {
+export const FetchProducts = () =>
+{
+  return async function (dispatch)
+  {
     dispatch(FetchProductsRequest());
-    try {
+    try
+    {
       const res = await axios.get(`${backEndLink}/api/product`);
-      if (res.status === 200) {
+      if (res.status === 200)
+      {
         dispatch(FetchProductsRequestSuccess(res.data));
-      } else {
+      }
+      else
+      {
         //   throw new Error("Cannot Sign In", res.data.error);
         dispatch(FetchProductsRequestFailure(res));
       }
-    } catch (error) {
+    }
+    catch (error)
+    {
       dispatch(FetchProductsRequestFailure(error));
     }
   };
 };
 
-export const randomThings = "abc";
+export const randomThings = 'abc';
 
 // export const updateData = async (name, email) => {
 //   const res = await axios.post(`${backEndLink}/api/user/update`, {
