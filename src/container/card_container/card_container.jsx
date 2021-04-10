@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import HelpIcon from '@material-ui/icons/Help';
 import CustomCard from '../card/card';
 import CustomTypography from '../../components/Typography/typography';
+import { makeKey } from "../../utils/supportFunction";
 
 const fakeData = [
   {
@@ -40,63 +41,62 @@ const fakeData = [
 
 const fakeDataBrand = [
   {
-    name: 'Product Title',
+    name: "Product Title",
     price: 100,
     numberSold: 0,
     imgSrc:
-      'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
+      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
   },
   {
-    name: 'Product Title',
+    name: "Product Title",
     price: 100,
     numberSold: 0,
     imgSrc:
-      'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
+      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
   },
   {
-    name: 'Product Title',
+    name: "Product Title",
     price: 100,
     numberSold: 0,
     imgSrc:
-      'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
+      "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
   },
 ];
 
-const TYPES = ['product', 'brand'];
+const TYPES = ["product", "brand"];
 
-const GridProduct = (props) =>
-{
+const CardContainer = (props) => {
   const {
     data, showCategory, type, title,
   } = props;
   return (
-    <React.Fragment key="product grid">
+    <React.Fragment key='product grid'>
       {showCategory && (
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            margin: '16px 0',
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            margin: "16px 0",
           }}
         >
-          <span style={{ display: 'flex' }}>
+          <span style={{ display: "flex" }}>
             <CustomTypography
-              txtStyle="text--category"
-              txtType="text--medium"
-              txtComponent="h3"
-              fontSize="18px"
+              txtStyle='text--category'
+              txtType='text--medium'
+              txtComponent='h3'
+              fontSize='18px'
             >
               {title}
             </CustomTypography>
-            {type === TYPES[0] && <HelpIcon style={{ marginLeft: '10px' }} />}
+            {type === TYPES[0] && <HelpIcon style={{ marginLeft: "10px" }} />}
           </span>
           <CustomTypography
-            txtStyle="text--link"
+            txtStyle='text--link'
             //   txtType='text--medium'
-            txtComponent="a"
-            fontSize="14px"
-            txtColor="textPrimary"
+            txtComponent='a'
+            fontSize='14px'
+            txtColor='textPrimary'
           >
             See all
           </CustomTypography>
@@ -105,12 +105,12 @@ const GridProduct = (props) =>
       <Grid container spacing={3}>
         {type === TYPES[0]
           ? data.map((doc) => (
-              <Grid item xs={6} sm={3}>
+              <Grid key={makeKey(5)} item xs={6} sm={3}>
                 <CustomCard data={doc} type={type} />
               </Grid>
             ))
           : fakeDataBrand.map((doc) => (
-              <Grid item xs={4}>
+              <Grid key={makeKey(5)} item xs={4}>
                 <CustomCard data={doc} type={type} />
               </Grid>
             ))}
@@ -119,7 +119,7 @@ const GridProduct = (props) =>
   );
 };
 
-GridProduct.propTypes = {
+CardContainer.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -133,11 +133,11 @@ GridProduct.propTypes = {
   showCategory: PropTypes.bool,
 };
 
-GridProduct.defaultProps = {
+CardContainer.defaultProps = {
   data: fakeData,
   type: TYPES[0],
   showCategory: true,
-  title: '',
+  title: "",
 };
 
-export default GridProduct;
+export default CardContainer;

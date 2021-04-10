@@ -1,17 +1,17 @@
-const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST';
-const FETCH_PRODUCTS_REQUEST_SUCCESS = 'FETCH_PRODUCTS_REQUEST_SUCCESS';
-const FETCH_PRODUCTS_REQUEST_FAILURE = 'FETCH_PRODUCTS_REQUEST_FAILURE';
+import {
+  FETCH_PRODUCTS_REQUEST,
+  FETCH_PRODUCTS_REQUEST_SUCCESS,
+  FETCH_PRODUCTS_REQUEST_FAILURE,
+} from "../types/productType";
 
 const initialState = {
   loading: false,
   productsData: [],
-  error: '',
+  error: "",
 };
 
-const reducer = (state = initialState, action) =>
-{
-  switch (action.type)
-  {
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
     case FETCH_PRODUCTS_REQUEST:
       return {
         ...state,
@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) =>
         ...state,
         productsData: action.payload,
         loading: false,
-        error: '',
+        error: "",
       };
     case FETCH_PRODUCTS_REQUEST_FAILURE:
       return {
