@@ -1,27 +1,28 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import { Typography } from "@material-ui/core";
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import typoStyles from "./typography.style";
+import { Typography } from '@material-ui/core';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import typoStyles from './typography.style';
 
-const COLORS = ["textPrimary", "textSecondary"];
+const COLORS = ['textPrimary', 'textSecondary'];
 
 const STYLES = [
-  "text--default",
-  "text--heading",
-  "text--category",
-  "text--title",
-  "text--link",
-  "text--primary",
-  "text--secondary",
+  'text--default',
+  'text--heading',
+  'text--category',
+  'text--title',
+  'text--link',
+  'text--primary',
+  'text--secondary',
 ];
 
-const TYPES = ["text--medium", "text--light", "text--bold"];
+const TYPES = ['text--medium', 'text--light', 'text--bold'];
 
-const COMPONENTS = ["p", "a", "h1", "h2", "h3", "h4", "h5", "h6"];
+const COMPONENTS = ['p', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-const CustomTypography = (props) => {
+const CustomTypography = (props) =>
+{
   const {
     children,
     txtColor,
@@ -38,8 +39,8 @@ const CustomTypography = (props) => {
   const classNameAll = `${classes.root} ${classes[txtStyle]} ${classes[txtType]} ${className}`;
 
   return (
-    <React.Fragment key='typography'>
-      {href !== "" ? (
+    <React.Fragment key="typography">
+      {href !== '' ? (
         <Link
           to={href}
           {...rest}
@@ -76,8 +77,8 @@ CustomTypography.defaultProps = {
   txtStyle: STYLES[0],
   txtType: TYPES[0],
   txtComponent: COMPONENTS[0],
-  className: "",
-  href: "",
+  className: '',
+  href: '',
 };
 
 export default CustomTypography;
