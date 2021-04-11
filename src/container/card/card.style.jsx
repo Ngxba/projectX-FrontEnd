@@ -1,10 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const cardStyle = makeStyles({
-  card: {
+  root: {
     border: '#fafafa 2px solid',
     borderRadius: '3px',
     width: '100%',
+    minWidth: 215,
+    marginRight: 20,
   },
   media: {
     paddingTop: '56.25%',

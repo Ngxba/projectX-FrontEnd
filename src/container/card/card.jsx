@@ -16,7 +16,7 @@ const CustomCard = (props) =>
   return (
     <React.Fragment key="card">
       {type === TYPES[0] ? (
-        <Card className={classes.card}>
+        <Card className={classes.root}>
           <CardMedia
             className={classes.media}
             image={data.imgSrc}
@@ -62,7 +62,7 @@ const CustomCard = (props) =>
           </CardContent>
         </Card>
       ) : (
-        <Card className={classes.card}>
+        <Card className={classes.root}>
           <CardMedia
             className={classes.media}
             image={data.imgSrc}
