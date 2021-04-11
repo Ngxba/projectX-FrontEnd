@@ -5,7 +5,6 @@ const relatedProductStyle = makeStyles(() => ({
     marginTop: 10,
     marginBottom: '20px',
     borderTop: '1px solid #cecece',
-    borderBottom: '1px solid #cecece',
   },
 
   banner_container: {

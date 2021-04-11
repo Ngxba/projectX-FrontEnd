@@ -86,7 +86,6 @@ const RelatedProduct = ({ relatedProductList }) =>
           relatedProductList.map((product, index) => (
             <Tab
               component={() => <CustomCard data={product} />}
-              label={index}
               {...a11yProps(index)}
             />
           ))
