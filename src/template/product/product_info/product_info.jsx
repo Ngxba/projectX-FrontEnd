@@ -1,4 +1,5 @@
 import React from 'react';
+import HTMLReactParser from 'html-react-parser';
 import { PropTypes } from 'prop-types';
 import productInfoStyle from './product_info.style';
 import CustomTypography from '../../../components/Typography/typography';
@@ -58,10 +59,13 @@ const ProductInfo = ({
       </div>
 
       {/*  Product description */}
-      <div
-        className={classes.description}
-        dangerouslySetInnerHTML={{ __html: filteredDescription }}
-      />
+      {/* <div */}
+      {/*  className={classes.description} */}
+      {/*  dangerouslySetInnerHTML={{ __html: filteredDescription }} */}
+      {/* /> */}
+      <div className={classes.description}>
+        {HTMLReactParser(filteredDescription)}
+      </div>
     </div>
   );
 };
