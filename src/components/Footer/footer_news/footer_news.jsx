@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types';
 import footerNewsStyle from './footer_news.style';
 import data from './data';
 import { makeKey } from '../../../utils/supportFunction';
+import CustomTypography from '../../Typography/typography';
 
 const FooterNews = (props) =>
 {
@@ -27,27 +28,29 @@ const FooterNews = (props) =>
                     data-testid="footer-link-header"
                     className={classes['li--heading']}
                   >
-                    <a
-                      className={classes['li--a']}
+                    <CustomTypography
+                      txtComponent="a"
                       href={column.categoryLink}
+                      className={classes['li--a']}
                     >
                       {column.title}
-                    </a>
+                    </CustomTypography>
                   </li>
 
                   {/* Column items */}
                   {
                     column.items.map((item) => (
                       <li className={classes.li} key={makeKey(5)}>
-                        <a
+                        <CustomTypography
+                          txtComponent="a"
                           href={item.link}
                           target="_blank"
                           rel="noreferrer"
                           data-testid="footer-link"
-                          className={`${classes['li--a']}`}
+                          className={classes['li--a']}
                         >
                           {item.name}
-                        </a>
+                        </CustomTypography>
                       </li>
                     ))
                   }
