@@ -6,7 +6,6 @@
 /.pnp
 .pnp.js
 /.idea
-/.eslintrc.json
 
 # testing
 /coverage
