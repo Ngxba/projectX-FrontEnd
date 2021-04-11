@@ -59,10 +59,6 @@ const ProductInfo = ({
       </div>
 
       {/*  Product description */}
-      {/* <div */}
-      {/*  className={classes.description} */}
-      {/*  dangerouslySetInnerHTML={{ __html: filteredDescription }} */}
-      {/* /> */}
       <div className={classes.description}>
         {HTMLReactParser(filteredDescription)}
       </div>
