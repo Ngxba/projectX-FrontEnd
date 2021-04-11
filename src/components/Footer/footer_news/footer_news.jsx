@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 // import { Grid } from '@material-ui/core';
 import footerNewsStyle from './footer_news.style';
 import data from './data';
@@ -70,9 +70,9 @@ const validData = (propValue, propName, componentName) =>
 
   PropTypes.arrayOf(PropTypes.exact({
     title: PropTypes.string,
-    categoryLink: PropTypes.String,
+    categoryLink: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.exact({
-      name: PropTypes.String,
+      name: PropTypes.string,
       link: PropTypes.string,
     })),
   }));
