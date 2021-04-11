@@ -1,4 +1,4 @@
-{
+﻿{
   "env": {
     "es2021": true
   },
@@ -21,6 +21,7 @@
       1,
       "allman"
     ],
+    "quotes": "off",
     "linebreak-style": "off",
     "react/jsx-props-no-spreading": "off"
   }

@@ -7,7 +7,6 @@ const typoStyles = makeStyles((theme) => ({
     backgroundColor: (props) => (props.backgroundColor && props.backgroundColor),
     color: (props) => (props.color && props.color),
     lineHeight: '1.3',
-    // padding: "0 0.5rem",
   },
 
   'text--default': {
@@ -17,6 +16,7 @@ const typoStyles = makeStyles((theme) => ({
   'text--medium': {
     // fontWeight: 'normal',
     fontFamily: theme.typography.fontFamilies.main,
+    letterSpacing: '-.5px',
   },
 
   'text--bold': {
@@ -32,12 +32,9 @@ const typoStyles = makeStyles((theme) => ({
   'text--heading': {
     display: 'block',
     fontSize: '2.5rem',
-    // paddingTop: "10px",
-    // margin: "10px 0",
   },
 
   'text--category': {
-    // height: "38px",
     fontSize: '18px',
     marginLeft: 'initial',
     marginRight: 'initial',
