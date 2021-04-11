@@ -7,7 +7,7 @@ import CustomTheme from './theme';
 import AppRoute from './utils/AppRoute';
 import Home from './pages/home';
 import Login from './container/authen/login_register_form';
-import Brand from "./template/brand/brand";
+import Brand from './template/brand/brand';
 
 function App()
 {

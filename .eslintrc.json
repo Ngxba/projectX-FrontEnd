@@ -2,7 +2,10 @@
   "env": {
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -10,14 +13,15 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": [
+    "react"
+  ],
   "rules": {
+    "brace-style": [
+      1,
+      "allman"
+    ],
     "linebreak-style": "off",
-    "quotes": "off",
-    "jsx-quotes": "off",
-    "brace-style": "off",
-    "react/jsx-props-no-spreading": "off",
-    "import/no-unresolved": "off",
-    "object-curly-newline": "off"
+    "react/jsx-props-no-spreading": "off"
   }
 }

@@ -1,6 +1,6 @@
-const INCREMENT = "INCREMENT";
-const DECREMENT = "DECREMENT";
-const SIGNIN = "SIGNIN";
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
+const SIGNIN = 'SIGNIN';
 
 export const increment = (number = 1) => ({
   type: INCREMENT,
