@@ -56,7 +56,6 @@ const relatedProductStyle = makeStyles(() => ({
     outline: 'none',
     width: '228px',
     '-darkreaderInlineOutline': 'initial',
-
   },
 
 }));
