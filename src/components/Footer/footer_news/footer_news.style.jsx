@@ -109,6 +109,7 @@ const footerNewsStyle = makeStyles((theme) => ({
   },
 
   'li--a': {
+    fontSize: '0.8rem!important',
     display: 'inline-block',
     letterSpacing: '0.5px',
     padding: '0.75rem',
@@ -122,9 +123,9 @@ const footerNewsStyle = makeStyles((theme) => ({
 
   li: {
     paddingTop: '0.5rem',
-    fontSize: '.75rem',
 
     '& a': {
+      fontSize: '.7rem!important',
       color: '#737876',
     },
 
