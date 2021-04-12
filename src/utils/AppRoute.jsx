@@ -20,8 +20,8 @@ const AppRoute = ({
 );
 
 AppRoute.propTypes = {
-  component: PropTypes.func.isRequired,
-  layout: PropTypes.symbol,
+  component: PropTypes.element.isRequired,
+  layout: PropTypes.element,
   isMainPage: PropTypes.bool,
 };
 

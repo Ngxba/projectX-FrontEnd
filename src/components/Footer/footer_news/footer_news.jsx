@@ -19,7 +19,7 @@ const FooterNews = (props) =>
           {
             newsData.map((column) => (
               // <Grid item lg={2} md={2} xl={2} sm={6} xs={12}>
-              <div className={classes.column} key={makeKey(5)}>
+              <div className={classes.column} key={makeKey(10)}>
                 <ul className={classes.ul}>
 
                   {/* Column title */}

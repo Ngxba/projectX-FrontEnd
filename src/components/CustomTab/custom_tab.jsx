@@ -150,7 +150,7 @@ CustomTab.propTypes = {
       component: PropTypes.node.isRequired,
     },
   )).isRequired,
-  wrapper: PropTypes.func,
+  wrapper: PropTypes.node,
   appBarStyle: PropTypes.object,
   rootStyle: PropTypes.object,
   enableSwipeEffect: PropTypes.bool,

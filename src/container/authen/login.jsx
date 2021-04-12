@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React from 'react';
-import { TextField, CircularProgress } from '@material-ui/core';
+import { CircularProgress, TextField } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 // import PropTypes from "prop-types";
 import IconButton from '@material-ui/core/IconButton';
@@ -10,7 +10,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomTypography from '../../components/Typography/typography';
 import CustomButton from '../../components/Buttons/button';
 import { isLengthEqualZero, validateEmail } from '../../utils/supportFunction';
@@ -31,12 +31,18 @@ function Login()
 
   const handleClickShowPassword = () =>
   {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
   const handleChange = (prop) => (event) =>
   {
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values,
+      [prop]: event.target.value,
+    });
   };
 
   const handleMouseDownPassword = (event) =>
@@ -48,7 +54,10 @@ function Login()
   {
     event.preventDefault();
     dispatch(SignIn(values));
-    setValues({ ...values, password: '' });
+    setValues({
+      ...values,
+      password: '',
+    });
   };
 
   return (
@@ -111,7 +120,10 @@ function Login()
       </FormControl>
       <CustomButton
         disabled={userState.loading || isLengthEqualZero(values) || !validateEmail(values.email)}
-        style={{ width: '100%', margin: 0 }}
+        style={{
+          width: '100%',
+          margin: 0,
+        }}
         type="submit"
       >
         {!userState.loading ? (
