@@ -3,38 +3,40 @@
 import axios from "axios";
 import { backEndLink } from "../../config";
 import {
-  FETCH_PRODUCTS_REQUEST,
-  FETCH_PRODUCTS_REQUEST_SUCCESS,
-  FETCH_PRODUCTS_REQUEST_FAILURE,
-} from "../types/productType";
+  FETCH_HOME_DETAIL_REQUEST,
+  FETCH_HOME_DETAIL_REQUEST_SUCCESS,
+  FETCH_HOME_DETAIL_REQUEST_FAILURE,
+} from "../types/homeType";
 
 const FetchProductsRequest = () => ({
-  type: FETCH_PRODUCTS_REQUEST,
+  type: FETCH_HOME_DETAIL_REQUEST,
 });
 
 const FetchProductsRequestSuccess = (products) => ({
-  type: FETCH_PRODUCTS_REQUEST_SUCCESS,
+  type: FETCH_HOME_DETAIL_REQUEST_SUCCESS,
   payload: products,
 });
 
 const FetchProductsRequestFailure = (error) => ({
-  type: FETCH_PRODUCTS_REQUEST_FAILURE,
+  type: FETCH_HOME_DETAIL_REQUEST_FAILURE,
   payload: error,
 });
 
-export const FetchProducts = (offset = null, limit = null, params) => {
+export const FetchProducts = () => {
   return async function (dispatch) {
     dispatch(FetchProductsRequest());
-    const {
-      brandName, tag, tag2, tag3, tag4, tag5,
-    } = params;
     try {
-      const res = await axios.get(`${backEndLink}/api/product/browse?offset=${offset}&limit=${limit}&productCategory=${brandName}&tags=${tag},${tag2},${tag3},${tag4},${tag5}`);
-      if (res.status === 200) {
-        dispatch(FetchProductsRequestSuccess(res.data.result));
+      const resMostPopular = await axios.get(`${backEndLink}/api/product/browse?limit=4&sort=most-popular`);
+      const resTrending = await axios.get(`${backEndLink}/api/product/browse?limit=4&sort=trending`);
+      if (resMostPopular.status === 200 && resTrending.status === 200) {
+        const respondData = {
+          mostPopular: resMostPopular.data.result,
+          trending: resTrending.data.result,
+        };
+        dispatch(FetchProductsRequestSuccess(respondData));
       } else {
         //   throw new Error("Cannot Sign In", res.data.error);
-        dispatch(FetchProductsRequestFailure(res));
+        dispatch(FetchProductsRequestFailure(resMostPopular));
       }
     } catch (error) {
       dispatch(FetchProductsRequestFailure(error));

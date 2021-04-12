@@ -9,7 +9,7 @@ import Home from "./pages/home";
 import LoginRegisterForm from "./container/authen/login_register_form";
 import Brand from "./template/brand/brand";
 import product from "./template/product";
-import NotFound from './pages/404';
+import NotFound from "./pages/404";
 
 function App() {
   // let location = useLocation();
@@ -26,10 +26,16 @@ function App() {
               component={Home}
               layout={LayoutDefault}
             />
-            <AppRoute exact path='/login' component={LoginRegisterForm} />
             <AppRoute
               exact
-              path='/brand/:id'
+              path='/login'
+              component={LoginRegisterForm}
+              layout={LayoutDefault}
+            />
+            <AppRoute exact path='/404' component={NotFound} layout={LayoutDefault} />
+            <AppRoute
+              exact
+              path='/:brandName/:tag?/:tag2?/:tag3?/:tag4?/:tag5?'
               component={Brand}
               layout={LayoutDefault}
             />
@@ -39,11 +45,6 @@ function App() {
               component={product}
               layout={LayoutDefault}
               isMainPage={false}
-            />
-            <AppRoute
-              path='/404'
-              component={NotFound}
-              layout={LayoutDefault}
             />
             <Redirect from='*' to='/404' />
           </Switch>

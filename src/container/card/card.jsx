@@ -15,11 +15,12 @@ const CustomCard = (props) => {
   return (
     <React.Fragment key='card'>
       {type === TYPES[0] ? (
-        <Card className={classes.root}>
+        <Card className={classes.root} key={data.urlKey}>
           <CardMedia
             className={classes.media}
-            image={data.imgSrc}
-            title={data.name}
+            image={data.imageurl}
+            title={data.productName}
+            style={{ backgroundSize: "contain" }}
           />
           <CardContent className={classes.cardContent}>
             <CustomTypography
@@ -27,8 +28,9 @@ const CustomCard = (props) => {
               txtType='text--light'
               fontSize='15px'
               txtComponent='h3'
+              style={{ height: "38px", overflow: "hidden" }}
             >
-              {data.name}
+              {data.productName}
             </CustomTypography>
             <CustomTypography
               color='rgba(0, 0, 0, 0.5);'
@@ -37,7 +39,7 @@ const CustomCard = (props) => {
               fontSize='14px'
               txtComponent='p'
             >
-              Lowest ask
+              Latest price
             </CustomTypography>
             <CustomTypography
               txtStyle='text--category'
@@ -63,13 +65,13 @@ const CustomCard = (props) => {
         <Card className={classes.root} style={{ position: "relative" }}>
           <CardMedia
             className={classes.media}
-            image={data.imgSrc}
-            title={data.name}
+            image={data.imageurl}
+            title={data.productName}
           />
           <CardMedia
             image={data.imgBrandSrc}
             className={classes.smallImg}
-            title={data.name}
+            title={data.productName}
           />
         </Card>
       )}
@@ -79,10 +81,11 @@ const CustomCard = (props) => {
 
 CustomCard.propTypes = {
   data: PropTypes.shape({
-    name: PropTypes.string,
+    productName: PropTypes.string,
     price: PropTypes.number,
     numberSold: PropTypes.number,
-    imgSrc: PropTypes.string,
+    urlKey: PropTypes.string,
+    imageurl: PropTypes.string,
     imgBrandSrc: PropTypes.string,
   }),
   type: PropTypes.oneOf(TYPES),
@@ -90,10 +93,10 @@ CustomCard.propTypes = {
 
 CustomCard.defaultProps = {
   data: {
-    name: "Product Title",
+    productName: "Product Title",
     price: 100,
     numberSold: 0,
-    imgSrc:
+    imageurl:
       "https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946",
     imgBrandSrc: "",
   },

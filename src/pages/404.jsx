@@ -5,7 +5,7 @@ import CustomTypography from "../components/Typography/typography";
 
 const NotFound = () => (
   <div key='404' style={{ paddingTop: "110px", textAlign: "center", height: "100vh" }}>
-    <CustomTypography txtType='text-light' fontSize='3rem'>
+    <CustomTypography txtType='text--light' fontSize='3rem'>
       OOPS!
     </CustomTypography>
     <iframe
@@ -19,7 +19,7 @@ const NotFound = () => (
       style={{ margin: "20px 0" }}
     />
     <CustomTypography
-      txtType='text-light'
+      txtType='text--light'
       fontSize='2rem'
       style={{ marginBottom: "20px" }}
     >

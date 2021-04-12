@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
-import Container from '@material-ui/core/Container';
+/* eslint-disable react/prop-types */
+import React, { useEffect } from "react";
+import Container from "@material-ui/core/Container";
 import {
   FormControl, Select, MenuItem, Grid,
-} from '@material-ui/core';
-import { useSelector, useDispatch } from 'react-redux';
+} from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
 // import { PropTypes } from 'prop-types';
-import CustomTypography from '../../components/Typography/typography';
-import CardContainer from '../../container/card_container/card_container';
-import Breadcrumb from '../../components/Breadcrumbs/breadcrumbs';
-import brandStyle from './brand.style';
-import { FetchProducts } from '../../redux/actions/productActions';
+import CustomTypography from "../../components/Typography/typography";
+import CardContainer from "../../container/card_container/card_container";
+import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
+import brandStyle from "./brand.style";
+import { FetchProducts } from "../../redux/actions/productActions";
 
-const Brand = () =>
-{
+const Brand = ({ match }) => {
+  const { params } = match;
   const classes = brandStyle();
   const [age, setAge] = React.useState(10);
 
@@ -20,27 +21,25 @@ const Brand = () =>
 
   const dispatch = useDispatch();
 
-  const handleChange = (event) =>
-  {
+  const handleChange = (event) => {
     setAge(event.target.value);
   };
 
-  useEffect(() =>
-  {
-    dispatch(FetchProducts());
-    console.log(productsState.productsData); // DATA ĐÂY NHÉ
+  useEffect(() => {
+    dispatch(FetchProducts(0, 40, params));
+    // console.log(productsState.productsData); // DATA ĐÂY NHÉ
   }, []);
 
   return (
-    <Container maxWidth="md" style={{ marginTop: '90px' }}>
+    <Container maxWidth='md' style={{ marginTop: "90px" }}>
       <Grid className={classes.root} container>
-        <CustomTypography component="h2" txtStyle="text--heading">
+        <CustomTypography component='h2' txtStyle='text--heading'>
           Supreme
         </CustomTypography>
         <CustomTypography
-          component="p"
-          txtType="text--light"
-          style={{ maxWidth: '450px' }}
+          component='p'
+          txtType='text--light'
+          style={{ maxWidth: "450px" }}
         >
           Buy and sell tees, hoodies, accessories and more from streetwear
           juggernaught Supreme on StockX here!
@@ -53,7 +52,7 @@ const Brand = () =>
         <Grid className={classes.rightSide} item xs={10}>
           <Grid item xs={12} className={classes.sort}>
             <Grid item xs={6}>
-              <Breadcrumb data={['home', 'streetwear', 'jordan']} />
+              <Breadcrumb data={["home", "streetwear", "jordan"]} />
             </Grid>
             <Grid item xs={6} className={classes.formControl}>
               <FormControl>

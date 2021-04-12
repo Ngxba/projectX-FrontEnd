@@ -5,10 +5,12 @@ import {
 import thunkMiddleware from 'redux-thunk';
 import userReducer from './reducers/userReducer';
 import productsReducer from './reducers/productReducer';
+import homeReducer from './reducers/homeReducer';
 
 const rootReducer = combineReducers({
   userState: userReducer,
   productsState: productsReducer,
+  homeState: homeReducer,
 });
 
 const store = createStore(

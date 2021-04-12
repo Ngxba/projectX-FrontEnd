@@ -47,7 +47,7 @@ const LoginRegisterForm = () =>
         backgroundColor: '#fafafa',
         width: '100vw',
         height: '100vh',
-        paddingTop: '15vh',
+        paddingTop: "15%",
       }}
       textColor="secondary"
     />
