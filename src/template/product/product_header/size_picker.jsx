@@ -65,14 +65,14 @@ const SizePicker = ({
         {
           sizeQuantity.map((element) =>
           {
-            const { size, quantity } = element;
+            const { _id, size, quantity } = element;
             const clicked = size === currentSize;
 
             return (
               // Only render size that has quantity > 0
               (quantity > 0) && (
                 <Grid
-                  key={size}
+                  key={_id}
                   item
                   xs={3}
                   classes={{ item: classes.item }}
@@ -108,7 +108,7 @@ const SizePicker = ({
 };
 
 SizePicker.propTypes = {
-  sizeQuantity: PropTypes.arrayOf(PropTypes.exact({
+  sizeQuantity: PropTypes.arrayOf(PropTypes.shape({
     size: PropTypes.string,
     quantity: PropTypes.number,
   })).isRequired,

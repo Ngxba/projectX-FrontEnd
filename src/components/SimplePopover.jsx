@@ -63,7 +63,7 @@ const SimplePopover = ({ activateComponent: ActivateComponent, children }) =>
 };
 
 SimplePopover.propTypes = {
-  activateComponent: PropTypes.node.isRequired,
+  activateComponent: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
 
