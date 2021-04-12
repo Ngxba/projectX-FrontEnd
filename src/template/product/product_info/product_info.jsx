@@ -27,10 +27,11 @@ const ProductInfo = ({
             const {
               name,
               value,
+              _id,
             } = element;
 
             return (
-              <div className="detail">
+              <div key={_id} className="detail">
                 <CustomTypography
                   style={{
                     display: 'inline',
@@ -67,8 +68,11 @@ const ProductInfo = ({
 };
 
 ProductInfo.propTypes = {
-  detail: PropTypes.arrayOf(PropTypes.exact(
-    {},
+  detail: PropTypes.arrayOf(PropTypes.shape(
+    {
+      name: PropTypes.string,
+      value: PropTypes.string,
+    },
   )).isRequired,
   description: PropTypes.string.isRequired,
 };

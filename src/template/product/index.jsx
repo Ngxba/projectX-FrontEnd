@@ -265,7 +265,7 @@ const Product = () =>
         }
       }
       >
-
+        {/* Product Header: Pick size, price */}
         <ProductHeader
           routes={routes}
           productName={productName}

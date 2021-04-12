@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import relatedProductStyle from './related_product.style';
 import CustomTypography from '../../../components/Typography/typography';
 import CustomCard from '../../../container/card/card';
+import { makeKey } from '../../../utils/supportFunction';
 
 function a11yProps(index)
 {
@@ -16,37 +17,7 @@ function a11yProps(index)
 
 const RelatedProduct = ({ relatedProductList }) =>
 {
-  // const [maxPage, setMaxPage] = useState(4);
-
   const classes = relatedProductStyle();
-
-  // const totalRelatedProduct = relatedProductList.length;
-
-  // const handleNextOnClick = () =>
-  // {
-  //   if (maxPage + 4 < totalRelatedProduct)
-  //   {
-  //     setMaxPage(maxPage + 4);
-  //   }
-  //   //  In case totalRelatedProduct % 4 != 0
-  //   else
-  //   {
-  //     setMaxPage(maxPage + (totalRelatedProduct - maxPage));
-  //   }
-  // };
-  //
-  // const handlePreviousOnClick = () =>
-  // {
-  //   //  Avoid render less than 4 Products when current maxPage is 5,6,7
-  //   if (maxPage - 4 < 4)
-  //   {
-  //     setMaxPage(4);
-  //   }
-  //   else
-  //   {
-  //     setMaxPage(maxPage - 4);
-  //   }
-  // };
 
   const [value, setValue] = useState(0);
 
@@ -63,7 +34,6 @@ const RelatedProduct = ({ relatedProductList }) =>
         <div className="inner">
           <CustomTypography
             className={classes.banner}
-            txtComponent="div"
             txtType="text--bold"
           >
             Related Products
@@ -85,7 +55,14 @@ const RelatedProduct = ({ relatedProductList }) =>
         {
           relatedProductList.map((product, index) => (
             <Tab
-              component={() => <CustomCard data={product} />}
+              key={makeKey(10)}
+              component={React.forwardRef((props, ref) => (
+                <CustomCard
+                  {...props}
+                  ref={ref}
+                  data={product}
+                />
+              ))}
               {...a11yProps(index)}
             />
           ))

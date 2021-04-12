@@ -27,7 +27,7 @@ const ProductHeader = ({
 
   const theme = useTheme();
 
-  const activateButton = () => (
+  const ActivateButton = () => (
     <CustomButton
       classes={
         {
@@ -109,7 +109,7 @@ const ProductHeader = ({
           </CustomTypography>
 
           <SimplePopover
-            activateComponent={activateButton}
+            activateComponent={ActivateButton}
           >
             {/* Size picker and size chart */}
             <Paper square classes={{ root: classes.all_size_container }}>
@@ -200,7 +200,7 @@ ProductHeader.propTypes = {
   price: PropTypes.number.isRequired,
   productName: PropTypes.string.isRequired,
   ticker: PropTypes.string.isRequired,
-  sizeQuantity: PropTypes.arrayOf(PropTypes.exact({
+  sizeQuantity: PropTypes.arrayOf(PropTypes.shape({
     size: PropTypes.string,
     quantity: PropTypes.number,
   })).isRequired,
