@@ -11,7 +11,6 @@ const data = {
   tags: [
     'sneakers',
     'adidas',
-    'adidas',
     'yeezy',
     '350',
     'v2',
