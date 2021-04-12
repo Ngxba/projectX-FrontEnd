@@ -1,34 +1,51 @@
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core';
-import { Switch, BrowserRouter } from 'react-router-dom';
-import LayoutDefault from './template/layout';
-import CustomTheme from './theme';
-import AppRoute from './utils/AppRoute';
-import Home from './pages/home';
-import LoginRegisterForm from './container/authen/login_register_form';
-import Brand from './template/brand/brand';
-import product from './template/product';
+import React from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core";
+import { Switch, BrowserRouter, Redirect } from "react-router-dom";
+import LayoutDefault from "./template/layout";
+import CustomTheme from "./theme";
+import AppRoute from "./utils/AppRoute";
+import Home from "./pages/home";
+import LoginRegisterForm from "./container/authen/login_register_form";
+import Brand from "./template/brand/brand";
+import product from "./template/product";
+import NotFound from './pages/404';
 
-function App()
-{
+function App() {
   // let location = useLocation();
   return (
-    <React.Fragment key="main">
+    <React.Fragment key='main'>
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <BrowserRouter>
           <Switch>
-            <AppRoute exact path="/" isMainPage component={Home} layout={LayoutDefault} />
-            <AppRoute exact path="/login" component={LoginRegisterForm} />
-            <AppRoute exact path="/brand" component={Brand} layout={LayoutDefault} />
             <AppRoute
               exact
-              path="/product"
+              path='/'
+              isMainPage
+              component={Home}
+              layout={LayoutDefault}
+            />
+            <AppRoute exact path='/login' component={LoginRegisterForm} />
+            <AppRoute
+              exact
+              path='/brand/:id'
+              component={Brand}
+              layout={LayoutDefault}
+            />
+            <AppRoute
+              exact
+              path='/product'
               component={product}
               layout={LayoutDefault}
               isMainPage={false}
             />
+            <AppRoute
+              path='/404'
+              component={NotFound}
+              layout={LayoutDefault}
+            />
+            <Redirect from='*' to='/404' />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
