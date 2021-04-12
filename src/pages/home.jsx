@@ -14,6 +14,7 @@ const DataBrand = [
       "https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-jordan.png?auto=compress,format",
     imgBrandSrc:
       "https://stockx-assets.imgix.net/png/brand-tiles/img-jordan.png?auto=compress,format",
+    urlKey: "sneakers/jordan",
   },
   {
     productName: "NIKE",
@@ -21,6 +22,7 @@ const DataBrand = [
       "https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-nike-v2.png?auto=compress,format",
     imgBrandSrc:
       "https://stockx-assets.imgix.net/png/brand-tiles/img-nike.png?auto=compress,format",
+    urlKey: "sneakers/nike",
   },
   {
     productName: "ADIDAS",
@@ -28,6 +30,7 @@ const DataBrand = [
       "https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-adidas.png?auto=compress,format",
     imgBrandSrc:
       "https://stockx-assets.imgix.net/png/brand-tiles/img-adidas.png?auto=compress,format",
+    urlKey: "sneakers/adidas",
   },
 ];
 
@@ -37,8 +40,7 @@ function Home() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(FetchProducts());
-    console.log(homeState.homeData); // DATA ĐÂY NHÉ
+    if (homeState.homeData !== {}) dispatch(FetchProducts());
   }, []);
 
   return (
@@ -47,9 +49,15 @@ function Home() {
       <TabCarousel />
       <Container maxWidth='md'>
         <CardContainer type='brand' title='Popular Brands' data={DataBrand} />
-        <CardContainer title='Most Popular' data={homeState.homeData.mostPopular} />
+        <CardContainer
+          title='Most Popular'
+          data={homeState.homeData.mostPopular}
+        />
         <CardContainer title='Latest Buy' />
-        <CardContainer title="What's trending" data={homeState.homeData.trending} />
+        <CardContainer
+          title="What's trending"
+          data={homeState.homeData.trending}
+        />
         <div style={{ textAlign: "center", margin: "16px 0" }}>
           <CustomButton backgroundColor='primary' buttonSize='btn--large'>
             Browse Thousands of Sneakers on our Live Marketplace

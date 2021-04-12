@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
+import { Link } from 'react-router-dom';
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CustomTypography from "../../components/Typography/typography";
@@ -13,9 +14,9 @@ const CustomCard = (props) => {
   const classes = cardStyle(rest);
 
   return (
-    <React.Fragment key='card'>
+    <Link to={`./${data.urlKey}`} style={{ textDecoration: "none" }}>
       {type === TYPES[0] ? (
-        <Card className={classes.root} key={data.urlKey}>
+        <Card className={classes.root}>
           <CardMedia
             className={classes.media}
             image={data.imageurl}
@@ -75,7 +76,7 @@ const CustomCard = (props) => {
           />
         </Card>
       )}
-    </React.Fragment>
+    </Link>
   );
 };
 

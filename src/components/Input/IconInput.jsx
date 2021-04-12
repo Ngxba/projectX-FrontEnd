@@ -13,6 +13,7 @@ const IconInput = (props) =>
   const [inputState, setInputState] = useState('');
   const [btnCloseState, setbtnCloseState] = useState('');
   const [btnSearchState, setbtnSearchState] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
   const handleChange = () =>
   {
     if (inputState === '')
@@ -23,12 +24,14 @@ const IconInput = (props) =>
         setbtnCloseState(classes.dpInlineBlock);
       }, 50);
       setbtnSearchState(classes.buttonFormOpen);
+      setIsOpen(true);
     }
     else
     {
       setInputState('');
       setbtnCloseState('');
       setbtnSearchState('');
+      setIsOpen(false);
     }
   };
   return (
@@ -41,7 +44,7 @@ const IconInput = (props) =>
               color="inherit"
               onClick={handleChange}
               className={`${classes.btn} ${btnSearchState}`}
-              disabled={btnSearchState}
+              disabled={isOpen}
             >
               <SearchIcon />
             </IconButton>

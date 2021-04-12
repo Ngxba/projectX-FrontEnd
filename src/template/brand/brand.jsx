@@ -54,7 +54,7 @@ const Brand = ({ match }) => {
           style={{ maxWidth: "450px" }}
         >
           {`Buy and sell tees, hoodies, accessories and more from streetwear
-          juggernaught ${titleBrand} on StockX here!`}
+          juggernaught ${titleBrand} on ProjectX here!`}
         </CustomTypography>
       </Grid>
       <Grid className={classes.gridContainer} container spacing={2}>

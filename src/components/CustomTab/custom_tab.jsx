@@ -8,6 +8,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { makeKey } from '../../utils/supportFunction';
 
 function TabPanel(props)
 {
@@ -73,7 +74,7 @@ const CustomTab = ({
 
   const renderTabComponents = () => (
     data.map((element, index) => (
-      <TabPanel value={value} index={index} dir={theme.direction}>
+      <TabPanel key={makeKey(5)} value={value} index={index} dir={theme.direction}>
         {element.component}
       </TabPanel>
     ))
@@ -103,7 +104,7 @@ const CustomTab = ({
             {
               // Render tab title
               data.map((element, index) => (
-                <Tab disableRipple label={element.title} {...a11yProps(index)} />
+                <Tab key={makeKey(5)} disableRipple label={element.title} {...a11yProps(index)} />
               ))
             }
           </Tabs>
