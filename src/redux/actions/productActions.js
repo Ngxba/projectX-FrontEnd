@@ -6,6 +6,9 @@ import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_REQUEST_SUCCESS,
   FETCH_PRODUCTS_REQUEST_FAILURE,
+  FETCH_PRODUCT_REQUEST,
+  FETCH_PRODUCT_REQUEST_SUCCESS,
+  FETCH_PRODUCT_REQUEST_FAILURE,
 } from "../types/productType";
 
 const FetchProductsRequest = () => ({
@@ -42,7 +45,37 @@ export const FetchProducts = (offset = null, limit = null, params) => {
   };
 };
 
-export const randomThings = "abc";
+const FetchProductRequest = () => ({
+  type: FETCH_PRODUCT_REQUEST,
+});
+
+const FetchProductRequestSuccess = (products) => ({
+  type: FETCH_PRODUCT_REQUEST_SUCCESS,
+  payload: products,
+});
+
+const FetchProductRequestFailure = (error) => ({
+  type: FETCH_PRODUCT_REQUEST_FAILURE,
+  payload: error,
+});
+
+export const FetchProduct = (urlKey) => {
+  return async function (dispatch) {
+    dispatch(FetchProductRequest());
+    console.log("1 sản phẩm");
+    try {
+      const res = await axios.get(`${backEndLink}/api/product/${urlKey}`);
+      if (res.status === 200) {
+        dispatch(FetchProductRequestSuccess(res.data.product));
+      } else {
+        //   throw new Error("Cannot Sign In", res.data.error);
+        dispatch(FetchProductsRequestFailure(res));
+      }
+    } catch (error) {
+      dispatch(FetchProductRequestFailure(error));
+    }
+  };
+};
 
 // export const updateData = async (name, email) => {
 //   const res = await axios.post(`${backEndLink}/api/user/update`, {

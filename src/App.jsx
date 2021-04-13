@@ -28,23 +28,27 @@ function App() {
             />
             <AppRoute
               exact
+              path='/product/:urlKey'
+              component={product}
+              layout={LayoutDefault}
+            />
+            <AppRoute
+              exact
               path='/login'
               component={LoginRegisterForm}
               layout={LayoutDefault}
             />
-            <AppRoute exact path='/404' component={NotFound} layout={LayoutDefault} />
+            <AppRoute
+              exact
+              path='/404'
+              component={NotFound}
+              layout={LayoutDefault}
+            />
             <AppRoute
               exact
               path='/:brandName/:tag?/:tag2?/:tag3?/:tag4?/:tag5?'
               component={Brand}
               layout={LayoutDefault}
-            />
-            <AppRoute
-              exact
-              path='/product'
-              component={product}
-              layout={LayoutDefault}
-              isMainPage={false}
             />
             <Redirect from='*' to='/404' />
           </Switch>
