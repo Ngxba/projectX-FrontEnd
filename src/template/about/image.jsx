@@ -1,7 +1,8 @@
 import React from "react";
 import customStepMedia from "./image.style";
 
-function StepMedia() {
+function StepMedia()
+{
   const classes = customStepMedia();
   return (
     <div className={classes.section}>

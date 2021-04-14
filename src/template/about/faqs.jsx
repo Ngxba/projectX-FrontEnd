@@ -5,7 +5,8 @@ import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
 import customFAQs from "./FAQs.style";
 import CustomTypography from "../../components/Typography/typography";
 
-function FAQs() {
+function FAQs()
+{
   const classes = customFAQs();
   return (
     <section className={classes.FAQs}>
@@ -17,11 +18,11 @@ function FAQs() {
           <Grid item xs={12} sm={6} md={4}>
             <div className={classes.question}>
               <CustomTypography
-                href='https://help.stockx.com/s/article/What-is-a-Bid-and-how-do-I-buy-on-StockX'
-                color='white'
-                txtComponent='a'
-                txtStyle='text--link'
-                txtType='text--light'
+                href="https://help.stockx.com/s/article/What-is-a-Bid-and-how-do-I-buy-on-StockX"
+                color="white"
+                txtComponent="a"
+                txtStyle="text--link"
+                txtType="text--light"
               >
                 What is a Bid, how do I buy on ProjectX?
               </CustomTypography>
@@ -33,11 +34,11 @@ function FAQs() {
           <Grid item xs={12} sm={6} md={4}>
             <div className={classes.question}>
               <CustomTypography
-                href='https://help.stockx.com/s/article/What-is-an-Ask-and-how-do-I-sell-on-StockX'
-                color='white'
-                txtComponent='a'
-                txtStyle='text--link'
-                txtType='text--light'
+                href="https://help.stockx.com/s/article/What-is-an-Ask-and-how-do-I-sell-on-StockX"
+                color="white"
+                txtComponent="a"
+                txtStyle="text--link"
+                txtType="text--light"
               >
                 What is an Ask, how do I sell on ProjectX?
               </CustomTypography>
@@ -49,11 +50,11 @@ function FAQs() {
           <Grid item xs={12} sm={6} md={4}>
             <div className={classes.question}>
               <CustomTypography
-                href='https://help.stockx.com/s/article/How-long-does-it-take-to-receive-my-order'
-                color='white'
-                txtComponent='a'
-                txtStyle='text--link'
-                txtType='text--light'
+                href="https://help.stockx.com/s/article/How-long-does-it-take-to-receive-my-order"
+                color="white"
+                txtComponent="a"
+                txtStyle="text--link"
+                txtType="text--light"
               >
                 How long does it take to receive my order?
               </CustomTypography>
@@ -65,11 +66,11 @@ function FAQs() {
           <Grid item xs={12} sm={6} md={4}>
             <div className={classes.question}>
               <CustomTypography
-                href='https://help.stockx.com/s/article/What-form-of-payment-does-StockX-accept'
-                color='white'
-                txtComponent='a'
-                txtStyle='text--link'
-                txtType='text--light'
+                href="https://help.stockx.com/s/article/What-form-of-payment-does-StockX-accept"
+                color="white"
+                txtComponent="a"
+                txtStyle="text--link"
+                txtType="text--light"
               >
                 What form of payment does ProjectX accept?
               </CustomTypography>
@@ -81,11 +82,11 @@ function FAQs() {
           <Grid item xs={12} sm={6} md={4}>
             <div className={classes.question}>
               <CustomTypography
-                href='https://help.stockx.com/s/article/My-BidAsk-just-got-accepted-Can-I-cancel-it'
-                color='white'
-                txtComponent='a'
-                txtStyle='text--link'
-                txtType='text--light'
+                href="https://help.stockx.com/s/article/My-BidAsk-just-got-accepted-Can-I-cancel-it"
+                color="white"
+                txtComponent="a"
+                txtStyle="text--link"
+                txtType="text--light"
               >
                 My Bid/Ask just got accepted. Can I cancel it?
               </CustomTypography>
@@ -97,11 +98,11 @@ function FAQs() {
           <Grid item xs={12} sm={6} md={4}>
             <div className={classes.question}>
               <CustomTypography
-                href='https://help.stockx.com/s/article/How-do-I-contact-customer-service-and-when-can-I-expect-to-hear-back'
-                color='white'
-                txtComponent='a'
-                txtStyle='text--link'
-                txtType='text--light'
+                href="https://help.stockx.com/s/article/How-do-I-contact-customer-service-and-when-can-I-expect-to-hear-back"
+                color="white"
+                txtComponent="a"
+                txtStyle="text--link"
+                txtType="text--light"
               >
                 How do I contact customer service and when can I expect to hear
                 back?

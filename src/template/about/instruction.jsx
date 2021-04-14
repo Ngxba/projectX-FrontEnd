@@ -3,7 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import customInstruction from "./instruction.style";
 import CustomTypography from "../../components/Typography/typography";
 
-function Instruction() {
+function Instruction()
+{
   const classes = customInstruction();
   return (
     <div className={classes.instruction}>

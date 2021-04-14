@@ -4,7 +4,8 @@ import Container from "@material-ui/core/Container";
 import customAboutGrid from "./about.style";
 import CustomTypography from "../../components/Typography/typography";
 
-function AboutGrid() {
+function AboutGrid()
+{
   const classes = customAboutGrid();
   return (
     <Container>

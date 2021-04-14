@@ -3,7 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import CustomTypography from "../../components/Typography/typography";
 import customShopCategories from "./shop.style";
 
-function ShopCategories() {
+function ShopCategories()
+{
   const classes = customShopCategories();
   return (
     <section className={classes.shop}>

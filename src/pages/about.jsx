@@ -6,9 +6,10 @@ import FAQs from "../template/about/faqs";
 import Instruction from "../template/about/instruction";
 import ShopCategories from "../template/about/shop";
 
-function About() {
+function About()
+{
   return (
-    <React.Fragment key='main'>
+    <React.Fragment key="main">
       <SimpleContainer />
       <AboutGrid />
       <StepMedia />
