@@ -31,16 +31,17 @@ export const FetchProducts = (offset = null, limit = null, params) =>
   {
     dispatch(FetchProductsRequest());
     const {
-      brandName,
+      category,
       tag,
       tag2,
       tag3,
       tag4,
       tag5,
     } = params;
+
     try
     {
-      const res = await axios.get(`${backEndLink}/api/product/browse?offset=${offset}&limit=${limit}&productCategory=${brandName}&tags=${tag},${tag2},${tag3},${tag4},${tag5}`);
+      const res = await axios.get(`${backEndLink}/api/product/browse?offset=${offset}&limit=${limit}&productCategory=${category}&tags=${tag},${tag2},${tag3},${tag4},${tag5}`);
       if (res.status === 200)
       {
         dispatch(FetchProductsRequestSuccess(res.data.result));
