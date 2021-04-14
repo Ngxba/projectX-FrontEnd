@@ -9,7 +9,7 @@ const navLinkHome = { title: "Home", path: "/" };
 
 const navLinks = [
   { title: "News", path: "/news" },
-  { title: "About", path: "/about/how-it-works" },
+  { title: "About", path: "/about/" },
   { title: "Help", path: "/faq" },
   { title: "Login", path: "/login" },
   { title: "Sign up", path: "/signup" },
