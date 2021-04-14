@@ -39,7 +39,7 @@ const Brand = ({ match }) => {
   }, []);
 
   return (
-    <Container maxWidth='md' style={{ marginTop: "90px" }}>
+    <Container maxWidth='md'>
       <Grid className={classes.root} container>
         <CustomTypography
           component='h2'
