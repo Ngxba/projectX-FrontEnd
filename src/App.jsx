@@ -1,20 +1,16 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core";
-import { Switch, BrowserRouter } from "react-router-dom";
+import { Switch, BrowserRouter, Redirect } from "react-router-dom";
 import LayoutDefault from "./template/layout";
 import CustomTheme from "./theme";
 import AppRoute from "./utils/AppRoute";
 import Home from "./pages/home";
 import About from "./pages/about";
-import Login from './container/authen/login_register_form';
-import Brand from "./template/brand";
-// import SimpleContainer from "./about/background";
-// import AboutGrid from "./about/about";
-// import StepMedia from "./about/image";
-// import FAQs from "./about/faqs";
-// import Instruction from "./about/instruction";
-// import ShopCategories from "./about/shop";
+import LoginRegisterForm from "./container/authen/login_register_form";
+import Brand from "./template/brand/brand";
+import product from "./template/product";
+import NotFound from "./pages/404";
 
 function App() {
   // let location = useLocation();
@@ -37,22 +33,29 @@ function App() {
               component={About}
               layout={LayoutDefault}
             />
-            <AppRoute exact path='/login' component={Login} />
             <AppRoute
               exact
-              path='/brand'
+              path='/login'
+              component={LoginRegisterForm}
+              layout={LayoutDefault}
+            />
+            <AppRoute exact path='/404' component={NotFound} layout={LayoutDefault} />
+            <AppRoute
+              exact
+              path='/:brandName/:tag?/:tag2?/:tag3?/:tag4?/:tag5?'
               component={Brand}
               layout={LayoutDefault}
             />
+            <AppRoute
+              exact
+              path='/product'
+              component={product}
+              layout={LayoutDefault}
+              isMainPage={false}
+            />
+            <Redirect from='*' to='/404' />
           </Switch>
         </BrowserRouter>
-
-        {/* <SimpleContainer />
-        <AboutGrid />
-        <StepMedia />
-        <Instruction />
-        <FAQs />
-        <ShopCategories /> */}
       </ThemeProvider>
     </React.Fragment>
   );

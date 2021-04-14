@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React from 'react';
-import { TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { CircularProgress, TextField } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+// import PropTypes from "prop-types";
 import IconButton from '@material-ui/core/IconButton';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -9,54 +10,67 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomTypography from '../../components/Typography/typography';
 import CustomButton from '../../components/Buttons/button';
-
-const styles = makeStyles({
-  root: {
-    width: '100%',
-    marginBottom: '16px',
-    '& label': {
-      fontSize: '14px',
-    },
-    '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
-      transform: 'translate(14px, 3px) scale(0.75)',
-      color: 'rgba(0, 0, 0, 0.54)',
-    },
-    '& legend': {
-      display: 'none',
-    },
-  },
-  main: {
-    backgroundColor: '#fafafa',
-    width: '100vw',
-    height: '100vh',
-  },
-});
+import { isLengthEqualZero, validateEmail } from '../../utils/supportFunction';
+import { SignIn } from '../../redux/actions/userActions';
+import authenStyle from './authen.style';
 
 function Login()
 {
-  const classes = styles();
+  const classes = authenStyle();
   const [values, setValues] = React.useState({
+    email: '',
     password: '',
     showPassword: false,
   });
+
+  const userState = useSelector((state) => state.userState);
+  const dispatch = useDispatch();
+
   const handleClickShowPassword = () =>
   {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
   const handleChange = (prop) => (event) =>
   {
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values,
+      [prop]: event.target.value,
+    });
   };
 
   const handleMouseDownPassword = (event) =>
   {
     event.preventDefault();
   };
+
+  const handleSubmit = (event) =>
+  {
+    event.preventDefault();
+    dispatch(SignIn(values));
+    setValues({
+      ...values,
+      password: '',
+    });
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
+      {userState.error !== '' && userState.isLogin && (
+        <Alert
+          variant="outlined"
+          severity="error"
+          className={classes.alertStyle}
+        >
+          Wrong email or password!
+        </Alert>
+      )}
       <br />
       <TextField
         className={classes.root}
@@ -64,6 +78,8 @@ function Login()
         color="secondary"
         label="Email Address"
         variant="outlined"
+        onChange={handleChange('email')}
+        value={values.email}
       />
       <FormControl
         className={classes.root}
@@ -102,8 +118,19 @@ function Login()
           Forgot password?
         </CustomTypography>
       </FormControl>
-      <CustomButton style={{ width: '100%', margin: 0 }} type="submit">
-        Login
+      <CustomButton
+        disabled={userState.loading || isLengthEqualZero(values) || !validateEmail(values.email)}
+        style={{
+          width: '100%',
+          margin: 0,
+        }}
+        type="submit"
+      >
+        {!userState.loading ? (
+          'Login'
+        ) : (
+          <CircularProgress color="secondary" size="20px" />
+        )}
       </CustomButton>
       <CustomTypography
         fontSize="12px"
@@ -124,5 +151,14 @@ function Login()
     </form>
   );
 }
+
+// Login.propTypes = {
+//   submit: PropTypes.func.isRequired,
+//   status: PropTypes.number,
+// };
+
+// Login.defaultProps = {
+//   status: 0,
+// };
 
 export default Login;

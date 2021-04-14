@@ -8,6 +8,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { makeKey } from '../../utils/supportFunction';
 
 function TabPanel(props)
 {
@@ -55,6 +56,7 @@ const CustomTab = ({
   appBarStyle,
   rootStyle,
   enableSwipeEffect,
+  textColor,
 }) =>
 {
   const theme = useTheme();
@@ -72,7 +74,7 @@ const CustomTab = ({
 
   const renderTabComponents = () => (
     data.map((element, index) => (
-      <TabPanel value={value} index={index} dir={theme.direction}>
+      <TabPanel key={makeKey(5)} value={value} index={index} dir={theme.direction}>
         {element.component}
       </TabPanel>
     ))
@@ -94,7 +96,7 @@ const CustomTab = ({
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
-            textColor="primary"
+            textColor={textColor}
             variant="fullWidth"
             aria-label="full width tabs example"
             centered
@@ -102,7 +104,7 @@ const CustomTab = ({
             {
               // Render tab title
               data.map((element, index) => (
-                <Tab disableRipple label={element.title} {...a11yProps(index)} />
+                <Tab key={makeKey(5)} disableRipple label={element.title} {...a11yProps(index)} />
               ))
             }
           </Tabs>
@@ -138,6 +140,7 @@ CustomTab.defaultProps = {
   appBarStyle: null,
   rootStyle: null,
   enableSwipeEffect: false,
+  textColor: 'primary',
 };
 
 CustomTab.propTypes = {
@@ -151,6 +154,7 @@ CustomTab.propTypes = {
   appBarStyle: PropTypes.object,
   rootStyle: PropTypes.object,
   enableSwipeEffect: PropTypes.bool,
+  textColor: PropTypes.string,
 };
 
 export default CustomTab;

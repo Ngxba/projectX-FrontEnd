@@ -15,22 +15,28 @@ const navLinks = [
   { title: "Sign up", path: "/signup" },
 ];
 
-const Navbar = (props) => {
+const Navbar = (props) =>
+{
   const classes = navbarStyles();
   const { isMainPage } = props;
 
   const [scrolling, setScrolling] = useState(false);
 
-  const handleScroll = () => {
-    if (window.scrollY > 100) {
+  const handleScroll = () =>
+  {
+    if (window.scrollY > 100)
+    {
       setScrolling(true);
-    } else {
+    }
+    else
+    {
       setScrolling(false);
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+  useEffect(() =>
+  {
+    window.addEventListener('scroll', handleScroll);
   });
 
   return (
@@ -40,26 +46,26 @@ const Navbar = (props) => {
         classes.navBg
       }`}
     >
-      <CustomTypography
-        href={navLinkHome.path}
-        key={navLinkHome.title}
-        className={classes.navbarBrand}
-        fontSize='20px'
-        txtComponent='a'
-        txtType='text--bold'
+      <span
+        className={`${classes.logoName} ${!isMainPage && classes.marginNone}`}
       >
-        <span
-          className={`${classes.logoName} ${!isMainPage && classes.marginNone}`}
+        <CustomTypography
+          href={navLinkHome.path}
+          key={navLinkHome.title}
+          className={classes.navbarBrand}
+          color="black"
+          fontSize="20px"
+          txtType="text--bold"
         >
           ProjectX
-        </span>
-      </CustomTypography>
+        </CustomTypography>
+      </span>
       <List
-        component='nav'
-        aria-labelledby='main navigation'
+        component="nav"
+        aria-labelledby="main navigation"
         className={classes.navDisplayFlex}
       >
-        {!isMainPage && <CustomInput placeholder='Search...' variant='icon' />}
+        {!isMainPage && <CustomInput placeholder="Search..." variant="icon" />}
         {navLinks.map(({ title, path }, i) => (
           <CustomTypography
             href={path}
@@ -67,8 +73,7 @@ const Navbar = (props) => {
             className={`${classes.tab} ${
               i === navLinks.length - 1 && classes.lastComponent
             }`}
-            txtComponent='a'
-            txtType='text--light'
+            txtType="text--light"
           >
             {title}
           </CustomTypography>

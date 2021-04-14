@@ -5,15 +5,15 @@ import CustomCarousel from '../carousel/carousel';
 
 const carousels = [
   {
-    title: 'Item one',
+    title: 'Sneakers',
     component: <CustomCarousel />,
   },
   {
-    title: 'Item two',
+    title: 'Accessories',
     component: <CustomCarousel />,
   },
   {
-    title: 'Item three',
+    title: 'Clothing',
     component: <CustomCarousel />,
   },
 
@@ -34,6 +34,7 @@ const CarouselWithTab = () => (
       }
     }
     enableSwipeEffect
+    textColor="secondary"
   />
 );
 

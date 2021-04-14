@@ -18,37 +18,40 @@ Wrapper.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const data = [
-  {
-    title: 'Log in',
-    component: <Login />,
-  },
-  {
-    title: 'Sign up',
-    component: <Register />,
-  },
-];
-
-const LoginRegisterForm = () => (
-  <CustomTab
-    data={data}
-    appBarStyle={
-      {
+const LoginRegisterForm = () =>
+{
+  const data = [
+    {
+      title: 'Log in',
+      component: (
+        <Login />
+      ),
+    },
+    {
+      title: 'Sign up',
+      component: (
+        <Register />
+      ),
+    },
+  ];
+  return (
+    <CustomTab
+      data={data}
+      appBarStyle={{
         width: '100%',
         backgroundColor: 'white',
         boxShadow: 'none',
-      }
-}
-    wrapper={Wrapper}
-    rootStyle={
-      {
+      }}
+      wrapper={Wrapper}
+      rootStyle={{
         backgroundColor: '#fafafa',
         width: '100vw',
         height: '100vh',
-        paddingTop: '15vh',
-      }
-    }
-  />
-);
+        paddingTop: "15%",
+      }}
+      textColor="secondary"
+    />
+  );
+};
 
 export default LoginRegisterForm;

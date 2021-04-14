@@ -1,12 +1,11 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import { Typography } from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import typoStyles from './typography.style';
 
-const COLORS = [
-  'textPrimary',
-  'textSecondary',
-];
+const COLORS = ['textPrimary', 'textSecondary'];
 
 const STYLES = [
   'text--default',
@@ -18,22 +17,9 @@ const STYLES = [
   'text--secondary',
 ];
 
-const TYPES = [
-  'text--medium',
-  'text--light',
-  'text--bold',
-];
+const TYPES = ['text--medium', 'text--light', 'text--bold'];
 
-const COMPONENTS = [
-  'p',
-  'a',
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-];
+const COMPONENTS = ['p', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
 const CustomTypography = (props) =>
 {
@@ -44,6 +30,7 @@ const CustomTypography = (props) =>
     txtType,
     txtComponent,
     className,
+    href,
     ...rest
   } = props;
 
@@ -53,14 +40,24 @@ const CustomTypography = (props) =>
 
   return (
     <React.Fragment key="typography">
-      <Typography
-        {...rest}
-        color={txtColor}
-        component={txtComponent}
-        className={classNameAll}
-      >
-        {children}
-      </Typography>
+      {href !== '' ? (
+        <Link
+          to={href}
+          {...rest}
+          className={classNameAll}
+        >
+          {children}
+        </Link>
+      ) : (
+        <Typography
+          {...rest}
+          color={txtColor}
+          component={txtComponent}
+          className={classNameAll}
+        >
+          {children}
+        </Typography>
+      )}
     </React.Fragment>
   );
 };
@@ -72,6 +69,7 @@ CustomTypography.propTypes = {
   txtType: PropTypes.oneOf(TYPES),
   txtComponent: PropTypes.oneOf(COMPONENTS),
   className: PropTypes.string,
+  href: PropTypes.string,
 };
 
 CustomTypography.defaultProps = {
@@ -80,6 +78,7 @@ CustomTypography.defaultProps = {
   txtType: TYPES[0],
   txtComponent: COMPONENTS[0],
   className: '',
+  href: '',
 };
 
 export default CustomTypography;
