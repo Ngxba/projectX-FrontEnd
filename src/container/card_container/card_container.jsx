@@ -41,12 +41,13 @@ const fakeData = [
 
 const TYPES = ["product", "brand"];
 
-const CardContainer = (props) => {
+const CardContainer = (props) =>
+{
   const {
     data, showCategory, type, title,
   } = props;
   return (
-    <React.Fragment key='product grid'>
+    <React.Fragment key="product grid">
       {showCategory && (
         <div
           style={{
@@ -58,21 +59,21 @@ const CardContainer = (props) => {
         >
           <span style={{ display: "flex" }}>
             <CustomTypography
-              txtStyle='text--category'
-              txtType='text--medium'
-              txtComponent='h3'
-              fontSize='18px'
+              txtStyle="text--category"
+              txtType="text--medium"
+              txtComponent="h3"
+              fontSize="18px"
             >
               {title}
             </CustomTypography>
             {type === TYPES[0] && <HelpIcon style={{ marginLeft: "10px" }} />}
           </span>
           <CustomTypography
-            txtStyle='text--link'
+            txtStyle="text--link"
             //   txtType='text--medium'
-            txtComponent='a'
-            fontSize='14px'
-            txtColor='textPrimary'
+            txtComponent="a"
+            fontSize="14px"
+            txtColor="textPrimary"
           >
             See all
           </CustomTypography>

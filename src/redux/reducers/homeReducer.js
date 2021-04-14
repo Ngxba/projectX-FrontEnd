@@ -10,8 +10,10 @@ const initialState = {
   error: "",
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
+const reducer = (state = initialState, action) =>
+{
+  switch (action.type)
+  {
     case FETCH_HOME_DETAIL_REQUEST:
       return {
         ...state,

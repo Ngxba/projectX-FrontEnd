@@ -13,10 +13,12 @@ import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
 import brandStyle from "./brand.style";
 import { FetchProducts } from "../../redux/actions/productActions";
 
-const Brand = ({ match }) => {
+const Brand = ({ match }) =>
+{
   const { params } = match;
   let title = "";
-  for (const key of Object.keys(params)) {
+  for (const key of Object.keys(params))
+  {
     if (params[key] !== undefined) title += `${params[key]} `;
   }
   const classes = brandStyle();
@@ -27,11 +29,13 @@ const Brand = ({ match }) => {
 
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
+  const handleChange = (event) =>
+  {
     setAge(event.target.value);
   };
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(FetchProducts(0, 40, params));
     // console.log(productsState.productsData); // DATA ĐÂY NHÉ
     // params = params.join(', ');
@@ -39,18 +43,18 @@ const Brand = ({ match }) => {
   }, []);
 
   return (
-    <Container maxWidth='md' style={{ marginTop: "90px" }}>
+    <Container maxWidth="md" style={{ marginTop: "90px" }}>
       <Grid className={classes.root} container>
         <CustomTypography
-          component='h2'
-          txtStyle='text--heading'
+          component="h2"
+          txtStyle="text--heading"
           style={{ textTransform: "capitalize" }}
         >
           {titleBrand}
         </CustomTypography>
         <CustomTypography
-          component='p'
-          txtType='text--light'
+          component="p"
+          txtType="text--light"
           style={{ maxWidth: "450px" }}
         >
           {`Buy and sell tees, hoodies, accessories and more from streetwear
