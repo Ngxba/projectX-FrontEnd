@@ -89,15 +89,18 @@ const fakeData = [
   },
 ];
 
-const Product = ({ match }) => {
+const Product = ({ match }) =>
+{
   const classes = productStyle();
   const { params } = match;
   const productState = useSelector((state) => state.productState);
 
   const dispatch = useDispatch();
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(FetchProduct(params.urlKey));
   }, []);
+
   // Generate data for breadcrumbs
   const routes = [
     "home",
