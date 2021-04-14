@@ -59,15 +59,23 @@ const RelatedProduct = ({ relatedProductList }) =>
             <CustomCard
               data={product}
               classes={{ root: classes.card }}
-              ref={ref}
+              innerRef={ref}
+              {...props}
+            />
+          ));
+
+          const CustomTab = React.forwardRef((props, ref) => (
+            <Tab
+              component={ProductCard}
+              {...a11yProps(index)}
+              innerRef={ref}
+              {...props}
             />
           ));
 
           return (
-            <Tab
+            <CustomTab
               key={makeKey(5)}
-              component={ProductCard}
-              {...a11yProps(index)}
             />
           );
         })}
@@ -80,7 +88,7 @@ const RelatedProduct = ({ relatedProductList }) =>
 };
 
 RelatedProduct.propTypes = {
-  relatedProductList: PropTypes.arrayOf(PropTypes.exact({
+  relatedProductList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     price: PropTypes.number,
     numberSold: PropTypes.number,
