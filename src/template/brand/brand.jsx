@@ -21,6 +21,7 @@ const Brand = ({ match }) =>
   {
     if (params[key] !== undefined) title += `${params[key]} `;
   }
+
   const classes = brandStyle();
   const [age, setAge] = React.useState(10);
   const [titleBrand, setTitleBrand] = React.useState("");
