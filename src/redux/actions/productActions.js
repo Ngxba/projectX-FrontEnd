@@ -1,12 +1,15 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import axios from 'axios';
-import { backEndLink } from '../../config';
+import axios from "axios";
+import { backEndLink } from "../../config";
 import {
   FETCH_PRODUCTS_REQUEST,
-  FETCH_PRODUCTS_REQUEST_FAILURE,
   FETCH_PRODUCTS_REQUEST_SUCCESS,
-} from '../types/productType';
+  FETCH_PRODUCTS_REQUEST_FAILURE,
+  FETCH_PRODUCT_REQUEST,
+  FETCH_PRODUCT_REQUEST_SUCCESS,
+  FETCH_PRODUCT_REQUEST_FAILURE,
+} from "../types/productType";
 
 const FetchProductsRequest = () => ({
   type: FETCH_PRODUCTS_REQUEST,
@@ -22,40 +25,57 @@ const FetchProductsRequestFailure = (error) => ({
   payload: error,
 });
 
-export const FetchProducts = (offset = null, limit = null, params) =>
-{
-  return async function (dispatch)
-  {
+export const FetchProducts = (offset = null, limit = null, params) => {
+  return async function (dispatch) {
     dispatch(FetchProductsRequest());
     const {
-      brandName,
-      tag,
-      tag2,
-      tag3,
-      tag4,
-      tag5,
+      brandName, tag, tag2, tag3, tag4, tag5,
     } = params;
-    try
-    {
+    try {
       const res = await axios.get(`${backEndLink}/api/product/browse?offset=${offset}&limit=${limit}&productCategory=${brandName}&tags=${tag},${tag2},${tag3},${tag4},${tag5}`);
-      if (res.status === 200)
-      {
+      if (res.status === 200) {
         dispatch(FetchProductsRequestSuccess(res.data.result));
-      }
-      else
-      {
+      } else {
         //   throw new Error("Cannot Sign In", res.data.error);
         dispatch(FetchProductsRequestFailure(res));
       }
-    }
-    catch (error)
-    {
+    } catch (error) {
       dispatch(FetchProductsRequestFailure(error));
     }
   };
 };
 
-export const randomThings = 'abc';
+const FetchProductRequest = () => ({
+  type: FETCH_PRODUCT_REQUEST,
+});
+
+const FetchProductRequestSuccess = (products) => ({
+  type: FETCH_PRODUCT_REQUEST_SUCCESS,
+  payload: products,
+});
+
+const FetchProductRequestFailure = (error) => ({
+  type: FETCH_PRODUCT_REQUEST_FAILURE,
+  payload: error,
+});
+
+export const FetchProduct = (urlKey) => {
+  return async function (dispatch) {
+    dispatch(FetchProductRequest());
+    console.log("1 sản phẩm");
+    try {
+      const res = await axios.get(`${backEndLink}/api/product/${urlKey}`);
+      if (res.status === 200) {
+        dispatch(FetchProductRequestSuccess(res.data.product));
+      } else {
+        //   throw new Error("Cannot Sign In", res.data.error);
+        dispatch(FetchProductsRequestFailure(res));
+      }
+    } catch (error) {
+      dispatch(FetchProductRequestFailure(error));
+    }
+  };
+};
 
 // export const updateData = async (name, email) => {
 //   const res = await axios.post(`${backEndLink}/api/user/update`, {

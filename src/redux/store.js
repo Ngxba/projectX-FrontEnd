@@ -4,12 +4,13 @@ import {
 } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import userReducer from './reducers/userReducer';
-import productsReducer from './reducers/productReducer';
+import { productsReducer, productReducer } from './reducers/productReducer';
 import homeReducer from './reducers/homeReducer';
 
 const rootReducer = combineReducers({
   userState: userReducer,
   productsState: productsReducer,
+  productState: productReducer,
   homeState: homeReducer,
 });
 

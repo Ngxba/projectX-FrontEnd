@@ -13,9 +13,10 @@ const CustomCard = (props) =>
 {
   const { data, type, ...rest } = props;
   const classes = cardStyle(rest);
+  const urlKey = type === TYPES[0] ? `/product/${data.urlKey}` : `./${data.urlKey}`;
 
   return (
-    <Link to={`./${data.urlKey}`} style={{ textDecoration: "none" }}>
+    <Link to={urlKey} style={{ textDecoration: "none" }}>
       {type === TYPES[0] ? (
         <Card className={classes.root}>
           <CardMedia
