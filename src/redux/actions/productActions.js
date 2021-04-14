@@ -25,29 +25,21 @@ const FetchProductsRequestFailure = (error) => ({
   payload: error,
 });
 
-export const FetchProducts = (offset = null, limit = null, params) =>
-{
-  return async function (dispatch)
-  {
+export const FetchProducts = (offset = null, limit = null, params) => {
+  return async function (dispatch) {
     dispatch(FetchProductsRequest());
     const {
       brandName, tag, tag2, tag3, tag4, tag5,
     } = params;
-    try
-    {
+    try {
       const res = await axios.get(`${backEndLink}/api/product/browse?offset=${offset}&limit=${limit}&productCategory=${brandName}&tags=${tag},${tag2},${tag3},${tag4},${tag5}`);
-      if (res.status === 200)
-      {
+      if (res.status === 200) {
         dispatch(FetchProductsRequestSuccess(res.data.result));
-      }
-      else
-      {
+      } else {
         //   throw new Error("Cannot Sign In", res.data.error);
         dispatch(FetchProductsRequestFailure(res));
       }
-    }
-    catch (error)
-    {
+    } catch (error) {
       dispatch(FetchProductsRequestFailure(error));
     }
   };
@@ -67,28 +59,18 @@ const FetchProductRequestFailure = (error) => ({
   payload: error,
 });
 
-export const FetchProduct = (urlKey) =>
-{
-  return async function (dispatch)
-  {
+export const FetchProduct = (urlKey) => {
+  return async function (dispatch) {
     dispatch(FetchProductRequest());
-    console.log("1 sản phẩm");
-    try
-    {
+    try {
       const res = await axios.get(`${backEndLink}/api/product/${urlKey}`);
-      console.log(res);
-      if (res.status === 200)
-      {
+      if (res.status === 200) {
         dispatch(FetchProductRequestSuccess(res.data.product));
-      }
-      else
-      {
+      } else {
         //   throw new Error("Cannot Sign In", res.data.error);
         dispatch(FetchProductsRequestFailure(res));
       }
-    }
-    catch (error)
-    {
+    } catch (error) {
       dispatch(FetchProductRequestFailure(error));
     }
   };
