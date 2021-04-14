@@ -6,11 +6,13 @@ import thunkMiddleware from 'redux-thunk';
 import userReducer from './reducers/userReducer';
 import { productsReducer, productReducer } from './reducers/productReducer';
 import homeReducer from './reducers/homeReducer';
+import relatedProductsReducer from './reducers/relatedProducReducer';
 
 const rootReducer = combineReducers({
   userState: userReducer,
   productsState: productsReducer,
   productState: productReducer,
+  relatedProductsState: relatedProductsReducer,
   homeState: homeReducer,
 });
 
