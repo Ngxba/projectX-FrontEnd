@@ -47,7 +47,7 @@ function App()
             />
             <AppRoute
               exact
-              path="/:brandName/:tag?/:tag2?/:tag3?/:tag4?/:tag5?"
+              path="/:category/:tag?/:tag2?/:tag3?/:tag4?/:tag5?"
               component={Brand}
               layout={LayoutDefault}
             />
