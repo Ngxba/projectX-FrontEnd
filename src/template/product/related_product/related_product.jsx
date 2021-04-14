@@ -55,7 +55,12 @@ const RelatedProduct = ({ relatedProductList }) =>
         {relatedProductList.map((product, index) => (
           <Tab
             key={makeKey(5)}
-            component={() => <CustomCard data={product} minWidth="215px" />}
+            component={() => (
+              <CustomCard
+                data={product}
+                classes={{ root: classes.card }}
+              />
+            )}
             {...a11yProps(index)}
           />
         ))}

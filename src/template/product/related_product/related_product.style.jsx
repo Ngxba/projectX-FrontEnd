@@ -58,6 +58,16 @@ const relatedProductStyle = makeStyles(() => ({
     '-darkreaderInlineOutline': 'initial',
   },
 
+  card: {
+    outline: "none",
+    width: "228px",
+    border: '2px solid rgb(250, 250, 250)',
+    borderRadius: '3px',
+    minWidth: '215px',
+    marginRight: 20,
+    boxShadow: 'none',
+  },
+
 }));
 
 export default relatedProductStyle;

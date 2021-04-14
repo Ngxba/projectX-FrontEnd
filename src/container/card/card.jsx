@@ -18,7 +18,7 @@ const CustomCard = (props) =>
   return (
     <Link to={urlKey} style={{ textDecoration: "none" }}>
       {type === TYPES[0] ? (
-        <Card className={classes.root}>
+        <Card {...rest} className={classes.root}>
           <CardMedia
             className={classes.media}
             image={data.imageurl}

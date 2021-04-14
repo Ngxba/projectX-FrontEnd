@@ -5,7 +5,6 @@ const cardStyle = makeStyles({
     border: '#fafafa 2px solid',
     borderRadius: '3px',
     width: '100%',
-    // minWidth: 215,
     minWidth: (props) => (props.minWidth ? props.minWidth : "none"),
     marginRight: 20,
   },
