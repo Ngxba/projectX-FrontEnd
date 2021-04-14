@@ -2,11 +2,11 @@ import { makeStyles } from "@material-ui/styles";
 
 const customContainer = makeStyles({
   container: {
-    maxWidth: "1295px",
-    margin: "0 auto",
-    width: "94%",
+    // maxWidth: "1295px",
+    // margin: "0 auto",
     position: "relative",
     backgroundColor: "#000000",
+    padding: "20px 0",
   },
   content: {
     margin: "0 0 30px",

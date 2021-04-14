@@ -1,12 +1,13 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 import customAboutGrid from "./about.style";
-import CustomTypography from "../components/Typography/typography";
+import CustomTypography from "../../components/Typography/typography";
 
 function AboutGrid() {
   const classes = customAboutGrid();
   return (
-    <div>
+    <Container>
       <Grid container spacing={3} className={classes.container}>
         <Grid item md={4} xs={6} className={classes.grid}>
           <img
@@ -142,7 +143,7 @@ function AboutGrid() {
           </div>
         </Grid>
       </Grid>
-    </div>
+    </Container>
   );
 }
 export default AboutGrid;

@@ -11,6 +11,7 @@ const customAboutGrid = makeStyles({
     width: 'calc(50% - 25px)',
     // margin: '0 50px 60px 0',
     textAlign: 'center',
+    marginBottom: "40px",
   },
   image: {
     width: '90px',

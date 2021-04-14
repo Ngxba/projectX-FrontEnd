@@ -1,25 +1,22 @@
 import React from "react";
-import SimpleContainer from "./about/background";
-import AboutGrid from "./about/about";
-import StepMedia from "./about/image";
-import FAQs from "./about/faqs";
-import Instruction from "./about/instruction";
-import ShopCategories from "./about/shop";
+import SimpleContainer from "../template/about/background";
+import AboutGrid from "../template/about/about";
+import StepMedia from "../template/about/image";
+import FAQs from "../template/about/faqs";
+import Instruction from "../template/about/instruction";
+import ShopCategories from "../template/about/shop";
 
-function about() {
+function About() {
   return (
-    <React.Fragment key="main">
-      <ThemeProvider theme={CustomTheme}>
-        <CssBaseline />
-        <SimpleContainer />
-        <AboutGrid />
-        <StepMedia />
-        <Instruction />
-        <FAQs />
-        <ShopCategories />
-      </ThemeProvider>
+    <React.Fragment key='main'>
+      <SimpleContainer />
+      <AboutGrid />
+      <StepMedia />
+      <Instruction />
+      <FAQs />
+      <ShopCategories />
     </React.Fragment>
   );
 }
 
-export default about;
+export default About;

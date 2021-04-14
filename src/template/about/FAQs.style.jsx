@@ -20,13 +20,14 @@ const customFAQs = makeStyles({
     lineHeight: "1.125",
     color: "#fff",
   },
-  wrapper: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
+  // wrapper: {
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   flexWrap: "wrap",
+  // },
   question: {
-    margin: "0 25px 25px 0",
+    // margin: "0 25px 25px 0",
+    // marginTop: "25px",
     padding: "30px",
     // width: "calc(50% - 12.5px)",
     minHeight: "150px",
@@ -35,7 +36,7 @@ const customFAQs = makeStyles({
     border: "1px solid #fff",
     fontSize: "1.125rem",
     lineHeight: "1.555",
-    width: '31%',
+    // width: '31%',
   },
   icon: {
     bottom: '25px',

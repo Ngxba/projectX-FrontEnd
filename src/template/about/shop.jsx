@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import CustomTypography from "../components/Typography/typography";
+import CustomTypography from "../../components/Typography/typography";
 import customShopCategories from "./shop.style";
 
 function ShopCategories() {
