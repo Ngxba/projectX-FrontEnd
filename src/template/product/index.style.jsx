@@ -90,6 +90,13 @@ const productStyle = makeStyles((theme) => ({
     padding: '0 10px',
     margin: '0',
   },
+
+  center: {
+    margin: "auto",
+    width: "50%",
+    border: "3px solid green",
+    padding: "10px",
+  },
 }));
 
 export default productStyle;
