@@ -17,7 +17,6 @@ const Product = ({ match }) =>
   const { params } = match;
 
   const productState = useSelector((state) => state.productState);
-  // eslint-disable-next-line no-unused-vars
   const relatedProductsState = useSelector((state) => state.relatedProductsState);
 
   const dispatch = useDispatch();
@@ -89,7 +88,7 @@ const Product = ({ match }) =>
                 {
                   relatedProductsState.loading
                     ? <CircularProgress className={classes.center} size={40} />
-                    : <RelatedProduct relatedProductList={[]} />
+                    : <RelatedProduct relatedProductList={relatedProductsState.productsData} />
                 }
               </>
             )
