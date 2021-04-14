@@ -62,7 +62,6 @@ const FetchProductRequestFailure = (error) => ({
 export const FetchProduct = (urlKey) => {
   return async function (dispatch) {
     dispatch(FetchProductRequest());
-    console.log("1 sản phẩm");
     try {
       const res = await axios.get(`${backEndLink}/api/product/${urlKey}`);
       if (res.status === 200) {

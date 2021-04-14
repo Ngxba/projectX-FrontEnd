@@ -93,15 +93,17 @@ const Product = ({ match }) => {
   const classes = productStyle();
   const { params } = match;
   const productState = useSelector((state) => state.productState);
-  const [routes, setRoutes] = React.useState([]);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(FetchProduct(params.urlKey));
-    setRoutes(["home", ...productState.productData.tags.slice(0, productState.productData.tags.length - 5), productState.productData.productName]);
   }, []);
-
   // Generate data for breadcrumbs
+  const routes = [
+    "home",
+    ...productState.productData.tags.slice(0, productState.productData.tags.length - 5),
+    productState.productData.productName,
+  ];
 
   return (
     <div className={classes.page_container}>
