@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { AppBar, List } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import navbarStyles from './navbar.style';
-import CustomTypography from '../Typography/typography';
-import CustomInput from '../Input/Input';
+import React, { useEffect, useState } from "react";
+import { AppBar, List } from "@material-ui/core";
+import PropTypes from "prop-types";
+import navbarStyles from "./navbar.style";
+import CustomTypography from "../Typography/typography";
+import CustomInput from "../Input/Input";
 
-const navLinkHome = { title: 'Home', path: '/' };
+const navLinkHome = { title: "Home", path: "/" };
 
 const navLinks = [
-  { title: 'News', path: '/news' },
-  { title: 'About', path: '/about/how-it-works' },
-  { title: 'Help', path: '/faq' },
-  { title: 'Login', path: '/login' },
-  { title: 'Sign up', path: '/signup' },
+  { title: "News", path: "/news" },
+  { title: "About", path: "/about/how-it-works" },
+  { title: "Help", path: "/faq" },
+  { title: "Login", path: "/login" },
+  { title: "Sign up", path: "/signup" },
 ];
 
 const Navbar = (props) =>
@@ -41,7 +41,7 @@ const Navbar = (props) =>
 
   return (
     <AppBar
-      position="fixed"
+      position={isMainPage ? "fixed" : "sticky"}
       className={`${(scrolling || !isMainPage) && classes.visible} ${
         classes.navBg
       }`}
