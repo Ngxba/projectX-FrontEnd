@@ -1,15 +1,15 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import axios from "axios";
-import { backEndLink } from "../../config";
+import axios from 'axios';
+import { backEndLink } from '../../config';
 import {
-  FETCH_PRODUCTS_REQUEST,
-  FETCH_PRODUCTS_REQUEST_SUCCESS,
-  FETCH_PRODUCTS_REQUEST_FAILURE,
   FETCH_PRODUCT_REQUEST,
-  FETCH_PRODUCT_REQUEST_SUCCESS,
   FETCH_PRODUCT_REQUEST_FAILURE,
-} from "../types/productType";
+  FETCH_PRODUCT_REQUEST_SUCCESS,
+  FETCH_PRODUCTS_REQUEST,
+  FETCH_PRODUCTS_REQUEST_FAILURE,
+  FETCH_PRODUCTS_REQUEST_SUCCESS,
+} from '../types/productType';
 
 const FetchProductsRequest = () => ({
   type: FETCH_PRODUCTS_REQUEST,
@@ -31,7 +31,12 @@ export const FetchProducts = (offset = null, limit = null, params) =>
   {
     dispatch(FetchProductsRequest());
     const {
-      brandName, tag, tag2, tag3, tag4, tag5,
+      brandName,
+      tag,
+      tag2,
+      tag3,
+      tag4,
+      tag5,
     } = params;
     try
     {
