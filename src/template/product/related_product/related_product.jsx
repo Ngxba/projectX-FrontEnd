@@ -52,18 +52,25 @@ const RelatedProduct = ({ relatedProductList }) =>
         scrollButtons="auto"
         aria-label="scrollable auto tabs example"
       >
-        {relatedProductList.map((product, index) => (
-          <Tab
-            key={makeKey(5)}
-            component={() => (
-              <CustomCard
-                data={product}
-                classes={{ root: classes.card }}
-              />
-            )}
-            {...a11yProps(index)}
-          />
-        ))}
+        {relatedProductList.map((product, index) =>
+        {
+          // React.forwardRef to handle warning
+          const ProductCard = React.forwardRef((props, ref) => (
+            <CustomCard
+              data={product}
+              classes={{ root: classes.card }}
+              ref={ref}
+            />
+          ));
+
+          return (
+            <Tab
+              key={makeKey(5)}
+              component={ProductCard}
+              {...a11yProps(index)}
+            />
+          );
+        })}
       </Tabs>
 
       <br />

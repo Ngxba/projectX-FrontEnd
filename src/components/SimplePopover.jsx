@@ -24,8 +24,9 @@ const SimplePopover = ({ activateComponent: ActivateComponent, children }) =>
 
       {/* Wrapper fake button to handle onClick
       instead of passing by props from ActivateComponent */}
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
         style={{
           // Remove default button styles
           background: 'none',
@@ -38,9 +39,10 @@ const SimplePopover = ({ activateComponent: ActivateComponent, children }) =>
         }}
         aria-describedby={id}
         onClick={handleClick}
+        onKeyDown={handleClick}
       >
         <ActivateComponent />
-      </button>
+      </div>
 
       <Popover
         id={id}

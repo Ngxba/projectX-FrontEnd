@@ -49,7 +49,7 @@ const initialProductState = {
     productName: "",
     price: 0,
     imageurl: "",
-    tickerSumbol: "",
+    tickerSymbol: "",
     detail: [
       {
         _id: "",
@@ -58,7 +58,7 @@ const initialProductState = {
       },
     ],
     description: "",
-    sizeQuantity: [{ _id: "", size: 0, quantity: 0 }],
+    sizeQuantity: [{ _id: "", size: '', quantity: 0 }],
     dateUpdated: "",
   },
   error: "",
@@ -92,7 +92,7 @@ export const productReducer = (state = initialProductState, action) =>
           productName: "",
           price: 0,
           imageurl: "",
-          tickerSumbol: "",
+          tickerSymbol: "",
           detail: [
             {
               _id: "",
@@ -101,7 +101,7 @@ export const productReducer = (state = initialProductState, action) =>
             },
           ],
           description: "",
-          sizeQuantity: [{ _id: "", size: 0, quantity: 0 }],
+          sizeQuantity: [{ _id: "", size: '', quantity: 0 }],
           dateUpdated: "",
         },
       };
