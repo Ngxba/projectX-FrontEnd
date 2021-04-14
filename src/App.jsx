@@ -12,48 +12,49 @@ import Brand from "./template/brand/brand";
 import product from "./template/product";
 import NotFound from "./pages/404";
 
-function App() {
+function App()
+{
   // let location = useLocation();
   return (
-    <React.Fragment key='main'>
+    <React.Fragment key="main">
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <BrowserRouter>
           <Switch>
             <AppRoute
               exact
-              path='/'
+              path="/"
               isMainPage
               component={Home}
               layout={LayoutDefault}
             />
             <AppRoute
               exact
-              path='/about'
+              path="/about"
               component={About}
               layout={LayoutDefault}
             />
             <AppRoute
               exact
-              path='/login'
+              path="/login"
               component={LoginRegisterForm}
               layout={LayoutDefault}
             />
-            <AppRoute exact path='/404' component={NotFound} layout={LayoutDefault} />
+            <AppRoute exact path="/404" component={NotFound} layout={LayoutDefault} />
             <AppRoute
               exact
-              path='/:brandName/:tag?/:tag2?/:tag3?/:tag4?/:tag5?'
+              path="/:brandName/:tag?/:tag2?/:tag3?/:tag4?/:tag5?"
               component={Brand}
               layout={LayoutDefault}
             />
             <AppRoute
               exact
-              path='/product'
+              path="/product"
               component={product}
               layout={LayoutDefault}
               isMainPage={false}
             />
-            <Redirect from='*' to='/404' />
+            <Redirect from="*" to="/404" />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
