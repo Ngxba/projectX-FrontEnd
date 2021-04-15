@@ -35,14 +35,6 @@ const productStyle = makeStyles((theme) => ({
   page_container: {
     position: 'relative',
     minHeight: '100vh',
-
-    '@media (min-width: 768px)': {
-      paddingTop: '91px',
-    },
-
-    '@media (max-width: 767px)': {
-      paddingTop: '44px',
-    },
   },
 
   routes_breadcrumbs_container: {
