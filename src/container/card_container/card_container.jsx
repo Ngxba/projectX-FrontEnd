@@ -71,6 +71,7 @@ const CardContainer = (props) =>
           <CustomTypography
             txtStyle="text--link"
             //   txtType='text--medium'
+            href="/brand/sneakers"
             txtComponent="a"
             fontSize="14px"
             txtColor="textPrimary"

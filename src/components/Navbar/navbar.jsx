@@ -8,11 +8,11 @@ import CustomInput from "../Input/Input";
 const navLinkHome = { title: "Home", path: "/" };
 
 const navLinks = [
-  { title: "News", path: "/news" },
-  { title: "About", path: "/about/" },
-  { title: "Help", path: "/faq" },
+  { title: "About", path: "/about" },
+  { title: "Sneaker", path: "/brand/sneakers" },
+  { title: "404", path: "/404" },
   { title: "Login", path: "/login" },
-  { title: "Sign up", path: "/signup" },
+  // { title: "Sign up", path: "/signup" },
 ];
 
 const Navbar = (props) =>

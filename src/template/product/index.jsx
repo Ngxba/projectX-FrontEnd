@@ -24,7 +24,7 @@ const Product = ({ match }) =>
   useEffect(() =>
   {
     dispatch(FetchProduct(params.urlKey));
-  }, []);
+  }, [params.urlKey]);
 
   const { tags } = productState.productData;
 

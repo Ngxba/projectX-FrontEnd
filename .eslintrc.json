@@ -17,11 +17,9 @@
     "react"
   ],
   "rules": {
-    "brace-style": [
-      1,
-      "allman"
-    ],
+    "brace-style": "off",
     "quotes": "off",
+    "jsx-quotes": "off",
     "linebreak-style": "off",
     "react/jsx-props-no-spreading": "off"
   }

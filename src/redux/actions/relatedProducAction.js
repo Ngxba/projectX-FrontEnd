@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-/* eslint-disable func-names */
+/* eslint-disable */
 import axios from 'axios';
 import { backEndLink } from '../../config';
 import {
@@ -35,10 +35,13 @@ const FetchRelatedProducts = (offset = null, limit = null, data) =>
       tag4,
       tag5,
     } = data;
-
+    const tagQuery = [tag, tag2, tag3, tag4, tag5].reduce(
+      (pre, cur, index) => (cur != null ? (pre += (index != 0 ? `,${cur}` : `${cur}`)) : pre),
+      tag != null ? "&tags=" : "",
+    );
     try
     {
-      const res = await axios.get(`${backEndLink}/api/product/browse?offset=${offset}&limit=${limit}&productCategory=${category}&tags=${tag},${tag2},${tag3},${tag4},${tag5}`);
+      const res = await axios.get(`${backEndLink}/api/product/browse?offset=${offset}&limit=${limit}&productCategory=${category}${tagQuery}`);
       if (res.status === 200)
       {
         dispatch(FetchRelatedProductsRequestSuccess(res.data.result));
