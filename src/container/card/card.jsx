@@ -9,7 +9,8 @@ import cardStyle from "./card.style";
 
 const TYPES = ["product", "brand"];
 
-const CustomCard = (props) => {
+const CustomCard = (props) =>
+{
   const { data, type, ...rest } = props;
   const classes = cardStyle(rest);
   const urlKey = type === TYPES[0] ? `/product/${data.urlKey}` : `./${data.urlKey}`;
@@ -27,9 +28,9 @@ const CustomCard = (props) => {
           <CardContent className={classes.cardContent}>
             <CustomTypography
               // txtStyle="text--title"
-              txtType='text--light'
-              fontSize='15px'
-              txtComponent='h3'
+              txtType="text--light"
+              fontSize="15px"
+              txtComponent="h3"
               style={{
                 height: "38px",
                 overflow: "hidden",
@@ -40,28 +41,28 @@ const CustomCard = (props) => {
               {data.productName}
             </CustomTypography>
             <CustomTypography
-              color='rgba(0, 0, 0, 0.5);'
-              txtType='text--light'
-              txtColor='textSecondary'
-              fontSize='14px'
-              txtComponent='p'
+              color="rgba(0, 0, 0, 0.5);"
+              txtType="text--light"
+              txtColor="textSecondary"
+              fontSize="14px"
+              txtComponent="p"
             >
               Latest price
             </CustomTypography>
             <CustomTypography
-              txtStyle='text--category'
-              txtType='text--bold'
-              fontSize='22px'
-              txtComponent='h3'
+              txtStyle="text--category"
+              txtType="text--bold"
+              fontSize="22px"
+              txtComponent="h3"
             >
               {`${data.price}$`}
             </CustomTypography>
             <CustomTypography
-              color='rgba(0, 0, 0, 0.5);'
-              txtType='text--light'
-              txtColor='textSecondary'
-              fontSize='14px'
-              txtComponent='p'
+              color="rgba(0, 0, 0, 0.5);"
+              txtType="text--light"
+              txtColor="textSecondary"
+              fontSize="14px"
+              txtComponent="p"
             >
               {data.numberSold}
               {" Sold"}

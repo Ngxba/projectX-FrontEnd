@@ -36,14 +36,17 @@ const DataBrand = [
   },
 ];
 
-function Home() {
+function Home()
+{
   const homeState = useSelector((state) => state.homeState);
 
   const dispatch = useDispatch();
-  React.useEffect(() => {
+  React.useEffect(() =>
+  {
     if (homeState.homeData !== {}) dispatch(FetchProducts());
   }, []);
-  if (homeState.loading) {
+  if (homeState.loading)
+  {
     return (
       <div
         style={{
@@ -59,13 +62,13 @@ function Home() {
     );
   }
   return (
-    <React.Fragment key='main'>
+    <React.Fragment key="main">
       <ContentHeader />
       <TabCarousel />
-      <Container maxWidth='md'>
-        <CardContainer type='brand' title='Popular Brands' data={DataBrand} />
+      <Container maxWidth="md">
+        <CardContainer type="brand" title="Popular Brands" data={DataBrand} />
         <CardContainer
-          title='Most Popular'
+          title="Most Popular"
           data={homeState.homeData.mostPopular}
         />
         <CardContainer
@@ -73,16 +76,16 @@ function Home() {
           data={homeState.homeData.trending}
         />
         <div style={{ textAlign: "center", margin: "20px 0" }}>
-          <CustomButton backgroundColor='primary' buttonSize='btn--large'>
+          <CustomButton backgroundColor="primary" buttonSize="btn--large">
             Browse Thousands of Sneakers on our Live Marketplace
           </CustomButton>
         </div>
       </Container>
       <PosterHome />
       <Container>
-        <CardContainer title='Latest Buy' data={homeState.homeData.latestBuy} />
+        <CardContainer title="Latest Buy" data={homeState.homeData.latestBuy} />
         <CardContainer
-          title='Latest Product'
+          title="Latest Product"
           data={homeState.homeData.latestProduct}
         />
         <br />
