@@ -7,6 +7,7 @@ import userReducer from './reducers/userReducer';
 import { productsReducer, productReducer } from './reducers/productReducer';
 import homeReducer from './reducers/homeReducer';
 import relatedProductsReducer from './reducers/relatedProducReducer';
+import breadcrumbsReducer from './reducers/breadcrumbsReducer';
 
 const rootReducer = combineReducers({
   userState: userReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   productState: productReducer,
   relatedProductsState: relatedProductsReducer,
   homeState: homeReducer,
+  breadcrumbsState: breadcrumbsReducer,
 });
 
 const store = createStore(

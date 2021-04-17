@@ -73,6 +73,16 @@ const Product = ({ match }) =>
     },
   );
 
+  useEffect(() =>
+  {
+    dispatch(
+      {
+        type: 'UPDATE_BREADCRUMBS_DATA',
+        payload: { linkRoutes },
+      },
+    );
+  }, []);
+
   // Render Circular Progress while fetching data
   if (productState.loading)
   {
