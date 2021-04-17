@@ -13,12 +13,16 @@ import Brand from "./template/brand/brand";
 import product from "./template/product";
 import NotFound from "./pages/404";
 import { getIdentity } from './redux/actions/userActions';
+import ScrollToTop from './components/ScrollTop/scroll_top';
 
 function App()
 {
   // let location = useLocation();
   const dispatch = useDispatch();
-  if (localStorage.getItem('token')) {
+  // eslint-disable-next-line no-undef
+  if (localStorage.getItem('token'))
+  {
+    // eslint-disable-next-line no-undef
     dispatch(getIdentity(localStorage.getItem('token')));
   }
   return (
@@ -26,6 +30,10 @@ function App()
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <BrowserRouter>
+
+          {/* To scroll to top when route to other site */}
+          <ScrollToTop />
+
           <Switch>
             <AppRoute
               exact
