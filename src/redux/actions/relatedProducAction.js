@@ -5,21 +5,21 @@ import { backEndLink } from '../../config';
 import {
   FETCH_RELATED_PRODUCTS_REQUEST,
   FETCH_RELATED_PRODUCTS_REQUEST_FAILURE,
-  FETCH_RELATED_PRODUCTS_REQUEST_SUCCESS,
+  FETCH_RELATED_PRODUCTS_REQUEST_SUCCESS
 } from '../types/productType';
 
 const FetchRelatedProductsRequest = () => ({
-  type: FETCH_RELATED_PRODUCTS_REQUEST,
+  type: FETCH_RELATED_PRODUCTS_REQUEST
 });
 
 const FetchRelatedProductsRequestSuccess = (products) => ({
   type: FETCH_RELATED_PRODUCTS_REQUEST_SUCCESS,
-  payload: products,
+  payload: products
 });
 
 const FetchRelatedProductsRequestFailure = (error) => ({
   type: FETCH_RELATED_PRODUCTS_REQUEST_FAILURE,
-  payload: error,
+  payload: error
 });
 
 const FetchRelatedProducts = (offset = null, limit = null, data) =>
@@ -33,11 +33,11 @@ const FetchRelatedProducts = (offset = null, limit = null, data) =>
       tag2,
       tag3,
       tag4,
-      tag5,
+      tag5
     } = data;
     const tagQuery = [tag, tag2, tag3, tag4, tag5].reduce(
       (pre, cur, index) => (cur != null ? (pre += (index != 0 ? `,${cur}` : `${cur}`)) : pre),
-      tag != null ? "&tags=" : "",
+      tag != null ? '&tags=' : ''
     );
     try
     {

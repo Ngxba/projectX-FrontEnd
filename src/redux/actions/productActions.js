@@ -38,17 +38,21 @@ export const FetchProducts = (offset = null, limit = null, params) =>
       tag4,
       tag5
     } = params;
+
     const tagQuery = [tag, tag2, tag3, tag4, tag5].reduce(
       (pre, cur, index) => (cur != null ? (pre += (index != 0 ? `,${cur}` : `${cur}`)) : pre),
       tag != null ? '&tags=' : ''
     );
+
     try
     {
       const res = await axios.get(`${backEndLink}/api/product/browse?offset=${offset}&limit=${limit}&productCategory=${category}${tagQuery}`);
+
       if (res.status === 200)
       {
         dispatch(FetchProductsRequestSuccess(res.data.result));
         let listBrand = [];
+
         for (let i = 0; i < res.data.result.length; i++)
         {
           if (!listBrand.includes(res.data.result[i].brand))
