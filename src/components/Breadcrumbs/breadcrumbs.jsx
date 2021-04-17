@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import CustomTypography from '../Typography/typography';
 import { makeKey } from '../../utils/supportFunction';
 
-function SimpleBreadcrumbs(props)
+function SimpleBreadcrumbs({ data })
 {
-  const { data } = props;
   return (
     <Breadcrumbs aria-label="breadcrumb">
       {data.map((item, i) =>
@@ -19,20 +18,32 @@ function SimpleBreadcrumbs(props)
               fontSize="12px"
               txtType="text--light"
               key={makeKey()}
-              style={{ textTransform: 'uppercase' }}
+              href={item.href}
+              style={
+                {
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                }
+              }
             >
-              {item}
+              {item.text}
             </CustomTypography>
           );
         }
         return (
           <CustomTypography
-            style={{ textTransform: 'uppercase' }}
+            style={
+              {
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+              }
+            }
             key={makeKey()}
             fontSize="12px"
             txtType="text--light"
+            href={item.href}
           >
-            {item}
+            {item.text}
           </CustomTypography>
         );
       })}
