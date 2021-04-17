@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import productStyle from './index.style';
 import ProductHeader from './product_header/product_header';
 import ProductMedia from './product_media/product_media';
@@ -41,11 +42,34 @@ const Product = ({ match }) =>
   }, [tags]);
 
   // Generate data for breadcrumbs
-  const routes = [
-    'home',
+  const textRoutes = [
     ...tags.slice(0, tags.length - 5),
-    productState.productData.productName,
   ];
+
+  const linkRoutes = textRoutes.map((textRoute, index) =>
+  {
+    let href = '';
+    for (let i = 0; i < index; i += 1)
+    {
+      href += `/${textRoute[i]}`;
+    }
+
+    return <Link to={href} />;
+  });
+
+  linkRoutes.unshift(<Link to="/home" />);
+
+  linkRoutes.push(productState.productData.productName);
+
+  // Render Circular Progress while fetching data
+  if (productState.loading)
+  {
+    return (
+      <div className={classes.center}>
+        <CircularProgress size={80} />
+      </div>
+    );
+  }
 
   return (
     <div className={classes.page_container}>
@@ -58,41 +82,34 @@ const Product = ({ match }) =>
         }}
       >
 
+        {/* Product Header: Pick size, price */}
+        <ProductHeader
+          routes={linkRoutes}
+          productName={productState.productData.productName}
+          ticker={productState.productData.tickerSymbol}
+          sizeQuantity={productState.productData.sizeQuantity}
+          price={productState.productData.price}
+        />
+
+        {/* Product media */}
+        <ProductMedia
+          imageURL={productState.productData.imageurl}
+          productName={productState.productData.productName}
+        />
+
+        {/* Product info */}
+        <ProductInfo
+          detail={productState.productData.detail}
+          description={productState.productData.description}
+        />
+
+        {/* Related products */}
         {
-          productState.loading
-            ? <CircularProgress className={classes.center} size={80} />
-            : (
-              <>
-                {/* Product Header: Pick size, price */}
-                <ProductHeader
-                  routes={routes}
-                  productName={productState.productData.productName}
-                  ticker={productState.productData.tickerSymbol}
-                  sizeQuantity={productState.productData.sizeQuantity}
-                  price={productState.productData.price}
-                />
-
-                {/* Product media */}
-                <ProductMedia
-                  imageURL={productState.productData.imageurl}
-                  productName={productState.productData.productName}
-                />
-
-                {/* Product info */}
-                <ProductInfo
-                  detail={productState.productData.detail}
-                  description={productState.productData.description}
-                />
-
-                {/* Related products */}
-                {
-                  relatedProductsState.loading
-                    ? <CircularProgress className={classes.center} size={40} />
-                    : <RelatedProduct relatedProductList={relatedProductsState.productsData} />
-                }
-              </>
-            )
+          relatedProductsState.loading
+            ? <CircularProgress className={classes.center} size={40} />
+            : <RelatedProduct relatedProductList={relatedProductsState.productsData} />
         }
+        )
 
       </Container>
     </div>
