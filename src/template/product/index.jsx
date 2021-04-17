@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import productStyle from './index.style';
 import ProductHeader from './product_header/product_header';
 import ProductMedia from './product_media/product_media';
@@ -46,20 +45,33 @@ const Product = ({ match }) =>
     ...tags.slice(0, tags.length - 5),
   ];
 
-  const linkRoutes = textRoutes.map((textRoute, index) =>
+  const linkRoutes = textRoutes.map((text, index) =>
   {
-    let href = '';
-    for (let i = 0; i < index; i += 1)
+    let href = '/brand';
+    for (let i = 0; i <= index; i += 1)
     {
-      href += `/${textRoute[i]}`;
+      href += `/${textRoutes[i]}`;
     }
 
-    return <Link to={href} />;
+    return {
+      href,
+      text,
+    };
   });
 
-  linkRoutes.unshift(<Link to="/home" />);
+  // Add home to first
+  linkRoutes.unshift({
+    href: '/',
+    text: 'home',
+  });
 
-  linkRoutes.push(productState.productData.productName);
+  // Add product name to last
+  linkRoutes.push(
+    {
+      href: `/product/${params.urlKey}`,
+      text: productState.productData.productName,
+    },
+  );
 
   // Render Circular Progress while fetching data
   if (productState.loading)
