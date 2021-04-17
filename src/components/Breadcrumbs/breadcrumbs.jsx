@@ -11,7 +11,6 @@ function SimpleBreadcrumbs(props)
     <Breadcrumbs aria-label="breadcrumb">
       {data.map((item, i) =>
       {
-        const dataItem = item.toUpperCase();
         if (i !== data.length - 1)
         {
           return (
@@ -20,14 +19,20 @@ function SimpleBreadcrumbs(props)
               fontSize="12px"
               txtType="text--light"
               key={makeKey()}
+              style={{ textTransform: 'uppercase' }}
             >
-              {dataItem}
+              {item}
             </CustomTypography>
           );
         }
         return (
-          <CustomTypography key={makeKey()} fontSize="12px" txtType="text--light">
-            {dataItem}
+          <CustomTypography
+            style={{ textTransform: 'uppercase' }}
+            key={makeKey()}
+            fontSize="12px"
+            txtType="text--light"
+          >
+            {item}
           </CustomTypography>
         );
       })}
