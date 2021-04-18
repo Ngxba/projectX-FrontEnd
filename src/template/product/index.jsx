@@ -59,12 +59,6 @@ const Product = ({ match }) =>
     };
   });
 
-  // Add home to first
-  linkRoutes.unshift({
-    href: '/',
-    text: 'home',
-  });
-
   // Add product name to last
   linkRoutes.push(
     {
@@ -72,16 +66,6 @@ const Product = ({ match }) =>
       text: productState.productData.productName,
     },
   );
-
-  useEffect(() =>
-  {
-    dispatch(
-      {
-        type: 'UPDATE_BREADCRUMBS_DATA',
-        payload: { linkRoutes },
-      },
-    );
-  }, []);
 
   // Render Circular Progress while fetching data
   if (productState.loading)
