@@ -60,7 +60,6 @@ export const FetchProducts = (offset = null, limit = null, params) =>
             listBrand.push(res.data.result[i].brand);
           }
         }
-        console.log(listBrand);
       }
       else
       {
