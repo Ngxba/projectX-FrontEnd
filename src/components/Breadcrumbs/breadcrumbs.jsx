@@ -6,11 +6,19 @@ import { makeKey } from '../../utils/supportFunction';
 
 function SimpleBreadcrumbs({ data })
 {
+  const routeData = data;
+
+  // Add home to first
+  routeData.unshift({
+    href: '/',
+    text: 'home',
+  });
+
   return (
     <Breadcrumbs aria-label="breadcrumb">
       {data.map((item, i) =>
       {
-        if (i !== data.length - 1)
+        if (i !== routeData.length - 1)
         {
           return (
             <CustomTypography
@@ -52,7 +60,10 @@ function SimpleBreadcrumbs({ data })
 }
 
 SimpleBreadcrumbs.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.string).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({
+    href: PropTypes.string,
+    text: PropTypes.string,
+  })).isRequired,
 };
 
 export default SimpleBreadcrumbs;
