@@ -1,29 +1,50 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-restricted-syntax */
-import React, { useEffect } from "react";
-import Container from "@material-ui/core/Container";
+import React, { useEffect } from 'react';
+import Container from '@material-ui/core/Container';
 import {
-  FormControl, Select, MenuItem, Grid,
-} from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
+  FormControl, Grid, MenuItem, Select,
+} from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 // import { PropTypes } from 'prop-types';
-import CustomTypography from "../../components/Typography/typography";
-import CardContainer from "../../container/card_container/card_container";
-import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
-import brandStyle from "./brand.style";
-import { FetchProducts } from "../../redux/actions/productActions";
+import CustomTypography from '../../components/Typography/typography';
+import CardContainer from '../../container/card_container/card_container';
+import Breadcrumb from '../../components/Breadcrumbs/breadcrumbs';
+import brandStyle from './brand.style';
+import { FetchProducts } from '../../redux/actions/productActions';
 
 const Brand = ({ match }) =>
 {
   const { params } = match;
-  let title = "";
-  for (const key of Object.keys(params))
+  const textRoutes = Object.values(params);
+
+  let title = '';
+
+  const linkRoutes = textRoutes.reduce((results, text, index) =>
   {
-    if (params[key] !== undefined) title += `${params[key]} `;
-  }
+    if (text !== undefined)
+    {
+      // Generate brand page title
+      title += `${text} `;
+
+      // Generate brand page breadcrumbs data
+      let href = '/brand';
+      for (let i = 0; i <= index; i += 1)
+      {
+        href += `/${textRoutes[i]}`;
+      }
+
+      results.push({
+        href,
+        text,
+      });
+    }
+    return results;
+  }, []);
+
   const classes = brandStyle();
   const [age, setAge] = React.useState(10);
-  const [titleBrand, setTitleBrand] = React.useState("");
+  const [titleBrand, setTitleBrand] = React.useState('');
 
   const productsState = useSelector((state) => state.productsState);
 
@@ -37,10 +58,8 @@ const Brand = ({ match }) =>
   useEffect(() =>
   {
     dispatch(FetchProducts(0, 40, params));
-    // console.log(productsState.productsData); // DATA ĐÂY NHÉ
-    // params = params.join(', ');
     setTitleBrand(title);
-  }, []);
+  }, [params]);
 
   return (
     <Container maxWidth="md">
@@ -48,14 +67,14 @@ const Brand = ({ match }) =>
         <CustomTypography
           component="h2"
           txtStyle="text--heading"
-          style={{ textTransform: "capitalize" }}
+          style={{ textTransform: 'capitalize' }}
         >
           {titleBrand}
         </CustomTypography>
         <CustomTypography
           component="p"
           txtType="text--light"
-          style={{ maxWidth: "450px" }}
+          style={{ maxWidth: '450px' }}
         >
           {`Buy and sell tees, hoodies, accessories and more from streetwear
           juggernaught ${titleBrand} on ProjectX here!`}
@@ -68,7 +87,7 @@ const Brand = ({ match }) =>
         <Grid className={classes.rightSide} item xs={10}>
           <Grid item xs={12} className={classes.sort}>
             <Grid item xs={6}>
-              <Breadcrumb data={["home", "streetwear", "jordan"]} />
+              <Breadcrumb data={linkRoutes} />
             </Grid>
             <Grid item xs={6} className={classes.formControl}>
               <FormControl>
