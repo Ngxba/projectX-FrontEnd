@@ -14,8 +14,7 @@ import product from "./template/product";
 import NotFound from "./pages/404";
 import { getIdentity } from './redux/actions/userActions';
 
-function App()
-{
+function App() {
   // let location = useLocation();
   const dispatch = useDispatch();
   if (localStorage.getItem('token')) {

@@ -12,6 +12,7 @@ import CardContainer from "../../container/card_container/card_container";
 import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
 import brandStyle from "./brand.style";
 import { FetchProducts } from "../../redux/actions/productActions";
+import CustomListItems from "../../pages/products/list-items";
 
 const Brand = ({ match }) =>
 {
@@ -64,6 +65,7 @@ const Brand = ({ match }) =>
       <Grid className={classes.gridContainer} container spacing={2}>
         <Grid className={classes.leftSide} item xs={2}>
           <div>Other Brands</div>
+          <CustomListItems />
         </Grid>
         <Grid className={classes.rightSide} item xs={10}>
           <Grid item xs={12} className={classes.sort}>
