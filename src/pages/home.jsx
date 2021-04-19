@@ -1,13 +1,14 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ContentHeader from "../container/content_header/content_header";
 import CardContainer from "../container/card_container/card_container";
 import CustomButton from "../components/Buttons/button";
 import TabCarousel from "../container/tab_carousel/tab_carousel";
 import { FetchProducts } from "../redux/actions/homeAction";
-import PosterHome from "../container/posterHome/posterHome";
+import About from "../template/about/about"
 
 const DataBrand = [
   {
@@ -76,12 +77,15 @@ function Home()
           data={homeState.homeData.trending}
         />
         <div style={{ textAlign: "center", margin: "20px 0" }}>
+        <Link to="/brand/sneakers" style={{ textDecoration: "none" }}>
           <CustomButton backgroundColor="primary" buttonSize="btn--large">
             Browse Thousands of Sneakers on our Live Marketplace
           </CustomButton>
+          </Link>
         </div>
       </Container>
-      <PosterHome />
+      {/* <PosterHome /> */}
+      <About />
       <Container>
         <CardContainer title="Latest Buy" data={homeState.homeData.latestBuy} />
         <CardContainer

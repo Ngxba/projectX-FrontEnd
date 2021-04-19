@@ -50,7 +50,7 @@ function SimpleBreadcrumbs({ data })
             key={makeKey()}
             fontSize="12px"
             txtType="text--light"
-            href={item.href}
+            // href={item.href}
           >
             {item.text}
           </CustomTypography>
