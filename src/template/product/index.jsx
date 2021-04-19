@@ -76,7 +76,6 @@ const Product = ({ match }) =>
       </div>
     );
   }
-
   return (
     <div className={classes.page_container}>
       {/* Shadow below navbar */}

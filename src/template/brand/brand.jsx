@@ -6,6 +6,7 @@ import {
   FormControl, Grid, MenuItem, Select,
 } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+import CircularProgress from "@material-ui/core/CircularProgress";
 // import { PropTypes } from 'prop-types';
 import CustomTypography from '../../components/Typography/typography';
 import CardContainer from '../../container/card_container/card_container';
@@ -61,6 +62,22 @@ const Brand = ({ match }) =>
     setTitleBrand(title);
   }, [params]);
 
+  if (productsState.loading)
+  {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress size={80} />
+      </div>
+    );
+  }
   return (
     <Container maxWidth="md">
       <Grid className={classes.root} container>
