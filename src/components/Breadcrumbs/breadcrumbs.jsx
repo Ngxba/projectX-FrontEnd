@@ -21,6 +21,7 @@ function SimpleBreadcrumbs({ data })
         if (i !== routeData.length - 1)
         {
           return (
+            // TODO add replace=true to Link to prevent multiple click on same link
             <CustomTypography
               color="#666"
               fontSize="12px"
