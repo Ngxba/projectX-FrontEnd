@@ -10,7 +10,8 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import LoginRegisterForm from "./container/authen/login_register_form";
 import Brand from "./template/brand/brand";
-import product from "./template/product";
+import Product from "./template/product";
+import Account from "./template/account";
 import NotFound from "./pages/404";
 import { getIdentity } from './redux/actions/userActions';
 
@@ -18,10 +19,12 @@ function App()
 {
   // let location = useLocation();
   const dispatch = useDispatch();
+
   if (localStorage.getItem('token'))
   {
     dispatch(getIdentity(localStorage.getItem('token')));
   }
+
   return (
     <React.Fragment key="main">
       <ThemeProvider theme={CustomTheme}>
@@ -43,6 +46,12 @@ function App()
             />
             <AppRoute
               exact
+              path="/account"
+              component={Account}
+              layout={LayoutDefault}
+            />
+            <AppRoute
+              exact
               path="/login"
               component={LoginRegisterForm}
               layout={LayoutDefault}
@@ -51,7 +60,7 @@ function App()
             <AppRoute
               exact
               path="/product/:urlKey"
-              component={product}
+              component={Product}
               layout={LayoutDefault}
               isMainPage={false}
             />
