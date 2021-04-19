@@ -7,21 +7,14 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Checkbox from "@material-ui/core/Checkbox";
-import PropTypes from 'prop-types';
+import PropTypes, { string } from "prop-types";
 import CustomTypography from "../../components/Typography/typography";
 import productsListStyle from "./products.style";
+import { makeKey } from "../../utils/supportFunction";
 
-const BigPrimary = [
-  'Adidas',
-  'Nike',
-  'Air Jordan',
-];
+const BigPrimary = ["Adidas", "Nike", "Air Jordan"];
 
-const SmallPrimary = [
-  'Yeezy',
-  'Air Max',
-  '1',
-];
+const SmallPrimary = ["Yeezy", "Air Max", "1"];
 
 const CustomListItems = (props) => {
   const { bigPrimary, smallPrimary, ...rest } = props;
@@ -48,20 +41,29 @@ const CustomListItems = (props) => {
       </ListItem>
       <Collapse in={!open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary={smallPrimary} />
-          </ListItem>
-          <List button className={classes.nested} onClick={handleSmallClick}>
-            <CustomTypography className={classes.show_more} txtComponent="p">
-              Show More
-            </CustomTypography>
+          {smallPrimary.slice(0, 4).map((item) => (
+            <ListItem button key={makeKey(10)} className={classes.nested}>
+              <ListItemIcon>
+                <Checkbox edge="start" disableRipple />
+              </ListItemIcon>
+              <ListItemText primary={item} />
+            </ListItem>
+          ))}
+          <List className={classes.nested}>
+            {smallPrimary.slice(5).length > 0 && (
+              <CustomTypography className={classes.show_more} txtComponent="p" onClick={handleSmallClick}>
+                Show More
+              </CustomTypography>
+            )}
             <Collapse in={!smallopen} timeout="auto" unmountOnExit>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <Checkbox edge="start" disableRipple />
-                </ListItemIcon>
-                <ListItemText primary={smallPrimary} />
-              </ListItem>
+              {smallPrimary.slice(4).map((item) => (
+                <ListItem button key={makeKey(10)} className={classes.nested}>
+                  <ListItemIcon>
+                    <Checkbox edge="start" disableRipple />
+                  </ListItemIcon>
+                  <ListItemText primary={item} />
+                </ListItem>
+              ))}
             </Collapse>
           </List>
         </List>
@@ -71,16 +73,15 @@ const CustomListItems = (props) => {
 };
 
 CustomListItems.propTypes = {
-  children: PropTypes.node.isRequired,
-  smallPrimary: PropTypes.oneOf(SmallPrimary),
-  bigPrimary: PropTypes.oneOf(BigPrimary),
+  smallPrimary: PropTypes.arrayOf(string),
+  bigPrimary: PropTypes.string,
   className: PropTypes.string,
 };
 
 CustomListItems.defaultProps = {
   smallPrimary: SmallPrimary[0],
   bigPrimary: BigPrimary[0],
-  className: '',
+  className: "",
 };
 
 export default CustomListItems;

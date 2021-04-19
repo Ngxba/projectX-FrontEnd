@@ -1,48 +1,112 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-restricted-syntax */
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import {
-  FormControl, Select, MenuItem, Grid,
-} from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
+import { FormControl, Grid, MenuItem, Select } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
 // import { PropTypes } from 'prop-types';
 import CustomTypography from "../../components/Typography/typography";
 import CardContainer from "../../container/card_container/card_container";
 import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
 import brandStyle from "./brand.style";
-import { FetchProducts } from "../../redux/actions/productActions";
+import {
+  FetchProducts,
+  // changeProductData,
+} from "../../redux/actions/productActions";
 import CustomListItems from "../../pages/products/list-items";
+import { makeKey } from "../../utils/supportFunction";
 
-const Brand = ({ match }) =>
-{
+const fakeQueries = {
+  Adidas: ["Yeezy", "v1", "v2", "350"],
+  Nike: [
+    "air force",
+    "Air Max",
+    "one",
+    "nike basketball",
+    "Yeezy",
+    "dunk",
+    "running",
+  ],
+  "Air Jordan": [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ],
+};
+
+const Brand = ({ match }) => {
   const { params } = match;
+  const textRoutes = Object.values(params);
   let title = "";
-  for (const key of Object.keys(params))
-  {
-    if (params[key] !== undefined) title += `${params[key]} `;
-  }
+  const linkRoutes = textRoutes.reduce((results, text, index) => {
+    if (text !== undefined) {
+      // Generate brand page title
+      title += `${text} `;
+      // Generate brand page breadcrumbs data
+      let href = "/brand";
+      for (let i = 0; i <= index; i += 1) {
+        href += `/${textRoutes[i]}`;
+      }
+      results.push({
+        href,
+        text,
+      });
+    }
+    return results;
+  }, []);
   const classes = brandStyle();
   const [age, setAge] = React.useState(10);
   const [titleBrand, setTitleBrand] = React.useState("");
-
+  const [query, setQuery] = useState({});
   const productsState = useSelector((state) => state.productsState);
-
+  console.log(query);
   const dispatch = useDispatch();
 
-  const handleChange = (event) =>
-  {
+  const handleChange = (event) => {
     setAge(event.target.value);
   };
 
-  useEffect(() =>
-  {
+  useEffect(() => {
+    setQuery(
+      Object.keys(params).reduce((result, cur, index) => {
+        if (index === 0) {
+          return Object.assign(result, { productCategory: params[cur] });
+        }
+        if (params[cur] !== undefined) {
+          return Object.assign(result, {
+            tags: result.tags !== undefined ? [...result.tags, params[cur]] : [params[cur]],
+          });
+        }
+        return result;
+      },
+      {}),
+    );
     dispatch(FetchProducts(0, 40, params));
-    // console.log(productsState.productsData); // DATA ĐÂY NHÉ
-    // params = params.join(', ');
     setTitleBrand(title);
-  }, []);
+  }, [params]);
 
+  if (productsState.loading) {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress size={80} />
+      </div>
+    );
+  }
   return (
     <Container maxWidth="md">
       <Grid className={classes.root} container>
@@ -64,13 +128,18 @@ const Brand = ({ match }) =>
       </Grid>
       <Grid className={classes.gridContainer} container spacing={2}>
         <Grid className={classes.leftSide} item xs={2}>
-          <div>Other Brands</div>
-          <CustomListItems />
+          {Object.keys(fakeQueries).map((item) => (
+            <CustomListItems
+              key={makeKey(6)}
+              bigPrimary={item}
+              smallPrimary={fakeQueries[item]}
+            />
+          ))}
         </Grid>
         <Grid className={classes.rightSide} item xs={10}>
           <Grid item xs={12} className={classes.sort}>
             <Grid item xs={6}>
-              <Breadcrumb data={["home", "streetwear", "jordan"]} />
+              <Breadcrumb data={linkRoutes} />
             </Grid>
             <Grid item xs={6} className={classes.formControl}>
               <FormControl>
