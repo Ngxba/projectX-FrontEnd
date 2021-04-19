@@ -18,7 +18,8 @@ function App()
 {
   // let location = useLocation();
   const dispatch = useDispatch();
-  if (localStorage.getItem('token')) {
+  if (localStorage.getItem('token'))
+  {
     dispatch(getIdentity(localStorage.getItem('token')));
   }
   return (
