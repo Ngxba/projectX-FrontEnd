@@ -33,6 +33,7 @@ export const FetchProducts = () =>
       const resTrending = await axios.get(`${backEndLink}/api/product/browse?limit=4&sort=trending`);
       const latestBuy = await axios.get(`${backEndLink}/api/product/browse?limit=4&tags=yeezy`);
       const latestProduct = await axios.get(`${backEndLink}/api/product/browse?limit=4&tags=jordan`);
+
       if (resMostPopular.status === 200 && resTrending.status === 200)
       {
         const respondData = {

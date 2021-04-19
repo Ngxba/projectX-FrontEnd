@@ -23,66 +23,91 @@ const UserRequestFailure = (error) => ({
   payload: error,
 });
 
-export const SignIn = (loginData) => {
-  return async function (dispatch) {
+export const SignIn = (loginData) =>
+{
+  return async function (dispatch)
+  {
     const { email, password } = loginData;
     dispatch(UserRequest(true));
-    try {
+    try
+    {
       const res = await axios.post(`${backEndLink}/api/auth/login`, {
         email,
         password,
       });
-      if (res.status === 200) {
+      if (res.status === 200)
+      {
         dispatch(UserRequestSuccess(res.data));
+        // eslint-disable-next-line no-undef
         localStorage.setItem("token", res.data.token);
-      } else {
+      }
+      else
+      {
         //   throw new Error("Cannot Sign In", res.data.error);
         dispatch(UserRequestFailure(res.data.error));
       }
-    } catch (error) {
+    }
+    catch (error)
+    {
       dispatch(UserRequestFailure(error));
     }
   };
 };
 
-export const Register = (registerData) => {
-  return async function (dispatch) {
+export const Register = (registerData) =>
+{
+  return async function (dispatch)
+  {
     const { name, email, password } = registerData;
     dispatch(UserRequest(false));
-    try {
+    try
+    {
       const res = await axios.post(`${backEndLink}/api/auth/register`, {
         name,
         email,
         password,
       });
-      if (res.status === 200) {
+      if (res.status === 200)
+      {
         dispatch(UserRequestSuccess(res.data));
-      } else {
+      }
+      else
+      {
         // throw new Error("Cannot Sign up", res);
         dispatch(UserRequestFailure(res.data.error));
       }
-    } catch (error) {
+    }
+    catch (error)
+    {
       dispatch(UserRequestFailure(error));
     }
   };
 };
 
-export const getIdentity = (token) => {
-  return async function (dispatch) {
+export const getIdentity = (token) =>
+{
+  return async function (dispatch)
+  {
     dispatch(UserRequest(false));
-    try {
+    try
+    {
       const res = await axios.get(`${backEndLink}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      if (res.status === 200) {
+      if (res.status === 200)
+      {
         dispatch(UserRequestSuccess(res.data));
-      } else {
+      }
+      else
+      {
         // throw new Error("Cannot Sign up", res);
         dispatch(UserRequestFailure(res.data.error));
       }
-    } catch (error) {
+    }
+    catch (error)
+    {
       dispatch(UserRequestFailure(error));
     }
   };

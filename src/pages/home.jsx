@@ -1,19 +1,20 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ContentHeader from "../container/content_header/content_header";
 import CardContainer from "../container/card_container/card_container";
 import CustomButton from "../components/Buttons/button";
 import TabCarousel from "../container/tab_carousel/tab_carousel";
 import { FetchProducts } from "../redux/actions/homeAction";
-import PosterHome from "../container/posterHome/posterHome";
+import About from "../template/about/about";
 
 const DataBrand = [
   {
     productName: "JORDAN",
     imageurl:
-      "https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-jordan.png?auto=compress,format",
+      "https://sstockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-jordan.png?auto=compress,format",
     imgBrandSrc:
       "https://stockx-assets.imgix.net/png/brand-tiles/img-jordan.png?auto=compress,format",
     urlKey: "brand/sneakers/jordan",
@@ -59,13 +60,13 @@ function Home() {
     );
   }
   return (
-    <React.Fragment key='main'>
+    <React.Fragment key="main">
       <ContentHeader />
       <TabCarousel />
-      <Container maxWidth='md'>
-        <CardContainer type='brand' title='Popular Brands' data={DataBrand} />
+      <Container maxWidth="md">
+        <CardContainer type="brand" title="Popular Brands" data={DataBrand} />
         <CardContainer
-          title='Most Popular'
+          title="Most Popular"
           data={homeState.homeData.mostPopular}
         />
         <CardContainer
@@ -73,16 +74,19 @@ function Home() {
           data={homeState.homeData.trending}
         />
         <div style={{ textAlign: "center", margin: "20px 0" }}>
-          <CustomButton backgroundColor='primary' buttonSize='btn--large'>
-            Browse Thousands of Sneakers on our Live Marketplace
-          </CustomButton>
+          <Link to="/brand/sneakers" style={{ textDecoration: "none" }}>
+            <CustomButton backgroundColor="primary" buttonSize="btn--large">
+              Browse Thousands of Sneakers on our Live Marketplace
+            </CustomButton>
+          </Link>
         </div>
       </Container>
-      <PosterHome />
+      {/* <PosterHome /> */}
+      <About />
       <Container>
-        <CardContainer title='Latest Buy' data={homeState.homeData.latestBuy} />
+        <CardContainer title="Latest Buy" data={homeState.homeData.latestBuy} />
         <CardContainer
-          title='Latest Product'
+          title="Latest Product"
           data={homeState.homeData.latestProduct}
         />
         <br />

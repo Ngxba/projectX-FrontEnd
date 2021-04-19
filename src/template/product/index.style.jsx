@@ -84,10 +84,11 @@ const productStyle = makeStyles((theme) => ({
   },
 
   center: {
-    margin: "auto",
-    width: "50%",
-    border: "3px solid green",
-    padding: "10px",
+    width: "100vw",
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
