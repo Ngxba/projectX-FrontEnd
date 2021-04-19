@@ -86,7 +86,7 @@ const SizeChart = ({
     <>
       <div className={classes.size_chart_header}>
 
-        {/* TODO Back button */}
+        {/* Back button */}
         <CustomTypography
           onClick={backButtonOnClick}
           txtType="text--bold"
@@ -104,7 +104,7 @@ const SizeChart = ({
           &lt; Back
         </CustomTypography>
 
-        {/* TODO Header */}
+        {/* Header */}
         <CustomTypography
           txtType="text--bold"
           style={
@@ -120,7 +120,7 @@ const SizeChart = ({
 
       </div>
 
-      {/* TODO  Size chart table */}
+      {/* Size chart table */}
       <TableContainer style={{
         height: '346px',
         width: '343px',

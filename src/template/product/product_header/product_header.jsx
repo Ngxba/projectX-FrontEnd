@@ -55,9 +55,6 @@ const ProductHeader = ({
       <div className={classes.routes_breadcrumbs_container}>
         {/* Product route */}
         <RouteBreadcrumbs data={routes} />
-
-        {/* TODO Social buttons */}
-
       </div>
 
       {/*  Product name */}
