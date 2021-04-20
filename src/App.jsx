@@ -20,9 +20,11 @@ function App()
   // let location = useLocation();
   const dispatch = useDispatch();
 
-  if (localStorage.getItem('token'))
+  const token = localStorage.getItem('token');
+
+  if (token)
   {
-    dispatch(getIdentity(localStorage.getItem('token')));
+    dispatch(getIdentity(token));
   }
 
   return (

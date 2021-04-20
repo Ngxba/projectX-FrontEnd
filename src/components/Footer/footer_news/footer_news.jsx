@@ -14,7 +14,7 @@ const FooterNews = (props) =>
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes['news--container']}>
-          {/* <Grid container> */}
+          {/* <Grid options_container> */}
           {
             newsData.map((column) => (
               // <Grid item lg={2} md={2} xl={2} sm={6} xs={12}>
