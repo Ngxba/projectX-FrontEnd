@@ -4,30 +4,55 @@ import PropTypes from 'prop-types';
 import CustomTypography from '../Typography/typography';
 import { makeKey } from '../../utils/supportFunction';
 
-function SimpleBreadcrumbs(props)
+function SimpleBreadcrumbs({ data })
 {
-  const { data } = props;
+  const routeData = data;
+
+  // Add home to first
+  routeData.unshift({
+    href: '/',
+    text: 'home',
+  });
+
   return (
     <Breadcrumbs aria-label="breadcrumb">
       {data.map((item, i) =>
       {
-        const dataItem = item.toUpperCase();
-        if (i !== data.length - 1)
+        if (i !== routeData.length - 1)
         {
           return (
+            // TODO add replace=true to Link to prevent multiple click on same link
             <CustomTypography
               color="#666"
               fontSize="12px"
               txtType="text--light"
               key={makeKey()}
+              href={item.href}
+              style={
+                {
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                }
+              }
             >
-              {dataItem}
+              {item.text}
             </CustomTypography>
           );
         }
         return (
-          <CustomTypography key={makeKey()} fontSize="12px" txtType="text--light">
-            {dataItem}
+          <CustomTypography
+            style={
+              {
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+              }
+            }
+            key={makeKey()}
+            fontSize="12px"
+            txtType="text--light"
+            // href={item.href}
+          >
+            {item.text}
           </CustomTypography>
         );
       })}
@@ -36,7 +61,10 @@ function SimpleBreadcrumbs(props)
 }
 
 SimpleBreadcrumbs.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.string).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({
+    href: PropTypes.string,
+    text: PropTypes.string,
+  })).isRequired,
 };
 
 export default SimpleBreadcrumbs;

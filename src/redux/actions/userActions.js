@@ -38,6 +38,7 @@ export const SignIn = (loginData) =>
       if (res.status === 200)
       {
         dispatch(UserRequestSuccess(res.data));
+        // eslint-disable-next-line no-undef
         localStorage.setItem("token", res.data.token);
       }
       else

@@ -10,10 +10,10 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import LoginRegisterForm from "./container/authen/login_register_form";
 import Brand from "./template/brand/brand";
-import Product from "./template/product";
-import Account from "./template/account";
+import product from "./template/product";
 import NotFound from "./pages/404";
 import { getIdentity } from './redux/actions/userActions';
+import ScrollToTop from './components/ScrollTop/scroll_top';
 
 function App()
 {
@@ -26,12 +26,15 @@ function App()
   {
     dispatch(getIdentity(token));
   }
-
   return (
     <React.Fragment key="main">
       <ThemeProvider theme={CustomTheme}>
         <CssBaseline />
         <BrowserRouter>
+
+          {/* To scroll to top when route to other site */}
+          <ScrollToTop />
+
           <Switch>
             <AppRoute
               exact
@@ -62,7 +65,7 @@ function App()
             <AppRoute
               exact
               path="/product/:urlKey"
-              component={Product}
+              component={product}
               layout={LayoutDefault}
               isMainPage={false}
             />
