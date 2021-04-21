@@ -48,17 +48,17 @@ function App()
             />
             <AppRoute
               exact
-              path="/account"
-              component={Account}
-              layout={LayoutDefault}
-            />
-            <AppRoute
-              exact
               path="/login"
               component={LoginRegisterForm}
               layout={LayoutDefault}
             />
             <AppRoute exact path="/404" component={NotFound} layout={LayoutDefault} />
+            <AppRoute
+              exact
+              path="/account/:urlKey"
+              component={Account}
+              layout={LayoutDefault}
+            />
             <AppRoute
               exact
               path="/product/:urlKey"
