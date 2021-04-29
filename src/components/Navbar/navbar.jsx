@@ -12,6 +12,7 @@ const navLinks = [
   { title: "Sneaker", path: "/brand/sneakers" },
   { title: "404", path: "/404" },
   { title: "Login", path: "/login" },
+  { title: "Account", path: "/account" },
   // { title: "Sign up", path: "/signup" },
 ];
 
@@ -67,6 +68,7 @@ const Navbar = (props) =>
       >
         {!isMainPage && <CustomInput placeholder="Search..." variant="icon" />}
         {navLinks.map(({ title, path }, i) => (
+          // TODO Fix not re-render when press Account button
           <CustomTypography
             href={path}
             key={title}

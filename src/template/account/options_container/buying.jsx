@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import buyingContainerStyle from './buying_container.style';
+import buyingContainerStyle from './buying.style';
 
 const BuyingContainer = () =>
 {

@@ -10,6 +10,7 @@ import ProductInfo from './product_info/product_info';
 import RelatedProduct from './related_product/related_product';
 import { FetchProduct } from '../../redux/actions/productActions';
 import FetchRelatedProducts from '../../redux/actions/relatedProducAction';
+import Shadow from '../../components/Shadow/shadow';
 
 const Product = ({ match }) =>
 {
@@ -79,7 +80,7 @@ const Product = ({ match }) =>
   return (
     <div className={classes.page_container}>
       {/* Shadow below navbar */}
-      <div className={classes.shadow} />
+      <Shadow />
 
       <Container
         classes={{

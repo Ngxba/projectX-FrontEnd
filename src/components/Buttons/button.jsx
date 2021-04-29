@@ -36,7 +36,7 @@ const CustomButton = (props) =>
 CustomButton.propTypes = {
   children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(VARIANTS),
-  backgroundColor: PropTypes.oneOf(BG_COLORS),
+  backgroundColor: PropTypes.string,
   buttonSize: PropTypes.oneOf(SIZES),
 };
 

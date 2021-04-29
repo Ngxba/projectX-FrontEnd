@@ -1,31 +1,33 @@
-import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider } from "@material-ui/core";
-import { Switch, BrowserRouter, Redirect } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import LayoutDefault from "./template/layout";
-import CustomTheme from "./theme";
-import AppRoute from "./utils/AppRoute";
-import Home from "./pages/home";
-import About from "./pages/about";
-import LoginRegisterForm from "./container/authen/login_register_form";
-import Brand from "./template/brand/brand";
-import product from "./template/product";
-import NotFound from "./pages/404";
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core';
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import LayoutDefault from './template/layout';
+import CustomTheme from './theme';
+import AppRoute from './utils/AppRoute';
+import Home from './pages/home';
+import About from './pages/about';
+import LoginRegisterForm from './container/authen/login_register_form';
+import Brand from './template/brand/brand';
+import Product from './template/product';
+import Account from './template/account/account';
+import NotFound from './pages/404';
 import { getIdentity } from './redux/actions/userActions';
 import ScrollToTop from './components/ScrollTop/scroll_top';
 
 function App()
 {
-  // let location = useLocation();
   const dispatch = useDispatch();
 
+  // eslint-disable-next-line no-undef
   const token = localStorage.getItem('token');
 
   if (token)
   {
     dispatch(getIdentity(token));
   }
+
   return (
     <React.Fragment key="main">
       <ThemeProvider theme={CustomTheme}>
@@ -57,15 +59,14 @@ function App()
             />
             <AppRoute exact path="/404" component={NotFound} layout={LayoutDefault} />
             <AppRoute
-              exact
-              path="/account/:urlKey"
+              path="/account"
               component={Account}
               layout={LayoutDefault}
             />
             <AppRoute
               exact
               path="/product/:urlKey"
-              component={product}
+              component={Product}
               layout={LayoutDefault}
               isMainPage={false}
             />

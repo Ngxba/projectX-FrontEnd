@@ -1,12 +1,15 @@
-import {
-  USER_REQUEST,
-  USER_REQUEST_SUCCESS,
-  USER_REQUEST_FAILURE,
-} from '../types/userType';
+import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS } from '../types/userType';
 
 const initialState = {
   loading: false,
-  userData: {},
+  userData: {
+    name: {
+      firstName: '',
+      lastName: '',
+    },
+    emai: '',
+    _id: '',
+  },
   error: '',
   isLogin: true,
 };
