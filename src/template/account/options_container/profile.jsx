@@ -8,6 +8,7 @@ import profileContainerStyle from './profile.style';
 import CustomTypography from '../../../components/Typography/typography';
 import Shadow from '../../../components/Shadow/shadow';
 import CustomButton from '../../../components/Buttons/button';
+import { makeKey } from '../../../utils/supportFunction';
 
 const ProfileContainer = () =>
 {
@@ -80,7 +81,7 @@ const ProfileContainer = () =>
         <Grid container>
           {
             data.map((item) => (
-              <Grid item xs={4}>
+              <Grid item xs={4} key={makeKey(5)}>
                 <CustomTypography txtType="text--light" className={classes.title}>
                   {item.trait}
                 </CustomTypography>
