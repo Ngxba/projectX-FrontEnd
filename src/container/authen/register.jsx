@@ -1,10 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React from 'react';
-import {
-  TextField,
-  FormControlLabel,
-  CircularProgress,
-} from '@material-ui/core';
+import { CircularProgress, FormControlLabel, TextField } from '@material-ui/core';
 // import PropTypes from "prop-types";
 import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Checkbox from '@material-ui/core/Checkbox';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomTypography from '../../components/Typography/typography';
 import CustomButton from '../../components/Buttons/button';
 import { isLengthEqualZero, validateEmail } from '../../utils/supportFunction';
@@ -40,17 +36,26 @@ function RegisterComponent()
 
   const handleClickShowPassword = () =>
   {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
   const handleClickTerm = () =>
   {
-    setValues({ ...values, approveTerm: !values.approveTerm });
+    setValues({
+      ...values,
+      approveTerm: !values.approveTerm,
+    });
   };
 
   const handleChange = (prop) => (event) =>
   {
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values,
+      [prop]: event.target.value,
+    });
   };
 
   const handleMouseDownPassword = (event) =>
@@ -70,7 +75,10 @@ function RegisterComponent()
       password: values.password,
     };
     dispatch(Register(passingData));
-    setValues({ ...values, password: '' });
+    setValues({
+      ...values,
+      password: '',
+    });
   };
 
   return (
@@ -176,7 +184,10 @@ function RegisterComponent()
         }
       />
       <CustomButton
-        style={{ width: '100%', margin: 0 }}
+        style={{
+          width: '100%',
+          margin: 0,
+        }}
         disabled={
           userState.loading
           || !values.approveTerm
