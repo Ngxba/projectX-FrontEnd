@@ -1,12 +1,9 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import axios from "axios";
-import { backEndLink } from "../../config";
-import {
-  USER_REQUEST,
-  USER_REQUEST_SUCCESS,
-  USER_REQUEST_FAILURE,
-} from "../types/userType";
+import axios from 'axios';
+import { writeStorage } from '@rehooks/local-storage';
+import { backEndLink } from '../../config';
+import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS } from '../types/userType';
 
 const UserRequest = (isLogin) => ({
   type: USER_REQUEST,
@@ -27,7 +24,10 @@ export const SignIn = (loginData) =>
 {
   return async function (dispatch)
   {
-    const { email, password } = loginData;
+    const {
+      email,
+      password,
+    } = loginData;
     dispatch(UserRequest(true));
     try
     {
@@ -39,7 +39,8 @@ export const SignIn = (loginData) =>
       {
         dispatch(UserRequestSuccess(res.data));
         // eslint-disable-next-line no-undef
-        localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("user_traits", JSON.stringify(res.data));
+        writeStorage('user_traits', res.data);
       }
       else
       {
@@ -58,7 +59,11 @@ export const Register = (registerData) =>
 {
   return async function (dispatch)
   {
-    const { name, email, password } = registerData;
+    const {
+      name,
+      email,
+      password,
+    } = registerData;
     dispatch(UserRequest(false));
     try
     {

@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useLocalStorage } from '@rehooks/local-storage';
 import LayoutDefault from './template/layout';
 import CustomTheme from './theme';
 import AppRoute from './utils/AppRoute';
@@ -21,7 +22,7 @@ function App()
   const dispatch = useDispatch();
 
   // eslint-disable-next-line no-undef
-  const token = localStorage.getItem('token');
+  const { token } = useLocalStorage('user_traits');
 
   if (token)
   {

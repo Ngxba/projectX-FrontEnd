@@ -2,9 +2,9 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
-import { useSelector } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useLocalStorage } from '@rehooks/local-storage';
 import CustomTypography from '../../../components/Typography/typography';
 import CustomButton from '../../../components/Buttons/button';
 
@@ -74,14 +74,12 @@ const ProfileEditor = () =>
 {
   const classes = useStyle();
 
-  const userState = useSelector((state) => state.userState);
-  const { userData } = userState;
-
+  const [userTraits] = useLocalStorage('user_traits');
   const {
     name,
     email,
-    _id,
-  } = userData;
+    id,
+  } = userTraits;
 
   const {
     control,
@@ -90,19 +88,12 @@ const ProfileEditor = () =>
     defaultValues: {
       firstName: name.firstName,
       lastName: name.lastName,
-      id: _id,
+      id,
       email,
     },
   });
 
   const onSubmit = (data) => console.log(data);
-
-  // Generate shoe size data
-  const sizeList = [];
-  for (let i = 3.5; i <= 18; i += 0.5)
-  {
-    sizeList.push(i);
-  }
 
   return (
     <>
