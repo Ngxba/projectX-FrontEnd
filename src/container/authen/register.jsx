@@ -66,6 +66,7 @@ function RegisterComponent()
   const handleSubmit = async (event) =>
   {
     event.preventDefault();
+
     const passingData = {
       name: {
         firstName: values.firstName,
@@ -74,7 +75,9 @@ function RegisterComponent()
       email: values.email,
       password: values.password,
     };
+
     dispatch(Register(passingData));
+
     setValues({
       ...values,
       password: '',
