@@ -12,34 +12,15 @@ import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
 import brandStyle from "./brand.style";
 import {
   FetchProducts,
-  // changeProductData,
+  FetchFilteredProduct,
 } from "../../redux/actions/productActions";
 import CustomListItems from "../../pages/products/list-items";
-import { makeKey } from "../../utils/supportFunction";
-
-const fakeQueries = {
-  Adidas: ["Yeezy", "v1", "v2", "350"],
-  Nike: [
-    "air force",
-    "Air Max",
-    "one",
-    "nike basketball",
-    "Yeezy",
-    "dunk",
-    "running",
-  ],
-  "Air Jordan": [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-  ],
-};
+import {
+  brandQueries,
+  genderQueries,
+  yearQueries,
+  priceQueries,
+} from "./queryData";
 
 const Brand = ({ match }) => {
   const { params } = match;
@@ -66,7 +47,6 @@ const Brand = ({ match }) => {
   const [titleBrand, setTitleBrand] = React.useState("");
   const [query, setQuery] = useState({});
   const productsState = useSelector((state) => state.productsState);
-  console.log(query);
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
@@ -85,12 +65,22 @@ const Brand = ({ match }) => {
           });
         }
         return result;
-      },
-      {}),
+      }, {}),
     );
     dispatch(FetchProducts(0, 40, params));
     setTitleBrand(title);
-  }, [params]);
+  }, []);
+
+  const updateQuery = (key, value) => {
+    setQuery({
+      ...query,
+      [key]: value,
+    });
+    dispatch(FetchFilteredProduct({
+      ...query,
+      [key]: value,
+    }));
+  };
 
   if (productsState.loading) {
     return (
@@ -128,13 +118,38 @@ const Brand = ({ match }) => {
       </Grid>
       <Grid className={classes.gridContainer} container spacing={2}>
         <Grid className={classes.leftSide} item xs={2}>
-          {Object.keys(fakeQueries).map((item) => (
+          {Object.keys(brandQueries).map((item) => (
             <CustomListItems
-              key={makeKey(6)}
+              key={`tags${item}`}
+              selected={query.tags !== undefined ? query.tags : []}
+              queryType="tags"
+              updateQuery={updateQuery}
               bigPrimary={item}
-              smallPrimary={fakeQueries[item]}
+              smallPrimary={brandQueries[item]}
             />
           ))}
+          <CustomListItems
+            style={{ marginTop: "16px" }}
+            selected={query.gender !== undefined ? query.gender : ""}
+            queryType="gender"
+            updateQuery={updateQuery}
+            bigPrimary="Size Types"
+            smallPrimary={genderQueries}
+          />
+          <CustomListItems
+            selected={query.price !== undefined ? query.price : []}
+            queryType="price"
+            updateQuery={updateQuery}
+            bigPrimary="Prices"
+            smallPrimary={priceQueries}
+          />
+          <CustomListItems
+            selected={query.year !== undefined ? query.year : []}
+            queryType="year"
+            updateQuery={updateQuery}
+            bigPrimary="Release Years"
+            smallPrimary={yearQueries}
+          />
         </Grid>
         <Grid className={classes.rightSide} item xs={10}>
           <Grid item xs={12} className={classes.sort}>

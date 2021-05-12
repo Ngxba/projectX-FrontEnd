@@ -9,7 +9,11 @@ import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_REQUEST_FAILURE,
   FETCH_PRODUCTS_REQUEST_SUCCESS,
+  UPDATE_PRODUCT_DATA
 } from "../types/productType";
+import {
+  objectToQueryString,
+} from "../../utils/supportFunction";
 
 const FetchProductsRequest = () => ({
   type: FETCH_PRODUCTS_REQUEST,
@@ -74,10 +78,27 @@ const FetchProductRequestFailure = (error) => ({
   payload: error,
 });
 
-export const changeProductData = (payload) => ({
-  type: "UPDATE_PRODUCT_DATA",
+const ChangeProductData = (payload) => ({
+  type: UPDATE_PRODUCT_DATA,
   payload: payload,
 });
+
+export const FetchFilteredProduct = (obj) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${backEndLink}/api/product/browse?${objectToQueryString(obj)}`);
+      if (res.status === 200) {
+        dispatch(ChangeProductData(res.data.result))
+      } else {
+        // error
+        dispatch(ChangeProductData([]))
+      }
+    } catch (error) {
+      // error
+      dispatch(ChangeProductData([]))
+    }
+  }
+};
 
 export const FetchProduct = (urlKey) => {
   return async function (dispatch) {

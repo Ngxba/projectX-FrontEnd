@@ -5,6 +5,7 @@ import {
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_REQUEST_SUCCESS,
   FETCH_PRODUCT_REQUEST_FAILURE,
+  UPDATE_PRODUCT_DATA,
 } from "../types/productType";
 
 const initialProductsState = {
@@ -15,10 +16,10 @@ const initialProductsState = {
 
 export const productsReducer = (state = initialProductsState, action) => {
   switch (action.type) {
-    case "UPDATE_PRODUCT_DATA":
+    case UPDATE_PRODUCT_DATA:
       return {
         ...state,
-        productData: action.payload,
+        productsData: action.payload,
       };
     case FETCH_PRODUCTS_REQUEST:
       return {
