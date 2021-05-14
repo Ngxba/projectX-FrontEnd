@@ -1,4 +1,9 @@
-import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS } from '../types/userType';
+import {
+  USER_REQUEST_LOGIN,
+  USER_REQUEST_FAILURE,
+  USER_REQUEST_SUCCESS,
+  USER_REQUEST_UPDATE,
+} from '../types/userType';
 
 const initialState = {
   loading: false,
@@ -11,18 +16,23 @@ const initialState = {
     _id: '',
   },
   error: '',
-  isLogin: true,
+  isOnLoginTab: true,
 };
 
 const reducer = (state = initialState, action) =>
 {
   switch (action.type)
   {
-    case USER_REQUEST:
+    case USER_REQUEST_LOGIN:
       return {
         ...state,
         loading: true,
-        isLogin: action.payload,
+        isOnLoginTab: action.payload,
+      };
+    case USER_REQUEST_UPDATE:
+      return {
+        ...state,
+        loading: true,
       };
     case USER_REQUEST_SUCCESS:
       return {
