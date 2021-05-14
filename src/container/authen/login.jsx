@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CircularProgress, TextField } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 // import PropTypes from "prop-types";
@@ -11,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import CustomTypography from '../../components/Typography/typography';
 import CustomButton from '../../components/Buttons/button';
 import { isLengthEqualZero, validateEmail } from '../../utils/supportFunction';
@@ -53,12 +54,24 @@ function Login()
   const handleSubmit = (event) =>
   {
     event.preventDefault();
+
     dispatch(SignIn(values));
+
     setValues({
       ...values,
       password: '',
     });
   };
+
+  const history = useHistory();
+
+  useEffect(() => () =>
+  {
+    if (!userState.loading)
+    {
+      history.goBack();
+    }
+  }, [userState.loading]);
 
   return (
     <form onSubmit={handleSubmit}>
