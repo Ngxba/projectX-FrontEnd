@@ -3,11 +3,17 @@
 import axios from 'axios';
 import { writeStorage } from '@rehooks/local-storage';
 import { backEndLink } from '../../config';
-import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS } from '../types/userType';
+import {
+  USER_REQUEST_LOGIN, USER_REQUEST_UPDATE, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS,
+} from '../types/userType';
 
-const UserRequest = (isLogin) => ({
-  type: USER_REQUEST,
-  payload: isLogin,
+const UserRequestLogin = (isOnLoginTab) => ({
+  type: USER_REQUEST_LOGIN,
+  payload: isOnLoginTab,
+});
+
+const UserRequestUpdate = () => ({
+  type: USER_REQUEST_UPDATE,
 });
 
 const UserRequestSuccess = (user) => ({
@@ -28,7 +34,7 @@ export const SignIn = (loginData) =>
       email,
       password,
     } = loginData;
-    dispatch(UserRequest(true));
+    dispatch(UserRequestLogin(true));
     try
     {
       const res = await axios.post(`${backEndLink}/api/auth/login`, {
@@ -64,7 +70,7 @@ export const Register = (registerData) =>
       email,
       password,
     } = registerData;
-    dispatch(UserRequest(false));
+    dispatch(UserRequestLogin(false));
     try
     {
       const res = await axios.post(`${backEndLink}/api/auth/register`, {
@@ -93,7 +99,7 @@ export const getIdentity = (token) =>
 {
   return async function (dispatch)
   {
-    dispatch(UserRequest(false));
+    dispatch(UserRequestLogin(false));
     try
     {
       const res = await axios.get(`${backEndLink}/api/auth/me`, {
@@ -127,6 +133,8 @@ export const updateData = (data) =>
       email,
       id,
     } = data;
+
+    dispatch(UserRequestUpdate());
 
     try
     {
