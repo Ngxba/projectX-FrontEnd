@@ -9,7 +9,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { FormControlLabel } from "@material-ui/core";
 import PropTypes, { string } from "prop-types";
 import CustomTypography from "../../components/Typography/typography";
-import productsListStyle from "./products.style";
+import brandStyle from "./brand.style";
 import { makeKey } from "../../utils/supportFunction";
 
 const BigPrimary = ["Adidas", "Nike", "Air Jordan"];
@@ -19,7 +19,7 @@ const SmallPrimary = ["Yeezy", "Air Max", "1"];
 const CustomListItems = (props) => {
   const { bigPrimary, smallPrimary, selected, queryType, updateQuery, ...rest } = props;
 
-  const classes = productsListStyle(rest);
+  const classes = brandStyle(rest);
 
   const [open, setOpen] = React.useState(false);
 

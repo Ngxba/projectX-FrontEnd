@@ -81,6 +81,12 @@ const brandStyle = makeStyles(() => ({
     justifyContent: 'space-between',
     marginBottom: '20px',
   },
+  show_more: {
+    textAlign: "center",
+    color: "#08a05c",
+    cursor: "pointer",
+    fontSize: "13px",
+  },
 }));
 
 export default brandStyle;

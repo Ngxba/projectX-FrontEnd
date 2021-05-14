@@ -14,7 +14,7 @@ import {
   FetchProducts,
   FetchFilteredProduct,
 } from "../../redux/actions/productActions";
-import CustomListItems from "../../pages/products/list-items";
+import CustomListItems from "./list-items";
 import {
   brandQueries,
   genderQueries,
