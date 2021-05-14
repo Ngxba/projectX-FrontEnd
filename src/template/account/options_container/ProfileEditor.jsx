@@ -4,9 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { useLocalStorage } from '@rehooks/local-storage';
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
+import { useDispatch } from 'react-redux';
 import CustomTypography from '../../../components/Typography/typography';
 import CustomButton from '../../../components/Buttons/button';
+import { updateData } from '../../../redux/actions/userActions';
 
 // eslint-disable-next-line no-unused-vars
 const useStyle = makeStyles(
@@ -83,6 +85,7 @@ const ProfileEditor = () =>
 
   const {
     control,
+    formState: { errors },
     handleSubmit,
   } = useForm({
     defaultValues: {
@@ -93,7 +96,24 @@ const ProfileEditor = () =>
     },
   });
 
-  const onSubmit = (data) => console.log(data);
+  const dispatch = useDispatch();
+
+  const onSubmit = async (data, event) =>
+  {
+    event.preventDefault();
+
+    const passingData = {
+      name: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+      },
+      email: data.email,
+      id: data.id,
+    };
+
+    dispatch(updateData(passingData));
+    writeStorage('user_traits', { ...userTraits, ...passingData });
+  };
 
   return (
     <>
@@ -126,6 +146,7 @@ const ProfileEditor = () =>
             <Controller
               control={control}
               name="firstName"
+              rules={{ required: true }}
               render={({ field }) => (
                 <TextField
                   {...field}
@@ -133,6 +154,8 @@ const ProfileEditor = () =>
                   fullWidth
                   label="First Name"
                   variant="outlined"
+                  error={!!errors.firstName}
+                  helperText={errors.firstName ? 'First name is required' : ''}
                 />
               )}
             />
@@ -140,6 +163,7 @@ const ProfileEditor = () =>
             <Controller
               control={control}
               name="lastName"
+              rules={{ required: true }}
               render={({ field }) => (
                 <TextField
                   {...field}
@@ -147,6 +171,8 @@ const ProfileEditor = () =>
                   fullWidth
                   label="Last Name"
                   variant="outlined"
+                  error={!!errors.lastName}
+                  helperText={errors.lastName ? 'Last name is required' : ''}
                 />
               )}
             />
@@ -183,6 +209,7 @@ const ProfileEditor = () =>
             <Controller
               control={control}
               name="email"
+              rules={{ required: true }}
               render={({ field }) => (
                 <TextField
                   {...field}
@@ -190,6 +217,8 @@ const ProfileEditor = () =>
                   fullWidth
                   label="Email"
                   variant="outlined"
+                  error={!!errors.email}
+                  helperText={errors.email ? 'Email is required' : ''}
                 />
               )}
             />
