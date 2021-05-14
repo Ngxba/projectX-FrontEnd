@@ -37,9 +37,9 @@ export const SignIn = (loginData) =>
       });
       if (res.status === 200)
       {
+        axios.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
+
         dispatch(UserRequestSuccess(res.data));
-        // eslint-disable-next-line no-undef
-        // localStorage.setItem("user_traits", JSON.stringify(res.data));
         writeStorage('user_traits', res.data);
       }
       else
@@ -118,13 +118,36 @@ export const getIdentity = (token) =>
   };
 };
 
-// export const updateData = async (name, email) => {
-//   const res = await axios.post(`${backEndLink}/api/user/update`, {
-//     name,
-//     email,
-//   });
-//   if (res.status === 200) {
-//     return res.data;
-//   }
-//   throw new Error("Cannot Update", res);
-// };
+export const updateData = (data) =>
+{
+  return async function (dispatch)
+  {
+    const {
+      name,
+      email,
+      id,
+    } = data;
+
+    try
+    {
+      const res = await axios.post(`${backEndLink}/api/user/update/${id}`,
+        {
+          name,
+          email,
+        });
+
+      if (res.status === 200)
+      {
+        dispatch(UserRequestSuccess(res.data));
+      }
+      else
+      {
+        dispatch(UserRequestFailure(res.data.error));
+      }
+    }
+    catch (error)
+    {
+      dispatch(UserRequestFailure(error));
+    }
+  };
+};
