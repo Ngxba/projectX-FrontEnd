@@ -12,11 +12,12 @@ const initialState = {
       firstName: '',
       lastName: '',
     },
-    emai: '',
+    email: '',
     _id: '',
   },
   error: '',
   isOnLoginTab: true,
+  isLogin: false,
 };
 
 const reducer = (state = initialState, action) =>
@@ -40,6 +41,7 @@ const reducer = (state = initialState, action) =>
         userData: action.payload,
         loading: false,
         error: '',
+        isLogin: true,
       };
     case USER_REQUEST_FAILURE:
       return {
