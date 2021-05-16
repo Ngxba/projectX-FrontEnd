@@ -12,9 +12,9 @@ import CustomTypography from "../../components/Typography/typography";
 import brandStyle from "./brand.style";
 import { makeKey } from "../../utils/supportFunction";
 
-const BigPrimary = ["Adidas", "Nike", "Air Jordan"];
+const BigPrimary = [];
 
-const SmallPrimary = ["Yeezy", "Air Max", "1"];
+const SmallPrimary = [];
 
 const CustomListItems = (props) => {
   const { bigPrimary, smallPrimary, selected, queryType, updateQuery, ...rest } = props;
@@ -65,64 +65,91 @@ const CustomListItems = (props) => {
 
   return (
     <React.Fragment key="list-item">
-      <ListItem button onClick={handleClick} disableGutters={false}>
-        <ListItemText primary={bigPrimary} />
+      <ListItem button onClick={handleClick} disableGutters={false} divider>
+        <ListItemText
+          primary={bigPrimary}
+          style={{ minWidth: "fit-content", textTransform: "uppercase" }}
+        />
         {!open ? <ExpandMore /> : <ExpandLess />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" dense disablePadding>
-          {smallPrimary.slice(0, 4).map((item) => (
-            <FormControlLabel
-              key={makeKey(10)}
-              style={{ display: "contents" }}
-              control={(
-                <ListItem button className={classes.nested}>
-                  <Checkbox
-                    edge="start"
-                    size="small"
-                    checked={checkSelected(queryType === "tags" ? [bigPrimary, item.value] : item.value)}
-                    onChange={() => onCheckBoxChange(queryType === "tags" ? [bigPrimary, item.value] : item.value)}
-                    name="tags"
-                    color="primary"
-                    disableRipple
-                    value={item.value}
-                  />
-                  <ListItemText primary={item.name} />
-                </ListItem>
-              )}
-            />
-          ))}
-          <List className={classes.nested} dense disablePadding>
-            {(smallPrimary.slice(5).length > 0 && !smallopen) && (
-              <CustomTypography className={classes.show_more} txtComponent="p" onClick={handleSmallClick}>
-                Show More
-              </CustomTypography>
-            )}
-            <Collapse in={smallopen} timeout="auto" unmountOnExit>
-              {smallPrimary.slice(4).map((item) => (
-                <FormControlLabel
-                  key={makeKey(10)}
-                  style={{ display: "contents" }}
-                  control={(
-                    <ListItem button className={classes.nested}>
-                      <Checkbox
-                        edge="start"
-                        size="small"
-                        checked={checkSelected(queryType === "tags" ? [bigPrimary, item.value] : item.value)}
-                        onChange={() => onCheckBoxChange(queryType === "tags" ? [bigPrimary, item.value] : item.value)}
-                        name="tags"
-                        color="primary"
-                        disableRipple
-                        value={item.value}
-                      />
-                      <ListItemText primary={item.name} />
-                    </ListItem>
-                  )}
-                />
-              ))}
-            </Collapse>
+        {bigPrimary === "SIZES" ? (
+          <List component="div" dense disablePadding>
+            <div className={classes.textRow}>
+              <div md={3} sm={4} xs={6}>
+                <div className={classes.size}>
+                  <p className={classes.sizeNumber}>1.5</p>
+                </div>
+              </div>
+            </div>
           </List>
-        </List>
+        ) : (
+          <List component="div" dense disablePadding>
+            {smallPrimary.slice(0, 4).map((item) => (
+              <FormControlLabel
+                key={makeKey(10)}
+                style={{ display: "contents" }}
+                control={(
+                  <ListItem button className={classes.nested}>
+                    <Checkbox
+                      edge="start"
+                      size="small"
+                      checked={checkSelected(
+                        queryType === "tags" ? [bigPrimary, item.value] : item.value,
+                      )}
+                      onChange={() => onCheckBoxChange(
+                        queryType === "tags" ? [bigPrimary, item.value] : item.value,
+                      )}
+                      name="tags"
+                      color="primary"
+                      disableRipple
+                      value={item.value}
+                    />
+                    <ListItemText primary={item.name} />
+                  </ListItem>
+                )}
+              />
+            ))}
+            <List className={classes.nested} dense disablePadding>
+              {smallPrimary.slice(5).length > 0 && !smallopen && (
+                <CustomTypography
+                  className={classes.show_more}
+                  txtComponent="p"
+                  onClick={handleSmallClick}
+                >
+                  Show More
+                </CustomTypography>
+              )}
+              <Collapse in={smallopen} timeout="auto" unmountOnExit>
+                {smallPrimary.slice(4).map((item) => (
+                  <FormControlLabel
+                    key={makeKey(10)}
+                    style={{ display: "contents" }}
+                    control={(
+                      <ListItem button className={classes.nested}>
+                        <Checkbox
+                          edge="start"
+                          size="small"
+                          checked={checkSelected(
+                            queryType === "tags" ? [bigPrimary, item.value] : item.value,
+                          )}
+                          onChange={() => onCheckBoxChange(
+                            queryType === "tags" ? [bigPrimary, item.value] : item.value,
+                          )}
+                          name="tags"
+                          color="primary"
+                          disableRipple
+                          value={item.value}
+                        />
+                        <ListItemText primary={item.name} />
+                      </ListItem>
+                    )}
+                  />
+                ))}
+              </Collapse>
+            </List>
+          </List>
+        )}
       </Collapse>
     </React.Fragment>
   );
@@ -131,10 +158,7 @@ const CustomListItems = (props) => {
 CustomListItems.propTypes = {
   smallPrimary: PropTypes.arrayOf(PropTypes.object),
   bigPrimary: PropTypes.string,
-  selected: PropTypes.oneOfType([
-    PropTypes.arrayOf(string),
-    PropTypes.string,
-  ]),
+  selected: PropTypes.oneOfType([PropTypes.arrayOf(string), PropTypes.string]),
   queryType: PropTypes.string,
   updateQuery: PropTypes.func,
   className: PropTypes.string,
@@ -145,7 +169,7 @@ CustomListItems.defaultProps = {
   bigPrimary: BigPrimary[0],
   selected: [],
   queryType: "",
-  updateQuery: () => { },
+  updateQuery: () => {},
   className: "",
 };
 

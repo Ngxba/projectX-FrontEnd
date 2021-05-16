@@ -10,17 +10,9 @@ import CustomTypography from "../../components/Typography/typography";
 import CardContainer from "../../container/card_container/card_container";
 import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
 import brandStyle from "./brand.style";
-import {
-  FetchProducts,
-  FetchFilteredProduct,
-} from "../../redux/actions/productActions";
+import { FetchProducts, FetchFilteredProduct } from "../../redux/actions/productActions";
 import CustomListItems from "./list-items";
-import {
-  brandQueries,
-  genderQueries,
-  yearQueries,
-  priceQueries,
-} from "./queryData";
+import { brandQueries, genderQueries, yearQueries, priceQueries } from "./queryData";
 
 const Brand = ({ match }) => {
   const { params } = match;
@@ -76,10 +68,12 @@ const Brand = ({ match }) => {
       ...query,
       [key]: value,
     });
-    dispatch(FetchFilteredProduct({
-      ...query,
-      [key]: value,
-    }));
+    dispatch(
+      FetchFilteredProduct({
+        ...query,
+        [key]: value,
+      }),
+    );
   };
 
   if (productsState.loading) {
@@ -107,17 +101,13 @@ const Brand = ({ match }) => {
         >
           {titleBrand}
         </CustomTypography>
-        <CustomTypography
-          component="p"
-          txtType="text--light"
-          style={{ maxWidth: "450px" }}
-        >
+        <CustomTypography component="p" txtType="text--light" style={{ maxWidth: "450px" }}>
           {`Buy and sell tees, hoodies, accessories and more from streetwear
           juggernaught ${titleBrand} on ProjectX here!`}
         </CustomTypography>
       </Grid>
       <Grid className={classes.gridContainer} container spacing={2}>
-        <Grid className={classes.leftSide} item xs={2}>
+        <Grid className={classes.leftSide} item xs={3}>
           {Object.keys(brandQueries).map((item) => (
             <CustomListItems
               key={`tags${item}`}
@@ -129,7 +119,7 @@ const Brand = ({ match }) => {
             />
           ))}
           <CustomListItems
-            style={{ marginTop: "16px" }}
+            style={{ textTransform: "uppercase" }}
             selected={query.gender !== undefined ? query.gender : ""}
             queryType="gender"
             updateQuery={updateQuery}
@@ -151,7 +141,7 @@ const Brand = ({ match }) => {
             smallPrimary={yearQueries}
           />
         </Grid>
-        <Grid className={classes.rightSide} item xs={10}>
+        <Grid className={classes.rightSide} item xs={9}>
           <Grid item xs={12} className={classes.sort}>
             <Grid item xs={6}>
               <Breadcrumb data={linkRoutes} />
@@ -163,11 +153,7 @@ const Brand = ({ match }) => {
                     <span className={classes.textTitle}>
                       <strong>Sort by:&#160;</strong>
                     </span>
-                    <Select
-                      value={age}
-                      onChange={handleChange}
-                      className={classes.selectEmpty}
-                    >
+                    <Select value={age} onChange={handleChange} className={classes.selectEmpty}>
                       <MenuItem value={10}>Ten</MenuItem>
                       <MenuItem value={20}>Twenty</MenuItem>
                       <MenuItem value={30}>Thirty</MenuItem>
@@ -178,10 +164,7 @@ const Brand = ({ match }) => {
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            <CardContainer
-              data={productsState.productsData}
-              showCategory={false}
-            />
+            <CardContainer data={productsState.productsData} showCategory={false} />
           </Grid>
         </Grid>
       </Grid>
