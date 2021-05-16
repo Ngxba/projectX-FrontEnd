@@ -124,7 +124,7 @@ export const getIdentity = (token) =>
   };
 };
 
-export const updateData = (data) =>
+export const updateData = (userData) =>
 {
   return async function (dispatch)
   {
@@ -132,7 +132,7 @@ export const updateData = (data) =>
       name,
       email,
       id,
-    } = data;
+    } = userData;
 
     dispatch(UserRequestUpdate());
 
@@ -146,7 +146,7 @@ export const updateData = (data) =>
 
       if (res.status === 200)
       {
-        dispatch(UserRequestSuccess(res.data));
+        dispatch(UserRequestSuccess(userData));
       }
       else
       {
