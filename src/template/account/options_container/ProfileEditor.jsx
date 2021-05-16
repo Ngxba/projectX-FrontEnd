@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress, TextField } from '@material-ui/core';
@@ -10,9 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import CustomTypography from '../../../components/Typography/typography';
 import CustomButton from '../../../components/Buttons/button';
-import { updateData } from '../../../redux/actions/userActions';
+import { ResetUpdateStatus, UpdateData } from '../../../redux/actions/userActions';
 
-// eslint-disable-next-line no-unused-vars
 const useStyle = makeStyles(
   {
     root: {
@@ -78,6 +76,8 @@ const ProfileEditor = () =>
 {
   const classes = useStyle();
 
+  const [isFakeLoading, setIsFakeLoading] = useState(false);
+
   const userState = useSelector((state) => state.userState);
   const [userTraits] = useLocalStorage('user_traits');
   const history = useHistory();
@@ -116,24 +116,34 @@ const ProfileEditor = () =>
       id: data.id,
     };
 
-    dispatch(updateData(passingData));
+    dispatch(UpdateData(passingData));
     writeStorage('user_traits', { ...userTraits, ...passingData });
   };
 
-  // useEffect(() =>
-  // {
-  //   async function playEffect()
-  //   {
-  //     await setTimeout(() => history.goBack(), 1500);
-  //   }
-  //
-  //   if (!userState.loading) playEffect();
-  //
-  //   return () =>
-  //   {
-  //     clearTimeout();
-  //   };
-  // }, [userState.loading]);
+  useEffect(() =>
+  {
+    async function playEffect()
+    {
+      setIsFakeLoading(true);
+
+      await setTimeout(() =>
+      {
+        setIsFakeLoading(false);
+        history.goBack();
+      }, 2000);
+    }
+
+    if (userState.updateSuccessfully)
+    {
+      playEffect();
+    }
+
+    return () =>
+    {
+      clearTimeout();
+      dispatch(ResetUpdateStatus());
+    };
+  }, [userState.updateSuccessfully]);
 
   return (
     <>
@@ -247,6 +257,7 @@ const ProfileEditor = () =>
               <div className={classes.buttons_container}>
 
                 <CustomButton
+                  style={{ width: 110 }}
                   component={Link}
                   to="/account/profile"
                   variant="outlined"
@@ -256,14 +267,15 @@ const ProfileEditor = () =>
                 </CustomButton>
 
                 <CustomButton
+                  style={{ width: 110 }}
                   type="submit"
                   variant="outlined"
                   disabled={userState.loading}
                 >
-                  {!userState.loading ? (
+                  {(!userState.loading && !isFakeLoading) ? (
                     'Submit'
                   ) : (
-                    <CircularProgress color="secondary" size={80} />
+                    <CircularProgress color="secondary" size={35} />
                   )}
                 </CustomButton>
               </div>
