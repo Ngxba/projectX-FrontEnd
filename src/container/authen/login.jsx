@@ -65,17 +65,18 @@ function Login()
 
   const history = useHistory();
 
-  useEffect(() => () =>
+  // Go back to previous page after successfully log in
+  useEffect(() =>
   {
-    if (!userState.loading)
+    if (userState.isLogin)
     {
       history.goBack();
     }
-  }, [userState.loading]);
+  }, [userState.isLogin]);
 
   return (
     <form onSubmit={handleSubmit}>
-      {userState.error !== '' && userState.isLogin && (
+      {userState.error !== '' && userState.isOnLoginTab && (
         <Alert
           variant="outlined"
           severity="error"

@@ -15,7 +15,7 @@ const Wrapper = ({ children }) => (
 );
 
 Wrapper.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 const LoginRegisterForm = () =>
