@@ -13,11 +13,12 @@ const initialState = {
       lastName: '',
     },
     email: '',
-    _id: '',
+    id: '',
   },
+  isLogin: false,
+  updateSuccessfully: false,
   error: '',
   isOnLoginTab: true,
-  isLogin: false,
 };
 
 const reducer = (state = initialState, action) =>
@@ -38,10 +39,9 @@ const reducer = (state = initialState, action) =>
     case USER_REQUEST_SUCCESS:
       return {
         ...state,
-        userData: action.payload,
+        ...action.payload,
         loading: false,
         error: '',
-        isLogin: true,
       };
     case USER_REQUEST_FAILURE:
       return {
