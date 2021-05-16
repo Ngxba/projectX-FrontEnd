@@ -1,11 +1,13 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField } from '@material-ui/core';
+import { CircularProgress, TextField } from '@material-ui/core';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import CustomTypography from '../../../components/Typography/typography';
 import CustomButton from '../../../components/Buttons/button';
 import { updateData } from '../../../redux/actions/userActions';
@@ -76,7 +78,10 @@ const ProfileEditor = () =>
 {
   const classes = useStyle();
 
+  const userState = useSelector((state) => state.userState);
   const [userTraits] = useLocalStorage('user_traits');
+  const history = useHistory();
+
   const {
     name,
     email,
@@ -114,6 +119,21 @@ const ProfileEditor = () =>
     dispatch(updateData(passingData));
     writeStorage('user_traits', { ...userTraits, ...passingData });
   };
+
+  // useEffect(() =>
+  // {
+  //   async function playEffect()
+  //   {
+  //     await setTimeout(() => history.goBack(), 1500);
+  //   }
+  //
+  //   if (!userState.loading) playEffect();
+  //
+  //   return () =>
+  //   {
+  //     clearTimeout();
+  //   };
+  // }, [userState.loading]);
 
   return (
     <>
@@ -238,8 +258,13 @@ const ProfileEditor = () =>
                 <CustomButton
                   type="submit"
                   variant="outlined"
+                  disabled={userState.loading}
                 >
-                  Submit
+                  {!userState.loading ? (
+                    'Submit'
+                  ) : (
+                    <CircularProgress color="secondary" size={80} />
+                  )}
                 </CustomButton>
               </div>
 
