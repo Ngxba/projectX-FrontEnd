@@ -90,7 +90,7 @@ const ProfileEditor = () =>
 
   const {
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
     handleSubmit,
   } = useForm({
     defaultValues: {
@@ -270,7 +270,7 @@ const ProfileEditor = () =>
                   style={{ width: 110 }}
                   type="submit"
                   variant="outlined"
-                  disabled={userState.loading}
+                  disabled={userState.loading || !isDirty}
                 >
                   {(!userState.loading && !isFakeLoading) ? (
                     'Submit'
