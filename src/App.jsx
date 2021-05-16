@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useLocalStorage } from '@rehooks/local-storage';
+import axios from 'axios';
 import LayoutDefault from './template/layout';
 import CustomTheme from './theme';
 import AppRoute from './utils/AppRoute';
@@ -14,19 +15,21 @@ import Brand from './template/brand/brand';
 import Product from './template/product';
 import Account from './template/account/account';
 import NotFound from './pages/404';
-import { getIdentity } from './redux/actions/userActions';
+import { GetIdentity } from './redux/actions/userActions';
 import ScrollToTop from './components/ScrollTop/scroll_top';
 
 function App()
 {
   const dispatch = useDispatch();
 
-  // eslint-disable-next-line no-undef
-  const { token } = useLocalStorage('user_traits');
+  const [traits] = useLocalStorage('user_traits');
 
-  if (token)
+  if (traits)
   {
-    dispatch(getIdentity(token));
+    const { token } = traits;
+    // Set axios.defaults.headers.common.Authorization everytime user reload page
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    dispatch(GetIdentity(token));
   }
 
   return (
