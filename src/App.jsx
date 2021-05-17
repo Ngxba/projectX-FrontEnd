@@ -15,14 +15,16 @@ import Brand from './template/brand/brand';
 import Product from './template/product';
 import Account from './template/account/account';
 import NotFound from './pages/404';
-import { GetIdentity } from './redux/actions/userActions';
+import { GetIdentity, UpdateLoginStatus } from './redux/actions/userActions';
 import ScrollToTop from './components/ScrollTop/scroll_top';
+import LogOut from './pages/log_out';
 
-function App()
+function checkUserStatus()
 {
   const dispatch = useDispatch();
 
   const [traits] = useLocalStorage('user_traits');
+  const [isLogin] = useLocalStorage('is_login');
 
   if (traits)
   {
@@ -31,6 +33,16 @@ function App()
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     dispatch(GetIdentity(token));
   }
+
+  if (isLogin)
+  {
+    dispatch(UpdateLoginStatus(isLogin));
+  }
+}
+
+function App()
+{
+  checkUserStatus();
 
   return (
     <React.Fragment key="main">
@@ -61,11 +73,17 @@ function App()
               component={LoginRegisterForm}
               layout={LayoutDefault}
             />
+            <AppRoute
+              path="/logout"
+              component={LogOut}
+              isPrivate
+            />
             <AppRoute exact path="/404" component={NotFound} layout={LayoutDefault} />
             <AppRoute
               path="/account"
               component={Account}
               layout={LayoutDefault}
+              isPrivate
             />
             <AppRoute
               exact
