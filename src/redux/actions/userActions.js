@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
 import axios from 'axios';
-import { writeStorage } from '@rehooks/local-storage';
+import { deleteFromStorage, writeStorage } from '@rehooks/local-storage';
 import { backEndLink } from '../../config';
 import {
   USER_REQUEST_FAILURE,
@@ -20,9 +20,9 @@ const UserRequestUpdate = (updateSuccessfully) => ({
   payload: updateSuccessfully,
 });
 
-const UserRequestSuccess = (user) => ({
+const UserRequestSuccess = (data) => ({
   type: USER_REQUEST_SUCCESS,
-  payload: user,
+  payload: data,
 });
 
 const UserRequestFailure = (error) => ({
@@ -48,7 +48,10 @@ export const SignIn = (loginData) =>
       if (res.status === 200)
       {
         // Exclude token from response data using ES9 Object Rest Operator
-        const { token, ...dataWithoutToken } = res.data;
+        const {
+          token,
+          ...dataWithoutToken
+        } = res.data;
 
         const data = {
           userData: { ...dataWithoutToken },
@@ -58,6 +61,7 @@ export const SignIn = (loginData) =>
         dispatch(UserRequestSuccess(data));
 
         writeStorage('user_traits', res.data);
+        writeStorage('is_login', true);
       }
       else
       {
@@ -183,5 +187,36 @@ export const ResetUpdateStatus = () =>
   return async (dispatch) =>
   {
     dispatch(UserRequestSuccess({ updateSuccessfully: false }));
+  };
+};
+
+export const UpdateLoginStatus = (isLogin) =>
+{
+  return async (dispatch) =>
+  {
+    dispatch(UserRequestSuccess({ isLogin }));
+  };
+};
+
+export const UserLogOut = () =>
+{
+  return async (dispatch) =>
+  {
+    const data = {
+      userData: {
+        name: {
+          firstName: '',
+          lastName: '',
+        },
+        email: '',
+        id: '',
+      },
+      isLogin: false,
+    };
+
+    dispatch(UserRequestSuccess(data));
+
+    deleteFromStorage('user_traits');
+    deleteFromStorage('is_login');
   };
 };
