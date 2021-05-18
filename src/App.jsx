@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useLocalStorage } from '@rehooks/local-storage';
-import axios from 'axios';
 import LayoutDefault from './template/layout';
 import CustomTheme from './theme';
 import AppRoute from './utils/AppRoute';
@@ -15,34 +14,22 @@ import Brand from './template/brand/brand';
 import Product from './template/product';
 import Account from './template/account/account';
 import NotFound from './pages/404';
-import { GetIdentity, UpdateLoginStatus } from './redux/actions/userActions';
+import { GetIdentity } from './redux/actions/userActions';
 import ScrollToTop from './components/ScrollTop/scroll_top';
 import LogOut from './pages/log_out';
 
-function checkUserStatus()
-{
-  const dispatch = useDispatch();
-
-  const [traits] = useLocalStorage('user_traits');
-  const [isLogin] = useLocalStorage('is_login');
-
-  if (traits)
-  {
-    const { token } = traits;
-    // Set axios.defaults.headers.common.Authorization everytime user reload page
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    dispatch(GetIdentity(token));
-  }
-
-  if (isLogin)
-  {
-    dispatch(UpdateLoginStatus(isLogin));
-  }
-}
-
 function App()
 {
-  checkUserStatus();
+  const dispatch = useDispatch();
+  const [token] = useLocalStorage('token');
+
+  useEffect(() =>
+  {
+    if (token)
+    {
+      dispatch(GetIdentity(token));
+    }
+  }, []);
 
   return (
     <React.Fragment key="main">

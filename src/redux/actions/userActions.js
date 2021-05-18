@@ -60,8 +60,7 @@ export const SignIn = (loginData) =>
 
         dispatch(UserRequestSuccess(data));
 
-        writeStorage('user_traits', res.data);
-        writeStorage('is_login', true);
+        writeStorage('token', res.data.token);
       }
       else
       {
@@ -125,8 +124,10 @@ export const GetIdentity = (token) =>
       if (res.status === 200)
       {
         dispatch(UserRequestSuccess({
-          userIdentity: { ...res.data },
+          userData: { ...res.data },
+          isLogin: !!res.data,
         }));
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
       }
       else
       {
@@ -190,14 +191,6 @@ export const ResetUpdateStatus = () =>
   };
 };
 
-export const UpdateLoginStatus = (isLogin) =>
-{
-  return async (dispatch) =>
-  {
-    dispatch(UserRequestSuccess({ isLogin }));
-  };
-};
-
 export const UserLogOut = () =>
 {
   return async (dispatch) =>
@@ -216,7 +209,6 @@ export const UserLogOut = () =>
 
     dispatch(UserRequestSuccess(data));
 
-    deleteFromStorage('user_traits');
-    deleteFromStorage('is_login');
+    deleteFromStorage('token');
   };
 };
