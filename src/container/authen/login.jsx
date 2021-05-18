@@ -62,33 +62,27 @@ function Login()
       ...values,
       password: '',
     });
+
+    setIsFakeLoading(true);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const history = useHistory();
 
   // Go back to previous page after successfully log in
+  // eslint-disable-next-line consistent-return
   useEffect(() =>
   {
-    async function playEffect()
+    if (userState.isLogin)
     {
-      setIsFakeLoading(true);
-
-      await setTimeout(() =>
+      const timer = setTimeout(() =>
       {
         setIsFakeLoading(false);
         history.goBack();
       }, 1500);
-    }
 
-    if (userState.isLogin)
-    {
-      playEffect();
+      return () => clearTimeout(timer);
     }
-
-    return () =>
-    {
-      clearTimeout();
-    };
   }, [userState.isLogin]);
 
   return (
