@@ -8,7 +8,7 @@ import CardContainer from "../container/card_container/card_container";
 import CustomButton from "../components/Buttons/button";
 import TabCarousel from "../container/tab_carousel/tab_carousel";
 import { FetchProducts } from "../redux/actions/homeAction";
-import About from "../template/about/about"
+import About from "../template/about/about";
 
 const DataBrand = [
   {
@@ -37,17 +37,14 @@ const DataBrand = [
   },
 ];
 
-function Home()
-{
+function Home() {
   const homeState = useSelector((state) => state.homeState);
 
   const dispatch = useDispatch();
-  React.useEffect(() =>
-  {
+  React.useEffect(() => {
     if (homeState.homeData !== {}) dispatch(FetchProducts());
   }, []);
-  if (homeState.loading)
-  {
+  if (homeState.loading) {
     return (
       <div
         style={{
@@ -63,13 +60,13 @@ function Home()
     );
   }
   return (
-    <React.Fragment key="main">
+    <React.Fragment key='main'>
       <ContentHeader />
       <TabCarousel />
-      <Container maxWidth="md">
-        <CardContainer type="brand" title="Popular Brands" data={DataBrand} />
+      <Container maxWidth='md'>
+        <CardContainer type='brand' title='Popular Brands' data={DataBrand} />
         <CardContainer
-          title="Most Popular"
+          title='Most Popular'
           data={homeState.homeData.mostPopular}
         />
         <CardContainer
@@ -77,19 +74,19 @@ function Home()
           data={homeState.homeData.trending}
         />
         <div style={{ textAlign: "center", margin: "20px 0" }}>
-        <Link to="/brand/sneakers" style={{ textDecoration: "none" }}>
-          <CustomButton backgroundColor="primary" buttonSize="btn--large">
-            Browse Thousands of Sneakers on our Live Marketplace
-          </CustomButton>
+          <Link to='/brand/sneakers' style={{ textDecoration: "none" }}>
+            <CustomButton backgroundColor='primary' buttonSize='btn--large'>
+              Browse Thousands of Sneakers on our Live Marketplace
+            </CustomButton>
           </Link>
         </div>
       </Container>
       {/* <PosterHome /> */}
       <About />
       <Container>
-        <CardContainer title="Latest Buy" data={homeState.homeData.latestBuy} />
+        <CardContainer title='Latest Buy' data={homeState.homeData.latestBuy} />
         <CardContainer
-          title="Latest Product"
+          title='Latest Product'
           data={homeState.homeData.latestProduct}
         />
         <br />
