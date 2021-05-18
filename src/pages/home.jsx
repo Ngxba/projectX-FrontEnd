@@ -1,39 +1,39 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import ContentHeader from "../container/content_header/content_header";
-import CardContainer from "../container/card_container/card_container";
-import CustomButton from "../components/Buttons/button";
-import TabCarousel from "../container/tab_carousel/tab_carousel";
-import { FetchProducts } from "../redux/actions/homeAction";
-import About from "../template/about/about";
+import React from 'react';
+import Container from '@material-ui/core/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import ContentHeader from '../container/content_header/content_header';
+import CardContainer from '../container/card_container/card_container';
+import CustomButton from '../components/Buttons/button';
+import { FetchProducts } from '../redux/actions/homeAction';
+import About from '../template/about/about';
+import CarouselWithTab from '../container/tab_carousel/tab_carousel';
 
 const DataBrand = [
   {
-    productName: "JORDAN",
+    productName: 'JORDAN',
     imageurl:
-      "https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-jordan.png?auto=compress,format",
+      'https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-jordan.png?auto=compress,format',
     imgBrandSrc:
-      "https://stockx-assets.imgix.net/png/brand-tiles/img-jordan.png?auto=compress,format",
-    urlKey: "brand/sneakers/jordan",
+      'https://stockx-assets.imgix.net/png/brand-tiles/img-jordan.png?auto=compress,format',
+    urlKey: 'brand/sneakers/jordan',
   },
   {
-    productName: "NIKE",
+    productName: 'NIKE',
     imageurl:
-      "https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-nike-v2.png?auto=compress,format",
+      'https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-nike-v2.png?auto=compress,format',
     imgBrandSrc:
-      "https://stockx-assets.imgix.net/png/brand-tiles/img-nike.png?auto=compress,format",
-    urlKey: "brand/sneakers/nike",
+      'https://stockx-assets.imgix.net/png/brand-tiles/img-nike.png?auto=compress,format',
+    urlKey: 'brand/sneakers/nike',
   },
   {
-    productName: "ADIDAS",
+    productName: 'ADIDAS',
     imageurl:
-      "https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-adidas.png?auto=compress,format",
+      'https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-adidas.png?auto=compress,format',
     imgBrandSrc:
-      "https://stockx-assets.imgix.net/png/brand-tiles/img-adidas.png?auto=compress,format",
-    urlKey: "brand/sneakers/adidas",
+      'https://stockx-assets.imgix.net/png/brand-tiles/img-adidas.png?auto=compress,format',
+    urlKey: 'brand/sneakers/adidas',
   },
 ];
 
@@ -52,11 +52,11 @@ function Home()
     return (
       <div
         style={{
-          width: "100vw",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <CircularProgress size={80} />
@@ -66,7 +66,7 @@ function Home()
   return (
     <React.Fragment key="main">
       <ContentHeader />
-      <TabCarousel />
+      <CarouselWithTab />
       <Container maxWidth="md">
         <CardContainer type="brand" title="Popular Brands" data={DataBrand} />
         <CardContainer
@@ -77,8 +77,12 @@ function Home()
           title="What's trending"
           data={homeState.homeData.trending}
         />
-        <div style={{ textAlign: "center", margin: "20px 0" }}>
-          <Link to="/brand/sneakers" style={{ textDecoration: "none" }}>
+        <div style={{
+          textAlign: 'center',
+          margin: '20px 0',
+        }}
+        >
+          <Link to="/brand/sneakers" style={{ textDecoration: 'none' }}>
             <CustomButton backgroundColor="primary" buttonSize="btn--large">
               Browse Thousands of Sneakers on our Live Marketplace
             </CustomButton>
