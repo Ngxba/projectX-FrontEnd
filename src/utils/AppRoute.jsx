@@ -16,7 +16,7 @@ const AppRoute = ({
   const privateComponent = (props) => (
     userState.isLogin
       ? <Component {...props} />
-      : <Redirect push to="/login" />
+      : <Redirect to="/login" />
   );
 
   return (

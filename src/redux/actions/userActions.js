@@ -109,39 +109,6 @@ export const Register = (registerData) =>
   };
 };
 
-export const GetIdentity = (token) =>
-{
-  return async function (dispatch)
-  {
-    dispatch(UserRequestLogin(false));
-    try
-    {
-      const res = await axios.get(`${backEndLink}/api/auth/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (res.status === 200)
-      {
-        dispatch(UserRequestSuccess({
-          userData: { ...res.data },
-          isLogin: !!res.data,
-        }));
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-      }
-      else
-      {
-        // throw new Error("Cannot Sign up", res);
-        dispatch(UserRequestFailure(res.data.error));
-      }
-    }
-    catch (error)
-    {
-      dispatch(UserRequestFailure(error));
-    }
-  };
-};
-
 export const UpdateData = (passedData) =>
 {
   return async function (dispatch)
@@ -210,5 +177,42 @@ export const UserLogOut = () =>
     dispatch(UserRequestSuccess(data));
 
     deleteFromStorage('token');
+  };
+};
+
+export const GetIdentity = (token) =>
+{
+  return async function (dispatch)
+  {
+    dispatch(UserRequestLogin(false));
+    try
+    {
+      const res = await axios.get(`${backEndLink}/api/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 200)
+      {
+        dispatch(UserRequestSuccess({
+          userData: { ...res.data },
+          isLogin: !!res.data,
+        }));
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+      }
+      else
+      {
+        // throw new Error("Cannot Sign up", res);
+        dispatch(UserRequestFailure(res.data.error));
+        if (res.data.error === 'Token expired')
+        {
+          dispatch(UserLogOut());
+        }
+      }
+    }
+    catch (error)
+    {
+      dispatch(UserRequestFailure(error));
+    }
   };
 };

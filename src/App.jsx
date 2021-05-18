@@ -63,6 +63,7 @@ function App()
             <AppRoute
               path="/logout"
               component={LogOut}
+              layout={LayoutDefault}
               isPrivate
             />
             <AppRoute exact path="/404" component={NotFound} layout={LayoutDefault} />
