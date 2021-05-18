@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CircularProgress, TextField } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 // import PropTypes from "prop-types";
@@ -26,6 +26,7 @@ function Login()
     password: '',
     showPassword: false,
   });
+  const [isFakeLoading, setIsFakeLoading] = useState(false);
 
   const userState = useSelector((state) => state.userState);
   const dispatch = useDispatch();
@@ -68,10 +69,26 @@ function Login()
   // Go back to previous page after successfully log in
   useEffect(() =>
   {
+    async function playEffect()
+    {
+      setIsFakeLoading(true);
+
+      await setTimeout(() =>
+      {
+        setIsFakeLoading(false);
+        history.goBack();
+      }, 1500);
+    }
+
     if (userState.isLogin)
     {
-      history.goBack();
+      playEffect();
     }
+
+    return () =>
+    {
+      clearTimeout();
+    };
   }, [userState.isLogin]);
 
   return (
@@ -133,14 +150,18 @@ function Login()
         </CustomTypography>
       </FormControl>
       <CustomButton
-        disabled={userState.loading || isLengthEqualZero(values) || !validateEmail(values.email)}
+        disabled={isFakeLoading
+        || userState.loading
+        || isLengthEqualZero(values)
+        || !validateEmail(values.email)}
         style={{
           width: '100%',
           margin: 0,
+          height: 51,
         }}
         type="submit"
       >
-        {!userState.loading ? (
+        {(!userState.loading && !isFakeLoading) ? (
           'Login'
         ) : (
           <CircularProgress color="secondary" size="20px" />
