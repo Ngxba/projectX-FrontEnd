@@ -83,21 +83,15 @@ const ProfileEditor = () =>
   const history = useHistory();
 
   const {
-    name,
-    email,
-    id,
-  } = userTraits;
-
-  const {
     control,
     formState: { errors, isDirty },
     handleSubmit,
   } = useForm({
     defaultValues: {
-      firstName: name.firstName,
-      lastName: name.lastName,
-      id,
-      email,
+      firstName: userState.userData.name.firstName,
+      lastName: userState.userData.name.lastName,
+      id: userState.userData.id,
+      email: userState.userData.email,
     },
   });
 

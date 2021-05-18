@@ -4,7 +4,6 @@ import { Grid } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useLocalStorage } from '@rehooks/local-storage';
 import profileContainerStyle from './profile.style';
 import CustomTypography from '../../../components/Typography/typography';
 import Shadow from '../../../components/Shadow/shadow';
@@ -18,13 +17,11 @@ const ProfileContainer = () =>
   const userState = useSelector((state) => state.userState);
   const { userData } = userState;
 
-  const [traits] = useLocalStorage('user_traits');
-
   const {
     name,
     email,
     id,
-  } = traits;
+  } = userData;
 
   const data = [
     {
