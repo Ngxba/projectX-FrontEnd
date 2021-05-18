@@ -64,7 +64,7 @@ const CustomTypography = (props) =>
 
 CustomTypography.propTypes = {
   children: PropTypes.node.isRequired,
-  txtColor: PropTypes.oneOf(COLORS),
+  txtColor: PropTypes.string,
   txtStyle: PropTypes.oneOf(STYLES),
   txtType: PropTypes.oneOf(TYPES),
   txtComponent: PropTypes.oneOf(COMPONENTS),

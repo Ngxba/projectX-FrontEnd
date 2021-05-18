@@ -14,6 +14,7 @@ import product from "./template/product";
 import NotFound from "./pages/404";
 import { getIdentity } from './redux/actions/userActions';
 import ScrollToTop from './components/ScrollTop/scroll_top';
+import Buy from './template/buy/buy';
 
 function App()
 {
@@ -52,6 +53,12 @@ function App()
               exact
               path="/login"
               component={LoginRegisterForm}
+              layout={LayoutDefault}
+            />
+            <AppRoute
+              exact
+              path="/buy/:urlKey"
+              component={Buy}
               layout={LayoutDefault}
             />
             <AppRoute exact path="/404" component={NotFound} layout={LayoutDefault} />
