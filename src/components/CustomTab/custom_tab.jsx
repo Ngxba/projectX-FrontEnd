@@ -136,7 +136,7 @@ const CustomTab = ({
 };
 
 CustomTab.defaultProps = {
-  wrapper: React.Fragment,
+  wrapper: () => <></>,
   appBarStyle: null,
   rootStyle: null,
   enableSwipeEffect: false,
@@ -150,7 +150,7 @@ CustomTab.propTypes = {
       component: PropTypes.node.isRequired,
     },
   )).isRequired,
-  wrapper: PropTypes.node,
+  wrapper: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   appBarStyle: PropTypes.object,
   rootStyle: PropTypes.object,
   enableSwipeEffect: PropTypes.bool,

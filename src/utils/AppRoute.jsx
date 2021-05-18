@@ -35,13 +35,13 @@ const AppRoute = ({
 
 AppRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  layout: PropTypes.func,
+  layout: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   isMainPage: PropTypes.bool,
   isPrivate: PropTypes.bool,
 };
 
 AppRoute.defaultProps = {
-  layout: React.Fragment,
+  layout: () => <></>,
   isMainPage: false,
   isPrivate: false,
 };
