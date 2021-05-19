@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress, TextField } from '@material-ui/core';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import CustomTypography from '../../../components/Typography/typography';
@@ -79,12 +78,14 @@ const ProfileEditor = () =>
   const [isFakeLoading, setIsFakeLoading] = useState(false);
 
   const userState = useSelector((state) => state.userState);
-  const [userTraits] = useLocalStorage('user_traits');
   const history = useHistory();
 
   const {
     control,
-    formState: { errors, isDirty },
+    formState: {
+      errors,
+      isDirty,
+    },
     handleSubmit,
   } = useForm({
     defaultValues: {
@@ -111,7 +112,6 @@ const ProfileEditor = () =>
     };
 
     dispatch(UpdateData(passingData));
-    writeStorage('user_traits', { ...userTraits, ...passingData });
   };
 
   useEffect(() =>
