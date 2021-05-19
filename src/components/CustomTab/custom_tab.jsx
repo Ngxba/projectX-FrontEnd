@@ -29,7 +29,7 @@ function TabPanel(props)
     >
       {value === index && (
         <Box paddingBottom={3}>
-          <Typography>{children}</Typography>
+          <Typography component="span">{children}</Typography>
         </Box>
       )}
     </div>
