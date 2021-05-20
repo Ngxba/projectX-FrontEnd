@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress, TextField } from '@material-ui/core';
@@ -75,8 +75,6 @@ const ProfileEditor = () =>
 {
   const classes = useStyle();
 
-  const [isFakeLoading, setIsFakeLoading] = useState(false);
-
   const userState = useSelector((state) => state.userState);
   const history = useHistory();
 
@@ -116,27 +114,12 @@ const ProfileEditor = () =>
 
   useEffect(() =>
   {
-    async function playEffect()
-    {
-      setIsFakeLoading(true);
-
-      await setTimeout(() =>
-      {
-        setIsFakeLoading(false);
-        history.goBack();
-      }, 2000);
-    }
-
     if (userState.updateSuccessfully)
     {
-      playEffect();
+      history.goBack();
     }
 
-    return () =>
-    {
-      clearTimeout();
-      dispatch(ResetUpdateStatus());
-    };
+    return () => dispatch(ResetUpdateStatus);
   }, [userState.updateSuccessfully]);
 
   return (
@@ -266,7 +249,7 @@ const ProfileEditor = () =>
                   variant="outlined"
                   disabled={userState.loading || !isDirty}
                 >
-                  {(!userState.loading && !isFakeLoading) ? (
+                  {!userState.loading ? (
                     'Submit'
                   ) : (
                     <CircularProgress color="secondary" size={35} />

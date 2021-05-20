@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { CircularProgress, TextField } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 // import PropTypes from "prop-types";
@@ -20,16 +20,15 @@ import authenStyle from './authen.style';
 
 function Login()
 {
+  const userState = useSelector((state) => state.userState);
+  const dispatch = useDispatch();
+
   const classes = authenStyle();
   const [values, setValues] = React.useState({
     email: '',
     password: '',
     showPassword: false,
   });
-  const [isFakeLoading, setIsFakeLoading] = useState(false);
-
-  const userState = useSelector((state) => state.userState);
-  const dispatch = useDispatch();
 
   const handleClickShowPassword = () =>
   {
@@ -62,26 +61,18 @@ function Login()
       ...values,
       password: '',
     });
-
-    setIsFakeLoading(true);
   };
 
   // eslint-disable-next-line no-unused-vars
   const history = useHistory();
 
   // Go back to previous page after successfully log in
-  // eslint-disable-next-line consistent-return
   useEffect(() =>
   {
     if (userState.isLogin)
     {
-      const timer = setTimeout(() =>
-      {
-        setIsFakeLoading(false);
-        history.goBack();
-      }, 1500);
-
-      return () => clearTimeout(timer);
+      // history.goBack();
+      console.log('a');
     }
   }, [userState.isLogin]);
 
@@ -138,14 +129,13 @@ function Login()
           txtStyle="text--link"
           txtComponent="a"
           color="black"
-          style={{ textAlgin: 'right' }}
+          style={{ textAlign: 'right' }}
         >
           Forgot password?
         </CustomTypography>
       </FormControl>
       <CustomButton
-        disabled={isFakeLoading
-        || userState.loading
+        disabled={userState.loading
         || isLengthEqualZero(values)
         || !validateEmail(values.email)}
         style={{
@@ -155,7 +145,7 @@ function Login()
         }}
         type="submit"
       >
-        {(!userState.loading && !isFakeLoading) ? (
+        {!userState.loading ? (
           'Login'
         ) : (
           <CircularProgress color="secondary" size="20px" />
@@ -180,14 +170,5 @@ function Login()
     </form>
   );
 }
-
-// Login.propTypes = {
-//   submit: PropTypes.func.isRequired,
-//   status: PropTypes.number,
-// };
-
-// Login.defaultProps = {
-//   status: 0,
-// };
 
 export default Login;
