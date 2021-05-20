@@ -196,18 +196,14 @@ export const GetIdentity = (token) =>
       {
         dispatch(UserRequestSuccess({
           userData: { ...res.data },
-          isLogin: !!res.data,
+          isLogin: true,
         }));
         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
       }
       else
       {
-        // throw new Error("Cannot Sign up", res);
         dispatch(UserRequestFailure(res.data.error));
-        if (res.data.error === 'Token expired')
-        {
-          dispatch(UserLogOut());
-        }
+        dispatch(UserLogOut());
       }
     }
     catch (error)
