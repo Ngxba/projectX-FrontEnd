@@ -74,7 +74,7 @@ const CustomTab = ({
 
   const renderTabComponents = () => (
     data.map((element, index) => (
-      <TabPanel key={makeKey(5)} value={value} index={index} dir={theme.direction}>
+      <TabPanel key={element.title} value={value} index={index} dir={theme.direction}>
         {element.component}
       </TabPanel>
     ))
