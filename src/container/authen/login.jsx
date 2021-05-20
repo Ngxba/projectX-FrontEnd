@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+/* eslint-disable react/jsx-wrap-multilines */
+import React, { useEffect, useState } from 'react';
 import { CircularProgress, TextField } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 // import PropTypes from "prop-types";
@@ -19,15 +20,16 @@ import authenStyle from './authen.style';
 
 function Login()
 {
-  const userState = useSelector((state) => state.userState);
-  const dispatch = useDispatch();
-
   const classes = authenStyle();
   const [values, setValues] = React.useState({
     email: '',
     password: '',
     showPassword: false,
   });
+  const [isFakeLoading, setIsFakeLoading] = useState(false);
+
+  const userState = useSelector((state) => state.userState);
+  const dispatch = useDispatch();
 
   const handleClickShowPassword = () =>
   {
@@ -66,13 +68,30 @@ function Login()
   const history = useHistory();
 
   // Go back to previous page after successfully log in
+  // eslint-disable-next-line consistent-return
   useEffect(() =>
   {
+    async function playEffect()
+    {
+      setIsFakeLoading(true);
+
+      await setTimeout(() =>
+      {
+        setIsFakeLoading(false);
+        history.goBack();
+      }, 1500);
+    }
+
     if (userState.isLogin)
     {
-      // history.goBack();
-      console.log('a');
+      playEffect()
+        .catch(() => setIsFakeLoading(false));
     }
+
+    return () =>
+    {
+      clearTimeout();
+    };
   }, [userState.isLogin]);
 
   return (
@@ -107,7 +126,7 @@ function Login()
           type={values.showPassword ? 'text' : 'password'}
           value={values.password}
           onChange={handleChange('password')}
-          endAdornment={(
+          endAdornment={
             <InputAdornment position="end">
               <IconButton
                 aria-label="toggle password visibility"
@@ -118,7 +137,7 @@ function Login()
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
-          )}
+          }
           labelWidth={70}
           style={{ marginBottom: '6px' }}
         />
@@ -128,13 +147,14 @@ function Login()
           txtStyle="text--link"
           txtComponent="a"
           color="black"
-          style={{ textAlign: 'right' }}
+          style={{ textAlgin: 'right' }}
         >
           Forgot password?
         </CustomTypography>
       </FormControl>
       <CustomButton
-        disabled={userState.loading
+        disabled={isFakeLoading
+        || userState.loading
         || isLengthEqualZero(values)
         || !validateEmail(values.email)}
         style={{
@@ -144,7 +164,7 @@ function Login()
         }}
         type="submit"
       >
-        {!userState.loading ? (
+        {(!userState.loading && !isFakeLoading) ? (
           'Login'
         ) : (
           <CircularProgress color="secondary" size="20px" />
@@ -169,5 +189,14 @@ function Login()
     </form>
   );
 }
+
+// Login.propTypes = {
+//   submit: PropTypes.func.isRequired,
+//   status: PropTypes.number,
+// };
+
+// Login.defaultProps = {
+//   status: 0,
+// };
 
 export default Login;
