@@ -69,6 +69,7 @@ function App()
             <AppRoute exact path="/404" component={NotFound} layout={LayoutDefault} />
             <AppRoute
               path="/account"
+              redirectPath="login"
               component={Account}
               layout={LayoutDefault}
               isPrivate

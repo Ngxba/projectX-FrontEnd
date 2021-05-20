@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 const AppRoute = ({
   component: Component,
+  redirectPath,
   layout: Layout,
   isMainPage,
   isPrivate,
@@ -16,7 +17,7 @@ const AppRoute = ({
   const privateComponent = (props) => (
     userState.isLogin
       ? <Component {...props} />
-      : <Redirect to="/login" />
+      : <Redirect to={redirectPath} />
   );
 
   return (
@@ -38,12 +39,14 @@ AppRoute.propTypes = {
   layout: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   isMainPage: PropTypes.bool,
   isPrivate: PropTypes.bool,
+  redirectPath: PropTypes.string,
 };
 
 AppRoute.defaultProps = {
   layout: () => <></>,
   isMainPage: false,
   isPrivate: false,
+  redirectPath: '/',
 };
 
 export default AppRoute;
