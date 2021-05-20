@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-wrap-multilines */
 import React, { useEffect } from 'react';
 import { CircularProgress, TextField } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
@@ -108,7 +107,7 @@ function Login()
           type={values.showPassword ? 'text' : 'password'}
           value={values.password}
           onChange={handleChange('password')}
-          endAdornment={
+          endAdornment={(
             <InputAdornment position="end">
               <IconButton
                 aria-label="toggle password visibility"
@@ -119,7 +118,7 @@ function Login()
                 {values.showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
-          }
+          )}
           labelWidth={70}
           style={{ marginBottom: '6px' }}
         />
