@@ -184,7 +184,7 @@ export const GetIdentity = (token) =>
 {
   return async function (dispatch)
   {
-    dispatch(UserRequestLogin(false));
+    dispatch(UserRequestUpdate());
     try
     {
       const res = await axios.get(`${backEndLink}/api/auth/me`, {

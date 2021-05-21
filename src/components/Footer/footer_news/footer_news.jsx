@@ -3,7 +3,6 @@ import { PropTypes } from 'prop-types';
 // import { Grid } from '@material-ui/core';
 import footerNewsStyle from './footer_news.style';
 import data from './data';
-import { makeKey } from '../../../utils/supportFunction';
 
 const FooterNews = (props) =>
 {
@@ -18,7 +17,7 @@ const FooterNews = (props) =>
           {
             newsData.map((column) => (
               // <Grid item lg={2} md={2} xl={2} sm={6} xs={12}>
-              <div key={makeKey(5)} className={classes.column}>
+              <div key={column.id} className={classes.column}>
                 <ul className={classes.ul}>
 
                   {/* Column title */}
@@ -38,7 +37,7 @@ const FooterNews = (props) =>
                   {/* Column items */}
                   {
                     column.items.map((item) => (
-                      <li key={makeKey(5)} className={classes.li}>
+                      <li key={item.id} className={classes.li}>
                         <a
                           href={item.link}
                           target="_blank"
