@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useLocalStorage } from '@rehooks/local-storage';
 
 const AppRoute = ({
   component: Component,
@@ -13,9 +14,10 @@ const AppRoute = ({
 }) =>
 {
   const userState = useSelector((state) => state.userState);
+  const [token] = useLocalStorage('token');
 
   const privateComponent = (props) => (
-    userState.isLogin
+    userState.isLogin || token
       ? <Component {...props} />
       : <Redirect to={redirectPath} />
   );
