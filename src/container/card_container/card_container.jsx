@@ -81,16 +81,21 @@ const CardContainer = ({
     )}
     <Grid container spacing={3}>
       {type === TYPES[0]
+
+        // Product
         ? data.map((doc) => (
-          <Grid key={doc.name} item xs={6} sm={3}>
-            <CustomCard data={doc} type={type} />
-          </Grid>
-        ))
+            <Grid key={doc.productName} item xs={6} sm={3}>
+              <CustomCard data={doc} type={type} />
+            </Grid>
+          ))
+
+        // Brand
         : data.map((doc) => (
           <Grid key={doc.name} item xs={4}>
             <CustomCard data={doc} type={type} />
           </Grid>
         ))}
+
     </Grid>
   </React.Fragment>
 );
