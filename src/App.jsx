@@ -62,6 +62,7 @@ function App()
             />
             <AppRoute
               path="/logout"
+              redirectPath="/login"
               component={LogOut}
               layout={LayoutDefault}
               isPrivate
