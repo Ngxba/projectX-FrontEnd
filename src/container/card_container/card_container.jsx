@@ -4,11 +4,13 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import HelpIcon from '@material-ui/icons/Help';
+import { nanoid } from 'nanoid';
 import CustomCard from '../card/card';
 import CustomTypography from '../../components/Typography/typography';
 
 const fakeData = [
   {
+    id: nanoid(),
     productName: 'Product Title',
     price: 100,
     numberSold: 0,
@@ -16,6 +18,7 @@ const fakeData = [
       'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
   },
   {
+    id: nanoid(),
     productName: 'Product Title',
     price: 100,
     numberSold: 0,
@@ -23,6 +26,7 @@ const fakeData = [
       'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
   },
   {
+    id: nanoid(),
     productName: 'Product Title',
     price: 100,
     numberSold: 0,
@@ -30,6 +34,7 @@ const fakeData = [
       'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
   },
   {
+    id: nanoid(),
     productName: 'Product Title',
     price: 100,
     numberSold: 0,
@@ -84,14 +89,15 @@ const CardContainer = ({
 
         // Product
         ? data.map((doc) => (
-            <Grid key={doc.productName} item xs={6} sm={3}>
+          // eslint-disable-next-line no-underscore-dangle
+            <Grid key={doc._id} item xs={6} sm={3}>
               <CustomCard data={doc} type={type} />
             </Grid>
           ))
 
         // Brand
         : data.map((doc) => (
-          <Grid key={doc.name} item xs={4}>
+          <Grid key={doc.id} item xs={4}>
             <CustomCard data={doc} type={type} />
           </Grid>
         ))}
@@ -103,10 +109,11 @@ const CardContainer = ({
 CardContainer.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
+      id: PropTypes.string,
+      productName: PropTypes.string,
       price: PropTypes.number,
       numberSold: PropTypes.number,
-      imgSrc: PropTypes.string,
+      imageurl: PropTypes.string,
     }),
   ),
   type: PropTypes.oneOf(TYPES),

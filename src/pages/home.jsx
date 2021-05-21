@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { nanoid } from 'nanoid';
 import ContentHeader from '../container/content_header/content_header';
 import CardContainer from '../container/card_container/card_container';
 import CustomButton from '../components/Buttons/button';
@@ -12,6 +13,7 @@ import CarouselWithTab from '../container/tab_carousel/tab_carousel';
 
 const DataBrand = [
   {
+    id: nanoid(),
     productName: 'JORDAN',
     imageurl:
       'https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-jordan.png?auto=compress,format',
@@ -20,6 +22,7 @@ const DataBrand = [
     urlKey: 'brand/sneakers/jordan',
   },
   {
+    id: nanoid(),
     productName: 'NIKE',
     imageurl:
       'https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-nike-v2.png?auto=compress,format',
@@ -28,6 +31,7 @@ const DataBrand = [
     urlKey: 'brand/sneakers/nike',
   },
   {
+    id: nanoid(),
     productName: 'ADIDAS',
     imageurl:
       'https://stockx-assets.imgix.net/png/brand-tiles/sneakers/homepage-tiles-adidas.png?auto=compress,format',
