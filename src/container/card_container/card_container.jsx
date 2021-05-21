@@ -40,25 +40,22 @@ const fakeData = [
 
 const TYPES = ['product', 'brand'];
 
-const CardContainer = (props) =>
-{
-  const {
-    data,
-    showCategory,
-    type,
-    title,
-  } = props;
-  return (
-    <React.Fragment key="product grid">
-      {showCategory && (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            margin: '16px 0',
-          }}
-        >
+const CardContainer = ({
+  data,
+  showCategory,
+  type,
+  title,
+}) => (
+  <React.Fragment key="product grid">
+    {showCategory && (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          margin: '16px 0',
+        }}
+      >
           <span style={{ display: 'flex' }}>
             <CustomTypography
               txtStyle="text--category"
@@ -70,34 +67,33 @@ const CardContainer = (props) =>
             </CustomTypography>
             {type === TYPES[0] && <HelpIcon style={{ marginLeft: '10px' }} />}
           </span>
-          <CustomTypography
-            txtStyle="text--link"
-            //   txtType='text--medium'
-            href="/brand/sneakers"
-            txtComponent="a"
-            fontSize="14px"
-            txtColor="textPrimary"
-          >
-            See all
-          </CustomTypography>
-        </div>
-      )}
-      <Grid container spacing={3}>
-        {type === TYPES[0]
-          ? data.map((doc) => (
-            <Grid key={doc.name} item xs={6} sm={3}>
-              <CustomCard data={doc} type={type} />
-            </Grid>
-          ))
-          : data.map((doc) => (
-            <Grid key={doc.name} item xs={4}>
-              <CustomCard data={doc} type={type} />
-            </Grid>
-          ))}
-      </Grid>
-    </React.Fragment>
-  );
-};
+        <CustomTypography
+          txtStyle="text--link"
+          //   txtType='text--medium'
+          href="/brand/sneakers"
+          txtComponent="a"
+          fontSize="14px"
+          txtColor="textPrimary"
+        >
+          See all
+        </CustomTypography>
+      </div>
+    )}
+    <Grid container spacing={3}>
+      {type === TYPES[0]
+        ? data.map((doc) => (
+          <Grid key={doc.name} item xs={6} sm={3}>
+            <CustomCard data={doc} type={type} />
+          </Grid>
+        ))
+        : data.map((doc) => (
+          <Grid key={doc.name} item xs={4}>
+            <CustomCard data={doc} type={type} />
+          </Grid>
+        ))}
+    </Grid>
+  </React.Fragment>
+);
 
 CardContainer.propTypes = {
   data: PropTypes.arrayOf(
