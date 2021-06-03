@@ -16,6 +16,7 @@ import Account from './template/account/account';
 import NotFound from './pages/404';
 import { GetIdentity } from './redux/actions/userActions';
 import ScrollToTop from './components/ScrollTop/scroll_top';
+import Buy from './template/buy/buy';
 import LogOut from './pages/log_out';
 
 function App()
@@ -66,6 +67,12 @@ function App()
               component={LogOut}
               layout={LayoutDefault}
               isPrivate
+            />
+            <AppRoute
+              exact
+              path="/buy/:urlKey"
+              component={Buy}
+              layout={LayoutDefault}
             />
             <AppRoute exact path="/404" component={NotFound} layout={LayoutDefault} />
             <AppRoute
