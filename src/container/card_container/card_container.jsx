@@ -10,7 +10,7 @@ import CustomTypography from '../../components/Typography/typography';
 
 const fakeData = [
   {
-    id: nanoid(),
+    _id: nanoid(),
     productName: 'Product Title',
     price: 100,
     numberSold: 0,
@@ -18,7 +18,7 @@ const fakeData = [
       'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
   },
   {
-    id: nanoid(),
+    _id: nanoid(),
     productName: 'Product Title',
     price: 100,
     numberSold: 0,
@@ -26,7 +26,7 @@ const fakeData = [
       'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
   },
   {
-    id: nanoid(),
+    _id: nanoid(),
     productName: 'Product Title',
     price: 100,
     numberSold: 0,
@@ -34,7 +34,7 @@ const fakeData = [
       'https://stockx-360.imgix.net/Nike-Dunk-Low-Retro-White-Black-2021/Images/Nike-Dunk-Low-Retro-White-Black-2021/Lv2/img01.jpg?auto=compress&q=90&dpr=2&updated_at=1611084516&fit=clip&fm=webp&ixlib=react-9.0.3&w=1946',
   },
   {
-    id: nanoid(),
+    _id: nanoid(),
     productName: 'Product Title',
     price: 100,
     numberSold: 0,
@@ -89,7 +89,7 @@ const CardContainer = ({
 
         // Product
         ? data.map((doc) => (
-          // eslint-disable-next-line no-underscore-dangle
+            // eslint-disable-next-line no-underscore-dangle
             <Grid key={doc._id} item xs={6} sm={3}>
               <CustomCard data={doc} type={type} />
             </Grid>
@@ -109,7 +109,7 @@ const CardContainer = ({
 CardContainer.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      _id: PropTypes.string,
       productName: PropTypes.string,
       price: PropTypes.number,
       numberSold: PropTypes.number,
