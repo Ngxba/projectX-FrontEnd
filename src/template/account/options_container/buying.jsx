@@ -2,7 +2,7 @@
 import React from 'react';
 import buyingContainerStyle from './buying.style';
 import Shadow from '../../../components/Shadow/shadow';
-import CustomTable from './BuyingTable';
+import CustomTable from './buying_table';
 
 const BuyingContainer = () =>
 {

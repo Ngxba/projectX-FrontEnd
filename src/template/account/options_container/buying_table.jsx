@@ -12,14 +12,9 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { nanoid } from 'nanoid';
 import { sort } from 'fast-sort';
 
@@ -27,6 +22,33 @@ function randomDate(start, end)
 {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
+
+const headCells = [
+  {
+    id: 'productName',
+    numeric: false,
+    disablePadding: true,
+    label: 'Product name',
+  },
+  {
+    id: 'status',
+    numeric: false,
+    disablePadding: true,
+    label: 'Status',
+  },
+  {
+    id: 'purchaseDate',
+    numeric: true,
+    disablePadding: false,
+    label: 'Purchase date',
+  },
+  {
+    id: 'price',
+    numeric: true,
+    disablePadding: false,
+    label: 'Price ($)',
+  },
+];
 
 const rows = [
   {
@@ -37,6 +59,79 @@ const rows = [
     price: 140,
     status: 'Shipping',
   },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+  {
+    productId: nanoid(),
+    productName: 'Jordan 5 Retro Raging Bulls Red 2021 (GS)',
+    urkKey: 'air-jordan-5-retro-raging-bulls-red-2021-gs',
+    purchaseDate: randomDate(new Date(2020, 0, 1), new Date()),
+    price: 140,
+    status: 'Shipping',
+  },
+
   {
     productId: nanoid(),
     productName: 'Jordan 9 Retro Change The World (W)\n',
@@ -95,33 +190,6 @@ function stableSort(array, order, orderBy)
     : sort(array)
       .asc((el) => el[orderBy]);
 }
-
-const headCells = [
-  {
-    id: 'productName',
-    numeric: false,
-    disablePadding: true,
-    label: 'Product name',
-  },
-  {
-    id: 'status',
-    numeric: false,
-    disablePadding: true,
-    label: 'Status',
-  },
-  {
-    id: 'purchaseDate',
-    numeric: true,
-    disablePadding: false,
-    label: 'Purchase date',
-  },
-  {
-    id: 'price',
-    numeric: true,
-    disablePadding: false,
-    label: 'Price ($)',
-  },
-];
 
 function EnhancedTableHead(props)
 {
@@ -226,22 +294,8 @@ const EnhancedTableToolbar = (props) =>
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Nutrition
+          History
         </Typography>
-      )}
-
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
       )}
     </Toolbar>
   );
@@ -278,12 +332,12 @@ const useStyles = makeStyles((theme) => ({
 export default function EnhancedTable()
 {
   const classes = useStyles();
-  const [order, setOrder] = React.useState('asc');
+  const [order, setOrder] = React.useState('desc');
   const [orderBy, setOrderBy] = React.useState('date');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(13);
 
   const handleRequestSort = (event, property) =>
   {
@@ -353,7 +407,7 @@ export default function EnhancedTable()
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
+      <div className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
@@ -398,7 +452,14 @@ export default function EnhancedTable()
                       <TableCell component="th" id={row.id} scope="row" padding="none">
                         {row.productName}
                       </TableCell>
-                      <TableCell align="right">{row.status}</TableCell>
+                      <TableCell
+                        component="th"
+                        id={row.id}
+                        scope="row"
+                        padding="none"
+                      >
+                        {row.status}
+                      </TableCell>
                       <TableCell align="right">{row.purchaseDate.toDateString()}</TableCell>
                       <TableCell align="right">{row.price}</TableCell>
                     </TableRow>
@@ -413,7 +474,7 @@ export default function EnhancedTable()
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[13, 26, 65]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -421,7 +482,7 @@ export default function EnhancedTable()
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
-      </Paper>
+      </div>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"

@@ -5,7 +5,7 @@ import { Route } from 'react-router';
 import dashboardStyle from './account.style';
 import routes from './routes';
 import Sidebar from './sidebar/sidebar';
-import ProfileEditor from './options_container/ProfileEditor';
+import ProfileEditor from './options_container/profile_editor';
 
 const UserAccount = ({ match }) =>
 {
