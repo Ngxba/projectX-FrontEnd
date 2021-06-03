@@ -8,7 +8,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { makeKey } from '../../utils/supportFunction';
 
 function TabPanel(props)
 {
@@ -29,7 +28,7 @@ function TabPanel(props)
     >
       {value === index && (
         <Box paddingBottom={3}>
-          <Typography>{children}</Typography>
+          <Typography component="span">{children}</Typography>
         </Box>
       )}
     </div>
@@ -74,7 +73,7 @@ const CustomTab = ({
 
   const renderTabComponents = () => (
     data.map((element, index) => (
-      <TabPanel key={makeKey(5)} value={value} index={index} dir={theme.direction}>
+      <TabPanel key={element.title} value={value} index={index} dir={theme.direction}>
         {element.component}
       </TabPanel>
     ))
@@ -104,7 +103,12 @@ const CustomTab = ({
             {
               // Render tab title
               data.map((element, index) => (
-                <Tab key={makeKey(5)} disableRipple label={element.title} {...a11yProps(index)} />
+                <Tab
+                  key={element.title}
+                  disableRipple
+                  label={element.title}
+                  {...a11yProps(index)}
+                />
               ))
             }
           </Tabs>
@@ -136,7 +140,7 @@ const CustomTab = ({
 };
 
 CustomTab.defaultProps = {
-  wrapper: React.Fragment,
+  wrapper: () => <></>,
   appBarStyle: null,
   rootStyle: null,
   enableSwipeEffect: false,
@@ -150,7 +154,7 @@ CustomTab.propTypes = {
       component: PropTypes.node.isRequired,
     },
   )).isRequired,
-  wrapper: PropTypes.node,
+  wrapper: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   appBarStyle: PropTypes.object,
   rootStyle: PropTypes.object,
   enableSwipeEffect: PropTypes.bool,

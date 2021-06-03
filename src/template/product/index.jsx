@@ -1,17 +1,19 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
-import Container from "@material-ui/core/Container";
-import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress } from "@material-ui/core";
-import productStyle from "./index.style";
-import ProductHeader from "./product_header/product_header";
-import ProductMedia from "./product_media/product_media";
-import ProductInfo from "./product_info/product_info";
-import RelatedProduct from "./related_product/related_product";
-import { FetchProduct } from "../../redux/actions/productActions";
-import FetchRelatedProducts from "../../redux/actions/relatedProducAction";
+import React, { useEffect } from 'react';
+import Container from '@material-ui/core/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
+import productStyle from './index.style';
+import ProductHeader from './product_header/product_header';
+import ProductMedia from './product_media/product_media';
+import ProductInfo from './product_info/product_info';
+import RelatedProduct from './related_product/related_product';
+import { FetchProduct } from '../../redux/actions/productActions';
+import FetchRelatedProducts from '../../redux/actions/relatedProducAction';
+import Shadow from '../../components/Shadow/shadow';
 
-const Product = ({ match }) => {
+const Product = ({ match }) =>
+{
   const classes = productStyle();
   const { params } = match;
 
@@ -69,7 +71,7 @@ const Product = ({ match }) => {
   return (
     <div className={classes.page_container}>
       {/* Shadow below navbar */}
-      <div className={classes.shadow} />
+      <Shadow />
 
       <Container
         classes={{

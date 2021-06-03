@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 import CustomTypography from '../../../components/Typography/typography';
 import productHeaderStyle from './product_header.style';
-import { makeKey } from '../../../utils/supportFunction';
 
 const chunkArray = (myArray, chunkSize) =>
 {
@@ -144,7 +143,7 @@ const SizeChart = ({
 
               return (
                 <StyledTableRow
-                  key={makeKey(10)}
+                  key={eu}
                   style={{ background: highlighted ? '#eef7eb' : null }}
                 >
                   <StyledTableCell align="center">{us}</StyledTableCell>
