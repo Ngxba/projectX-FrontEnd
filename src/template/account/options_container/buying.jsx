@@ -1,15 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import buyingContainerStyle from './buying.style';
+import Shadow from '../../../components/Shadow/shadow';
+import CustomTable from './BuyingTable';
 
 const BuyingContainer = () =>
 {
   const classes = buyingContainerStyle();
 
   return (
-    <div className={classes.root}>
-      <h1>Buying Container</h1>
-    </div>
+    <>
+      <Shadow />
+      <div className={classes.root}>
+        <CustomTable />
+      </div>
+    </>
   );
 };
 

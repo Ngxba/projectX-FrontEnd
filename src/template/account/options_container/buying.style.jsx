@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const buyingContainerStyle = makeStyles({
-  root: {},
+  root: {
+    marginTop: "-20px",
+    padding: "15px",
+  },
 });
 export default buyingContainerStyle;
