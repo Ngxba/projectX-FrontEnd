@@ -12,6 +12,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import CustomTypography from '../../components/Typography/typography';
 import CustomButton from '../../components/Buttons/button';
 import { isLengthEqualZero, validateEmail } from '../../utils/supportFunction';
@@ -96,6 +97,7 @@ function Login()
 
   return (
     <form onSubmit={handleSubmit}>
+      {!userState.loading && userState.isLogin && !isFakeLoading &&  <Redirect to="/" />}
       {userState.error !== '' && userState.isOnLoginTab && (
         <Alert
           variant="outlined"

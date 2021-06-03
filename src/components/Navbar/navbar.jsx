@@ -36,7 +36,7 @@ const Navbar = (props) =>
       path: `${!userState.isLogin ? '/login' : '/logout'}`,
     },
     {
-      title: 'Account',
+      title: `${!userState.isLogin ? 'Sign Up' : 'Account'}`,
       path: '/account',
     },
   ];

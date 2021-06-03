@@ -3,9 +3,10 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
+import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, Redirect } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import RightBuy from "./rightBuy";
 import LeftBuy from "./leftBuy";
@@ -13,6 +14,7 @@ import buyStyle from "./buy.style";
 import CustomModal from "./modal";
 import CustomButton from "../../components/Buttons/button";
 import { FetchProduct } from "../../redux/actions/productActions";
+import { createOrder } from "../../redux/actions/orderAction";
 import { getParameterByName } from "../../utils/supportFunction";
 
 function useQuery() {
@@ -27,13 +29,27 @@ const Buy = ({ match }) => {
   const [sizeQuantity, setSizeQuantity] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const [Loading, toggleLoading] = React.useState(true);
+  const [redirect, setRedirect] = React.useState(false);
+  const userState = useSelector((state) => state.userState);
 
-  const handleOpen = () => {
+  const handleOpen = async () => {
     toggleLoading(true);
     setOpen(true);
     setTimeout(() => {
       toggleLoading(false);
     }, 2000);
+    await createOrder(
+      userState.userData.id,
+      productState.productData._id,
+      productState.productData.productName,
+      productState.productData.urlKey,
+      new Date().toISOString(),
+      productState.productData.price + 10,
+      "Processing"
+    );
+    setTimeout(() => {
+      setRedirect(true);
+    }, 8000);
   };
 
   const handleClose = () => {
@@ -53,73 +69,76 @@ const Buy = ({ match }) => {
         }
         return result;
       },
-      0,
+      0
     );
     setSizeQuantity(sizeQuantityValue);
   });
 
   const classes = buyStyle();
-  if (productState.loading) {
-    return (
-      <div
-        style={{
-          width: "100vw",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <CircularProgress size={80} />
-      </div>
-    );
-  }
   return (
     <React.Fragment key='BuyPage'>
-      <CustomModal
-        open={open}
-        handleClose={handleClose}
-        price={productState.productData.price}
-        size={query.get("size")}
-        productName={productState.productData.productName}
-        imageurl={productState.productData.imageurl}
-        loading={Loading}
-      />
-      <div className={classes.root}>
-        <Grid container spacing={0} style={{ height: "100%" }}>
-          <Grid item sm={12} md={7}>
-            <LeftBuy
-              price={productState.productData.price}
-              size={query.get("size")}
-              name={productState.productData.productName}
-              imgSrc={productState.productData.imageurl}
-            />
-          </Grid>
-          <Grid item sm={12} md={5}>
-            <RightBuy
-              quantity={sizeQuantity}
-              price={productState.productData.price}
-              size={query.get("size")}
-              urlKey={params.urlKey}
-            />
-          </Grid>
-        </Grid>
-      </div>
-      <Paper className={classes.bottomNav}>
-        <Link
-          to={`/product/${params.urlKey}`}
-          style={{ textDecoration: "none" }}
+      {!userState.isLogin && <Redirect to='/login' />}
+      {redirect && <Redirect to='/account/buying' />}
+      {productState.loading ? (
+        <div
+          style={{
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          <CustomButton backgroundColor='secondary'>Cancle</CustomButton>
-        </Link>
-        <CustomButton
-          disabled={sizeQuantity === 0}
-          onClick={handleOpen}
-          style={{ marginLeft: "30px" }}
-        >
-          Buy
-        </CustomButton>
-      </Paper>
+          <CircularProgress size={80} />
+        </div>
+      ) : (
+        <>
+          <CustomModal
+            open={open}
+            handleClose={handleClose}
+            price={productState.productData.price}
+            size={query.get("size")}
+            productName={productState.productData.productName}
+            imageurl={productState.productData.imageurl}
+            loading={Loading}
+          />
+          <div className={classes.root}>
+            <Grid container spacing={0} style={{ height: "100%" }}>
+              <Grid item sm={12} md={7}>
+                <LeftBuy
+                  price={productState.productData.price}
+                  size={query.get("size")}
+                  name={productState.productData.productName}
+                  imgSrc={productState.productData.imageurl}
+                />
+              </Grid>
+              <Grid item sm={12} md={5}>
+                <RightBuy
+                  quantity={sizeQuantity}
+                  price={productState.productData.price}
+                  size={query.get("size")}
+                  urlKey={params.urlKey}
+                />
+              </Grid>
+            </Grid>
+          </div>
+          <Paper className={classes.bottomNav}>
+            <Link
+              to={`/product/${params.urlKey}`}
+              style={{ textDecoration: "none" }}
+            >
+              <CustomButton backgroundColor='secondary'>Cancle</CustomButton>
+            </Link>
+            <CustomButton
+              disabled={sizeQuantity === 0}
+              onClick={handleOpen}
+              style={{ marginLeft: "30px" }}
+            >
+              Buy
+            </CustomButton>
+          </Paper>{" "}
+        </>
+      )}
     </React.Fragment>
   );
 };
