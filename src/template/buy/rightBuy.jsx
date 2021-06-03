@@ -5,13 +5,13 @@ import EditIcon from "@material-ui/icons/Edit";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import buyStyle from "./buy.style";
 import CustomTypography from "../../components/Typography/typography";
 import CustomButton from "../../components/Buttons/button";
 
-const RightBuy = ({ quantity, price, size, urlKey }) => {
+const RightBuy = ({ quantity, price, size /* , urlKey */ }) => {
   const classes = buyStyle();
   return (
     <div className={`${classes.rootPart} ${classes.bgGray}`}>
@@ -21,16 +21,16 @@ const RightBuy = ({ quantity, price, size, urlKey }) => {
           Only {quantity} left in this size
         </CustomTypography>
       </div>
-      <Link to={`/product/${urlKey}`} style={{ textDecoration: "none", width: "100%" }}>
-        <Button
-          variant='outlined'
-          color='secondary'
-          className={classes.buttonChoose}
-        >
-          <strong>U.S. Men&apos;s Size {size}</strong>
-          <EditIcon fontSize='small' color='disabled' />
-        </Button>
-      </Link>
+      {/* <Link to={`/product/${urlKey}`} style={{ textDecoration: "none", width: "100%" }}> */}
+      <Button
+        variant='outlined'
+        color='secondary'
+        className={classes.buttonChoose}
+      >
+        <strong>U.S. Men&apos;s Size {size}</strong>
+        <EditIcon fontSize='small' color='disabled' />
+      </Button>
+      {/* </Link> */}
       <Paper style={{ background: "white", padding: "20px", width: "100%" }}>
         <div className={classes.textCenter}>
           <CustomButton style={{ borderRadius: "30px", padding: "10px 40px" }}>
@@ -136,7 +136,7 @@ const RightBuy = ({ quantity, price, size, urlKey }) => {
 RightBuy.propTypes = {
   quantity: PropTypes.number,
   size: PropTypes.string,
-  urlKey: PropTypes.string.isRequired,
+  // urlKey: PropTypes.string.isRequired,
   price: PropTypes.number,
 };
 

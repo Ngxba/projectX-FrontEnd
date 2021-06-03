@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable */
 import React from "react";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -14,16 +14,17 @@ const CustomModal = ({
   imageurl,
   productName,
   size,
+  loading
 }) => {
-  const [Loading, toggleLoading] = React.useState(true);
-  React.useEffect(() => {
-    setTimeout(toggleLoading(!Loading), 2000);
-  }, [open]);
+  // const [Loading, toggleLoading] = React.useState(true);
+  // React.useEffect(() => {
+  //   setTimeout(toggleLoading(!Loading), 2000);
+  // }, []);
 
   return (
     <Modal open={open} onClose={handleClose}>
       <Paper style={{ width: "60vw", margin: "90px auto 0", padding: "20px" }}>
-        {Loading ? (
+        {loading ? (
           <CircularProgress size={80} />
         ) : (
           <>
@@ -138,6 +139,7 @@ CustomModal.propTypes = {
   imageurl: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default CustomModal;

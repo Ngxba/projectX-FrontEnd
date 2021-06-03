@@ -26,9 +26,14 @@ const Buy = ({ match }) => {
   const productState = useSelector((state) => state.productState);
   const [sizeQuantity, setSizeQuantity] = React.useState(0);
   const [open, setOpen] = React.useState(false);
+  const [Loading, toggleLoading] = React.useState(true);
 
   const handleOpen = () => {
+    toggleLoading(true);
     setOpen(true);
+    setTimeout(() => {
+      toggleLoading(false);
+    }, 2000);
   };
 
   const handleClose = () => {
@@ -78,6 +83,7 @@ const Buy = ({ match }) => {
         size={query.get("size")}
         productName={productState.productData.productName}
         imageurl={productState.productData.imageurl}
+        loading={Loading}
       />
       <div className={classes.root}>
         <Grid container spacing={0} style={{ height: "100%" }}>
