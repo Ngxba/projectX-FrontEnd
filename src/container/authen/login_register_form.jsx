@@ -1,22 +1,21 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { PropTypes } from 'prop-types';
 import Login from './login';
 import Register from './register';
 import CustomTab from '../../components/CustomTab/custom_tab';
 
+// eslint-disable-next-line react/prop-types
 const Wrapper = ({ children }) => (
-  <>
-    <Paper style={{ width: '400px', padding: '0 16px', margin: '0 auto' }}>
-      {children}
-    </Paper>
-  </>
+  <Paper style={{
+    width: '400px',
+    padding: '0 16px',
+    margin: '0 auto',
+  }}
+  >
+    {children}
+  </Paper>
 );
-
-Wrapper.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 const LoginRegisterForm = () =>
 {
@@ -47,8 +46,8 @@ const LoginRegisterForm = () =>
         backgroundColor: '#fafafa',
         width: '100vw',
         height: '100vh',
-        marginTop: "-90px",
-        paddingTop: "15%",
+        marginTop: '-90px',
+        paddingTop: '15%',
       }}
       textColor="secondary"
     />

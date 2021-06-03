@@ -10,6 +10,7 @@ import ProductInfo from './product_info/product_info';
 import RelatedProduct from './related_product/related_product';
 import { FetchProduct } from '../../redux/actions/productActions';
 import FetchRelatedProducts from '../../redux/actions/relatedProducAction';
+import Shadow from '../../components/Shadow/shadow';
 
 const Product = ({ match }) =>
 {
@@ -21,8 +22,7 @@ const Product = ({ match }) =>
 
   const dispatch = useDispatch();
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     dispatch(FetchProduct(params.urlKey));
   }, [params.urlKey]);
 
@@ -35,21 +35,16 @@ const Product = ({ match }) =>
     tag3: tags[3],
   };
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     dispatch(FetchRelatedProducts(0, 15, data));
   }, [tags]);
 
   // Generate data for breadcrumbs
-  const textRoutes = [
-    ...tags.slice(0, tags.length - 5),
-  ];
+  const textRoutes = [...tags.slice(0, tags.length - 5)];
 
-  const linkRoutes = textRoutes.map((text, index) =>
-  {
-    let href = '/brand';
-    for (let i = 0; i <= index; i += 1)
-    {
+  const linkRoutes = textRoutes.map((text, index) => {
+    let href = "/brand";
+    for (let i = 0; i <= index; i += 1) {
       href += `/${textRoutes[i]}`;
     }
 
@@ -60,16 +55,13 @@ const Product = ({ match }) =>
   });
 
   // Add product name to last
-  linkRoutes.push(
-    {
-      href: `/product/${params.urlKey}`,
-      text: productState.productData.productName,
-    },
-  );
+  linkRoutes.push({
+    href: `/product/${params.urlKey}`,
+    text: productState.productData.productName,
+  });
 
   // Render Circular Progress while fetching data
-  if (productState.loading)
-  {
+  if (productState.loading) {
     return (
       <div className={classes.center}>
         <CircularProgress size={80} />
@@ -79,14 +71,13 @@ const Product = ({ match }) =>
   return (
     <div className={classes.page_container}>
       {/* Shadow below navbar */}
-      <div className={classes.shadow} />
+      <Shadow />
 
       <Container
         classes={{
           root: classes.container,
         }}
       >
-
         {/* Product Header: Pick size, price */}
         <ProductHeader
           routes={linkRoutes}
@@ -94,28 +85,27 @@ const Product = ({ match }) =>
           ticker={productState.productData.tickerSymbol}
           sizeQuantity={productState.productData.sizeQuantity}
           price={productState.productData.price}
+          urlKey={params.urlKey}
         />
-
         {/* Product media */}
         <ProductMedia
           imageURL={productState.productData.imageurl}
           productName={productState.productData.productName}
         />
-
         {/* Product info */}
         <ProductInfo
           detail={productState.productData.detail}
           description={productState.productData.description}
         />
-
         {/* Related products */}
-        {
-          relatedProductsState.loading
-            ? <CircularProgress className={classes.center} size={40} />
-            : <RelatedProduct relatedProductList={relatedProductsState.productsData} />
-        }
+        {relatedProductsState.loading ? (
+          <CircularProgress className={classes.center} size={40} />
+        ) : (
+          <RelatedProduct
+            relatedProductList={relatedProductsState.productsData}
+          />
+        )}
         )
-
       </Container>
     </div>
   );

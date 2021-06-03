@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CircularProgress, TextField } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 // import PropTypes from "prop-types";
@@ -11,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import CustomTypography from '../../components/Typography/typography';
 import CustomButton from '../../components/Buttons/button';
 import { isLengthEqualZero, validateEmail } from '../../utils/supportFunction';
@@ -25,6 +27,7 @@ function Login()
     password: '',
     showPassword: false,
   });
+  const [isFakeLoading, setIsFakeLoading] = useState(false);
 
   const userState = useSelector((state) => state.userState);
   const dispatch = useDispatch();
@@ -53,16 +56,49 @@ function Login()
   const handleSubmit = (event) =>
   {
     event.preventDefault();
+
     dispatch(SignIn(values));
+
     setValues({
       ...values,
       password: '',
     });
   };
 
+  // eslint-disable-next-line no-unused-vars
+  const history = useHistory();
+
+  // Go back to previous page after successfully log in
+  // eslint-disable-next-line consistent-return
+  useEffect(() =>
+  {
+    async function playEffect()
+    {
+      setIsFakeLoading(true);
+
+      await setTimeout(() =>
+      {
+        setIsFakeLoading(false);
+        history.goBack();
+      }, 1500);
+    }
+
+    if (userState.isLogin)
+    {
+      playEffect()
+        .catch(() => setIsFakeLoading(false));
+    }
+
+    return () =>
+    {
+      clearTimeout();
+    };
+  }, [userState.isLogin]);
+
   return (
     <form onSubmit={handleSubmit}>
-      {userState.error !== '' && userState.isLogin && (
+      {!userState.loading && userState.isLogin && !isFakeLoading &&  <Redirect to="/" />}
+      {userState.error !== '' && userState.isOnLoginTab && (
         <Alert
           variant="outlined"
           severity="error"
@@ -119,14 +155,18 @@ function Login()
         </CustomTypography>
       </FormControl>
       <CustomButton
-        disabled={userState.loading || isLengthEqualZero(values) || !validateEmail(values.email)}
+        disabled={isFakeLoading
+        || userState.loading
+        || isLengthEqualZero(values)
+        || !validateEmail(values.email)}
         style={{
           width: '100%',
           margin: 0,
+          height: 51,
         }}
         type="submit"
       >
-        {!userState.loading ? (
+        {(!userState.loading && !isFakeLoading) ? (
           'Login'
         ) : (
           <CircularProgress color="secondary" size="20px" />

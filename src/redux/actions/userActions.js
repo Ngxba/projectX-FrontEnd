@@ -1,21 +1,28 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import axios from "axios";
-import { backEndLink } from "../../config";
+import axios from 'axios';
+import { deleteFromStorage, writeStorage } from '@rehooks/local-storage';
+import { backEndLink } from '../../config';
 import {
-  USER_REQUEST,
-  USER_REQUEST_SUCCESS,
   USER_REQUEST_FAILURE,
-} from "../types/userType";
+  USER_REQUEST_LOGIN,
+  USER_REQUEST_SUCCESS,
+  USER_REQUEST_UPDATE,
+} from '../types/userType';
 
-const UserRequest = (isLogin) => ({
-  type: USER_REQUEST,
-  payload: isLogin,
+const UserRequestLogin = (isOnLoginTab) => ({
+  type: USER_REQUEST_LOGIN,
+  payload: isOnLoginTab,
 });
 
-const UserRequestSuccess = (user) => ({
+const UserRequestUpdate = (updateSuccessfully) => ({
+  type: USER_REQUEST_UPDATE,
+  payload: updateSuccessfully,
+});
+
+const UserRequestSuccess = (data) => ({
   type: USER_REQUEST_SUCCESS,
-  payload: user,
+  payload: data,
 });
 
 const UserRequestFailure = (error) => ({
@@ -27,8 +34,11 @@ export const SignIn = (loginData) =>
 {
   return async function (dispatch)
   {
-    const { email, password } = loginData;
-    dispatch(UserRequest(true));
+    const {
+      email,
+      password,
+    } = loginData;
+    dispatch(UserRequestLogin(true));
     try
     {
       const res = await axios.post(`${backEndLink}/api/auth/login`, {
@@ -37,9 +47,20 @@ export const SignIn = (loginData) =>
       });
       if (res.status === 200)
       {
-        dispatch(UserRequestSuccess(res.data));
-        // eslint-disable-next-line no-undef
-        localStorage.setItem("token", res.data.token);
+        // Exclude token from response data using ES9 Object Rest Operator
+        const {
+          token,
+          ...dataWithoutToken
+        } = res.data;
+
+        const data = {
+          userData: { ...dataWithoutToken },
+          isLogin: true,
+        };
+
+        dispatch(UserRequestSuccess(data));
+
+        writeStorage('token', res.data.token);
       }
       else
       {
@@ -58,8 +79,12 @@ export const Register = (registerData) =>
 {
   return async function (dispatch)
   {
-    const { name, email, password } = registerData;
-    dispatch(UserRequest(false));
+    const {
+      name,
+      email,
+      password,
+    } = registerData;
+    dispatch(UserRequestLogin(false));
     try
     {
       const res = await axios.post(`${backEndLink}/api/auth/register`, {
@@ -84,25 +109,37 @@ export const Register = (registerData) =>
   };
 };
 
-export const getIdentity = (token) =>
+export const UpdateData = (passedData) =>
 {
   return async function (dispatch)
   {
-    dispatch(UserRequest(false));
+    const {
+      name,
+      email,
+      id,
+    } = passedData;
+
+    dispatch(UserRequestUpdate(false));
+
     try
     {
-      const res = await axios.get(`${backEndLink}/api/auth/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.post(`${backEndLink}/api/user/update/${id}`,
+        {
+          name,
+          email,
+        });
+
       if (res.status === 200)
       {
-        dispatch(UserRequestSuccess(res.data));
+        const data = {
+          userData: { ...passedData },
+          updateSuccessfully: true,
+        };
+
+        dispatch(UserRequestSuccess(data));
       }
       else
       {
-        // throw new Error("Cannot Sign up", res);
         dispatch(UserRequestFailure(res.data.error));
       }
     }
@@ -113,13 +150,65 @@ export const getIdentity = (token) =>
   };
 };
 
-// export const updateData = async (name, email) => {
-//   const res = await axios.post(`${backEndLink}/api/user/update`, {
-//     name,
-//     email,
-//   });
-//   if (res.status === 200) {
-//     return res.data;
-//   }
-//   throw new Error("Cannot Update", res);
-// };
+export const ResetUpdateStatus = () =>
+{
+  return async (dispatch) =>
+  {
+    dispatch(UserRequestSuccess({ updateSuccessfully: false }));
+  };
+};
+
+export const UserLogOut = () =>
+{
+  return async (dispatch) =>
+  {
+    const data = {
+      userData: {
+        name: {
+          firstName: '',
+          lastName: '',
+        },
+        email: '',
+        id: '',
+      },
+      isLogin: false,
+    };
+
+    dispatch(UserRequestSuccess(data));
+
+    deleteFromStorage('token');
+  };
+};
+
+export const GetIdentity = (token) =>
+{
+  return async function (dispatch)
+  {
+    dispatch(UserRequestUpdate());
+    try
+    {
+      const res = await axios.get(`${backEndLink}/api/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 200)
+      {
+        dispatch(UserRequestSuccess({
+          userData: { ...res.data },
+          isLogin: true,
+        }));
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+      }
+      else
+      {
+        dispatch(UserRequestFailure(res.data.error));
+        dispatch(UserLogOut());
+      }
+    }
+    catch (error)
+    {
+      dispatch(UserRequestFailure(error));
+    }
+  };
+};

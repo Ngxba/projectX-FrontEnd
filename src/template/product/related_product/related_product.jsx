@@ -5,7 +5,6 @@ import Tab from '@material-ui/core/Tab';
 import relatedProductStyle from './related_product.style';
 import CustomTypography from '../../../components/Typography/typography';
 import CustomCard from '../../../container/card/card';
-import { makeKey } from '../../../utils/supportFunction';
 
 function a11yProps(index)
 {
@@ -75,7 +74,7 @@ const RelatedProduct = ({ relatedProductList }) =>
 
           return (
             <CustomTab
-              key={makeKey(5)}
+              key={product.name}
             />
           );
         })}

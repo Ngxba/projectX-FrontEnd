@@ -9,7 +9,7 @@ import ShopCategories from "../template/about/shop";
 function About()
 {
   return (
-    <React.Fragment key="main">
+    <React.Fragment key="about">
       <SimpleContainer />
       <AboutGrid />
       <StepMedia />

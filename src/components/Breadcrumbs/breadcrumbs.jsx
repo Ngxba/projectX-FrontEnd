@@ -2,7 +2,6 @@ import React from 'react';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import PropTypes from 'prop-types';
 import CustomTypography from '../Typography/typography';
-import { makeKey } from '../../utils/supportFunction';
 
 function SimpleBreadcrumbs({ data })
 {
@@ -26,7 +25,7 @@ function SimpleBreadcrumbs({ data })
               color="#666"
               fontSize="12px"
               txtType="text--light"
-              key={makeKey()}
+              key={item.href}
               href={item.href}
               style={
                 {
@@ -47,7 +46,7 @@ function SimpleBreadcrumbs({ data })
                 textDecoration: 'none',
               }
             }
-            key={makeKey()}
+            key={item.href}
             fontSize="12px"
             txtType="text--light"
             // href={item.href}
