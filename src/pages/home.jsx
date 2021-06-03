@@ -41,11 +41,13 @@ const DataBrand = [
   },
 ];
 
-function Home() {
+function Home()
+{
   const homeState = useSelector((state) => state.homeState);
 
   const dispatch = useDispatch();
-  React.useEffect(() => {
+  React.useEffect(() =>
+  {
     if (homeState.homeData !== {}) dispatch(FetchProducts());
   }, []);
 
@@ -66,13 +68,13 @@ function Home() {
     );
   }
   return (
-    <React.Fragment key='main'>
+    <React.Fragment key="main">
       <ContentHeader />
       <CarouselWithTab />
       <Container maxWidth="md">
         <CardContainer type="brand" title="Popular Brands" data={DataBrand} />
         <CardContainer
-          title='Most Popular'
+          title="Most Popular"
           data={homeState.homeData.mostPopular}
         />
         <CardContainer
@@ -94,9 +96,9 @@ function Home() {
       {/* <PosterHome /> */}
       <About />
       <Container>
-        <CardContainer title='Latest Buy' data={homeState.homeData.latestBuy} />
+        <CardContainer title="Latest Buy" data={homeState.homeData.latestBuy} />
         <CardContainer
-          title='Latest Product'
+          title="Latest Product"
           data={homeState.homeData.latestProduct}
         />
         <br />

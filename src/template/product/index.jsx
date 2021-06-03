@@ -22,7 +22,8 @@ const Product = ({ match }) =>
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(FetchProduct(params.urlKey));
   }, [params.urlKey]);
 
@@ -35,16 +36,19 @@ const Product = ({ match }) =>
     tag3: tags[3],
   };
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(FetchRelatedProducts(0, 15, data));
   }, [tags]);
 
   // Generate data for breadcrumbs
   const textRoutes = [...tags.slice(0, tags.length - 5)];
 
-  const linkRoutes = textRoutes.map((text, index) => {
+  const linkRoutes = textRoutes.map((text, index) =>
+  {
     let href = "/brand";
-    for (let i = 0; i <= index; i += 1) {
+    for (let i = 0; i <= index; i += 1)
+    {
       href += `/${textRoutes[i]}`;
     }
 
@@ -61,7 +65,8 @@ const Product = ({ match }) =>
   });
 
   // Render Circular Progress while fetching data
-  if (productState.loading) {
+  if (productState.loading)
+  {
     return (
       <div className={classes.center}>
         <CircularProgress size={80} />

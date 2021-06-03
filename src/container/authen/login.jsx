@@ -97,7 +97,7 @@ function Login()
 
   return (
     <form onSubmit={handleSubmit}>
-      {!userState.loading && userState.isLogin && !isFakeLoading &&  <Redirect to="/" />}
+      {!userState.loading && userState.isLogin && !isFakeLoading && <Redirect to="/" />}
       {userState.error !== '' && userState.isOnLoginTab && (
         <Alert
           variant="outlined"
