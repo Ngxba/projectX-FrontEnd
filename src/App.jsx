@@ -32,11 +32,11 @@ function App()
     {
       dispatch(GetIdentity(token));
     }
-    if (userState.userData.id)
+    if (userState.userData.id && token)
     {
       dispatch(FetchOrderData(userState.userData.id, token));
     }
-  }, [userState.userData.id]);
+  }, [userState.userData.id, token]);
 
   return (
     <React.Fragment key="main">
