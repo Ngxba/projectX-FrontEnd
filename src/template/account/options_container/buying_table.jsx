@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,11 +11,9 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import { sort } from 'fast-sort';
 import { headCells, rows } from './fake_data';
+import CustomTypography from '../../../components/Typography/typography';
 
 function stableSort(array, order, orderBy)
 {
@@ -31,11 +28,8 @@ function EnhancedTableHead(props)
 {
   const {
     classes,
-    onSelectAllClick,
     order,
     orderBy,
-    numSelected,
-    rowCount,
     onRequestSort,
   } = props;
   const createSortHandler = (property) => (event) =>
@@ -46,14 +40,7 @@ function EnhancedTableHead(props)
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
-          />
-        </TableCell>
+        <TableCell padding="none" />
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -66,7 +53,9 @@ function EnhancedTableHead(props)
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
-              {headCell.label}
+              <CustomTypography txtType="text--bold" txtStyle="text--category">
+                {headCell.label}
+              </CustomTypography>
               {orderBy === headCell.id ? (
                 <span className={classes.visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -83,12 +72,9 @@ function EnhancedTableHead(props)
 EnhancedTableHead.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
 };
 
 const useToolbarStyles = makeStyles((theme) => ({
@@ -111,34 +97,19 @@ const useToolbarStyles = makeStyles((theme) => ({
   },
 }));
 
-const EnhancedTableToolbar = (props) =>
+const EnhancedTableToolbar = () =>
 {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
 
   return (
     <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
+      className={classes.root}
     >
-      {numSelected > 0 ? (
-        <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected}
-          {' '}
-          selected
-        </Typography>
-      ) : (
-        <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          History
-        </Typography>
-      )}
+      <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+        History
+      </Typography>
     </Toolbar>
   );
-};
-
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -165,15 +136,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable()
+export default function CustomTable({ data })
 {
   const classes = useStyles();
   const [order, setOrder] = React.useState('desc');
   const [orderBy, setOrderBy] = React.useState('date');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(13);
+
+  const preprocessedData = data.map((el) => ({
+    ...el,
+    purchaseDate: el.purchaseDate !== null ? new Date(el.purchaseDate).toDateString() : null,
+  }));
 
   const handleRequestSort = (event, property) =>
   {
@@ -193,34 +168,6 @@ export default function EnhancedTable()
     setSelected([]);
   };
 
-  const handleClick = (event, name) =>
-  {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1)
-    {
-      newSelected = newSelected.concat(selected, name);
-    }
-    else if (selectedIndex === 0)
-    {
-      newSelected = newSelected.concat(selected.slice(1));
-    }
-    else if (selectedIndex === selected.length - 1)
-    {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    }
-    else if (selectedIndex > 0)
-    {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    setSelected(newSelected);
-  };
-
   const handleChangePage = (event, newPage) =>
   {
     setPage(newPage);
@@ -232,13 +179,6 @@ export default function EnhancedTable()
     setPage(0);
   };
 
-  const handleChangeDense = (event) =>
-  {
-    setDense(event.target.checked);
-  };
-
-  const isSelected = (name) => selected.indexOf(name) !== -1;
-
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
@@ -249,7 +189,7 @@ export default function EnhancedTable()
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
+            size="medium"
             aria-label="enhanced table"
           >
             <EnhancedTableHead
@@ -262,47 +202,32 @@ export default function EnhancedTable()
               rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(rows, order, orderBy)
+              {stableSort(preprocessedData, order, orderBy)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) =>
-                {
-                  const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${row.productId}`;
-
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.productId}
-                      selected={isItemSelected}
+                .map((row) => (
+                  <TableRow
+                    hover
+                    tabIndex={-1}
+                    key={row.productId}
+                  >
+                    <TableCell padding="checkbox" />
+                    <TableCell component="th" id={row.id} scope="row" padding="none">
+                      {row.productName}
+                    </TableCell>
+                    <TableCell
+                      component="th"
+                      id={row.id}
+                      scope="row"
+                      padding="none"
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
-                      </TableCell>
-                      <TableCell component="th" id={row.id} scope="row" padding="none">
-                        {row.productName}
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={row.id}
-                        scope="row"
-                        padding="none"
-                      >
-                        {row.status}
-                      </TableCell>
-                      <TableCell align="right">{row.purchaseDate.toDateString()}</TableCell>
-                      <TableCell align="right">{row.price}</TableCell>
-                    </TableRow>
-                  );
-                })}
+                      {row.status}
+                    </TableCell>
+                    <TableCell align="right">{row.purchaseDate}</TableCell>
+                    <TableCell align="right">{row.price}</TableCell>
+                  </TableRow>
+                ))}
               {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                <TableRow style={{ height: 53 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
@@ -319,10 +244,20 @@ export default function EnhancedTable()
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </div>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </div>
   );
 }
+
+CustomTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape(
+    {
+      price: PropTypes.number,
+      productId: PropTypes.string,
+      productName: PropTypes.string,
+      purchaseDate: PropTypes.string,
+      status: PropTypes.string,
+      urlKey: PropTypes.string,
+    },
+  )).isRequired,
+
+};

@@ -14,13 +14,12 @@ const ProfileContainer = () =>
   const classes = profileContainerStyle();
 
   const userState = useSelector((state) => state.userState);
-  const { userData } = userState;
 
   const {
     name,
     email,
     id,
-  } = userData;
+  } = userState.userData;
 
   const data = [
     {
@@ -37,7 +36,7 @@ const ProfileContainer = () =>
     },
   ];
 
-  if (userData.loading)
+  if (userState.userData.loading)
   {
     return (
       <div
