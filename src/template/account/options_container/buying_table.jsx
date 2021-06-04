@@ -211,39 +211,67 @@ export default function CustomTable({ data })
                     key={row.productId}
                   >
                     <TableCell padding="checkbox" />
-                    <TableCell component="th" id={row.id} scope="row" padding="none">
-                      <CustomTypography
-                        href={`/product/${row.urlKey}`}
-                        style={{ textDecoration: 'none' }}
-                        onClick={() =>
-                        {
-                          // eslint-disable-next-line no-undef
-                          window.location.href = `/product/${row.urlKey}`;
-                        }}
-                      >
-                        {row.productName}
-                      </CustomTypography>
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      id={row.id}
-                      scope="row"
-                      padding="none"
-                    >
-                      <CustomTypography>
-                        {row.status}
-                      </CustomTypography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <CustomTypography>
-                        {row.purchaseDate}
-                      </CustomTypography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <CustomTypography>
-                        {row.price}
-                      </CustomTypography>
-                    </TableCell>
+
+                    {
+                      // Check if the order data is default (all values are null)
+                      (!preprocessedData[0].productName)
+                        ? (
+                          <>
+                            <TableCell component="th" id={row.id} scope="row" padding="none">
+                              <CustomTypography txtStyle="text--secondary" fontSize={15}>
+                                No data
+                              </CustomTypography>
+                            </TableCell>
+                            <TableCell />
+                            <TableCell />
+                            <TableCell />
+                          </>
+
+                        )
+                        : (
+                          <>
+                            <TableCell component="th" id={row.id} scope="row" padding="none">
+                              <CustomTypography
+                                href={`/product/${row.urlKey}`}
+                                style={{ textDecoration: 'none' }}
+                                onClick={() =>
+                                {
+                                  // eslint-disable-next-line no-undef
+                                  window.location.href = `/product/${row.urlKey}`;
+                                }}
+                              >
+                                {row.productName}
+                              </CustomTypography>
+                            </TableCell>
+
+                            {/* status */}
+                            <TableCell
+                              component="th"
+                              id={row.id}
+                              scope="row"
+                              padding="none"
+                            >
+                              <CustomTypography>
+                                {row.status}
+                              </CustomTypography>
+                            </TableCell>
+
+                            {/* purchase date */}
+                            <TableCell align="right">
+                              <CustomTypography>
+                                {row.purchaseDate}
+                              </CustomTypography>
+                            </TableCell>
+
+                            {/* price */}
+                            <TableCell align="right">
+                              <CustomTypography>
+                                {row.price}
+                              </CustomTypography>
+                            </TableCell>
+                          </>
+                        )
+                    }
                   </TableRow>
                 ))}
               {emptyRows > 0 && (
