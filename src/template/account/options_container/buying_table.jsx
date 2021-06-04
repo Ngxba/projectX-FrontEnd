@@ -248,21 +248,21 @@ export default function CustomTable({ data })
                               scope="row"
                               padding="none"
                             >
-                              <CustomTypography>
+                              <CustomTypography txtType="text--light">
                                 {row.status}
                               </CustomTypography>
                             </TableCell>
 
                             {/* purchase date */}
                             <TableCell align="right">
-                              <CustomTypography>
+                              <CustomTypography txtType="text--light">
                                 {row.purchaseDate}
                               </CustomTypography>
                             </TableCell>
 
                             {/* price */}
                             <TableCell align="right">
-                              <CustomTypography>
+                              <CustomTypography txtType="text--light">
                                 {row.price}
                               </CustomTypography>
                             </TableCell>
