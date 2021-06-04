@@ -215,6 +215,11 @@ export default function CustomTable({ data })
                       <CustomTypography
                         href={`/product/${row.urlKey}`}
                         style={{ textDecoration: 'none' }}
+                        onClick={() =>
+                        {
+                          // eslint-disable-next-line no-undef
+                          window.location.href = `/product/${row.urlKey}`;
+                        }}
                       >
                         {row.productName}
                       </CustomTypography>
