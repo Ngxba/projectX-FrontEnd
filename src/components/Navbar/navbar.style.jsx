@@ -2,23 +2,32 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const navbarStyles = makeStyles({
   navbarBrand: {
-    display: 'flex',
-    margin: '0',
-    padding: '0',
-    textAlign: 'center',
-    alignItems: 'center',
-    minWidth: '250px',
-    height: '90px',
+    display: "flex",
+    margin: "0",
+    padding: "0",
+    textAlign: "center",
+    alignItems: "center",
+    minWidth: "250px",
+    height: "90px",
+    textDecoration: "none",
   },
 
   logoName: {
-    marginLeft: '7rem',
+    marginLeft: '3rem',
     marginRight: '2.5rem',
     display: 'block',
   },
 
   marginNone: {
     marginLeft: '35px!important',
+  },
+
+  colorX: {
+    color: "rgb(8, 160, 92)",
+  },
+
+  sizeX: {
+    fontSize: "30px",
   },
 
   navbarDisplayFlex: {

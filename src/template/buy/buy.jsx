@@ -1,28 +1,27 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useEffect } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, Redirect, useLocation } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import RightBuy from './rightBuy';
-import LeftBuy from './leftBuy';
-import buyStyle from './buy.style';
-import CustomModal from './modal';
-import CustomButton from '../../components/Buttons/button';
-import { FetchProduct } from '../../redux/actions/productActions';
-import { createOrder } from '../../redux/actions/orderAction';
-import { getParameterByName } from '../../utils/supportFunction';
+/* eslint-disable no-underscore-dangle */
+import React, { useEffect } from "react";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, Link, Redirect } from "react-router-dom";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import RightBuy from "./rightBuy";
+import LeftBuy from "./leftBuy";
+import buyStyle from "./buy.style";
+import CustomModal from "./modal";
+import CustomButton from "../../components/Buttons/button";
+import { FetchProduct } from "../../redux/actions/productActions";
+import { createOrder } from "../../redux/actions/orderAction";
+import { getParameterByName } from "../../utils/supportFunction";
 
-function useQuery()
-{
+function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const Buy = ({ match }) =>
-{
+const Buy = ({ match }) => {
   const query = useQuery();
   const { params } = match;
   const dispatch = useDispatch();
@@ -33,48 +32,39 @@ const Buy = ({ match }) =>
   const [redirect, setRedirect] = React.useState(false);
   const userState = useSelector((state) => state.userState);
 
-  const handleOpen = async () =>
-  {
+  const handleOpen = async () => {
     toggleLoading(true);
     setOpen(true);
-    setTimeout(() =>
-    {
+    setTimeout(() => {
       toggleLoading(false);
     }, 2000);
     await createOrder(
       userState.userData.id,
-      // eslint-disable-next-line no-underscore-dangle
       productState.productData._id,
       productState.productData.productName,
       productState.productData.urlKey,
       new Date().toISOString(),
       productState.productData.price + 10,
-      'Processing',
+      "Processing",
     );
-    setTimeout(() =>
-    {
+    setTimeout(() => {
       setRedirect(true);
     }, 8000);
   };
 
-  const handleClose = () =>
-  {
+  const handleClose = () => {
     setOpen(false);
   };
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     dispatch(FetchProduct(params.urlKey));
   }, [params.urlKey]);
 
-  useEffect(() =>
-  {
-    const size = getParameterByName('size');
+  useEffect(() => {
+    const size = getParameterByName("size");
     const sizeQuantityValue = productState.productData.sizeQuantity.reduce(
-      (result, cur) =>
-      {
-        if (cur.size === size)
-        {
+      (result, cur) => {
+        if (cur.size === size) {
           return cur.quantity;
         }
         return result;
@@ -86,17 +76,17 @@ const Buy = ({ match }) =>
 
   const classes = buyStyle();
   return (
-    <React.Fragment key="BuyPage">
-      {!userState.isLogin && <Redirect to="/login" />}
-      {redirect && <Redirect to="/account/buying" />}
+    <React.Fragment key='BuyPage'>
+      {!userState.isLogin && <Redirect to='/login' />}
+      {redirect && <Redirect to='/account/buying' />}
       {productState.loading ? (
         <div
           style={{
-            width: '100vw',
-            height: '100vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <CircularProgress size={80} />
@@ -107,17 +97,17 @@ const Buy = ({ match }) =>
             open={open}
             handleClose={handleClose}
             price={productState.productData.price}
-            size={query.get('size')}
+            size={query.get("size")}
             productName={productState.productData.productName}
             imageurl={productState.productData.imageurl}
             loading={Loading}
           />
           <div className={classes.root}>
-            <Grid container spacing={0} style={{ height: '100%' }}>
+            <Grid container spacing={0} style={{ height: "100%" }}>
               <Grid item sm={12} md={7}>
                 <LeftBuy
                   price={productState.productData.price}
-                  size={query.get('size')}
+                  size={query.get("size")}
                   name={productState.productData.productName}
                   imgSrc={productState.productData.imageurl}
                 />
@@ -126,7 +116,7 @@ const Buy = ({ match }) =>
                 <RightBuy
                   quantity={sizeQuantity}
                   price={productState.productData.price}
-                  size={query.get('size')}
+                  size={query.get("size")}
                   urlKey={params.urlKey}
                 />
               </Grid>
@@ -135,18 +125,18 @@ const Buy = ({ match }) =>
           <Paper className={classes.bottomNav}>
             <Link
               to={`/product/${params.urlKey}`}
-              style={{ textDecoration: 'none' }}
+              style={{ textDecoration: "none" }}
             >
-              <CustomButton backgroundColor="secondary">Cancle</CustomButton>
+              <CustomButton backgroundColor='secondary'>Cancle</CustomButton>
             </Link>
             <CustomButton
               disabled={sizeQuantity === 0}
               onClick={handleOpen}
-              style={{ marginLeft: '30px' }}
+              style={{ marginLeft: "30px" }}
             >
               Buy
             </CustomButton>
-          </Paper>{' '}
+          </Paper>{" "}
         </>
       )}
     </React.Fragment>
