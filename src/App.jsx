@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocalStorage } from '@rehooks/local-storage';
 import LayoutDefault from './template/layout';
 import CustomTheme from './theme';
@@ -18,19 +18,25 @@ import { GetIdentity } from './redux/actions/userActions';
 import ScrollToTop from './components/ScrollTop/scroll_top';
 import Buy from './template/buy/buy';
 import LogOut from './pages/log_out';
+import { FetchOrderData } from './redux/actions/orderAction';
 
 function App()
 {
   const dispatch = useDispatch();
   const [token] = useLocalStorage('token');
+  const userState = useSelector((state) => state.userState);
 
   useEffect(() =>
   {
-    if (token)
+    if (token && !userState.userData.id)
     {
       dispatch(GetIdentity(token));
     }
-  }, []);
+    if (userState.userData.id)
+    {
+      dispatch(FetchOrderData(userState.userData.id, token));
+    }
+  }, [userState.userData.id]);
 
   return (
     <React.Fragment key="main">
