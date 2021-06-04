@@ -5,6 +5,7 @@ import {
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_REQUEST_SUCCESS,
   FETCH_PRODUCT_REQUEST_FAILURE,
+  UPDATE_PRODUCT_DATA,
 } from "../types/productType";
 
 const initialProductsState = {
@@ -13,10 +14,13 @@ const initialProductsState = {
   error: "",
 };
 
-export const productsReducer = (state = initialProductsState, action) =>
-{
-  switch (action.type)
-  {
+export const productsReducer = (state = initialProductsState, action) => {
+  switch (action.type) {
+    case UPDATE_PRODUCT_DATA:
+      return {
+        ...state,
+        productsData: action.payload,
+      };
     case FETCH_PRODUCTS_REQUEST:
       return {
         ...state,
@@ -58,16 +62,14 @@ const initialProductState = {
       },
     ],
     description: "",
-    sizeQuantity: [{ _id: "", size: '', quantity: 0 }],
+    sizeQuantity: [{ _id: "", size: "", quantity: 0 }],
     dateUpdated: "",
   },
   error: "",
 };
 
-export const productReducer = (state = initialProductState, action) =>
-{
-  switch (action.type)
-  {
+export const productReducer = (state = initialProductState, action) => {
+  switch (action.type) {
     case FETCH_PRODUCT_REQUEST:
       return {
         ...state,
@@ -101,7 +103,7 @@ export const productReducer = (state = initialProductState, action) =>
             },
           ],
           description: "",
-          sizeQuantity: [{ _id: "", size: '', quantity: 0 }],
+          sizeQuantity: [{ _id: "", size: "", quantity: 0 }],
           dateUpdated: "",
         },
       };

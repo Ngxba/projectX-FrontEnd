@@ -11,8 +11,7 @@ const navLinkHome = {
   path: '/',
 };
 
-const Navbar = (props) =>
-{
+const Navbar = (props) => {
   const classes = navbarStyles();
   const { isMainPage } = props;
 
@@ -43,21 +42,16 @@ const Navbar = (props) =>
 
   const [scrolling, setScrolling] = useState(false);
 
-  const handleScroll = () =>
-  {
-    if (window.scrollY > 100)
-    {
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
       setScrolling(true);
-    }
-    else
-    {
+    } else {
       setScrolling(false);
     }
   };
 
-  useEffect(() =>
-  {
-    window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
   });
 
   return (
@@ -78,7 +72,20 @@ const Navbar = (props) =>
           fontSize="20px"
           txtType="text--bold"
         >
-          ProjectX
+          <span
+            className={`${classes.logoName} ${
+              !isMainPage && classes.marginNone
+            }`}
+          >
+            Project
+            <span
+              className={`${(scrolling || !isMainPage) && classes.colorX} ${
+                classes.sizeX
+              }`}
+            >
+              X
+            </span>
+          </span>
         </CustomTypography>
       </span>
       <List
