@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from "axios";
 import { backEndLink } from "../../config";
 
@@ -8,7 +9,7 @@ export const createOrder = async (
   urlKey,
   purchaseDate,
   price,
-  status
+  status,
 ) => {
   const res = await axios.post(`${backEndLink}/api/order/createOrder`, {
     ownerId,

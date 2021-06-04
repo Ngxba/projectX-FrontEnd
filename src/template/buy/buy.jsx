@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Link, Redirect } from "react-router-dom";
@@ -45,7 +45,7 @@ const Buy = ({ match }) => {
       productState.productData.urlKey,
       new Date().toISOString(),
       productState.productData.price + 10,
-      "Processing"
+      "Processing",
     );
     setTimeout(() => {
       setRedirect(true);
@@ -69,7 +69,7 @@ const Buy = ({ match }) => {
         }
         return result;
       },
-      0
+      0,
     );
     setSizeQuantity(sizeQuantityValue);
   });

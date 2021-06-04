@@ -145,7 +145,7 @@ const ProductHeader = ({
               }
             }
             buttonSize="btn--large"
-            disabled={currentSize == 'All'}
+            disabled={currentSize === 'All'}
           >
             <div className={classes.inner}>
               <Link
