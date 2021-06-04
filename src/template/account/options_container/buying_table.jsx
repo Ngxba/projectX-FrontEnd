@@ -212,7 +212,12 @@ export default function CustomTable({ data })
                   >
                     <TableCell padding="checkbox" />
                     <TableCell component="th" id={row.id} scope="row" padding="none">
-                      {row.productName}
+                      <CustomTypography
+                        href={`/product/${row.urlKey}`}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        {row.productName}
+                      </CustomTypography>
                     </TableCell>
                     <TableCell
                       component="th"
@@ -220,10 +225,20 @@ export default function CustomTable({ data })
                       scope="row"
                       padding="none"
                     >
-                      {row.status}
+                      <CustomTypography>
+                        {row.status}
+                      </CustomTypography>
                     </TableCell>
-                    <TableCell align="right">{row.purchaseDate}</TableCell>
-                    <TableCell align="right">{row.price}</TableCell>
+                    <TableCell align="right">
+                      <CustomTypography>
+                        {row.purchaseDate}
+                      </CustomTypography>
+                    </TableCell>
+                    <TableCell align="right">
+                      <CustomTypography>
+                        {row.price}
+                      </CustomTypography>
+                    </TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (
