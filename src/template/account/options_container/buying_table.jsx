@@ -40,7 +40,6 @@ function EnhancedTableHead(props)
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="none" />
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -210,8 +209,6 @@ export default function CustomTable({ data })
                     tabIndex={-1}
                     key={row.productId}
                   >
-                    <TableCell padding="checkbox" />
-
                     {
                       // Check if the order data is default (all values are null)
                       (!preprocessedData[0].productName)
