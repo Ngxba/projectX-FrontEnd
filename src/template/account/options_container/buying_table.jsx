@@ -11,7 +11,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { sort } from 'fast-sort';
 import { headCells, rows } from './fake_data';
 import CustomTypography from '../../../components/Typography/typography';
 

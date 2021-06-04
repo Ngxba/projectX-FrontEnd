@@ -5,5 +5,18 @@ const buyingContainerStyle = makeStyles({
     marginTop: "-20px",
     padding: "15px",
   },
+
+  dataGrid:
+    {
+      '& .padding-right': {
+        paddingRight: 10,
+      },
+    },
+
+  columnHeader: {
+    fontSize: '20px',
+    fontWeight: 'bold',
+  },
+
 });
 export default buyingContainerStyle;

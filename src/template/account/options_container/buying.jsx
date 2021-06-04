@@ -21,15 +21,17 @@ const columns = [
     field: 'purchaseDate',
     headerName: 'Purchase date',
     type: 'dateTime',
-    flex: 0.5,
-    valueFormatter: (params) => params.value.toUTCString(),
+    flex: 0.3,
+    valueFormatter: (params) => params.value.toUTCString()
 
   },
   {
     field: 'price',
     type: 'number',
-    headerName: 'Price',
-    flex: 0.3
+    headerName: 'Price ($)',
+    flex: 0.3,
+    headerClassName: 'padding-right',
+    cellClassName: 'padding-right',
   }
 ];
 
@@ -47,7 +49,7 @@ const BuyingContainer = () =>
       productName: order.productName,
       status: order.status,
       purchaseDate: new Date(order.purchaseDate),
-      price: order.price,
+      price: order.price
     };
   });
 
@@ -74,10 +76,19 @@ const BuyingContainer = () =>
     <>
       <Shadow/>
       <div className={classes.root}>
-        <div style={{ height: 850, width: '100%' }}>
-          <div style={{ display: 'flex', height: '100%' }}>
+        <div style={{
+          height: 850,
+          width: '100%'
+        }} className={classes.dataGrid}>
+          <div style={{
+            display: 'flex',
+            height: '100%'
+          }}>
             <div style={{ flexGrow: 1 }}>
               <DataGrid
+                classes={{
+                  columnHeader: classes.columnHeader
+                }}
                 sortModel={[{
                   field: 'purchaseDate',
                   sort: 'desc'
@@ -85,11 +96,9 @@ const BuyingContainer = () =>
                 rows={rows}
                 columns={columns}/>
             </div>
-            </div>
           </div>
         </div>
-        {/*<CustomTable data={orderState.orderData}/>*/}
-
+      </div>
     </>
   );
 };
