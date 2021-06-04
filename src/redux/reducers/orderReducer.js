@@ -11,7 +11,7 @@ const initialState = {
       ownerId: "",
       price: null,
       productId: "",
-      productName: "No data",
+      productName: null,
       purchaseDate: null,
       status: "",
       urlKey: "",

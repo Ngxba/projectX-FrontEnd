@@ -60,7 +60,25 @@ export const FetchOrderData = (userId, token) => async (dispatch) =>
 
     if (res.status === 200)
     {
-      dispatch(FetchOrdersRequestSuccess(res.data.orders));
+      // Pass data to order state only if response array is not empty
+      if (res.data.orders.length)
+      {
+        dispatch(FetchOrdersRequestSuccess(res.data.orders));
+      }
+      else
+      {
+        dispatch(FetchOrdersRequestSuccess([
+          {
+            ownerId: "",
+            price: null,
+            productId: "",
+            productName: null,
+            purchaseDate: null,
+            status: "",
+            urlKey: "",
+          },
+        ]));
+      }
     }
     else
     {
