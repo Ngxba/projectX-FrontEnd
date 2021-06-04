@@ -280,7 +280,7 @@ export default function CustomTable({ data })
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[13, 26, 65]}
+          rowsPerPageOptions={[13, 26, 39]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
