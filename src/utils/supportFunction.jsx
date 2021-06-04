@@ -43,19 +43,27 @@ export function getParameterByName(name, url = window.location.href)
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-export function objectToQueryString(obj) {
+export function objectToQueryString(obj)
+{
   const str = [];
-  for (const p in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, p) && obj[p] !== undefined) {
-      if (Array.isArray(obj[p])) {
-        if (obj[p].length > 0) {
-          const queryValue = obj[p].reduce((result, cur, index) => {
+  for (const p in obj)
+  {
+    if (Object.prototype.hasOwnProperty.call(obj, p) && obj[p] !== undefined)
+    {
+      if (Array.isArray(obj[p]))
+      {
+        if (obj[p].length > 0)
+        {
+          const queryValue = obj[p].reduce((result, cur, index) =>
+          {
             if (index > 0) return `${result},${encodeURIComponent(cur)}`;
             return `${encodeURIComponent(cur)}`;
           }, "");
           str.push(`${encodeURIComponent(p)}=${queryValue}`);
         }
-      } else {
+      }
+      else
+      {
         str.push(`${encodeURIComponent(p)}=${encodeURIComponent(obj[p])}`);
       }
     }

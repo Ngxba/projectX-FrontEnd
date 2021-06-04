@@ -17,11 +17,13 @@ import { FetchProduct } from "../../redux/actions/productActions";
 import { createOrder } from "../../redux/actions/orderAction";
 import { getParameterByName } from "../../utils/supportFunction";
 
-function useQuery() {
+function useQuery()
+{
   return new URLSearchParams(useLocation().search);
 }
 
-const Buy = ({ match }) => {
+const Buy = ({ match }) =>
+{
   const query = useQuery();
   const { params } = match;
   const dispatch = useDispatch();
@@ -32,10 +34,12 @@ const Buy = ({ match }) => {
   const [redirect, setRedirect] = React.useState(false);
   const userState = useSelector((state) => state.userState);
 
-  const handleOpen = async () => {
+  const handleOpen = async () =>
+  {
     toggleLoading(true);
     setOpen(true);
-    setTimeout(() => {
+    setTimeout(() =>
+    {
       toggleLoading(false);
     }, 2000);
     await createOrder(
@@ -47,24 +51,30 @@ const Buy = ({ match }) => {
       productState.productData.price + 10,
       "Processing",
     );
-    setTimeout(() => {
+    setTimeout(() =>
+    {
       setRedirect(true);
     }, 8000);
   };
 
-  const handleClose = () => {
+  const handleClose = () =>
+  {
     setOpen(false);
   };
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(FetchProduct(params.urlKey));
   }, [params.urlKey]);
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     const size = getParameterByName("size");
     const sizeQuantityValue = productState.productData.sizeQuantity.reduce(
-      (result, cur) => {
-        if (cur.size === size) {
+      (result, cur) =>
+      {
+        if (cur.size === size)
+        {
           return cur.quantity;
         }
         return result;
@@ -76,9 +86,9 @@ const Buy = ({ match }) => {
 
   const classes = buyStyle();
   return (
-    <React.Fragment key='BuyPage'>
-      {!userState.isLogin && <Redirect to='/login' />}
-      {redirect && <Redirect to='/account/buying' />}
+    <React.Fragment key="BuyPage">
+      {!userState.isLogin && <Redirect to="/login" />}
+      {redirect && <Redirect to="/account/buying" />}
       {productState.loading ? (
         <div
           style={{
@@ -127,7 +137,7 @@ const Buy = ({ match }) => {
               to={`/product/${params.urlKey}`}
               style={{ textDecoration: "none" }}
             >
-              <CustomButton backgroundColor='secondary'>Cancle</CustomButton>
+              <CustomButton backgroundColor="secondary">Cancle</CustomButton>
             </Link>
             <CustomButton
               disabled={sizeQuantity === 0}
