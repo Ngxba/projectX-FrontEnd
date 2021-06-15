@@ -3,7 +3,8 @@ import Container from "@material-ui/core/Container";
 import newStyle from "./new.style";
 import CustomTypography from "../../components/Typography/typography";
 
-const News = () => {
+const News = () =>
+{
   const classes = newStyle();
   return (
     <Container maxWidth="md" style={{ overflowX: "hidden" }}>

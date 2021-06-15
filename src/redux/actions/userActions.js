@@ -53,6 +53,8 @@ export const SignIn = (loginData) =>
           ...dataWithoutToken
         } = res.data;
 
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
         const data = {
           userData: { ...dataWithoutToken },
           isLogin: true,

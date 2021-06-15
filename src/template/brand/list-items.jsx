@@ -16,8 +16,11 @@ const BigPrimary = [];
 
 const SmallPrimary = [];
 
-const CustomListItems = (props) => {
-  const { bigPrimary, smallPrimary, selected, queryType, updateQuery, ...rest } = props;
+const CustomListItems = (props) =>
+{
+  const {
+    bigPrimary, smallPrimary, selected, queryType, updateQuery, ...rest
+  } = props;
 
   const classes = brandStyle(rest);
 
@@ -25,18 +28,23 @@ const CustomListItems = (props) => {
 
   const [smallopen, setSmallOpen] = React.useState(false);
 
-  const handleClick = () => {
+  const handleClick = () =>
+  {
     setOpen(!open);
     setSmallOpen(false);
   };
 
-  const handleSmallClick = () => {
+  const handleSmallClick = () =>
+  {
     setSmallOpen(!smallopen);
   };
 
-  const checkSelected = (values) => {
-    if (Array.isArray(selected)) {
-      if (queryType === "tags") {
+  const checkSelected = (values) =>
+  {
+    if (Array.isArray(selected))
+    {
+      if (queryType === "tags")
+      {
         return values.every((i) => selected.includes(i));
       }
       return selected.some((i) => values.includes(i));
@@ -44,21 +52,33 @@ const CustomListItems = (props) => {
     return selected === values;
   };
 
-  const onCheckBoxChange = (values) => {
-    if (Array.isArray(selected)) {
-      if (queryType === "tags") {
-        if (values.every((i) => selected.includes(i))) {
+  const onCheckBoxChange = (values) =>
+  {
+    if (Array.isArray(selected))
+    {
+      if (queryType === "tags")
+      {
+        if (values.every((i) => selected.includes(i)))
+        {
           updateQuery(queryType, []);
-        } else {
+        }
+        else
+        {
           updateQuery(queryType, [...values]);
         }
-      } else if (queryType !== "tags" && selected.includes(values)) {
+      }
+      else if (queryType !== "tags" && selected.includes(values))
+      {
         const newSelected = [...selected.filter((i) => !values.includes(i))];
         updateQuery(queryType, newSelected);
-      } else {
+      }
+      else
+      {
         updateQuery(queryType, [values, ...selected]);
       }
-    } else {
+    }
+    else
+    {
       updateQuery(queryType, selected === values ? undefined : values);
     }
   };
@@ -169,7 +189,8 @@ CustomListItems.defaultProps = {
   bigPrimary: BigPrimary[0],
   selected: [],
   queryType: "",
-  updateQuery: () => {},
+  updateQuery: () =>
+  {},
   className: "",
 };
 

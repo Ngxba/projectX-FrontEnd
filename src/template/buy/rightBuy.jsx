@@ -11,24 +11,25 @@ import buyStyle from "./buy.style";
 import CustomTypography from "../../components/Typography/typography";
 import CustomButton from "../../components/Buttons/button";
 
-const RightBuy = ({ quantity, price, size /* , urlKey */ }) => {
+const RightBuy = ({ quantity, price, size /* , urlKey */ }) =>
+{
   const classes = buyStyle();
   return (
     <div className={`${classes.rootPart} ${classes.bgGray}`}>
       <div className={classes.alarm}>
         <AccessAlarmIcon />
-        <CustomTypography fontSize='14px' style={{ marginLeft: "5px" }}>
+        <CustomTypography fontSize="14px" style={{ marginLeft: "5px" }}>
           Only {quantity} left in this size
         </CustomTypography>
       </div>
       {/* <Link to={`/product/${urlKey}`} style={{ textDecoration: "none", width: "100%" }}> */}
       <Button
-        variant='outlined'
-        color='secondary'
+        variant="outlined"
+        color="secondary"
         className={classes.buttonChoose}
       >
         <strong>U.S. Men&apos;s Size {size}</strong>
-        <EditIcon fontSize='small' color='disabled' />
+        <EditIcon fontSize="small" color="disabled" />
       </Button>
       {/* </Link> */}
       <Paper style={{ background: "white", padding: "20px", width: "100%" }}>
@@ -43,8 +44,8 @@ const RightBuy = ({ quantity, price, size /* , urlKey */ }) => {
           className={classes.textCenter}
         >
           <CustomTypography
-            fontSize='2rem'
-            txtType='text--bold'
+            fontSize="2rem"
+            txtType="text--bold"
             style={{ flexGrow: "1" }}
             className={classes.textCenter}
           >
@@ -52,17 +53,17 @@ const RightBuy = ({ quantity, price, size /* , urlKey */ }) => {
           </CustomTypography>
           <TextField
             style={{ flexGrow: "4" }}
-            id='outlined-basic'
+            id="outlined-basic"
             label={price}
-            variant='outlined'
+            variant="outlined"
             disabled
           />
         </div>
         <br />
         <CustomTypography
-          fontSize='12px'
-          color='#999999'
-          txtType='text--light'
+          fontSize="12px"
+          color="#999999"
+          txtType="text--light"
           className={classes.textCenter}
         >
           You are about to purchase this product at the lowest Ask price
@@ -79,14 +80,14 @@ const RightBuy = ({ quantity, price, size /* , urlKey */ }) => {
             }}
           >
             <span style={{ display: "flex" }}>
-              <CustomTypography txtType='text--light' txtComponent='h3'>
+              <CustomTypography txtType="text--light" txtComponent="h3">
                 Processing Fee
               </CustomTypography>
             </span>
             <CustomTypography
-              fontSize='15px'
-              txtColor='textPrimary'
-              txtType='text--light'
+              fontSize="15px"
+              txtColor="textPrimary"
+              txtType="text--light"
             >
               ${price}
             </CustomTypography>
@@ -102,11 +103,11 @@ const RightBuy = ({ quantity, price, size /* , urlKey */ }) => {
             }}
           >
             <span style={{ display: "flex" }}>
-              <CustomTypography txtType='text--light' txtComponent='h3'>
+              <CustomTypography txtType="text--light" txtComponent="h3">
                 Shipping
               </CustomTypography>
             </span>
-            <CustomTypography txtColor='textPrimary' txtType='text--light'>
+            <CustomTypography txtColor="textPrimary" txtType="text--light">
               $10
             </CustomTypography>
           </div>
@@ -119,11 +120,11 @@ const RightBuy = ({ quantity, price, size /* , urlKey */ }) => {
             }}
           >
             <span style={{ display: "flex" }}>
-              <CustomTypography txtType='text--light' txtComponent='h3'>
+              <CustomTypography txtType="text--light" txtComponent="h3">
                 Total
               </CustomTypography>
             </span>
-            <CustomTypography txtColor='textPrimary' txtType='text--light'>
+            <CustomTypography txtColor="textPrimary" txtType="text--light">
               <strong>${price + 10}</strong>
             </CustomTypography>
           </div>

@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 import buyStyle from "./buy.style";
 import CustomTypography from "../../components/Typography/typography";
 
-const LeftBuy = ({ price, size, name, imgSrc }) => {
+const LeftBuy = ({
+  price, size, name, imgSrc,
+}) =>
+{
   const classes = buyStyle();
   return (
     <div className={classes.rootPart}>
-      <CustomTypography txtType='text--bold' fontSize='2rem'>
+      <CustomTypography txtType="text--bold" fontSize="2rem">
         {name}
       </CustomTypography>
       <div style={{ fontSize: "16px", margin: "20px 0" }}>

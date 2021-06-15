@@ -2,7 +2,9 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import { FormControl, Grid, MenuItem, Select } from "@material-ui/core";
+import {
+  FormControl, Grid, MenuItem, Select,
+} from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
 // import { PropTypes } from 'prop-types';
@@ -12,19 +14,25 @@ import Breadcrumb from "../../components/Breadcrumbs/breadcrumbs";
 import brandStyle from "./brand.style";
 import { FetchProducts, FetchFilteredProduct } from "../../redux/actions/productActions";
 import CustomListItems from "./list-items";
-import { brandQueries, genderQueries, yearQueries, priceQueries } from "./queryData";
+import {
+  brandQueries, genderQueries, yearQueries, priceQueries,
+} from "./queryData";
 
-const Brand = ({ match }) => {
+const Brand = ({ match }) =>
+{
   const { params } = match;
   const textRoutes = Object.values(params);
   let title = "";
-  const linkRoutes = textRoutes.reduce((results, text, index) => {
-    if (text !== undefined) {
+  const linkRoutes = textRoutes.reduce((results, text, index) =>
+  {
+    if (text !== undefined)
+    {
       // Generate brand page title
       title += `${text} `;
       // Generate brand page breadcrumbs data
       let href = "/brand";
-      for (let i = 0; i <= index; i += 1) {
+      for (let i = 0; i <= index; i += 1)
+      {
         href += `/${textRoutes[i]}`;
       }
       results.push({
@@ -41,17 +49,22 @@ const Brand = ({ match }) => {
   const productsState = useSelector((state) => state.productsState);
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
+  const handleChange = (event) =>
+  {
     setAge(event.target.value);
   };
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     setQuery(
-      Object.keys(params).reduce((result, cur, index) => {
-        if (index === 0) {
+      Object.keys(params).reduce((result, cur, index) =>
+      {
+        if (index === 0)
+        {
           return Object.assign(result, { productCategory: params[cur] });
         }
-        if (params[cur] !== undefined) {
+        if (params[cur] !== undefined)
+        {
           return Object.assign(result, {
             tags: result.tags !== undefined ? [...result.tags, params[cur]] : [params[cur]],
           });
@@ -63,7 +76,8 @@ const Brand = ({ match }) => {
     setTitleBrand(title);
   }, []);
 
-  const updateQuery = (key, value) => {
+  const updateQuery = (key, value) =>
+  {
     setQuery({
       ...query,
       [key]: value,
@@ -76,7 +90,8 @@ const Brand = ({ match }) => {
     );
   };
 
-  if (productsState.loading) {
+  if (productsState.loading)
+  {
     return (
       <div
         style={{

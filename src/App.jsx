@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocalStorage } from '@rehooks/local-storage';
 import LayoutDefault from './template/layout';
 import CustomTheme from './theme';
@@ -23,14 +23,15 @@ function App()
 {
   const dispatch = useDispatch();
   const [token] = useLocalStorage('token');
+  const userState = useSelector((state) => state.userState);
 
   useEffect(() =>
   {
-    if (token)
+    if (token && !userState.userData.id)
     {
       dispatch(GetIdentity(token));
     }
-  }, []);
+  }, [userState.userData.id, token]);
 
   return (
     <React.Fragment key="main">

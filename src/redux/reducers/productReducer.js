@@ -14,8 +14,10 @@ const initialProductsState = {
   error: "",
 };
 
-export const productsReducer = (state = initialProductsState, action) => {
-  switch (action.type) {
+export const productsReducer = (state = initialProductsState, action) =>
+{
+  switch (action.type)
+  {
     case UPDATE_PRODUCT_DATA:
       return {
         ...state,
@@ -68,8 +70,10 @@ const initialProductState = {
   error: "",
 };
 
-export const productReducer = (state = initialProductState, action) => {
-  switch (action.type) {
+export const productReducer = (state = initialProductState, action) =>
+{
+  switch (action.type)
+  {
     case FETCH_PRODUCT_REQUEST:
       return {
         ...state,
