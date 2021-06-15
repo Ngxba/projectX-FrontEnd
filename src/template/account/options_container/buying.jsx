@@ -1,10 +1,12 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { DataGrid } from '@material-ui/data-grid';
 import { Link } from '@material-ui/core';
+import { useLocalStorage } from '@rehooks/local-storage';
 import buyingContainerStyle from './buying.style';
 import Shadow from '../../../components/Shadow/shadow';
+import { FetchOrderData } from '../../../redux/actions/orderAction';
 
 const BuyingContainer = () =>
 {
@@ -12,6 +14,14 @@ const BuyingContainer = () =>
 
   const userState = useSelector((state) => state.userState);
   const orderState = useSelector((state) => state.orderState);
+
+  const [token] = useLocalStorage('token');
+  const dispatch = useDispatch();
+
+  useEffect(() =>
+  {
+    dispatch(FetchOrderData(userState.userData.id, token));
+  }, [userState.userData.id, token]);
 
   const columns = [
     {

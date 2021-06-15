@@ -18,7 +18,6 @@ import { GetIdentity } from './redux/actions/userActions';
 import ScrollToTop from './components/ScrollTop/scroll_top';
 import Buy from './template/buy/buy';
 import LogOut from './pages/log_out';
-import { FetchOrderData } from './redux/actions/orderAction';
 
 function App()
 {
@@ -31,10 +30,6 @@ function App()
     if (token && !userState.userData.id)
     {
       dispatch(GetIdentity(token));
-    }
-    if (userState.userData.id && token)
-    {
-      dispatch(FetchOrderData(userState.userData.id, token));
     }
   }, [userState.userData.id, token]);
 
