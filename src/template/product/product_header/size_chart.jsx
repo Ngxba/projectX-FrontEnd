@@ -139,7 +139,7 @@ const SizeChart = ({
             {rows.map((row) =>
             {
               const [us, uk, eu, cm, w] = row;
-              const highlighted = currentSize === eu;
+              const highlighted = currentSize === us;
 
               return (
                 <StyledTableRow
