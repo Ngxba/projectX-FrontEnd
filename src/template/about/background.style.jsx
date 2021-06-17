@@ -1,0 +1,106 @@
+import { makeStyles } from "@material-ui/styles";
+
+const customContainer = makeStyles({
+  container: {
+    // maxWidth: "1295px",
+    // margin: "0 auto",
+    position: "relative",
+    backgroundColor: "#000000",
+    padding: "20px 0",
+  },
+  content: {
+    margin: "0 0 30px",
+  },
+  header: {
+    fontSize: "2.375rem",
+    letterSpacing: "-.026rem",
+    lineHeight: "1.105",
+    color: 'white !important',
+  },
+  description: {
+    margin: "20px 0 0",
+    lineHeight: "1.625",
+    color: 'white !important',
+  },
+  media: {
+    position: "relative",
+    width: "90%",
+    maxWidth: "550px",
+    padding: "60px 0 40px",
+  },
+  img1: {
+    zIndex: "2",
+    width: "100%",
+    height: "0",
+    paddingTop: "70.95%",
+    position: "relative",
+  },
+  shoe: {
+    display: "block",
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    top: "0",
+    left: "0",
+    objectFit: "cover",
+    objectPosition: "center center",
+  },
+  img2: {
+    position: "absolute",
+    top: "0",
+    left: "85px",
+    height: "80%",
+    width: "183vw",
+    maxWidth: "90%",
+    overflow: "hidden",
+  },
+  dot: {
+    display: "block",
+    width: "auto",
+    height: "100%",
+  },
+  span: {
+    margin: "37px 0 0",
+    display: "flex",
+    flexDirection: "column",
+  },
+  action: {
+    borderRadius: "2px",
+    margin: "0 auto 20px",
+    minWidth: "260px",
+    display: "flex",
+    justifyContent: "space-between",
+    background: "#08a05c",
+    fontSize: "16px",
+    border: "0 solid transparent!important",
+  },
+  plus: {
+    display: "inline-block",
+    marginLeft: "35px",
+  },
+  headline: {
+    fontFamily: "Ringside Wide Med,sans-serif",
+    fontSize: "3.75rem",
+    letterSpacing: "-.04rem",
+    lineHeight: "1.083",
+  },
+  btn: {
+    fontFamily: " Ringside Wide Med,sans-serif",
+    cursor: "pointer",
+    display: "inline-block",
+    border: "1px solid #000",
+    position: "relative",
+    transition: ".3s",
+    padding: "15px 25px 16px",
+    width: "auto",
+    // background: '#000',
+    color: "#fff",
+    letterSpacing: "-.75px",
+  },
+  textCenter: {
+    textAlign: "center",
+    // margin: "2 px",
+    borderRadius: "2px",
+  },
+});
+export default customContainer;
