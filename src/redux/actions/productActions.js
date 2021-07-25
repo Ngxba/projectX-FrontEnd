@@ -107,6 +107,7 @@ export const FetchProduct = (urlKey) => {
       const res = await axios.get(`${backEndLink}/api/product/${urlKey}`);
       if (res.status === 200) {
         dispatch(FetchProductRequestSuccess(res.data.product));
+        console.log(res.data.product)
       } else {
         //   throw new Error("Cannot Sign In", res.data.error);
         dispatch(FetchProductsRequestFailure(res));

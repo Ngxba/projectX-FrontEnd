@@ -95,6 +95,15 @@ function RegisterComponent()
           Account email already assigned! Please try again!
         </Alert>
       )}
+      {userState.error === '' && !userState.isOnLoginTab && (
+        <Alert
+          variant="primary"
+          severity="error"
+          className={classes.alertStyle}
+        >
+          Successful register
+        </Alert>
+      )}
       <br />
       <TextField
         className={classes.root}
