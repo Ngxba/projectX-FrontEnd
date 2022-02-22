@@ -29,7 +29,7 @@ export const FetchProducts = () =>
     dispatch(FetchProductsRequest());
     try
     {
-      const resMostPopular = await axios.get(`${backEndLink}/api/product/browse?limit=4&sort=most-popular`);
+      const resMostPopular = await axios.get(`${backEndLink}/api/product/recent`);
       const resTrending = await axios.get(`${backEndLink}/api/product/browse?limit=4&sort=trending`);
       const latestBuy = await axios.get(`${backEndLink}/api/product/browse?limit=4&tags=yeezy`);
       const latestProduct = await axios.get(`${backEndLink}/api/product/browse?limit=4&tags=jordan`);

@@ -110,7 +110,6 @@ const Product = ({ match }) =>
             relatedProductList={relatedProductsState.productsData}
           />
         )}
-        )
       </Container>
     </div>
   );

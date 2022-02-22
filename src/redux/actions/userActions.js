@@ -1,5 +1,6 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
+/*eslint-disable*/
 import axios from 'axios';
 import { deleteFromStorage, writeStorage } from '@rehooks/local-storage';
 import { backEndLink } from '../../config';
@@ -147,6 +148,49 @@ export const UpdateData = (passedData) =>
     }
     catch (error)
     {
+      dispatch(UserRequestFailure(error));
+    }
+  };
+};
+
+export const UpdateLikedProductData = (id, likedProduct) =>
+{
+  return async function (dispatch)
+  {
+
+    dispatch(UserRequestUpdate(false));
+    try
+    {
+      const res = await axios.post(`${backEndLink}/api/user/update/likedProduct/${id}`,
+        {
+          likedProduct
+        });
+
+      if (res.status === 200)
+      {
+        const data = {
+          userData: {
+            name: {
+              firstName: res.data.name.firstName,
+              lastName: res.data.name.lastName,
+            },
+            email: res.data.email,
+            id: res.data.id,
+            likedProduct: res.data.likedProduct,
+          },
+          updateSuccessfully: true,
+        };
+        dispatch(UserRequestSuccess(data));
+      }
+      else
+      {
+        console.log("send status !== 200")
+        dispatch(UserRequestFailure(res.data.error));
+      }
+    }
+    catch (error)
+    {
+      console.log("send request fail")
       dispatch(UserRequestFailure(error));
     }
   };

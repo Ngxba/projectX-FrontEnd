@@ -78,7 +78,7 @@ function Home()
           data={homeState.homeData.mostPopular}
         />
         <CardContainer
-          title="What's trending"
+          title="May Fit for You"
           data={homeState.homeData.trending}
         />
         <div style={{
@@ -96,9 +96,9 @@ function Home()
       {/* <PosterHome /> */}
       <About />
       <Container>
-        <CardContainer title="Latest Buy" data={homeState.homeData.latestBuy} />
+        <CardContainer title="Trending Yeezy" data={homeState.homeData.latestBuy} />
         <CardContainer
-          title="Latest Product"
+          title="Trending JD"
           data={homeState.homeData.latestProduct}
         />
         <br />

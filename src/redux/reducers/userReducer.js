@@ -14,6 +14,7 @@ const initialState = {
     },
     email: '',
     id: '',
+    likedProduct: [],
   },
   isLogin: false,
   updateSuccessfully: false,
