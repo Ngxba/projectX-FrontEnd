@@ -11,7 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CustomTypography from "../../components/Typography/typography";
 import cardStyle from "./card.style";
 import { useDispatch, useSelector } from 'react-redux';
-import { UpdateLikedProductData, GetIdentity } from '../../redux/actions/userActions';
+import { UpdateLikedProductData } from '../../redux/actions/userActions';
 
 const TYPES = ["product", "brand"];
 
@@ -21,12 +21,12 @@ const CustomCard = (props) => {
   const urlKey = type === TYPES[0] ? `/product/${data.urlKey}` : `./${data.urlKey}`;
   const userState = useSelector((state) => state.userState);
   const dispatch = useDispatch();
-  const [favState, setFavState] = useState(userState.userData.likedProduct.includes(data._id));
+  const [favState, setFavState] = useState(userState.likedProduct.includes(data._id));
 
   const likedProductHandler = () => {
-    let likedProduct = [...userState.userData.likedProduct];
-    if (userState.userData.likedProduct.includes(data._id)) {
-      likedProduct = likedProduct.filter((i) => i != data._id)
+    let likedProduct = [...userState.likedProduct];
+    if (userState.likedProduct.includes(data._id)) {
+      likedProduct = likedProduct.filter((i) => i !== data._id)
     }
     else {
       likedProduct = [...likedProduct, data._id]

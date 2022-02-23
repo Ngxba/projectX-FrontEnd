@@ -10,6 +10,7 @@ import CustomButton from '../components/Buttons/button';
 import { FetchProducts } from '../redux/actions/homeAction';
 import About from '../template/about/about';
 import CarouselWithTab from '../container/tab_carousel/tab_carousel';
+import { FetchBestFitProduct } from '../redux/actions/userActions';
 
 const DataBrand = [
   {
@@ -44,12 +45,19 @@ const DataBrand = [
 function Home()
 {
   const homeState = useSelector((state) => state.homeState);
+  const userState = useSelector((state) => state.userState);
 
   const dispatch = useDispatch();
+
   React.useEffect(() =>
   {
     if (homeState.homeData !== {}) dispatch(FetchProducts());
   }, []);
+
+  React.useEffect(() =>
+  {
+    if (userState.userData.id) dispatch(FetchBestFitProduct(userState.userData.id));
+  }, [userState.userData.id]);
 
   if (homeState.loading)
   {
@@ -74,13 +82,18 @@ function Home()
       <Container maxWidth="md">
         <CardContainer type="brand" title="Popular Brands" data={DataBrand} />
         <CardContainer
-          title="Most Popular"
-          data={homeState.homeData.mostPopular}
+          title="Recent viewed"
+          data={homeState.homeData.recentViewed}
         />
-        <CardContainer
-          title="May Fit for You"
-          data={homeState.homeData.trending}
-        />
+
+        {userState.userData.id
+        && (
+          <CardContainer
+            title="May Fit for You"
+            data={userState.bestFitProducts}
+          />
+        )}
+
         <div style={{
           textAlign: 'center',
           margin: '20px 0',

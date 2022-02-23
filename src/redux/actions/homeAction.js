@@ -1,12 +1,12 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import axios from "axios";
-import { backEndLink } from "../../config";
+import axios from 'axios';
+import { backEndLink } from '../../config';
 import {
   FETCH_HOME_DETAIL_REQUEST,
-  FETCH_HOME_DETAIL_REQUEST_SUCCESS,
   FETCH_HOME_DETAIL_REQUEST_FAILURE,
-} from "../types/homeType";
+  FETCH_HOME_DETAIL_REQUEST_SUCCESS,
+} from '../types/homeType';
 
 const FetchProductsRequest = () => ({
   type: FETCH_HOME_DETAIL_REQUEST,
@@ -29,15 +29,15 @@ export const FetchProducts = () =>
     dispatch(FetchProductsRequest());
     try
     {
-      const resMostPopular = await axios.get(`${backEndLink}/api/product/recent`);
+      const recentViewed = await axios.get(`${backEndLink}/api/product/recent`);
       const resTrending = await axios.get(`${backEndLink}/api/product/browse?limit=4&sort=trending`);
       const latestBuy = await axios.get(`${backEndLink}/api/product/browse?limit=4&tags=yeezy`);
       const latestProduct = await axios.get(`${backEndLink}/api/product/browse?limit=4&tags=jordan`);
 
-      if (resMostPopular.status === 200 && resTrending.status === 200)
+      if (recentViewed.status === 200 && resTrending.status === 200)
       {
         const respondData = {
-          mostPopular: resMostPopular.data.result,
+          recentViewed: recentViewed.data.result,
           trending: resTrending.data.result,
           latestBuy: latestBuy.data.result,
           latestProduct: latestProduct.data.result,
@@ -47,7 +47,7 @@ export const FetchProducts = () =>
       else
       {
         //   throw new Error("Cannot Sign In", res.data.error);
-        dispatch(FetchProductsRequestFailure(resMostPopular));
+        dispatch(FetchProductsRequestFailure(recentViewed));
       }
     }
     catch (error)
@@ -57,7 +57,7 @@ export const FetchProducts = () =>
   };
 };
 
-export const randomThings = "abc";
+export const randomThings = 'abc';
 
 // export const updateData = async (name, email) => {
 //   const res = await axios.post(`${backEndLink}/api/user/update`, {

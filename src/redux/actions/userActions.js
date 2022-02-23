@@ -8,27 +8,27 @@ import {
   USER_REQUEST_FAILURE,
   USER_REQUEST_LOGIN,
   USER_REQUEST_SUCCESS,
-  USER_REQUEST_UPDATE,
+  USER_REQUEST_UPDATE
 } from '../types/userType';
 
 const UserRequestLogin = (isOnLoginTab) => ({
   type: USER_REQUEST_LOGIN,
-  payload: isOnLoginTab,
+  payload: isOnLoginTab
 });
 
 const UserRequestUpdate = (updateSuccessfully) => ({
   type: USER_REQUEST_UPDATE,
-  payload: updateSuccessfully,
+  payload: updateSuccessfully
 });
 
 const UserRequestSuccess = (data) => ({
   type: USER_REQUEST_SUCCESS,
-  payload: data,
+  payload: data
 });
 
 const UserRequestFailure = (error) => ({
   type: USER_REQUEST_FAILURE,
-  payload: error,
+  payload: error
 });
 
 export const SignIn = (loginData) =>
@@ -37,14 +37,14 @@ export const SignIn = (loginData) =>
   {
     const {
       email,
-      password,
+      password
     } = loginData;
     dispatch(UserRequestLogin(true));
     try
     {
       const res = await axios.post(`${backEndLink}/api/auth/login`, {
         email,
-        password,
+        password
       });
       if (res.status === 200)
       {
@@ -58,7 +58,7 @@ export const SignIn = (loginData) =>
 
         const data = {
           userData: { ...dataWithoutToken },
-          isLogin: true,
+          isLogin: true
         };
 
         dispatch(UserRequestSuccess(data));
@@ -85,7 +85,7 @@ export const Register = (registerData) =>
     const {
       name,
       email,
-      password,
+      password
     } = registerData;
     dispatch(UserRequestLogin(false));
     try
@@ -93,7 +93,7 @@ export const Register = (registerData) =>
       const res = await axios.post(`${backEndLink}/api/auth/register`, {
         name,
         email,
-        password,
+        password
       });
       if (res.status === 200)
       {
@@ -119,7 +119,7 @@ export const UpdateData = (passedData) =>
     const {
       name,
       email,
-      id,
+      id
     } = passedData;
 
     dispatch(UserRequestUpdate(false));
@@ -129,14 +129,14 @@ export const UpdateData = (passedData) =>
       const res = await axios.post(`${backEndLink}/api/user/update/${id}`,
         {
           name,
-          email,
+          email
         });
 
       if (res.status === 200)
       {
         const data = {
           userData: { ...passedData },
-          updateSuccessfully: true,
+          updateSuccessfully: true
         };
 
         dispatch(UserRequestSuccess(data));
@@ -148,6 +148,38 @@ export const UpdateData = (passedData) =>
     }
     catch (error)
     {
+      dispatch(UserRequestFailure(error));
+    }
+  };
+};
+
+export const FetchBestFitProduct = (id) =>
+{
+  return async function (dispatch)
+  {
+    dispatch(UserRequestUpdate(false));
+    try
+    {
+      const res = await axios.get(`${backEndLink}/api/user/bestFit/${id}`);
+
+      if (res.status === 200)
+      {
+        const data = {
+          bestFitProducts: res.data,
+          updateSuccessfully: true
+        };
+        console.log(data);
+        dispatch(UserRequestSuccess(data));
+      }
+      else
+      {
+        console.log('send status !== 200');
+        dispatch(UserRequestFailure(res.data.error));
+      }
+    }
+    catch (error)
+    {
+      console.log('send request fail');
       dispatch(UserRequestFailure(error));
     }
   };
@@ -169,28 +201,28 @@ export const UpdateLikedProductData = (id, likedProduct) =>
       if (res.status === 200)
       {
         const data = {
-          userData: {
-            name: {
-              firstName: res.data.name.firstName,
-              lastName: res.data.name.lastName,
-            },
-            email: res.data.email,
-            id: res.data.id,
-            likedProduct: res.data.likedProduct,
-          },
-          updateSuccessfully: true,
+          // userData: {
+          //   name: {
+          //     firstName: res.data.name.firstName,
+          //     lastName: res.data.name.lastName
+          //   },
+          //   email: res.data.email,
+          //   id: res.data.id,
+          // },
+          likedProduct: res.data.likedProduct,
+          updateSuccessfully: true
         };
         dispatch(UserRequestSuccess(data));
       }
       else
       {
-        console.log("send status !== 200")
+        console.log('send status !== 200');
         dispatch(UserRequestFailure(res.data.error));
       }
     }
     catch (error)
     {
-      console.log("send request fail")
+      console.log('send request fail');
       dispatch(UserRequestFailure(error));
     }
   };
@@ -212,12 +244,14 @@ export const UserLogOut = () =>
       userData: {
         name: {
           firstName: '',
-          lastName: '',
+          lastName: ''
         },
         email: '',
-        id: '',
+        id: ''
       },
-      isLogin: false,
+      likedProduct: [],
+      bestFitProducts: [],
+      isLogin: false
     };
 
     dispatch(UserRequestSuccess(data));
@@ -235,14 +269,23 @@ export const GetIdentity = (token) =>
     {
       const res = await axios.get(`${backEndLink}/api/auth/me`, {
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
       if (res.status === 200)
       {
         dispatch(UserRequestSuccess({
-          userData: { ...res.data },
+          userData: {
+            name: {
+              firstName: res.data.name.firstName,
+              lastName: res.data.name.lastName
+            },
+            email: res.data.email,
+            id: res.data.id,
+          },
+          likedProduct: res.data.likedProduct,
           isLogin: true,
+          isFetchedBestFitProducts: true
         }));
         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
       }

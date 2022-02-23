@@ -1,6 +1,6 @@
 import {
-  USER_REQUEST_LOGIN,
   USER_REQUEST_FAILURE,
+  USER_REQUEST_LOGIN,
   USER_REQUEST_SUCCESS,
   USER_REQUEST_UPDATE,
 } from '../types/userType';
@@ -14,8 +14,10 @@ const initialState = {
     },
     email: '',
     id: '',
-    likedProduct: [],
   },
+  likedProduct: [],
+  bestFitProducts: [],
+  isFetchedBestFitProducts: false,
   isLogin: false,
   updateSuccessfully: false,
   error: '',
